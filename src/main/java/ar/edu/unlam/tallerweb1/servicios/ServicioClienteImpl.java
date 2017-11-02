@@ -21,4 +21,10 @@ public class ServicioClienteImpl implements ServicioCliente {
 	{
 		return clienteDao.listarClientes();
 	}
+	
+	@Override
+	public Cliente buscarPorId(Long id)
+	{
+		return clienteDao.buscarPorId(id);
+	}
 }

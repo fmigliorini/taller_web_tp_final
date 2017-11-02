@@ -16,6 +16,8 @@ public class Presupuesto {
 	private String fecha_hora;
 	private String origen;
 	private String destino;
+	private Integer Kilometros;
+	private String descripcion;
 	
 	@OneToOne
 	private TipoVehiculo tipoVehiculo;
@@ -69,6 +71,22 @@ public class Presupuesto {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public Integer getKilometros() {
+		return Kilometros;
+	}
+
+	public void setKilometros(Integer kilometros) {
+		this.Kilometros = kilometros;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	
 	
