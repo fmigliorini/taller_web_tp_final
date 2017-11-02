@@ -7,10 +7,11 @@ import javax.inject.Inject;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.springframework.stereotype.Repository;
 
-import ar.edu.unlam.tallerweb1.modelo.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
 
+@Repository("TipoVehiculoDao")
 public class TipoVehiculoDaoImpl implements TipoVehiculoDao {
 
 	@Inject

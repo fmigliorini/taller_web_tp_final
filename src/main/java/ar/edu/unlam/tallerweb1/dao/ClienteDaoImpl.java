@@ -7,9 +7,11 @@ import javax.inject.Inject;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Cliente;
 
+@Repository("ClienteDao")
 public class ClienteDaoImpl implements ClienteDao {
 
 	@Inject
