@@ -19,8 +19,9 @@ public class Presupuesto {
 	
 	@OneToOne
 	private TipoVehiculo tipoVehiculo;
-
 	
+	@OneToOne
+	private Cliente cliente;
 	
 	public Long getId() {
 		return id;
@@ -61,6 +62,15 @@ public class Presupuesto {
 	public void setTipoVehiculo(TipoVehiculo tipoVehiculo) {
 		this.tipoVehiculo = tipoVehiculo;
 	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
 	
 	
 }

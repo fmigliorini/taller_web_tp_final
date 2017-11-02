@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class TipoVehiculo {
@@ -13,10 +12,8 @@ public class TipoVehiculo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String descripcion;
-	
-	@OneToOne
-	private Precio precio;
+	private String descripcion;	
+	private Double Precio;
 	
 	
 	public Long getId() {
@@ -34,6 +31,15 @@ public class TipoVehiculo {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+	public Double getPrecio() {
+		return Precio;
+	}
+
+	public void setPrecio(Double precio) {
+		Precio = precio;
+	}
+	
 	
 	
 }
