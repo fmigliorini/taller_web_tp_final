@@ -16,11 +16,16 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 @Controller
 public class ControladorApp {
 
+	@RequestMapping(path = "/", method = RequestMethod.GET)
+	public ModelAndView inicio() {
+		return new ModelAndView("redirect:/home");
+	}
+	
 	/**
 	 * Retorno la ventana del Home
 	 * @return ModelAndView
 	 */
-	@RequestMapping("/")
+	@RequestMapping("/home")
 	public ModelAndView irAFormularioPresupuesto() {
 		return new ModelAndView("home");
 	}
