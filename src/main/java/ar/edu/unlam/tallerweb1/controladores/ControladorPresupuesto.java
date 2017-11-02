@@ -62,7 +62,9 @@ public class ControladorPresupuesto {
 		presupuesto.setPrecio(servicioTipoVehiculo.buscarPorId(idTipoVehiculo).getPrecio() * kilometros);
 		servicioPresupuesto.guardarPresupusto(presupuesto);
 		
-		return new ModelAndView("presupuesto-form");
+		ModelMap model = new ModelMap();
+		model.put("presupuesto", presupuesto);
+		return new ModelAndView("invoice",model);
 	}
 
 }
