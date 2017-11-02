@@ -11,6 +11,7 @@ import ar.edu.unlam.tallerweb1.dao.TipoVehiculoDao;
 import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
 
 @Service("servicioTipoVehiculo")
+@Transactional
 public class ServicioTipoVehiculoImpl implements ServicioTipoVehiculo {
 	
 	@Inject
