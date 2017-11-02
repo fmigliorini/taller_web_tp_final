@@ -23,8 +23,6 @@ public class ClienteDaoImpl implements ClienteDao {
 	
 		final Session session = sessionFactory.getCurrentSession();
 		List<Cliente> clientes = session.createCriteria(Cliente.class)
-									.addOrder(Order.asc("apellido"))
-									.addOrder(Order.asc("nombre"))
 									.list();
 		return clientes;
 									

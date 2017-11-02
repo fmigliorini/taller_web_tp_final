@@ -22,7 +22,6 @@ public class TipoVehiculoDaoImpl implements TipoVehiculoDao {
 	{
 		final Session session = sessionFactory.getCurrentSession();
 		List<TipoVehiculo> tipoVehiculos = session.createCriteria(TipoVehiculo.class)
-												.addOrder(Order.asc("descripcion"))
 												.list();
 		return tipoVehiculos;
 	}
