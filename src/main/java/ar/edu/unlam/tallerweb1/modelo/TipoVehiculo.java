@@ -13,7 +13,7 @@ public class TipoVehiculo {
 	private Long id;
 	
 	private String descripcion;	
-	private Double Precio;
+	private Float Precio;
 	
 	
 	public Long getId() {
@@ -32,12 +32,12 @@ public class TipoVehiculo {
 		this.descripcion = descripcion;
 	}
 
-	public Double getPrecio() {
+	public Float getPrecio() {
 		return Precio;
 	}
 
-	public void setPrecio(Double precio) {
-		Precio = precio;
+	public void setPrecio(Float precio) {
+		this.Precio = precio;
 	}
 	
 	

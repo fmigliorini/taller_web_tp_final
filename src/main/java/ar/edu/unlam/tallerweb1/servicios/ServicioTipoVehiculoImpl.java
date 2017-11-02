@@ -22,5 +22,10 @@ public class ServicioTipoVehiculoImpl implements ServicioTipoVehiculo {
 	{
 		return tipoVehiculoDao.listarTiposVehiculos();
 	}
-	
+
+	@Override
+	public TipoVehiculo buscarPorId(Long id)
+	{
+		return tipoVehiculoDao.buscarPorId(id);
+	}
 }

@@ -18,6 +18,7 @@ public class Presupuesto {
 	private String destino;
 	private Integer Kilometros;
 	private String descripcion;
+	private Float precio;
 	
 	@OneToOne
 	private TipoVehiculo tipoVehiculo;
@@ -87,6 +88,14 @@ public class Presupuesto {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public Float getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(Float precio) {
+		this.precio = precio;
 	}
 	
 	

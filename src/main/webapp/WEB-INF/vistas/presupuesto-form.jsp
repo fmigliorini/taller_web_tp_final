@@ -5,7 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div class="container">
 	<h1> Formulario presupuesto </h1>
-    <form action="generarPresupusto">
+    <form action="generarPresupuesto">
 	    <div class="form-row">
 	        <div class="form-group col-md-6">
 	            <label for="idCliente">Cliente</label>

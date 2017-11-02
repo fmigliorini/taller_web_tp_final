@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
@@ -24,5 +25,14 @@ public class TipoVehiculoDaoImpl implements TipoVehiculoDao {
 		List<TipoVehiculo> tipoVehiculos = session.createCriteria(TipoVehiculo.class)
 												.list();
 		return tipoVehiculos;
+	}
+	
+	@Override
+	public TipoVehiculo buscarPorId(Long id)
+	{
+		final Session session = sessionFactory.getCurrentSession();
+		return (TipoVehiculo) session.createCriteria(TipoVehiculo.class)
+								.add(Restrictions.eq("id", id))
+								.uniqueResult();
 	}
 }
