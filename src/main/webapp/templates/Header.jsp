@@ -14,7 +14,17 @@
 	    <!-- Bootstrap theme -->
 	    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
 	</head>
-
+	<style>
+	body {
+	  padding-top: 54px;
+	}
+	
+	@media (min-width: 992px) {
+	  body {
+	    padding-top: 56px;
+	  }
+	}
+	</style>
   	<body>
   	
 	    <!-- Navigation -->
@@ -27,7 +37,7 @@
 	        <div class="collapse navbar-collapse" id="navbarResponsive">
 	          <ul class="navbar-nav ml-auto">
 	            <li class="nav-item">
-	              <a class="nav-link" href="presupuesto/form">Nuevo Presupuesto
+	              <a class="nav-link" href="presupuestoForm">Nuevo Presupuesto
 	                <!-- <span class="sr-only">(current)</span>  -->
 	              </a>
 	            </li>
