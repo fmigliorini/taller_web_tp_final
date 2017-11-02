@@ -10,7 +10,7 @@ import ar.edu.unlam.tallerweb1.dao.ClienteDao;
 import ar.edu.unlam.tallerweb1.modelo.Cliente;
 
 @Service("servicioCliente")
-public class ServicioclienteImpl implements ClienteDao {
+public class ServicioClienteImpl implements ClienteDao {
 
 	@Inject
 	private ClienteDao clienteDao;
