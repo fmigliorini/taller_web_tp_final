@@ -26,21 +26,35 @@
 	            </select>
 	        </div>
 	    </div>
-	    <div class="form-group">
-	        <label for="origen">Origen</label>
-	        <input type="text" required="required" class="form-control" id="origen" name="origen" placeholder="Calle Falsa, Ramos Mejias, La Matanza, Buenos Aires">
+	    <div class="form-row">
+		    <div class="form-group col-md-6">
+		        <label for="origen">Origen</label>
+		        <input type="text" required="required" class="form-control" id="origen" name="origen" placeholder="Calle Falsa, Ramos Mejias, La Matanza, Buenos Aires">
+		    </div>
+		    <div class="form-group col-md-6">
+		        <label for="destino">Destino</label>
+		        <input type="text" required="required" class="form-control" id="destino" name="destino" placeholder="Calle Verdadera, Isidro Casanova, La Matanza, Buenos Aires">
+		    </div>
 	    </div>
-	    <div class="form-group">
-	        <label for="destino">Destino</label>
-	        <input type="text" required="required" class="form-control" id="destino" name="destino" placeholder="Calle Verdadera, Isidro Casanova, La Matanza, Buenos Aires">
-	    </div>
-        <div class="form-group">
-            <label for="kilometros">Kilometros</label>
-            <input type="text" required="required" class="form-control" id="kilometros" name="kilometros">
+	    <div class="form-row">	
+	        <div class="form-group col-md-6">
+	            <label for="fecha">Fecha</label>
+	            <input type="date" required="required" class="form-control" id="fecha" name="fecha">
+	        </div>
+	        <div class="form-group col-md-6">
+	            <label for="hora">Hora</label>
+	            <input type="time" required="required" class="form-control" id="hora" name="hora">
+	        </div>
         </div>
-	    <div class="form-group">
-	        <label for="descripcion">Descripción </label>
-	        <textarea required="required" class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+	    <div class="form-row">	
+	        <div class="form-group col-md-12">
+	            <label for="kilometros">Kilometros</label>
+	            <input type="text" required="required" class="form-control" id="kilometros" name="kilometros">
+	        </div>
+		    <div class="form-group col-md-12">
+		        <label for="descripcion">Descripción </label>
+		        <textarea required="required" class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+		    </div>
 	    </div>
 	    <input type="submit" class="btn btn-primary" value="Generar Presupuesto">
    	    <button type="submit" class="btn btn-danger">Cancelar</button>
