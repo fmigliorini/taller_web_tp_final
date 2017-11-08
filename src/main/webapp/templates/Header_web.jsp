@@ -35,11 +35,18 @@
 	          <span class="navbar-toggler-icon"></span>
 	        </button>
 	        <div class="collapse navbar-collapse" id="navbarResponsive">
-	          <ul class="navbar-nav ml-auto">
+	          <ul class="navbar-nav ml-auto">	
 	            <li class="nav-item">
-	              <a class="nav-link" href="presupuestoForm">Nuevo Presupuesto
-	                <!-- <span class="sr-only">(current)</span>  -->
-	              </a>
+	              <a class="nav-link" href="#">Servicios</a>
+	            </li>
+	            <li class="nav-item">
+	              <a class="nav-link" href="#">Contactos</a>
+	            </li>
+	            <li class="nav-item">
+	              <a class="nav-link" href="#">Quienes Somos?</a>
+	            </li>	
+	            <li class="nav-item">
+	              <a class="nav-link" href="login">Login</a>
 	            </li>
 	          </ul>
 	        </div>

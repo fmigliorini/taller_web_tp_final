@@ -14,20 +14,16 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 
 @Controller
-public class ControladorApp {
+public class ControladorWeb {
 
-	/*@RequestMapping(path = "/", method = RequestMethod.GET)
+	@RequestMapping(path = "/", method = RequestMethod.GET)
 	public ModelAndView inicio() {
-		return new ModelAndView("redirect:/home");
-	}*/
+		return new ModelAndView("redirect:/index");
+	}
 	
-	/**
-	 * Retorno la ventana del Home
-	 * @return ModelAndView
-	 */
-	@RequestMapping("/home")
-	public ModelAndView irAFormularioPresupuesto() {
-		return new ModelAndView("home");
+	@RequestMapping(path = "/index", method = RequestMethod.GET)
+	public ModelAndView index() {
+		return new ModelAndView("index");
 	}
 
 }

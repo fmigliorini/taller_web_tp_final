@@ -19,6 +19,8 @@ public class Usuario {
 	// el atributo, la misma admite nulos, y el tipo de dato se deduce del tipo de dato de java.
 	private String email;
 	private String password;
+	private String nombre;
+	private String apellido;
 	private String rol;
 	
 	public Long getId() {
@@ -39,7 +41,18 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getApellido() {
+		return apellido;
+	}
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
 	public String getRol() {
 		return rol;
 	}
