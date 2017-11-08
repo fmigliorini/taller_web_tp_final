@@ -7,4 +7,5 @@ public interface UsuarioDao {
 	
 	Usuario consultarUsuario (Usuario usuario);
 	Usuario generarUsuario (Usuario usuario);
+	Usuario buscarPorId (Long id);
 }

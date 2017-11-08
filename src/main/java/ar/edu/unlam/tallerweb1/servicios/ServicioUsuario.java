@@ -6,4 +6,5 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 public interface ServicioUsuario {
 
 	Usuario generarUsuario(Usuario usuario);
+	Usuario buscarPorId(Long id);
 }

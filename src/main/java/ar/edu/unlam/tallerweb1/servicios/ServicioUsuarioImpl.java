@@ -26,4 +26,9 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		return servicioUsuarioDao.generarUsuario(usuario);
 	}
 
+	@Override
+	public Usuario buscarPorId( Long id )
+	{
+		return servicioUsuarioDao.buscarPorId(id);
+	}
 }

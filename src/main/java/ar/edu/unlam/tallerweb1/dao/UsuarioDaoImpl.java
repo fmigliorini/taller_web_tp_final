@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import ar.edu.unlam.tallerweb1.modelo.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -39,6 +40,15 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		final Session session = sessionFactory.getCurrentSession();
 		session.save(usuario);
 		return usuario;
+	}
+
+	@Override
+	public Usuario buscarPorId( Long id)
+	{
+		final Session session = sessionFactory.getCurrentSession();
+		return (Usuario) session.createCriteria(Usuario.class)
+				.add(Restrictions.eq("id", id))
+				.uniqueResult();
 	}
 
 }

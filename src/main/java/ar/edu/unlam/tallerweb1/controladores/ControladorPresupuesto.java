@@ -16,12 +16,13 @@ import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCliente;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPresupuesto;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTipoVehiculo;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
 public class ControladorPresupuesto {
 
 	@Inject
-	private ServicioCliente servicioCliente;
+	private ServicioUsuario servicioUsuario;
 	
 	@Inject
 	private ServicioTipoVehiculo servicioTipoVehiculo;
@@ -55,7 +56,7 @@ public class ControladorPresupuesto {
 	{
 		
 		Presupuesto presupuesto = new Presupuesto();
-		presupuesto.setCliente(servicioCliente.buscarPorId(idCliente));
+		presupuesto.setUsuario(servicioUsuario.buscarPorId(idCliente));
 		presupuesto.setTipoVehiculo(servicioTipoVehiculo.buscarPorId(idTipoVehiculo));		
 		presupuesto.setOrigen(origen);
 		presupuesto.setDestino(destino);
