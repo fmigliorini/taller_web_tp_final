@@ -21,6 +21,9 @@ public class Usuario {
 	private String password;
 	private String nombre;
 	private String apellido;
+	private String telefono;
+	private String direccion;
+	private String dni;
 	private String rol;
 	
 	public Long getId() {
@@ -56,7 +59,24 @@ public class Usuario {
 	public String getRol() {
 		return rol;
 	}
-
+	public String getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+	public String getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+	public String getDni() {
+		return dni;
+	}
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
 	public void setRol(String rol) {
 		this.rol = rol;
 	}

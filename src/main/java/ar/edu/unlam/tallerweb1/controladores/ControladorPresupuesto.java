@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -34,10 +35,11 @@ public class ControladorPresupuesto {
 	 * @return ModelAndView
 	 */
 	@RequestMapping("/presupuestoForm")
-	public ModelAndView irAFormularioPresupuesto() {
+	public ModelAndView irAFormularioPresupuesto(HttpServletRequest request) {
+		Long idUsuario = (Long)request.getSession().getAttribute("idUsuario");
 		
 		ModelMap model = new ModelMap();
-		model.put("clientes", servicioCliente.listarClientes());
+		model.put("idCliente", idUsuario);
 		model.put("tiposVehiculos", servicioTipoVehiculo.listarTiposVehiculos());
 		return new ModelAndView("presupuesto-form", model);
 		

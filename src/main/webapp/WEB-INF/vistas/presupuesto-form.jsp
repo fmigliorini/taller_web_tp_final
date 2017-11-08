@@ -6,17 +6,9 @@
 <div class="container">
 	<h1> Formulario presupuesto </h1>
     <form action="generarPresupuesto">
+    	<input type="hidden" id="idCliente" name="idCliente" value="${idCliente}">
 	    <div class="form-row">
-	        <div class="form-group col-md-6">
-	            <label for="idCliente">Cliente</label>
-	            <select id="idCliente" name="idCliente" class="form-control">
-	                <option selected>Seleccione una opción</option>
-					<c:forEach items="${clientes}" var="c" >
-						<option value="${c.id}">${c.nombre}</option>
-					</c:forEach>
-	            </select>
-	        </div>
-	        <div class="form-group col-md-6">
+	        <div class="form-group col-md-12">
 	            <label for="tipoVehiculo">Tipo Vehiculo</label>
 	            <select id="tipoVehiculo" name="tipoVehiculo" class="form-control">
 	                <option selected>Seleccione una opción</option>
