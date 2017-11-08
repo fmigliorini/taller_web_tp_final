@@ -12,10 +12,7 @@
 			    	<h3 class="form-signin-heading">Ingresar</h3>
 			    	<%--Bloque que es visible si el elemento error no estÃ¡ vacÃ­o	--%>
 					<hr class="colorgraph"><br>
-					<c:if test="${not empty error}">
-				        <h4><span class="">${error}</span></h4>
-				        <br>
-			        </c:if>	
+
 					<%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
 					<form:input path="email" id="email" type="email" class="form-control" />
 					<form:input path="password" type="password" id="password" class="form-control"/>     		  
@@ -25,7 +22,7 @@
 
 				
 		        
-				<a class="nav-link" href="createClient">¿Aun no posees una cuenta?</a>
+				<a class="nav-link" href="cliente-form">¿Aun no posees una cuenta?</a>
 		        
 			</div>
 		</div>
