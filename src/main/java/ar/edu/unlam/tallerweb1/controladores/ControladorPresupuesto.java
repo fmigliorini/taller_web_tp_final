@@ -1,26 +1,25 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.modelo.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.Presupuesto;
-import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
-import ar.edu.unlam.tallerweb1.servicios.ServicioCliente;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPresupuesto;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTipoVehiculo;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
+
 
 @Controller
 public class ControladorPresupuesto {
 
 	@Inject
-	private ServicioCliente servicioCliente;
+	private ServicioUsuario servicioUsuario;
 	
 	@Inject
 	private ServicioTipoVehiculo servicioTipoVehiculo;
@@ -34,10 +33,11 @@ public class ControladorPresupuesto {
 	 * @return ModelAndView
 	 */
 	@RequestMapping("/presupuestoForm")
-	public ModelAndView irAFormularioPresupuesto() {
+	public ModelAndView irAFormularioPresupuesto(HttpServletRequest request) {
+		Long idUsuario = (Long)request.getSession().getAttribute("idUsuario");
 		
 		ModelMap model = new ModelMap();
-		model.put("clientes", servicioCliente.listarClientes());
+		model.put("idCliente", idUsuario);
 		model.put("tiposVehiculos", servicioTipoVehiculo.listarTiposVehiculos());
 		return new ModelAndView("presupuesto-form", model);
 		
@@ -53,7 +53,7 @@ public class ControladorPresupuesto {
 	{
 		
 		Presupuesto presupuesto = new Presupuesto();
-		presupuesto.setCliente(servicioCliente.buscarPorId(idCliente));
+		presupuesto.setUsuario(servicioUsuario.buscarPorId(idCliente));
 		presupuesto.setTipoVehiculo(servicioTipoVehiculo.buscarPorId(idTipoVehiculo));		
 		presupuesto.setOrigen(origen);
 		presupuesto.setDestino(destino);

@@ -36,14 +36,14 @@
             <div class="row">
                 <div class="col-lg-7 col-md-7 col-sm-7">
                     <h4>Datos del Cliente : </h4>
-                    <strong>${presupuesto.cliente.apellido }, ${presupuesto.cliente.nombre } </strong> 
-                    <br />DNI: ${presupuesto.cliente.dni }
-                    <br />Direccion: ${presupuesto.cliente.direccion }
+                    <strong>${presupuesto.usuario.apellido }, ${presupuesto.usuario.nombre } </strong> 
+                    <br />DNI: ${presupuesto.usuario.dni }
+                    <br />Direccion: ${presupuesto.usuario.direccion }
                 </div>
                 <div class="col-lg-5 col-md-5 col-sm-5">
                     <h4>Datos de Contacto :</h4>
-                    email: ${presupuesto.cliente.email }
-                    <br> teléfono: ${presupuesto.cliente.telefono }
+                    email: ${presupuesto.usuario.email }
+                    <br> teléfono: ${presupuesto.usuario.telefono }
                 </div>
             </div>
             <hr />

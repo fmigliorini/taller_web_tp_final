@@ -16,6 +16,7 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 @Controller
 public class ControladorLogin {
 
+
 	@Inject
 	private ServicioLogin servicioLogin;
 
@@ -34,8 +35,21 @@ public class ControladorLogin {
 		
 		Usuario usuarioBuscado = servicioLogin.consultarUsuario(usuario);
 		if (usuarioBuscado != null) {
-			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
-			return new ModelAndView("redirect:/home");
+			
+			request.getSession().setAttribute("rol", usuarioBuscado.getRol());
+			request.getSession().setAttribute("idUsuario", usuarioBuscado.getId());
+			//return new ModelAndView("redirect:/home");
+			
+			//Con esto mando a diferentes vistas según el rol de los usuarios
+			if(usuario.getRol().equals("chofer")){
+				return new ModelAndView("menuChofer");
+			}
+			if(usuario.getRol().equals("cliente")){
+				return new ModelAndView("menuCliente");
+			}
+			return new ModelAndView("menuAdministrador");
+			
+			
 		} else {
 			model.put("error", "Usuario o clave incorrecta");
 		}
