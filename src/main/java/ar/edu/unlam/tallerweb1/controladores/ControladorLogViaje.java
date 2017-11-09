@@ -40,7 +40,7 @@ public class ControladorLogViaje {
 		ModelMap model = new ModelMap();
 		model.put("logViaje", logViaje);
 		//esto no va a ningun lado
-		return new ModelAndView("invoice2",model);
+		return new ModelAndView("invoiceLogViaje",model);
 	}
 }
 	

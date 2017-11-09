@@ -1,10 +1,13 @@
 <%@include file='../../templates/Header.jsp' %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+
 <div class="container">
-	<h1> Formulario Gasto De Viajes </h1>
+	<h1> Formulario Gastos De Viajes </h1>
     <form action="cargarLogViaje">
         
 	    <div class="form-row">	
@@ -22,3 +25,4 @@
 	    
 	</form>
 </div>
+<%@include file='../../templates/Footer.jsp' %>

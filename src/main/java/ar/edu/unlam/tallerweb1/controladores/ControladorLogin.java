@@ -42,10 +42,10 @@ public class ControladorLogin {
 			
 			//Con esto mando a diferentes vistas según el rol de los usuarios
 			if(usuario.getRol().equals("chofer")){
-				return new ModelAndView("menuChofer");
+				return new ModelAndView("index_chofer");
 			}
 			if(usuario.getRol().equals("cliente")){
-				return new ModelAndView("menuCliente");
+				return new ModelAndView("index");
 			}
 			return new ModelAndView("menuAdministrador");
 			
