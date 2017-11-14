@@ -47,7 +47,7 @@ public class ControladorLogin {
 			if(usuario.getRol().equals("cliente")){
 				return new ModelAndView("index");
 			}
-			return new ModelAndView("menuAdministrador");
+			return new ModelAndView("indexAdministrador");
 			
 			
 		} else {

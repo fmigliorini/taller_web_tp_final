@@ -15,12 +15,10 @@ public class LogViaje {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	private String descripcion;
+	private String tipoLogViaje;
 	private Double precio;
 	@OneToMany(mappedBy = "logViaje", cascade = CascadeType.ALL)
 	private List<Viaje> viajes = new LinkedList<Viaje>();
-	
-	//private Viaje idViaje;
 	
 	public Long getId() {
 		return id;
@@ -28,11 +26,11 @@ public class LogViaje {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getDescripcion() {
-		return descripcion;
+	public String getTipoLogViaje() {
+		return tipoLogViaje;
 	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setTipoLogViaje(String tipoLogViaje) {
+		this.tipoLogViaje = tipoLogViaje;
 	}
 	public Double getPrecio() {
 		return precio;
@@ -46,6 +44,7 @@ public class LogViaje {
 	public void setViajes(List<Viaje> viajes) {
 		this.viajes = viajes;
 	}
+	
 
 	
 }
