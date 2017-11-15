@@ -15,6 +15,7 @@ public class Movimiento {
 	private Long puntoVenta;
 	private Long numeroMovimiento;
 	private String fecha_hora;
+	private String letra;
 	
 	@OneToOne
 	private TipoMovimiento tipoMovimiento;
@@ -31,6 +32,14 @@ public class Movimiento {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getLetra() {
+		return letra;
+	}
+
+	public void setLetra(String letra) {
+		this.letra = letra;
 	}
 
 	
