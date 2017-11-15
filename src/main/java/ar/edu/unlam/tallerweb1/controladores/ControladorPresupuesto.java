@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.modelo.Cliente;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Presupuesto;
 import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
-import ar.edu.unlam.tallerweb1.servicios.ServicioCliente;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPresupuesto;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTipoVehiculo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
