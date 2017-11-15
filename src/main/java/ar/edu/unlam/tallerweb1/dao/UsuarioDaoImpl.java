@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.dao;
 
-import ar.edu.unlam.tallerweb1.modelo.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
