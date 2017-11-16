@@ -41,18 +41,18 @@ public class ControladorLogin {
 			//return new ModelAndView("redirect:/home");
 			
 			//Con esto mando a diferentes vistas seg�n el rol de los usuarios
-			if(usuario.getRol().equals("chofer")){
-				return new ModelAndView("index_chofer");
+			if(usuarioBuscado.getRol().equals("chofer")){
+				return new ModelAndView("redirect:/index_chofer");
 			}
-			if(usuario.getRol().equals("cliente")){
-				return new ModelAndView("index");
+			if(usuarioBuscado.getRol().equals("cliente")){
+				return new ModelAndView("redirect:/index");
 			}
-			return new ModelAndView("indexAdministrador");
+			return new ModelAndView("redirect:/home");
 			
 		} else {
 			model.put("error", "Usuario o clave incorrecta");
 		}
-		return new ModelAndView("login", model);
+		return new ModelAndView("redirect:/login", model);
 	}
 
 }
