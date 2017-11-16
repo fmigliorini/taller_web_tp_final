@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.dao;
 
-
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,8 +17,8 @@ import javax.inject.Inject;
 @Repository("usuarioDao")
 public class UsuarioDaoImpl implements UsuarioDao {
 
-	// Como todo dao maneja acciones de persistencia, normalmente estará inyectado el session factory de hibernate
-	// el mismo está difinido en el archivo hibernateContext.xml
+	// Como todo dao maneja acciones de persistencia, normalmente estarï¿½ inyectado el session factory de hibernate
+	// el mismo estï¿½ difinido en el archivo hibernateContext.xml
 	@Inject
  private SessionFactory sessionFactory;
 
@@ -28,7 +27,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 		// Se obtiene la sesion asociada a la transaccion iniciada en el servicio que invoca a este metodo y se crea un criterio
 		// de busqueda de Usuario donde el email y password sean iguales a los del objeto recibido como parametro
-		// uniqueResult da error si se encuentran más de un resultado en la busqueda.
+		// uniqueResult da error si se encuentran mï¿½s de un resultado en la busqueda.
 		final Session session = sessionFactory.getCurrentSession();
 		return (Usuario) session.createCriteria(Usuario.class)
 				.add(Restrictions.eq("email", usuario.getEmail()))
