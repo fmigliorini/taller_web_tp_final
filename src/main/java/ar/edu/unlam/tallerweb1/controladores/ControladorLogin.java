@@ -54,5 +54,9 @@ public class ControladorLogin {
 		}
 		return new ModelAndView("redirect:/login", model);
 	}
+	
+	public void setServicioLogin(ServicioLogin servicioLogin) {
+		this.servicioLogin = servicioLogin;
+	}
 
 }
