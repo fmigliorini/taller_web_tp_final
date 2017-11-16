@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -96,5 +98,17 @@ public class MovimientoDaoImpl implements MovimientoDao {
 											
 											.list();
 		return movimientosChofer;
+	}
+	
+	public long getLastNumber(){
+		
+		final Session session = sessionFactory.getCurrentSession();
+		
+		Criteria criteria = session.createCriteria(Movimiento.class)
+			    .setProjection(Projections.max("number"));
+			long numeroMovimiento = (Integer)criteria.uniqueResult();
+		
+		return numeroMovimiento;
+		
 	}
 }
