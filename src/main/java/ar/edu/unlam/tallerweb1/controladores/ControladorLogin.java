@@ -45,9 +45,9 @@ public class ControladorLogin {
 				return new ModelAndView("redirect:/index_chofer");
 			}
 			if(usuarioBuscado.getRol().equals("cliente")){
-				return new ModelAndView("redirect:/index");
+				return new ModelAndView("redirect:/home");
 			}
-			return new ModelAndView("redirect:/home");
+			return new ModelAndView("redirect:/index");
 			
 		} else {
 			model.put("error", "Usuario o clave incorrecta");

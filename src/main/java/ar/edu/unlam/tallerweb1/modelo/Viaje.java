@@ -3,9 +3,12 @@ package ar.edu.unlam.tallerweb1.modelo;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -14,20 +17,32 @@ public class Viaje {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String fecha_hora;
 	private String origen;
 	private String destino;
 	private Integer Kilometros;
 	private String descripcion;
 	private Float precio;
-	
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_logViaje")
+	private LogViaje logViaje;
+
+	public LogViaje getLogViaje() {
+		return logViaje;
+	}
+
+	public void setLogViaje(LogViaje logViaje) {
+		this.logViaje = logViaje;
+	}
+
 	@OneToOne
 	private TipoVehiculo tipoVehiculo;
-	
+
 	@OneToOne
 	private Usuario chofer;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -100,5 +115,4 @@ public class Viaje {
 		this.precio = precio;
 	}
 
-	
 }
