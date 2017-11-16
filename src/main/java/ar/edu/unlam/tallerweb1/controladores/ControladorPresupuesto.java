@@ -37,12 +37,14 @@ public class ControladorPresupuesto {
 	@RequestMapping("/presupuestoForm")
 	public ModelAndView irAFormularioPresupuesto(HttpServletRequest request) {
 		Long idUsuario = (Long)request.getSession().getAttribute("idUsuario");
-		
+		if ( idUsuario != null ){
 		ModelMap model = new ModelMap();
 		model.put("idCliente", idUsuario);
 		model.put("tiposVehiculos", servicioTipoVehiculo.listarTiposVehiculos());
 		return new ModelAndView("presupuesto-form", model);
-		
+		}
+		return new ModelAndView("redirect:/login");
+
 	}
 	
 	@RequestMapping("/generarPresupuesto")
