@@ -12,11 +12,11 @@ public class Movimiento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Long puntoVenta;
+	private int puntoVenta;
 	private Long numeroMovimiento;
 	private String fecha_hora;
 	private String fecha_vencimiento;
-	private String letra;
+	private char letra;
 	private String observaciones;
 	
 	@OneToOne
@@ -39,11 +39,11 @@ public class Movimiento {
 		this.id = id;
 	}
 
-	public String getLetra() {
+	public char getLetra() {
 		return letra;
 	}
 
-	public void setLetra(String letra) {
+	public void setLetra(char letra) {
 		this.letra = letra;
 	}
 
@@ -54,11 +54,11 @@ public class Movimiento {
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
 	}
-	public Long getPuntoVenta() {
+	public int getPuntoVenta() {
 		return puntoVenta;
 	}
 
-	public void setPuntoVenta(Long puntoVenta) {
+	public void setPuntoVenta(int puntoVenta) {
 		this.puntoVenta = puntoVenta;
 	}
 	public Long getNumeroMovimiento() {
@@ -114,4 +114,6 @@ public class Movimiento {
 	public void setViaje(Viaje viaje) {
 		this.viaje = viaje;
 	}
+
+
 }

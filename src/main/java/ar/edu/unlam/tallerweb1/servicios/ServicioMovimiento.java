@@ -20,4 +20,6 @@ public interface ServicioMovimiento {
 	
 	//Trae los remitos para los choferes
 	List<Movimiento> buscarMovimientosParaChofer(Long idChofer);
+	
+	long getLastNumber();
 }

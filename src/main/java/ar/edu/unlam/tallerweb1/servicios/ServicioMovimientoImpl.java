@@ -46,4 +46,9 @@ public class ServicioMovimientoImpl implements ServicioMovimiento {
 	public List<Movimiento> buscarMovimientosParaChofer(Long idChofer)	{
 		return movimientoDao.buscarMovimientosParaChofer(idChofer);
 	}
+	
+	public long getLastNumber(){
+		
+		return movimientoDao.getLastNumber();
+	}
 }
