@@ -41,7 +41,7 @@
 	    <div class="form-row">	
 	        <div class="form-group col-md-12">
 	            <label for="kilometros">Kilometros</label>
-	            <input type="text" required="required" class="form-control" id="kilometros" name="kilometros">
+	            <input type="text" required="required" class="form-control" id="kilometros" name="kilometros" readonly>
 	        </div>
 		    <div class="form-group col-md-12">
 		        <label for="descripcion">Descripción </label>
