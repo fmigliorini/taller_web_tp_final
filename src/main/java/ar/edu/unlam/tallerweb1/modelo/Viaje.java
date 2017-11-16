@@ -16,7 +16,7 @@ public class Viaje {
 	private String fecha_hora;
 	private String origen;
 	private String destino;
-	private Integer Kilometros;
+	private Integer kilometros;
 	private String descripcion;
 	private Float precio;
 	
@@ -77,11 +77,11 @@ public class Viaje {
 	}
 
 	public Integer getKilometros() {
-		return Kilometros;
+		return kilometros;
 	}
 
 	public void setKilometros(Integer kilometros) {
-		this.Kilometros = kilometros;
+		this.kilometros = kilometros;
 	}
 
 	public String getDescripcion() {
