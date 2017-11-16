@@ -15,10 +15,15 @@ public class Movimiento {
 	private Long puntoVenta;
 	private Long numeroMovimiento;
 	private String fecha_hora;
+	private String fecha_vencimiento;
 	private String letra;
+	private String observaciones;
 	
 	@OneToOne
 	private TipoMovimiento tipoMovimiento;
+	
+	@OneToOne
+	private EstadoMovimiento estadoMovimiento;
 	
 	@OneToOne
 	private Viaje viaje;
@@ -42,7 +47,13 @@ public class Movimiento {
 		this.letra = letra;
 	}
 
-	
+	public String getObservaciones() {
+		return observaciones;
+	}
+
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
+	}
 	public Long getPuntoVenta() {
 		return puntoVenta;
 	}
@@ -64,7 +75,13 @@ public class Movimiento {
 	public void setFecha_hora(String fecha_hora) {
 		this.fecha_hora = fecha_hora;
 	}
+	public String getFecha_vencimiento() {
+		return fecha_vencimiento;
+	}
 
+	public void setFecha_vencimiento(String fecha_vencimiento) {
+		this.fecha_vencimiento = fecha_vencimiento;
+	}
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -80,6 +97,14 @@ public class Movimiento {
 
 	public void setTipoMovimiento(TipoMovimiento tipoMovimiento) {
 		this.tipoMovimiento = tipoMovimiento;
+	}
+	
+	public TipoMovimiento getEstadoMovimiento() {
+		return tipoMovimiento;
+	}
+
+	public void setEstadoMovimiento(EstadoMovimiento estadoMovimiento) {
+		this.estadoMovimiento = estadoMovimiento;
 	}
 	
 	public Viaje getViaje() {
