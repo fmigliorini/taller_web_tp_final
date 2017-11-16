@@ -5,5 +5,3 @@
 </div>
 
 <%@include file='../../templates/Footer.jsp' %>
-
-		
