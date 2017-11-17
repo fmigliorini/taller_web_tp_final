@@ -65,3 +65,7 @@ Retrospective 2-11
     jueves que viene evaluamos si es necesario juntarnos.
 
 
+Retrospectiva 16-11 
+
+   -Sprints cada tres días, pushear y subir al master los cambios.
+   -Realizar análisis de impacto.
