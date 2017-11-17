@@ -1,14 +1,12 @@
 package ar.edu.unlam.tallerweb1.modelo;
-
+import java.util.LinkedList;
 import java.util.List;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -24,18 +22,10 @@ public class Viaje {
 	private Integer Kilometros;
 	private String descripcion;
 	private Float precio;
+    
+	@OneToMany(mappedBy = "viaje", cascade = CascadeType.ALL)
+	private List<LogViaje> logViajes = new LinkedList<LogViaje>();
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_logViaje")
-	private LogViaje logViaje;
-
-	public LogViaje getLogViaje() {
-		return logViaje;
-	}
-
-	public void setLogViaje(LogViaje logViaje) {
-		this.logViaje = logViaje;
-	}
    //hay que cambiar el nombre de logViaje por n_registro
 	@OneToOne
 	private TipoVehiculo tipoVehiculo;
@@ -113,6 +103,14 @@ public class Viaje {
 
 	public void setPrecio(Float precio) {
 		this.precio = precio;
+	}
+
+	public List<LogViaje> getLogViajes() {
+		return logViajes;
+	}
+
+	public void setLogViajes(List<LogViaje> logViajes) {
+		this.logViajes = logViajes;
 	}
 
 }
