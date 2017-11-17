@@ -36,7 +36,7 @@ public class Viaje {
 	public void setLogViaje(LogViaje logViaje) {
 		this.logViaje = logViaje;
 	}
-
+   //hay que cambiar el nombre de logViaje por n_registro
 	@OneToOne
 	private TipoVehiculo tipoVehiculo;
 

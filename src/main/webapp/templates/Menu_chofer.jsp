@@ -44,7 +44,7 @@
 	            </li>
 	            <li class="nav-item">
 	               <!--Este no lo entiendo--> 
-	              <a class="nav-link" href="#">Viajes activos</a>
+	              <a class="nav-link" href="listaViajesDiarios">Viajes diarios</a>
 	            </li>
 	          </ul>
 	        </div>

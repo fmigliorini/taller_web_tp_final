@@ -1,10 +1,11 @@
-<%@include file='../../templates/Header.jsp' %>
+<%@include file='../../templates/Menu_chofer.jsp' %>	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!-- /combustible, peaje,arreglo,. -->
 <div class="container">
+    <br>
 	<h1> Formulario Gastos De Viajes </h1>
 	<form:form method="POST" action="cargarLogViaje" modelAttribute="logViaje">
 	     <div class="form-row">	

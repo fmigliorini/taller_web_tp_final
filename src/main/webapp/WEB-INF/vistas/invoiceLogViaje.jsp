@@ -1,4 +1,4 @@
-<%@include file='../../templates/Header.jsp'%>
+<%@include file='../../templates/Menu_chofer.jsp' %>	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -11,13 +11,13 @@
 			<div class="row">
 				
 				<div class="col-lg-5 col-md-5 col-sm-5">
-
+                    <br>
 					<h2>Log de viaje</h2>
-					<h5>Id: ${logViaje.id }</h5>
-					<h5>Log de viaje: ${logViaje.tipoLogViaje }</h5>
-				    <h5></h5>
+					<h5>Id de log viaje: ${logViaje.id }</h5>
+					<h5>Descripción: ${logViaje.tipoLogViaje }</h5>
 					<h5>Precio: ${logViaje.precio}</h5>
-					<br> Inicio de act.: 21/04/2011 <br> Fecha : 02/11/2017
+				    <br> Inicio de act.: 21/04/2011 <br> Fecha : 02/11/2017
+					
 				</div>
 			</div>
 			<hr />
