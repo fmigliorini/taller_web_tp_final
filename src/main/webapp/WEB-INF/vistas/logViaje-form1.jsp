@@ -1,4 +1,4 @@
-<%@include file='../../templates/Menu_chofer.jsp' %>	
+<%@include file='menu_chofer_viajeActivo.jsp' %>	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -28,7 +28,7 @@
 	    <input type="submit" class="btn btn-primary" value="Generar Log de Viaje" />
 	    
    	    
-   	    <a href="indexChofer" class="btn btn-danger">Cancelar</a>
+   	    <a href="menu_chofer_viajeActivo" class="btn btn-danger">Cancelar</a>
 	</form:form>
 </div>
 <%@include file='../../templates/Footer.jsp' %>

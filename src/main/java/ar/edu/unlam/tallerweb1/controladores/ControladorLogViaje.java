@@ -43,16 +43,7 @@ public class ControladorLogViaje {
 		System.out.println("Elementos de viajes======="+((LogViaje) listaLog).getViajes().size());*/
 		return new ModelAndView("listaLogViaje",modelo2);
 	}
-
-	
-
-	@RequestMapping("listaViajesDiarios")
-	public ModelAndView mostrarListaDeViajesDiarios(){
-		return new ModelAndView("listaViajesDiarios");
-	}
-	
-	
-			                         
+		                         
 }			                         
 	
 		

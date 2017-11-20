@@ -35,5 +35,9 @@ public class ControladorWeb {
 	public ModelAndView indexChofer() {
 		return new ModelAndView("index_chofer");
 	}
-
+	
+	@RequestMapping(path="/indexAdministrador", method=RequestMethod.GET)
+	public ModelAndView indexAdministrador(){
+		return new ModelAndView("index_administrador");
+	}
 }

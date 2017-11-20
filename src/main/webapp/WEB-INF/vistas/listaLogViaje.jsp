@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@include file='../../templates/Menu_chofer.jsp' %>
+<%@include file='menu_chofer_viajeActivo.jsp' %>	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -43,8 +43,8 @@
 			<hr />
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12">
-				   
-					<a href="indexChofer" class="btn btn-success btn-sm">Volver al inicio</a>
+				    <a href="menu_chofer_viajeActivo" class="btn btn-success btn-sm">Volver al menú viaje activo</a>
+					
 				</div>
 			</div>
 			<hr>

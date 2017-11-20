@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 	<head>   
 	        <meta charset="utf-8">
 	        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 			<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-			<title>Menu chofer</title>
+			<title>Menu Administrador</title>
 			<!-- Bootstrap core CSS -->
 	        <link href="css/bootstrap-new.min.css" rel="stylesheet" >
 	        <!-- Bootstrap theme -->
@@ -35,19 +36,15 @@
 	          <ul class="navbar-nav ml-auto">	
 	            <li class="nav-item">
 	            <!--Aun no esta terminado --> 
-	              <a class="nav-link" href="listaDeViajesArealizar">Lista de Viajes a realizar</a>
+	              <a class="nav-link" href="#">Lista de presupuestos aceptados</a>
 	            </li>
 	            <li class="nav-item">
 	              <!--logViajeForm es la url  -->
-	              <a class="nav-link" href="listaDeViajesHechos">Lista de viajes realizados</a>
+	              <a class="nav-link" href="#">Reportes de viajes</a>
 	            </li>
 	            <li class="nav-item">
 	               <!--Este no lo entiendo--> 
-	              <a class="nav-link" href="listaDeRemitos">Lista de remitos</a>
-	            </li>
-	            <li class="nav-item">
-	               <!--Este no lo entiendo--> 
-	              <a class="nav-link" href="reportesDiarioDeViaje">Lista de Reportes diarios</a>
+	              <a class="nav-link" href="#">ABM de chófer</a>
 	            </li>
 	          </ul>
 	        </div>

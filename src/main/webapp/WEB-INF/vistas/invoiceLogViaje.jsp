@@ -1,4 +1,4 @@
-<%@include file='../../templates/Menu_chofer.jsp' %>	
+<%@include file='menu_chofer_viajeActivo.jsp' %>	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -25,7 +25,7 @@
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12">
 				   
-					<a href="indexChofer" class="btn btn-success btn-sm">Volver al inicio</a>
+					<a href="menu_chofer_viajeActivo" class="btn btn-success btn-sm">Volver al menú viaje activo</a>
 				</div>
 			</div>
 			<hr>
