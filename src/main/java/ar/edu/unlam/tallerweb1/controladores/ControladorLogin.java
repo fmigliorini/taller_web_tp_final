@@ -38,9 +38,7 @@ public class ControladorLogin {
 		
 			request.getSession().setAttribute("rol", usuarioBuscado.getRol());
 			request.getSession().setAttribute("idUsuario", usuarioBuscado.getId());
-			//return new ModelAndView("redirect:/home");
 			
-			//Con esto mando a diferentes vistas seg�n el rol de los usuarios
 			if(usuarioBuscado.getRol().equals("chofer")){
 				return new ModelAndView("redirect:/index_chofer");
 			}

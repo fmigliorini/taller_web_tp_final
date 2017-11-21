@@ -38,10 +38,8 @@ public class ControladorLogViaje {
 	@RequestMapping("listaLogViaje")
 	public ModelAndView mostrarListaLogViaje(){
 		ModelMap modelo2=new ModelMap();
-		List<LogViaje> listaLog=new LinkedList<LogViaje>();
-		listaLog=servicioLogViaje.listarLogViaje();
-		listaLog.addAll(listaLog);
-		modelo2.put("clave", listaLog);
+		List<LogViaje> listaLog=servicioLogViaje.listarLogViaje();
+		modelo2.put("listaLog", listaLog);
 		return new ModelAndView("listaLogViaje",modelo2);
 	}
 	

@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -38,6 +40,12 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	public Usuario buscarPorId( Long id )
 	{
 		return servicioUsuarioDao.buscarPorId(id);
+	}
+
+	@Override
+	public List<Usuario> listarChoferes() {
+		
+		return servicioUsuarioDao.listarChoferes();
 	}
 	
 }
