@@ -13,7 +13,7 @@
 		<div class="row color-invoice">
 			<div class="col-md-12">
 				<div class="row">
-					<div class="col-md-12"">
+					<div class="col-md-12">
 						<br>
 						<h3>Esta es la lista de los Log cargados:</h3>
 						<br>
@@ -51,5 +51,4 @@
 				<div class="row"></div>
 			</div>
 		</div>
-</body>
-</html>
+	</div>

@@ -5,6 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!-- /combustible, peaje,arreglo,. -->
 <div class="container">
+    <br>
 	<h1> Formulario Gastos De Viajes </h1>
 	<form:form method="POST" action="cargarLogViaje" modelAttribute="logViaje">
 	     <div class="form-row">	

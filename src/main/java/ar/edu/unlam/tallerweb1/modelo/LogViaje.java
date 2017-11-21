@@ -2,13 +2,14 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 @Entity
 public class LogViaje {
 
@@ -17,9 +18,10 @@ public class LogViaje {
 	private Long id;
 	private String tipoLogViaje;
 	private Double precio;
-	@OneToMany(mappedBy = "logViaje", cascade = CascadeType.ALL)
-	private List<Viaje> viajes = new LinkedList<Viaje>();
-	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_viaje")
+	private Viaje viaje;
+
 	public Long getId() {
 		return id;
 	}
@@ -38,13 +40,10 @@ public class LogViaje {
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
-	public List<Viaje> getViajes() {
-		return viajes;
+	public Viaje getViaje() {
+		return viaje;
 	}
-	public void setViajes(List<Viaje> viajes) {
-		this.viajes = viajes;
+	public void setViaje(Viaje viaje) {
+		this.viaje = viaje;
 	}
-	
-
-	
 }
