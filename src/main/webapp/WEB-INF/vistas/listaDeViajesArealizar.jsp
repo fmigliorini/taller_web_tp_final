@@ -14,7 +14,7 @@
 		<div class="row color-invoice">
 			<div class="col-md-12">
 				<div class="row">
-					<div class="col-md-12"">
+					<div class="col-md-12">
 					<h1>Lista de viajes a realizar</h1>
 					<h3>Paso 1: Muestra una lista de viajes que va a realizer el chofer , ordenados por hora lista diaria</h3>
 						<br>
@@ -23,49 +23,46 @@
 						<table class="table table-bordered">
 							<thead>
 								<tr>
-									<th scope="col">#</th>
+									
 									<th scope="col">Id viaje</th>
-									<th scope="col">Fecha</th>
+									<th scope="col">Descripción</th>
 									<th scope="col">Origen</th>
 									<th scope="col">Destino</th>
 									<th scope="col">Kilometros</th>
-									<th scope="col">Descripcion</th>
 									<th scope="col">Precio</th>
+									<th scope="col">Fecha</th>
 									<th scope="col">Estado</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="chofer" items="${listaLog}">
 									<tr>
-										<th scope="row"></th>
+									   <!-- UNA VEZ QUE ESTE CARGADO LOS DATOS SE PUEDEN -->
 										<td><c:out value="${chofer.id}" /></td>
-										<td><h5>
-												<c:out value="${chofer.tipoLogViaje}" />
-											</h5></td>
-										<td><h5>
-												<c:out value="${chofer.precio}" />
-											</h5></td>
+										<td><c:out value="${chofer.descripcion}"/></td>
+										<td><c:out value="${chofer.origen}"/></td>
+										<td><c:out value="${chofer.destino}"/></td>
+										<td><c:out value="${chofer.Kilometros}"/></td>
+										<td><c:out value="${chofer.precio}"/></td>
+										<td><c:out value="${chofer.fecha_hora}"/></td>
+										<td><c:out value="${chofer.estado}"/></td>
+										<td></td>		
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
 					</div>
 				</div>
-				<hr />
-				<hr />
+				
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12">
-					    <a href="menu_chofer_viajeActivo" class="btn btn-success">Activar recorrido</a>
-						<a href="indexChofer" class="btn btn-primary">Volver al menú</a>
-						
+					   <a href="menu_chofer_viajeActivo" class="btn btn-success">Activar recorrido</a>
+						<a href="indexChofer" class="btn btn-primary">Volver al menú</a>	
 					</div>
 				</div>
-				<hr>
-				<div class="row"></div>
 			</div>
 		</div>
-
-
+	</div>
 </body>
 </html>
 <%@include file='../../templates/Footer.jsp' %>
