@@ -49,7 +49,26 @@ public class ControladorMovimiento {
 	@Inject
 	private ServicioEstadoMovimiento servicioEstadoMovimiento;
 
+	@RequestMapping("/listarFacturas")
+	public ModelAndView mostrarFacturas(HttpServletRequest request) {
+	//	Long idUsuario = (Long)request.getSession().getAttribute("idUsuario");
+		long usuarioid= 1;
+		ModelMap model = new ModelMap();
+		model.put("idCliente", usuarioid);
+		model.put("movimiento", servicioMovimiento.buscarMovimientosPorUsuario(usuarioid,1));
+		return new ModelAndView("listaMovimientos", model);
+		
+	}
 	
+	@RequestMapping("/listarPresupuestos")
+	public ModelAndView mostrarPresupuestos(HttpServletRequest request) {
+		Long idUsuario = (Long)request.getSession().getAttribute("idUsuario");
+		ModelMap model = new ModelMap();
+		model.put("idCliente", idUsuario);
+		model.put("movimiento", servicioMovimiento.buscarMovimientosPorUsuario(idUsuario,2));
+		return new ModelAndView("listaMovimientos", model);
+		
+	}
 	@RequestMapping("/generarFactura")
 	public ModelAndView generarFactura( @RequestParam("idCliente") Long idCliente,
 											@RequestParam("tipoVehiculo") Long idTipoVehiculo,
@@ -70,8 +89,8 @@ public class ControladorMovimiento {
 		movimiento.setNumeroMovimiento(servicioMovimiento.getLastNumber()+1);
 		movimiento.setLetra('A');
 		movimiento.setObservaciones(descripcion);
-		//movimiento.setTipoMovimiento(1);
-		//movimiento.setEstadoMovimiento(1);
+		movimiento.setTipoMovimiento(servicioTipoMovimiento.buscarPorId(1));
+		movimiento.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorId(1));
 		
 		viaje.setTipoVehiculo(servicioTipoVehiculo.buscarPorId(idTipoVehiculo));		
 		viaje.setOrigen(origen);
@@ -80,11 +99,12 @@ public class ControladorMovimiento {
 		viaje.setDescripcion(descripcion);
 		viaje.setPrecio(servicioTipoVehiculo.buscarPorId(idTipoVehiculo).getPrecio() * kilometros);
 		servicioViaje.guardarViaje(viaje);
-		
+		movimiento.setViaje(servicioViaje.buscarViajePorId(viaje.getId()));
 		ModelMap model = new ModelMap();
 		model.put("movimiento", movimiento);
 		model.put("viaje", viaje);
+		servicioMovimiento.guardarMovimiento(movimiento);
 		return new ModelAndView("invoice",model);
 	}
-
+ 
 }

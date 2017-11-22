@@ -64,7 +64,7 @@ public class MovimientoDaoImpl implements MovimientoDao {
 	
 	//Trae un movimiento especifico los movimientos del usuario
 	@Override
-	public List<Movimiento> buscarMovimientosPorUsuario(Long idUsuario,Long idTipoMovimiento){
+	public List<Movimiento> buscarMovimientosPorUsuario(Long idUsuario,int idTipoMovimiento){
 		final Session session = sessionFactory.getCurrentSession();
 		List <Movimiento> movimientosTipoUsuario =	session.createCriteria(Movimiento.class)
 											//Creo el join con Usuario
@@ -72,9 +72,9 @@ public class MovimientoDaoImpl implements MovimientoDao {
 											//Le digo que me traiga los Movimientos correspondiente al usuario
 											.add(Restrictions.eq("usuario.id",idUsuario))
 											//Creo el join con Tipo Movimiento
-											.createAlias("TipoMovimiento", "tipoMovimiento")
+											.createAlias("TipoMovimiento", "tipo")
 											//Le digo que me traiga los Movimientos correspondiente al tipo 
-											.add(Restrictions.eq("tipoMovimiento.id",idTipoMovimiento))
+											.add(Restrictions.eq("tipo.id",idTipoMovimiento))
 											
 											.list();
 		return movimientosTipoUsuario;

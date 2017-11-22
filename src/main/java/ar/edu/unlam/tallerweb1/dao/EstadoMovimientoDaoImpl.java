@@ -28,7 +28,7 @@ public class EstadoMovimientoDaoImpl implements EstadoMovimientoDao {
 	}
 	
 	@Override
-	public EstadoMovimiento buscarPorId(Long id)
+	public EstadoMovimiento buscarPorId(int id)
 	{
 		final Session session = sessionFactotry.getCurrentSession();
 		return (EstadoMovimiento) session.createCriteria(EstadoMovimiento.class)

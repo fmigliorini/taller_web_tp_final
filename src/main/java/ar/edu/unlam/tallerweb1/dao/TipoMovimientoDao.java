@@ -6,5 +6,5 @@ import ar.edu.unlam.tallerweb1.modelo.TipoMovimiento;
 
 public interface TipoMovimientoDao {
 	List<TipoMovimiento> listarTiposMovimientos();
-	TipoMovimiento buscarPorId(Long id);
+	TipoMovimiento buscarPorId(int id);
 }

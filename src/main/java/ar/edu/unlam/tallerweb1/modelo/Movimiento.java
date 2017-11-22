@@ -1,9 +1,12 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -19,16 +22,19 @@ public class Movimiento {
 	private char letra;
 	private String observaciones;
 	
-	@OneToOne
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_tipoMovimento")
 	private TipoMovimiento tipoMovimiento;
 	
-	@OneToOne
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_EstadoMovimento")
 	private EstadoMovimiento estadoMovimiento;
 	
 	@OneToOne
 	private Viaje viaje;
 	
-	@OneToOne
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_Usuario")
 	private Usuario usuario;
 	
 	public Long getId() {
@@ -117,3 +123,4 @@ public class Movimiento {
 
 
 }
+

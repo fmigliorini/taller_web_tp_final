@@ -28,7 +28,7 @@ public class TipoMovimientoDaoImpl implements TipoMovimientoDao {
 	}
 	
 	@Override
-	public TipoMovimiento buscarPorId(Long id)
+	public TipoMovimiento buscarPorId(int id)
 	{
 		final Session session = sessionFactotry.getCurrentSession();
 		return (TipoMovimiento) session.createCriteria(TipoMovimiento.class)

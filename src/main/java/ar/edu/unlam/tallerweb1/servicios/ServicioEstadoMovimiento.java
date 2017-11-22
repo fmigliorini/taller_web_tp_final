@@ -10,6 +10,6 @@ public interface ServicioEstadoMovimiento  {
 	
 	List<EstadoMovimiento> listarEstadosMovimientos();
 	
-	EstadoMovimiento buscarPorId(Long id);
+	EstadoMovimiento buscarPorId(int id);
 
 }

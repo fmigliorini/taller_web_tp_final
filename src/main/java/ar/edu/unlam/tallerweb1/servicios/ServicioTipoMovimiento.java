@@ -10,6 +10,6 @@ public interface ServicioTipoMovimiento  {
 	
 	List<TipoMovimiento> listarTiposMovimientos();
 	
-	TipoMovimiento buscarPorId(Long id);
+	TipoMovimiento buscarPorId(int id);
 
 }

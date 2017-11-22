@@ -22,8 +22,8 @@ public class ServicioEstadoMovimientoImpl implements ServicioEstadoMovimiento {
 		return estadoMovimientoDao.listarEstadosMovimientos();
 	}
 	
-	public EstadoMovimiento buscarPorId(Long id){
-		return estadoMovimientoDao. buscarPorId(id);
+	public EstadoMovimiento buscarPorId(int id){
+		return estadoMovimientoDao.buscarPorId(id);
 	}
 	
 }

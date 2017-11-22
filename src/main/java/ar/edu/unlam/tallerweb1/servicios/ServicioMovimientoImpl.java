@@ -38,7 +38,7 @@ public class ServicioMovimientoImpl implements ServicioMovimiento {
 	}
 	
 	//Trae un movimiento especifico los movimientos del usuario M
-	public List<Movimiento> buscarMovimientosPorUsuario(Long idUsuario,Long idTipoMovimiento)	{
+	public List<Movimiento> buscarMovimientosPorUsuario(Long idUsuario,int idTipoMovimiento)	{
 		return movimientoDao.buscarMovimientosPorUsuario(idUsuario,idTipoMovimiento);
 	}
 	

@@ -16,7 +16,7 @@ public interface ServicioMovimiento {
 	List<Movimiento> buscarMovimientosPorUsuario(Long idUsuario);
 	
 	//Trae un movimiento especifico los movimientos del usuario M
-	List<Movimiento> buscarMovimientosPorUsuario(Long idUsuario,Long idTipoMovimiento);
+	List<Movimiento> buscarMovimientosPorUsuario(Long idUsuario,int idTipoMovimiento);
 	
 	//Trae los remitos para los choferes
 	List<Movimiento> buscarMovimientosParaChofer(Long idChofer);

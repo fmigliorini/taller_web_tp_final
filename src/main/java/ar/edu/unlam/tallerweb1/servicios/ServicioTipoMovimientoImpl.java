@@ -22,8 +22,8 @@ public class ServicioTipoMovimientoImpl implements ServicioTipoMovimiento {
 		return tipoMovimientoDao.listarTiposMovimientos();
 	}
 	
-	public TipoMovimiento buscarPorId(Long id){
-		return tipoMovimientoDao. buscarPorId(id);
+	public TipoMovimiento buscarPorId(int id){
+		return tipoMovimientoDao.buscarPorId(id);
 	}
 	
 }

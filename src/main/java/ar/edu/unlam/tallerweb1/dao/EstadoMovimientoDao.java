@@ -7,5 +7,5 @@ import ar.edu.unlam.tallerweb1.modelo.EstadoMovimiento;
 
 public interface EstadoMovimientoDao {
 	List<EstadoMovimiento> listarEstadosMovimientos();
-	EstadoMovimiento buscarPorId(Long id);
+	EstadoMovimiento buscarPorId(int id);
 }
