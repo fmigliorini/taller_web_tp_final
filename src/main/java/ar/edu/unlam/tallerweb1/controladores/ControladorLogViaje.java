@@ -36,23 +36,9 @@ public class ControladorLogViaje {
 		ModelMap modelo2=new ModelMap();
 		List<LogViaje> listaLog=servicioLogViaje.listarLogViaje();
 		modelo2.put("listaLog", listaLog);
-		/*if (((LogViaje) listaLog).getViajes() == null || ((LogViaje) listaLog).getViajes().isEmpty()){
-			System.out.println("Lista de viajes no inicializada");
-			}
-		System.out.println("Elementos de lista========"+listaLog.size());
-		System.out.println("Elementos de viajes======="+((LogViaje) listaLog).getViajes().size());*/
 		return new ModelAndView("listaLogViaje",modelo2);
 	}
-
-	
-
-	@RequestMapping("listaViajesDiarios")
-	public ModelAndView mostrarListaDeViajesDiarios(){
-		return new ModelAndView("listaViajesDiarios");
-	}
-	
-	
-			                         
+		                         
 }			                         
 	
 		

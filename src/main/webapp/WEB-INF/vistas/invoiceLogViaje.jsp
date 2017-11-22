@@ -1,4 +1,4 @@
-<%@include file='../../templates/Menu_chofer.jsp' %>	
+<%@include file='menu_chofer_viajeActivo.jsp'%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -9,30 +9,40 @@
 		<div class="col-md-12">
 
 			<div class="row">
-				
-				<div class="col-lg-5 col-md-5 col-sm-5">
-                    <br>
-					<h2>Log de viaje</h2>
-					<h5>Id de log viaje: ${logViaje.id }</h5>
-					<h5>Descripción: ${logViaje.tipoLogViaje }</h5>
-					<h5>Precio: ${logViaje.precio}</h5>
-				    <br> Inicio de act.: 21/04/2011 <br> Fecha : 02/11/2017
-					
-				</div>
+				<h3>Log cargado:</h3>
+				<br><br>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">Id log de viaje</th>
+							<th scope="col">Descripción</th>
+							<th scope="col">Precio</th>
+							<th scope="col">Fecha inicio</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><c:out value="${logViaje.id}" /></td>
+							<td><c:out value="${logViaje.tipoLogViaje}" /></td>
+							<td><c:out value="${logViaje.precio}" /></td>
+							<td>20/11/2016</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
-			<hr />
-			<hr />
-			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12">
-				   
-					<a href="indexChofer" class="btn btn-success btn-sm">Volver al inicio</a>
-				</div>
-			</div>
-			<hr>
-			<div class="row"></div>
 		</div>
+		<hr />
+		<hr />
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12">
+
+				<a href="menu_chofer_viajeActivo" class="btn btn-success btn-sm">Volver
+					al menú viaje activo</a>
+			</div>
+		</div>
+		<hr>
+		<div class="row"></div>
 	</div>
 </div>
 
-<%@include file='../../templates/Footer.jsp'%>           
- </div>
+<%@include file='../../templates/Footer.jsp'%>

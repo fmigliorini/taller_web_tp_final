@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,5 +42,25 @@ public class ControladorUsuario {
 		return new ModelAndView("redirect:/login");
 		
 	}
+	
+	//Hace el formulario de chófer
+		@RequestMapping(path="/chofer-form")
+		public ModelAndView irFormularioChofer()
+		{
+			ModelMap modelo1=new ModelMap();
+			modelo1.put("usuario", new Usuario());
+			return new ModelAndView("chofer-form",modelo1);
+		}
+		//Registra el chófer
+		@RequestMapping(path="/registrar-chofer", method=RequestMethod.POST)
+		public ModelAndView registrarChofer(@ModelAttribute("Usuario")Usuario usuarioChofer)
+		{
+			ModelMap modelo2=new ModelMap();
+			usuarioChofer.setRol("chofer");
+			servicioUsuario.generarUsuario(usuarioChofer);
+			List<Usuario>listaChoferes=servicioUsuario.listarChoferes();
+			modelo2.put("listaChoferes", listaChoferes);
+			return new ModelAndView("abmChofer",modelo2);
+		}
 	
 }

@@ -28,12 +28,14 @@ public class ControladorWeb {
 		return new ModelAndView("index");
 	}
 	
-	//Esto lo agruegue para el men� de ch�fer, va a la vista index_chofer
-	//A su vez la vista index_chofer, contiene el archivo Menu_chofer con sus menus
-	
 	@RequestMapping(path = "/indexChofer", method = RequestMethod.GET)
 	public ModelAndView indexChofer() {
 		return new ModelAndView("index_chofer");
+	}
+	
+	@RequestMapping(path="/indexAdministrador", method=RequestMethod.GET)
+	public ModelAndView indexAdministrador(){
+		return new ModelAndView("index_administrador");
 	}
 
 }
