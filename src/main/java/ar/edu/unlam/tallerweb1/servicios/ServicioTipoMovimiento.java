@@ -1,10 +1,15 @@
-package ar.edu.unlam.tallerweb1.dao;
+package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.TipoMovimiento;
 
-public interface TipoMovimientoDao {
+public interface ServicioTipoMovimiento  {
+	
+
+	
 	List<TipoMovimiento> listarTiposMovimientos();
+	
 	TipoMovimiento buscarPorId(int id);
+
 }

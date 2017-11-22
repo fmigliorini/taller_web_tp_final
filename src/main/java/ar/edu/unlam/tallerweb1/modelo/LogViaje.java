@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class LogViaje {
@@ -18,9 +19,12 @@ public class LogViaje {
 	private Long id;
 	private String tipoLogViaje;
 	private Double precio;
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_viaje")
-	private Viaje viaje;
+
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_Viaje")
+	private Viaje viaje ;
+	
 
 	public Long getId() {
 		return id;
@@ -40,6 +44,7 @@ public class LogViaje {
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
+
 	public Viaje getViaje() {
 		return viaje;
 	}
