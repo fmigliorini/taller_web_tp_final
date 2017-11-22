@@ -8,6 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Hola soy la lista de remitos</h1>
+<div class="container">
+		<div class="row color-invoice">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-12">
+						<h1>Hola soy la lista de remitos</h1>
+				    </div>
+				</div>
+			</div>
+		</div>
+</div>
 </body>
 </html>

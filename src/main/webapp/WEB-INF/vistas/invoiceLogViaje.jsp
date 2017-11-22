@@ -10,26 +10,22 @@
 
 			<div class="row">
 				<h3>Log cargado:</h3>
-				<br>
+				<br><br>
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th scope="col">#</th>
 							<th scope="col">Id log de viaje</th>
 							<th scope="col">Descripción</th>
 							<th scope="col">Precio</th>
 							<th scope="col">Fecha inicio</th>
-
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<th scope="row"></th>
 							<td><c:out value="${logViaje.id}" /></td>
 							<td><c:out value="${logViaje.tipoLogViaje}" /></td>
 							<td><c:out value="${logViaje.precio}" /></td>
 							<td>20/11/2016</td>
-
 						</tr>
 					</tbody>
 				</table>
