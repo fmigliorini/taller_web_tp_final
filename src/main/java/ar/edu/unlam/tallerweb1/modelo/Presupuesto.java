@@ -12,7 +12,6 @@ public class Presupuesto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private String fecha_hora;
 	private String origen;
 	private String destino;

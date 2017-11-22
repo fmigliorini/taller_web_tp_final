@@ -8,9 +8,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class ControladorMenuAdmnistrador {
 	
 	//Esto lo dejé así porque no sé hasta donde hiciste Facu
-	@RequestMapping("abmChofer")
+	@RequestMapping("listadoChoferes")
 	public ModelAndView irAlABMchofer(){
-		return new ModelAndView("abmChofer");
+		return new ModelAndView("listadoChoferes");
 
 	}
 	
