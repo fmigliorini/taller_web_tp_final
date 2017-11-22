@@ -15,7 +15,8 @@ public class Viaje {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String fecha_hora;
+	private String hora;
+	private String fecha;
 	private String origen;
 	private String destino;
 	private Integer Kilometros;
@@ -25,13 +26,27 @@ public class Viaje {
 	@OneToMany(mappedBy = "viaje", cascade = CascadeType.ALL)
 	private List<LogViaje> logViajes = new LinkedList<LogViaje>();
 
-   //hay que cambiar el nombre de logViaje por n_registro
+
 	@OneToOne
 	private TipoVehiculo tipoVehiculo;
 
 	@OneToOne
 	private Usuario chofer;
+	public String getFecha() {
+		return fecha;
+	}
 
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+	
+	public String getHora() {
+		return hora;
+	}
+
+	public void setHora(String hora) {
+		this.hora = hora;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -40,13 +55,7 @@ public class Viaje {
 		this.id = id;
 	}
 
-	public String getFecha_hora() {
-		return fecha_hora;
-	}
 
-	public void setFecha_hora(String fecha_hora) {
-		this.fecha_hora = fecha_hora;
-	}
 
 	public String getOrigen() {
 		return origen;

@@ -1,10 +1,12 @@
-package ar.edu.unlam.tallerweb1.dao;
+package ar.edu.unlam.tallerweb1.servicios;
+
 import java.util.List;
+
 import ar.edu.unlam.tallerweb1.modelo.Movimiento;
 
-public interface MovimientoDao {
-	
-	Movimiento guardarMovimiento(Movimiento movimiento);
+public interface ServicioMovimiento {
+	Movimiento guardarMovimiento(Movimiento mov);
+
 	
 	Movimiento buscarIdMovimiento(Long idMovimiento);
 	
@@ -18,5 +20,6 @@ public interface MovimientoDao {
 	
 	//Trae los remitos para los choferes
 	List<Movimiento> buscarMovimientosParaChofer(Long idChofer);
+	
 	long getLastNumber();
 }

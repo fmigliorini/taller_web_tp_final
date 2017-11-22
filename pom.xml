@@ -156,4 +156,5 @@
 			<version>1</version>
 		</dependency>
 	</dependencies>
+	<packaging>war</packaging>
 </project>

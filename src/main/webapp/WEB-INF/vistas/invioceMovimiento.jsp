@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-    <form action="generarFactura">
+
 <div class="container">
     <div class="row color-invoice">
         <div class="col-md-12">
@@ -24,42 +24,45 @@
                 </div>
                 <div class="col-lg-5 col-md-5 col-sm-5">
                     
-                    <h5>Presupuesto: ${presupuesto.id}</h5> 
+                    <h5>${movimiento.tipomovimiento.descipcion}: ${movimiento.puntoventa} - ${movimiento.numero}</h5> 
                     <br /><strong>CUIT : </strong> 30-71482650-2
                     <br> Inicio de act.: 21/04/2011
-                    <br> Fecha : 02/11/2017
-                    
+                    <br> Fecha : ${movimiento.fecha}
+                   if(${moviemiento.tipomovimiento.id} == 2) {
+                   
+                       <br> Fecha Vencimiento : ${movimiento.fecha_vencimiento}
+                   }
                 </div>
             </div>
-            <hr />
+            <hr/>
             <!--  CLIENT SIDE -->
             <div class="row">
                 <div class="col-lg-7 col-md-7 col-sm-7">
                     <h4>Datos del Cliente : </h4>
-                    <strong>${presupuesto.usuario.apellido }, ${presupuesto.usuario.nombre } </strong> 
-                    <br />DNI: ${presupuesto.usuario.dni }
-                    <br />Direccion: ${presupuesto.usuario.direccion }
+                    <strong>${movimiento.usuario.apellido }, ${movimiento.usuario.nombre } </strong> 
+                    <br />DNI: ${movimiento.usuario.dni }
+                    <br />Direccion: ${movimiento.usuario.direccion }
                 </div>
                 <div class="col-lg-5 col-md-5 col-sm-5">
                     <h4>Datos de Contacto :</h4>
-                    email: ${presupuesto.usuario.email }
-                    <br> teléfono: ${presupuesto.usuario.telefono }
+                    email: ${movimiento.usuario.email}
+                    <br> teléfono: ${movimiento.usuario.telefono }
                 </div>
             </div>
             <hr />
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <h4>Descripcion del servicio:</h4>
-                    Fecha del servicio: 01/12/2017
-                    <br> Hora: 16:00 hs.
-                    <br> Tipo de vehiculo: ${presupuesto.tipoVehiculo.descripcion }
+                    Fecha del servicio: ${movimiento.viaje.fecha }
+                    <br> Hora: ${movimiento.viaje.hora }
+                    <br> Tipo de vehiculo: ${movimiento.viaje.tipoVehiculo.descripcion }
                     
                 </div>
                 
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    <br> Direccion de origen: ${presupuesto.origen }
-                    <br> Direccion de destino: ${presupuesto.destino }
-                    <br> Kilometros Recorridos: ${presupuesto.kilometros }
+                    <br> Direccion de origen: ${movimiento.viaje.origen }
+                    <br> Direccion de destino: ${movimiento.viaje.destino }
+                    <br> Kilometros Recorridos: ${movimiento.viaje.kilometros }
                     
                     
                     
@@ -88,11 +91,11 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Servicio de Mudanza con camion , recorrido 15,3</td>
-                                    <td>${presupuesto.kilometros }</td>
-                                    <td>$ ${presupuesto.tipoVehiculo.precio }</td>
+                                    <td>Servicio de Mudanza ${movimiento.viaje.tipoVehiculo.descripcion}</td>
+                                    <td>${movimiento.viaje.kilometros }</td>
+                                    <td>$ ${movimiento.viaje.tipoVehiculo.precio }</td>
                                     <td>0</td>
-                                    <td>$ ${presupuesto.precio }</td>
+                                    <td>$ ${movimiento.viaje.precio }</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -103,29 +106,25 @@
                     </div>
                     <hr>
                     <div>
-                        <h3>  Total : $ ${ presupuesto.precio }  </h3>
+                        <h3>  Total : $ ${ movimiento.viaje.precio }  </h3>
                     </div>
                     <hr />
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <strong>Observaciones: </strong>
-                    <p>${presupuesto.descripcion}</p>
+                    <strong> Observaciones: </strong>
+                    <p>${ movimiento.observaciones }</p>
                 </div>
             </div>
             <hr />
+           <hr>
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <a class="btn btn-success btn-sm">Aceptar Presupuesto</a>
-                    <a href="#" class="btn btn-danger btn-sm">Rechazar Presupuesto</a>
-                </div>
+                
+                
             </div>
-            
-            <hr>
-
         </div>
     </div>
 </div>
-</form>
+
 <%@include file='../../templates/Footer.jsp' %>
