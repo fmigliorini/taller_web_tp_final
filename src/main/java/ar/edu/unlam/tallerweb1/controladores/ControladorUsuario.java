@@ -62,5 +62,10 @@ public class ControladorUsuario {
 			modelo2.put("listaChoferes", listaChoferes);
 			return new ModelAndView("listadoChoferes",modelo2);
 		}
+		//Elimnar chófer
+		@RequestMapping(path="/eliminar-chofer", method=RequestMethod.GET)
+		public ModelAndView eliminarChofer(){
+			return new ModelAndView("eliminarChofer");
+		}
 	
 }

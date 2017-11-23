@@ -65,4 +65,18 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		return Usuarios;
 	}
 
+  //abm
+	@Override
+	public void update(Usuario usuario) {
+		sessionFactory.getCurrentSession().update(usuario);
+		
+	}
+
+	@Override
+	public void delete(Usuario usuario) {
+		sessionFactory.getCurrentSession().delete(usuario);
+		
+	}
+
+
 }

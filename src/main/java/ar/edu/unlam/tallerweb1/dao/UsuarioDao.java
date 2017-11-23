@@ -12,5 +12,8 @@ public interface UsuarioDao {
 	Usuario generarUsuario (Usuario usuario);
 	Usuario buscarPorId (Long id);
 	List<Usuario> listarChoferes();
+	//abm
+	void update(Usuario usuario);
+	void delete(Usuario usuario);
 
 }

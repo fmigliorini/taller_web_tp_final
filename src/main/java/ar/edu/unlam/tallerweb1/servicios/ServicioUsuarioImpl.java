@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.UsuarioDao;
@@ -46,6 +47,18 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	public List<Usuario> listarChoferes() {
 		
 		return servicioUsuarioDao.listarChoferes();
+	}
+	@Transactional(readOnly = false , propagation = Propagation.REQUIRED , rollbackFor = {Exception.class})	
+	@Override
+	public void eliminarUsuario(Usuario usuario) {
+		servicioUsuarioDao.delete(usuario);
+		
+	}
+	@Transactional(readOnly = false , propagation = Propagation.REQUIRED , rollbackFor = {Exception.class})	
+	@Override
+	public void actualizarUsuario(Usuario usuario) {
+		servicioUsuarioDao.update(usuario);
+		
 	}
 	
 }

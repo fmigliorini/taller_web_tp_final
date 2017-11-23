@@ -17,5 +17,8 @@ public interface ServicioUsuario {
 	Usuario generarUsuario(Usuario usuario);
 	Usuario buscarPorId(Long id);
 	List<Usuario> listarChoferes();
+	//abm
+	void eliminarUsuario(Usuario usuario);
+	void actualizarUsuario(Usuario usuario);
 
 }
