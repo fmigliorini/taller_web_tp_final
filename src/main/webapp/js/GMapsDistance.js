@@ -17,7 +17,7 @@ function MeasureDistanceSuccess(response, status){
             console.log('Error:', status);
         } else {
             console.log(response);
-            $("#kilometros").val(response.rows[0].elements[0].distance.text);
+            $("#kilometros").val((response.rows[0].elements[0].distance.value/1000).toFixed(0));
         }
 }
 

@@ -9,4 +9,5 @@ import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
 public interface ServicioTipoVehiculo {
 	List<TipoVehiculo> listarTiposVehiculos();
 	TipoVehiculo buscarPorId(Long id);
+	TipoVehiculo buscarPorPesoMaximo(Float peso);
 }

@@ -13,19 +13,22 @@ import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
 @Service("servicioTipoVehiculo")
 @Transactional
 public class ServicioTipoVehiculoImpl implements ServicioTipoVehiculo {
-	
+
 	@Inject
 	private TipoVehiculoDao tipoVehiculoDao;
-	
+
 	@Override
-	public List<TipoVehiculo> listarTiposVehiculos()
-	{
+	public List<TipoVehiculo> listarTiposVehiculos() {
 		return tipoVehiculoDao.listarTiposVehiculos();
 	}
 
 	@Override
-	public TipoVehiculo buscarPorId(Long id)
-	{
+	public TipoVehiculo buscarPorId(Long id) {
 		return tipoVehiculoDao.buscarPorId(id);
+	}
+
+	@Override
+	public TipoVehiculo buscarPorPesoMaximo(Float peso) {
+		return tipoVehiculoDao.buscarPorPesoMaximo(peso);
 	}
 }

@@ -17,22 +17,28 @@ public class TipoMovimientoDaoImpl implements TipoMovimientoDao {
 
 	@Inject
 	private SessionFactory sessionFactotry;
-	
+
 	@Override
-	public List<TipoMovimiento> listarTiposMovimientos()
-	{
+	public List<TipoMovimiento> listarTiposMovimientos() {
 		final Session session = sessionFactotry.getCurrentSession();
 		List<TipoMovimiento> tipoMovimientos = session.createCriteria(TipoMovimiento.class)
 												.list();
 		return tipoMovimientos;
 	}
-	
+
 	@Override
-	public TipoMovimiento buscarPorId(int id)
-	{
+	public TipoMovimiento buscarPorId(int id) {
 		final Session session = sessionFactotry.getCurrentSession();
 		return (TipoMovimiento) session.createCriteria(TipoMovimiento.class)
-								.add(Restrictions.eq("id", id))
-								.uniqueResult();
+									.add(Restrictions.eq("id", id))
+									.uniqueResult();
+	}
+
+	@Override
+	public TipoMovimiento buscarPorDescripcion(String descripcion) {
+		final Session session = sessionFactotry.getCurrentSession();
+		return (TipoMovimiento) session.createCriteria(TipoMovimiento.class)
+									.add(Restrictions.eq("descripcion", descripcion))
+									.uniqueResult();
 	}
 }

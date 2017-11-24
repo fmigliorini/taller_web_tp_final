@@ -3,21 +3,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+
 <div class="container">
-	<h1> Formulario presupuesto </h1>
-    <form action="generarPresupuesto">
+	<h1> Generar presupuesto para nuevo viaje. </h1>
+    <form:form action="generarPresupuesto" method="POST" modelAttribute="viaje">
     	<input type="hidden" id="idCliente" name="idCliente" value="${idCliente}">
-	    <div class="form-row">
-	        <div class="form-group col-md-12">
-	            <label for="tipoVehiculo">Tipo Vehiculo</label>
-	            <select id="tipoVehiculo" name="tipoVehiculo" class="form-control">
-	                <option selected>Seleccione una opción</option>
-	                <c:forEach items="${tiposVehiculos}" var="tv">
-	                	<option value="${tv.id}">${tv.descripcion}</option>
-	                </c:forEach>
-	            </select>
-	        </div>
-	    </div>
 	    <div class="form-row">
 		    <div class="form-group col-md-6">
 		        <label for="origen">Origen</label>
@@ -25,33 +16,37 @@
 		    </div>
 		    <div class="form-group col-md-6">
 		        <label for="destino">Destino</label>
-		        <input type="text" required="required" class="form-control" id="destino" name="destino" placeholder="Calle Verdadera, Isidro Casanova, La Matanza, Buenos Aires">
+		        <form:input type="text" required="required" class="form-control" id="destino" path="destino" placeholder="Calle Verdadera, Isidro Casanova, La Matanza, Buenos Aires" />
 		    </div>
 	    </div>
 	    <div class="form-row">	
 	        <div class="form-group col-md-6">
 	            <label for="fecha">Fecha</label>
-	            <input type="date" required="required" class="form-control" id="fecha" name="fecha">
+	            <form:input type="date" required="required" class="form-control" id="fecha" path="fecha" />
 	        </div>
 	        <div class="form-group col-md-6">
 	            <label for="hora">Hora</label>
-	            <input type="time" required="required" class="form-control" id="hora" name="hora">
+	            <form:input type="time" required="required" class="form-control" id="hora" path="hora" />
 	        </div>
         </div>
 	    <div class="form-row">	
 	        <div class="form-group col-md-12">
 	            <label for="kilometros">Kilometros</label>
-	            <input type="text" required="required" class="form-control" id="kilometros" name="kilometros" readonly>
+	            <form:input type="number" required="required" class="form-control" id="kilometros" path="kilometros" readonly="readonly" />
 	        </div>
+	        <div class="form-group col-md-12">
+		        <label for="descripcion">peso </label>
+		        <form:input type="number" required="required" class="form-control" id="peso" path="peso" rows="3" />
+		    </div>
 		    <div class="form-group col-md-12">
 		        <label for="descripcion">Descripción </label>
-		        <textarea required="required" class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+		        <form:input type="text" required="required" class="form-control" id="descripcion" path="descripcion"  />
 		    </div>
 	    </div>
 	    <input type="submit" class="btn btn-primary" value="Generar Presupuesto">
    	    <button type="submit" class="btn btn-danger">Cancelar</button>
 	    
-	</form>
+	</form:form>
 </div>
 
 <%@include file='../../templates/Footer.jsp' %>
