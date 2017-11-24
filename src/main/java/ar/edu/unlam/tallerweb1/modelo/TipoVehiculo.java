@@ -14,7 +14,7 @@ public class TipoVehiculo {
 	
 	private String descripcion;	
 	private Float Precio;
-	
+	private Float pesoMinimo;
 	
 	public Long getId() {
 		return id;
@@ -39,7 +39,13 @@ public class TipoVehiculo {
 	public void setPrecio(Float precio) {
 		this.Precio = precio;
 	}
-	
-	
+
+	public Float getPesoMinimo() {
+		return pesoMinimo;
+	}
+
+	public void setPesoMinimo(Float pesoMinimo) {
+		this.pesoMinimo = pesoMinimo;
+	}
 	
 }
