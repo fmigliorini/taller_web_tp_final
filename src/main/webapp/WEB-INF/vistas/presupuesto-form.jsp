@@ -4,8 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div class="container">
-	<h1> Formulario presupuesto </h1>
-    <form action="generarPresupuesto">
+	<h1> Generar presupuesto para nuevo viaje. </h1>
+    <form action="generarPresupuesto" method="POST" modelAttribute="viaje">
     	<input type="hidden" id="idCliente" name="idCliente" value="${idCliente}">
 	    <div class="form-row">
 	        <div class="form-group col-md-12">
@@ -43,6 +43,10 @@
 	            <label for="kilometros">Kilometros</label>
 	            <input type="text" required="required" class="form-control" id="kilometros" name="kilometros" readonly>
 	        </div>
+	        <div class="form-group col-md-12">
+		        <label for="descripcion">peso </label>
+		        <textarea required="required" class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+		    </div>
 		    <div class="form-group col-md-12">
 		        <label for="descripcion">Descripción </label>
 		        <textarea required="required" class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
