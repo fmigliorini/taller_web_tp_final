@@ -32,7 +32,7 @@
 	    <div class="form-row">	
 	        <div class="form-group col-md-12">
 	            <label for="kilometros">Kilometros</label>
-	            <form:input type="text" required="required" class="form-control" id="kilometros" path="kilometros" readonly />
+	            <form:input type="text" required="required" class="form-control" id="kilometros" path="kilometros" readonly="readonly" />
 	        </div>
 	        <div class="form-group col-md-12">
 		        <label for="descripcion">peso </label>
