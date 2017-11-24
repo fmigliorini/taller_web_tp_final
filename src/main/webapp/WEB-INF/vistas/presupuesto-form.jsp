@@ -8,17 +8,6 @@
     <form action="generarPresupuesto" method="POST" modelAttribute="viaje">
     	<input type="hidden" id="idCliente" name="idCliente" value="${idCliente}">
 	    <div class="form-row">
-	        <div class="form-group col-md-12">
-	            <label for="tipoVehiculo">Tipo Vehiculo</label>
-	            <select id="tipoVehiculo" name="tipoVehiculo" class="form-control">
-	                <option selected>Seleccione una opción</option>
-	                <c:forEach items="${tiposVehiculos}" var="tv">
-	                	<option value="${tv.id}">${tv.descripcion}</option>
-	                </c:forEach>
-	            </select>
-	        </div>
-	    </div>
-	    <div class="form-row">
 		    <div class="form-group col-md-6">
 		        <label for="origen">Origen</label>
 		        <input type="text" required="required" class="form-control" id="origen" name="origen" placeholder="Calle Falsa, Ramos Mejias, La Matanza, Buenos Aires">
