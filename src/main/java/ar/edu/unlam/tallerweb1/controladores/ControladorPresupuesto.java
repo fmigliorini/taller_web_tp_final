@@ -46,7 +46,6 @@ public class ControladorPresupuesto {
 		if (idUsuario != null) {
 			ModelMap model = new ModelMap();
 			model.put("idCliente", idUsuario);
-			model.put("tiposVehiculos", servicioTipoVehiculo.listarTiposVehiculos());
 			Viaje viaje = new Viaje();
 			model.put("viaje", viaje);
 			return new ModelAndView("presupuesto-form", model);
@@ -57,7 +56,7 @@ public class ControladorPresupuesto {
 
 	@RequestMapping(path = "/generarPresupuesto", method = RequestMethod.POST)
 	public ModelAndView generarPresupuesto(@ModelAttribute("viaje") Viaje viaje) {
-
+		
 		// GENERACION DE UN VIAJE
 		TipoVehiculo tv = servicioTipoVehiculo.buscarPorPesoMaximo(viaje.getPeso());
 		if (tv != null) {
@@ -86,6 +85,8 @@ public class ControladorPresupuesto {
 		c.add(Calendar.DATE, 1);
 		movimiento.setFecha_vencimiento(sdf.format(c.getTime()));
 		
+		// seteo el viaje
+		movimiento.setViaje(viaje);
 		
 		servicioMovimiento.guardarMovimiento(movimiento);
 		
