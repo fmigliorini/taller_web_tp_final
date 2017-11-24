@@ -32,11 +32,11 @@
 	    <div class="form-row">	
 	        <div class="form-group col-md-12">
 	            <label for="kilometros">Kilometros</label>
-	            <form:input type="text" required="required" class="form-control" id="kilometros" path="kilometros" readonly="readonly" />
+	            <form:input type="float" required="required" class="form-control" id="kilometros" path="kilometros" readonly="readonly" />
 	        </div>
 	        <div class="form-group col-md-12">
 		        <label for="descripcion">peso </label>
-		        <form:input type="text" required="required" class="form-control" id="peso" path="peso" rows="3" />
+		        <form:input type="number" required="required" class="form-control" id="peso" path="peso" rows="3" />
 		    </div>
 		    <div class="form-group col-md-12">
 		        <label for="descripcion">Descripción </label>
