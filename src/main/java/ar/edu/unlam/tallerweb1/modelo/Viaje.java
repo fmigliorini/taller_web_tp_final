@@ -30,6 +30,9 @@ public class Viaje {
 
 	@OneToOne
 	private TipoVehiculo tipoVehiculo;
+	
+	@OneToOne
+	private Vehiculo vehiculo;
 
 	@OneToOne
 	private Usuario chofer;
