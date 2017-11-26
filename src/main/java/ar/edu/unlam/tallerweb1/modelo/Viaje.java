@@ -34,8 +34,7 @@ public class Viaje {
 	@OneToOne
 	private Vehiculo vehiculo;
 
-	@OneToOne
-	private Usuario chofer;
+
 	public String getFecha() {
 		return fecha;
 	}
@@ -85,12 +84,12 @@ public class Viaje {
 		this.tipoVehiculo = tipoVehiculo;
 	}
 
-	public Usuario getChofer() {
-		return chofer;
+	public Vehiculo getVehiculo() {
+		return vehiculo;
 	}
 
-	public void setChofer(Usuario chofer) {
-		this.chofer = chofer;
+	public void setVehiculo(Vehiculo vehiculo) {
+		this.vehiculo = vehiculo;
 	}
 
 	public Integer getKilometros() {
