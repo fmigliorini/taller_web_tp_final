@@ -45,7 +45,7 @@ public class ControladorLogin {
 			if(usuarioBuscado.getRol().equals("cliente")){
 				return new ModelAndView("redirect:/home");
 			}
-			return new ModelAndView("redirect:/index");
+			return new ModelAndView("redirect:/index_administrador");
 			
 		} else {
 			model.put("error", "Usuario o clave incorrecta");
