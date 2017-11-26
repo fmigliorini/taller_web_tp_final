@@ -1,9 +1,14 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class TipoVehiculo {
@@ -15,6 +20,9 @@ public class TipoVehiculo {
 	private String descripcion;	
 	private Float precio;
 	private Float pesoMaximo;
+	
+	@OneToMany(mappedBy = "tipoVehiculo", cascade = CascadeType.ALL)
+	private List<Vehiculo> vehiculos = new LinkedList<Vehiculo>();
 	
 	public Long getId() {
 		return id;
@@ -48,6 +56,12 @@ public class TipoVehiculo {
 		this.pesoMaximo = pesoMaximo;
 	}
 
+	public List<Vehiculo> getVehiculos() {
+		return vehiculos;
+	}
 
+	public void setVehiculos(List<Vehiculo> vehiculos) {
+		this.vehiculos = vehiculos;
+	}
 	
 }
