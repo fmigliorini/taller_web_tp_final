@@ -110,19 +110,24 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 float-right">
                     <strong>Observaciones: </strong>
                     <p>${presupuesto.viaje.descripcion}</p>
                 </div>
             </div>
             <hr />
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="col-lg-6 col-md-6 col-sm-6">
                 	<form method="post" action="${pageContext.request.contextPath}/aceptarPresupuesto">
                 		<input type="hidden" name="idPresupuesto" value="${presupuesto.id}"/>
-                    	<input type="submit" class="btn btn-success btn-sm" value="Aceptar Presupuesto" ></input>
+                    	<input type="submit" class="btn btn-success btn-sm" value="Aceptar Presupuesto" />
                    	</form>
-                    <a href="#" class="btn btn-danger btn-sm">Rechazar Presupuesto</a>
+                 </div>
+                 <div class="col-lg-6 col-md-6 col-sm-6">
+                   	<form method="post" action="${pageContext.request.contextPath}/rechazarPresupuesto">
+                   		<input type="hidden" name="idPresupuesto" value="${presupuesto.id}"/>
+                    	<input type="submit" class="btn btn-danger btn-sm pull-right" value="Rechazar Presupuesto" />
+                   	</form>
                 </div>
             </div>
             
