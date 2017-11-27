@@ -72,11 +72,11 @@ public class MovimientoDaoImpl implements MovimientoDao {
 		final Session session = sessionFactory.getCurrentSession();
 		List <Movimiento> movimientosTipoUsuario =	session.createCriteria(Movimiento.class)
 											//Creo el join con Usuario
-											.createAlias("Usuario", "usuario")
+											.createAlias("usuario", "usuario")
 											//Le digo que me traiga los Movimientos correspondiente al usuario
 											.add(Restrictions.eq("usuario.id",idUsuario))
 											//Creo el join con Tipo Movimiento
-											.createAlias("TipoMovimiento", "tipo")
+											.createAlias("tipoMovimiento", "tipo")
 											//Le digo que me traiga los Movimientos correspondiente al tipo 
 											.add(Restrictions.eq("tipo.id",idTipoMovimiento))
 											
