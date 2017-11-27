@@ -35,9 +35,9 @@ public class ControladorMenuAdmnistrador {
 	@Inject
 	private ServicioVehiculo servicioVehiculo;
 	
-	@RequestMapping("abmChofer")
+	@RequestMapping("listadoChoferes")
 	public ModelAndView irAlABMchofer(){
-		return new ModelAndView("abmChofer");
+		return new ModelAndView("listadoChoferes");
 
 	}
 	

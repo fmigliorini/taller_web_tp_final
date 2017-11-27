@@ -2,3 +2,18 @@
 	background: #d91f2d;
 	color: #fff;
 }
+hr.style13 {
+	height: 10px;
+	border: 0;
+	box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}
+
+.jumbotron{
+	////background-image: url("\img\mudanza01.png");
+    background-color: #5caceb;
+    color:#fff;
+}
+.box{
+    border:1px solid #ccc;
+    padding:20px;
+}

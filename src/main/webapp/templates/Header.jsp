@@ -8,11 +8,12 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	    <meta name="description" content="PepeFletes">
 	    <meta name="author" content="Facundo Migliorini">
-	    <title>Pepe Fletes</title>
-		<!-- Bootstrap core CSS -->
-	    <link href="css/bootstrap-new.min.css" rel="stylesheet" >
-	    <!-- Bootstrap theme -->
-	    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+	    <title>Pepe Fletes</title>	    
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-new.min.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-theme.min.css" />
+	    
+	    
+	   <link rel="stylesheet" href="${pageContext.request.contextPath}/csss/style.css"/>
 	</head>
 	<style>
 	body {

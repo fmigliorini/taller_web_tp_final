@@ -45,14 +45,11 @@
 	               <!--Este no lo entiendo--> 
 	              <a class="nav-link" href="listaDeRemitos">Lista de remitos</a>
 	            </li>
-	            <li class="nav-item">
-	               <!--Este no lo entiendo--> 
-	              <a class="nav-link" href="reportesDiarioDeViaje">Lista de Reportes diarios</a>
-	            </li>
+	    
 	          </ul>
 	        </div>
 	      </div>
 	    </nav>
-
+          
 	</body>
 </html>

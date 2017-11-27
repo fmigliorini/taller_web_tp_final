@@ -17,22 +17,28 @@ public class EstadoMovimientoDaoImpl implements EstadoMovimientoDao {
 
 	@Inject
 	private SessionFactory sessionFactotry;
-	
+
 	@Override
-	public List<EstadoMovimiento> listarEstadosMovimientos()
-	{
+	public List<EstadoMovimiento> listarEstadosMovimientos() {
 		final Session session = sessionFactotry.getCurrentSession();
 		List<EstadoMovimiento> tipoMovimientos = session.createCriteria(EstadoMovimiento.class)
-												.list();
+													.list();
 		return tipoMovimientos;
 	}
-	
+
 	@Override
-	public EstadoMovimiento buscarPorId(int id)
-	{
+	public EstadoMovimiento buscarPorId(int id) {
 		final Session session = sessionFactotry.getCurrentSession();
 		return (EstadoMovimiento) session.createCriteria(EstadoMovimiento.class)
-								.add(Restrictions.eq("id", id))
-								.uniqueResult();
+									.add(Restrictions.eq("id", id))
+									.uniqueResult();
+	}
+
+	@Override
+	public EstadoMovimiento buscarPorDescripcion(String descripcion) {
+		final Session session = sessionFactotry.getCurrentSession();
+		return (EstadoMovimiento) session.createCriteria(EstadoMovimiento.class)
+									.add(Restrictions.eq("descripcion", descripcion))
+									.uniqueResult();
 	}
 }

@@ -14,7 +14,7 @@
 
     
 <div class="container">
-	  <form:form action="generarMovimientos" method="POST" modelAttribute="viaje">
+	  <form:form action="generarMovimientos" method="POST" modelAttribute="movimiento">
 	<h1> Asignar vehiculo al Presupuesto <fmt:formatNumber pattern="0000" type="number" value="${mov.getPuntoVenta()}" /> - <fmt:formatNumber pattern="00000000" type="number" value="${mov.getNumeroMovimiento()}" /> </h1>
 	      <div class="row">
   			  <div class="col-lg-6 col-md-6 col-sm-6">

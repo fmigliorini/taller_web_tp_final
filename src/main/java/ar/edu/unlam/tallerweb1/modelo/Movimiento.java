@@ -33,7 +33,7 @@ public class Movimiento {
 	@OneToOne
 	private Viaje viaje;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_Usuario")
 	private Usuario usuario;
 	
@@ -105,8 +105,8 @@ public class Movimiento {
 		this.tipoMovimiento = tipoMovimiento;
 	}
 	
-	public TipoMovimiento getEstadoMovimiento() {
-		return tipoMovimiento;
+	public EstadoMovimiento getEstadoMovimiento() {
+		return estadoMovimiento;
 	}
 
 	public void setEstadoMovimiento(EstadoMovimiento estadoMovimiento) {
