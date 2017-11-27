@@ -9,8 +9,11 @@
         <div class="col-md-12">
             
             <div class="row">
-               	<div class="col-lg-12 col-md-12 col-sm-12">
+               	<div class="col-lg-6 col-md-6 col-sm-6">
                     <h2>Presupuesto: ${presupuesto.id}</h2> 
+           		</div>
+           		<div class="col-lg-6 col-md-6 col-sm-6">
+                    <h2>Estado: ${presupuesto.estadoMovimiento.descripcion}</h2> 
            		</div>
         	</div>
 			<hr />
