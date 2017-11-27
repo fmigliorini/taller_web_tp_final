@@ -28,8 +28,8 @@ public class ControladorMenuChofer {
 		Long idUsuario=(Long)request.getSession().getAttribute("idUsuario");
 		Usuario chofer=servicioUsuario.buscarPorId(idUsuario);
 		ModelMap model = new ModelMap();
-		List<Viaje>listaChoferActivo=servicioViaje.listarViajesActivos(chofer);
-		model.put("listaChoferActivo",listaChoferActivo);
+		List<Viaje>listaViajeActivo=servicioViaje.listarViajesActivos(chofer);
+		model.put("listaViajeActivo",listaViajeActivo);
 		return new ModelAndView("listaDeViajesActivos",model);
 	}
 	

@@ -29,7 +29,7 @@
 									<th scope="col">Fecha</th>
 									<th scope="col">Origen</th>
 									<th scope="col">Destino</th>
-									<!-- Falta kilometros -->
+									<th scope="col">Kilometros</th>
 									<th scope="col">Descripción</th>
 									<th scope="col">Precio</th>
 									<th scope="col">Peso</th>
@@ -40,20 +40,20 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="chofer" items="${listaChoferActivo}">
+								<c:forEach var="viajeActivo" items="${listaViajeActivo}">
 									<tr>
 									  
-										<td><c:out value="${chofer.id}" /></td>
-										<td><c:out value="${chofer.hora}" /></td>
-										<td><c:out value="${chofer.fecha}" /></td>
-										<td><c:out value="${chofer.origen}" /></td>
-										<td><c:out value="${chofer.destino}" /></td>
-										<!-- Falta kilometros -->
-										<td><c:out value="${chofer.descripcion}" /></td>
-										<td><c:out value="${chofer.precio}" /></td>
-							            <td><c:out value="${chofer.peso}" /></td>
-										<td><c:out value="${chofer.estado}" /></td>
-										<td><c:out value="${chofer.tipoVehiculo.descripcion}" /></td>
+										<td><c:out value="${viajeActivo.id}" /></td>
+										<td><c:out value="${viajeActivo.hora}" /></td>
+										<td><c:out value="${viajeActivo.fecha}" /></td>
+										<td><c:out value="${viajeActivo.origen}" /></td>
+										<td><c:out value="${viajeActivo.destino}" /></td>
+										<td><c:out value="${viajeActivo.kilometros}" /></td>
+										<td><c:out value="${viajeActivo.descripcion}" /></td>
+										<td><c:out value="${viajeActivo.precio}" /></td>
+							            <td><c:out value="${viajeActivo.peso}" /></td>
+										<td><c:out value="${viajeActivo.estado}" /></td>
+										<td><c:out value="${viajeActivo.tipoVehiculo.descripcion}" /></td>
 										
 											
 									</tr>
