@@ -35,6 +35,12 @@ public class ControladorMenuAdmnistrador {
 
 	}
 	
+	@RequestMapping("index_administrador")
+	public ModelAndView index_administrador(){
+		return new ModelAndView("index_administrador");
+
+	}
+	
 	@RequestMapping("listaDePresupuestosAceptados")
 	public ModelAndView presupuestosAceptados(){
 
