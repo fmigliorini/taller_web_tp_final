@@ -143,10 +143,7 @@ public class ControladorPresupuesto {
 
 	@RequestMapping(path = "/listarPresupuestosCliente")
 	public ModelAndView listarPresupuestosCliente(HttpServletRequest request) {
-		
-		// validar rol cliente
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
-		
 		List<Movimiento> listaMovimiento = servicioMovimiento.buscarMovimientosPorUsuario(idUsuario, servicioTipoMovimiento.buscarPorDescripcion("Presupuesto").getId());
 		ModelMap model = new ModelMap();
 		model.put("presupuestos", listaMovimiento);

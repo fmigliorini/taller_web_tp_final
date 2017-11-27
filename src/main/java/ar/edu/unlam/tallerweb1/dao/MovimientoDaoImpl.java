@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -79,7 +80,7 @@ public class MovimientoDaoImpl implements MovimientoDao {
 											.createAlias("tipoMovimiento", "tipo")
 											//Le digo que me traiga los Movimientos correspondiente al tipo 
 											.add(Restrictions.eq("tipo.id",idTipoMovimiento))
-											
+											.addOrder(Order.desc("id"))
 											.list();
 		return movimientosTipoUsuario;
 	}

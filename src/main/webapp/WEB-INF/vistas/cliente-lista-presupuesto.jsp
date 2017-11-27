@@ -12,15 +12,21 @@
 						<table class="table table-bordered">
 							<thead>
 								<tr>
-									
 									<th scope="col">id</th>
+									<th scope="col">fecha_hora</th>
+									<th scope="col">Estado</th>
+									<th scope="col">TipoVehiculo</th>
+									<th scope="col">Operaciones</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="presupuesto" items="${presupuestos}">
 									<tr>
-										<td><c:out value="${presupuesto.id}" /></td>
-										<td></td>		
+										<td><c:out value="${presupuesto.id}" /></td>	
+										<td><c:out value="${presupuesto.fecha_hora}" /></td>
+										<td><c:out value="${presupuesto.estadoMovimiento.descripcion}" /></td>
+										<td><c:out value="${presupuesto.viaje.tipoVehiculo.descripcion}" /></td>
+										<td><a class="btn btn-primary" href="verPresupuesto/<c:out value="${presupuesto.id}" />"> ver Mas</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
