@@ -52,6 +52,15 @@ public class LogViajeDaoImpl implements LogViajeDao {
 			.list();
 		return logDeViajes;
 	}
+  
+	@Override
+	public List<LogViaje> findByViaje(Viaje viaje) {
+		final Session session=sessionFactory.getCurrentSession();
+		List<LogViaje>logDes=session.createCriteria(LogViaje.class)
+		.add(Restrictions.eq("viaje", viaje))
+		.list();
+		return logDes;
+	}
 	
 	
 

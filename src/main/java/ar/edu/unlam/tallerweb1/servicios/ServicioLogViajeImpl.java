@@ -47,6 +47,12 @@ public class ServicioLogViajeImpl implements ServicioLogViaje{
 		
 		return logViajeDao.buscarPorIdViaje(id);
 	}
+	@Override
+	@Transactional(readOnly=true,propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	public List<LogViaje> traerLogViajeSegunViaje(Viaje viaje) {
+		
+		return logViajeDao.findByViaje(viaje);
+	}
 
 	
 	

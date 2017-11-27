@@ -39,11 +39,20 @@ public class ControladorLogViaje {
 		modelo.put("logViaje", logViaje);
 		return new ModelAndView("invoiceLogViaje",modelo);
 	}
-	@RequestMapping("listaLogViaje")
+	/*@RequestMapping("listaLogViaje")
 	public ModelAndView mostrarListaLogViaje(Long id){
 		ModelMap modelo2=new ModelMap();
 		Viaje viaje =servicioViaje.buscarViajePorId(id);
 		List<LogViaje> listaLog = servicioLogViaje.listarLogViajePorViaje(viaje);
+		modelo2.put("listaLog", listaLog);
+		return new ModelAndView("listaLogViaje",modelo2);
+	}*/
+	
+	@RequestMapping("listaLogViaje")
+	public ModelAndView mostrarListaLogViaje(Long id){
+		ModelMap modelo2=new ModelMap();
+		Viaje viaje =servicioViaje.buscarViajePorId(id);
+		List<LogViaje> listaLog =servicioLogViaje.traerLogViajeSegunViaje(viaje);
 		modelo2.put("listaLog", listaLog);
 		return new ModelAndView("listaLogViaje",modelo2);
 	}

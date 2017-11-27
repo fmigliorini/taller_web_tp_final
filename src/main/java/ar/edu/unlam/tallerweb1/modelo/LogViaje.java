@@ -21,7 +21,7 @@ public class LogViaje {
 	private Double precio;
 
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_Viaje")
 	private Viaje viaje ;
 	
