@@ -33,7 +33,7 @@ public class Movimiento {
 	@OneToOne
 	private Viaje viaje;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_Usuario")
 	private Usuario usuario;
 	

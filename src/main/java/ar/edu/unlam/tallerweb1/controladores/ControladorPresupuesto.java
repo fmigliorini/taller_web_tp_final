@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Movimiento;
 import ar.edu.unlam.tallerweb1.modelo.TipoMovimiento;
 import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Viaje;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEstadoMovimiento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioMovimiento;
@@ -105,18 +106,20 @@ public class ControladorPresupuesto {
 
 		
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
+		Usuario usuario = servicioUsuario.buscarPorId(idUsuario);
 		// seteo el cliente
-		movimiento.setUsuario(servicioUsuario.buscarPorId(idUsuario));
+		movimiento.setUsuario(usuario);
 		servicioMovimiento.guardarMovimiento(movimiento);
 
 		return new ModelAndView("redirect:/verPresupuesto/" + movimiento.getId());
 	}
 
 	@RequestMapping(path = "/verPresupuesto/{idPresupuesto}")
-	public ModelAndView verPresupuesto(@PathVariable("idPresupuesto") Long idPresupuesto) {
+	public ModelAndView verPresupuesto(@PathVariable("idPresupuesto") Long idPresupuesto, HttpServletRequest request) {
 		ModelMap modelMap = new ModelMap();
 		Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
 		modelMap.put("presupuesto", presupuesto);
+		modelMap.put("cliente", presupuesto.getUsuario());
 		return new ModelAndView("presupuesto-invoice", modelMap);
 	}
 

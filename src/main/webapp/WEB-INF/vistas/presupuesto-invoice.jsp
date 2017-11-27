@@ -33,6 +33,14 @@
             </div>
             <hr />
             <!--  CLIENT SIDE -->
+            <div class="row">
+				<h1>Mudanzas Pepe</h1>
+           	    <div class="col-lg-6 col-md-6 col-sm-6">
+                    <h4>Cliente:</h4>
+                    <br> Nombre : ${cliente.nombre }
+                    <br> Tipo de vehiculo: ${presupuesto.viaje.tipoVehiculo.descripcion }
+                </div>                
+            </div>
             <hr />
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
