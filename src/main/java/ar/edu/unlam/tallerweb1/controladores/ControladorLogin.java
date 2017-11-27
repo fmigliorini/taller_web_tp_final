@@ -45,6 +45,9 @@ public class ControladorLogin {
 			if(usuarioBuscado.getRol().equals("cliente")){
 				return new ModelAndView("redirect:/home");
 			}
+			if(usuarioBuscado.getRol().equals("admin")){
+				return new ModelAndView("redirect:/index_administrador");
+			}
 			return new ModelAndView("redirect:/index");
 			
 		} else {
