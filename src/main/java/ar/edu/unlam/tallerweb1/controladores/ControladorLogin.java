@@ -16,7 +16,6 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 @Controller
 public class ControladorLogin {
 
-
 	@Inject
 	private ServicioLogin servicioLogin;
 
@@ -32,32 +31,32 @@ public class ControladorLogin {
 	@RequestMapping(path = "/validar-login", method = RequestMethod.POST)
 	public ModelAndView validarLogin(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request) {
 		ModelMap model = new ModelMap();
-		
+
 		Usuario usuarioBuscado = servicioLogin.consultarUsuario(usuario);
 		if (usuarioBuscado != null) {
-		
+
 			request.getSession().setAttribute("rol", usuarioBuscado.getRol());
 			request.getSession().setAttribute("idUsuario", usuarioBuscado.getId());
-			
-			if(usuarioBuscado.getRol().equals("chofer")){
+
+			if (usuarioBuscado.getRol().equals("chofer")) {
 				return new ModelAndView("redirect:/index_chofer");
 			}
-			if(usuarioBuscado.getRol().equals("cliente")){
+			if (usuarioBuscado.getRol().equals("cliente")) {
 				return new ModelAndView("redirect:/home");
 			}
-			if(usuarioBuscado.getRol().equals("admin")){
+			if (usuarioBuscado.getRol().equals("admin")) {
 				return new ModelAndView("redirect:/index_administrador");
 			}
 			return new ModelAndView("redirect:/index");
-			
+
 		} else {
 			model.put("error", "Usuario o clave incorrecta");
 		}
 		return new ModelAndView("redirect:/login", model);
 	}
-	
+
 	public void setServicioLogin(ServicioLogin servicioLogin) {
-		
+
 		this.servicioLogin = servicioLogin;
 	}
 
