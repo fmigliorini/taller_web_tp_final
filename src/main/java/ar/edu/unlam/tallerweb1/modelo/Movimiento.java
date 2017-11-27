@@ -22,11 +22,11 @@ public class Movimiento {
 	private char letra;
 	private String observaciones;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_tipoMovimento")
 	private TipoMovimiento tipoMovimiento;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_EstadoMovimento")
 	private EstadoMovimiento estadoMovimiento;
 	
@@ -105,8 +105,8 @@ public class Movimiento {
 		this.tipoMovimiento = tipoMovimiento;
 	}
 	
-	public TipoMovimiento getEstadoMovimiento() {
-		return tipoMovimiento;
+	public EstadoMovimiento getEstadoMovimiento() {
+		return estadoMovimiento;
 	}
 
 	public void setEstadoMovimiento(EstadoMovimiento estadoMovimiento) {
