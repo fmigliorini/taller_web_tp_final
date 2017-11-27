@@ -48,10 +48,13 @@ public class ControladorMenuChofer {
 	@RequestMapping("menu_chofer_viajeActivo")
 	public ModelAndView irAlMenuDeViajeActivo(HttpServletRequest request){
 		Long idUsuario=(Long)request.getSession().getAttribute("idUsuario");
-		Viaje viaje=servicioViaje.buscarViajePorId(idUsuario);
+		Viaje viajeEnProceso=servicioViaje.buscarViajePorId(idUsuario);
 		Usuario chofer=servicioUsuario.buscarPorId(idUsuario);
-		viaje.setEstado("En proceso");
-		return new ModelAndView("menu_chofer_viajeActivo");
+		viajeEnProceso.setEstado("En proceso");
+		ModelMap model=new ModelMap();
+		model.put("viajeEnProceso", viajeEnProceso);
+		System.out.println("estado de viaje---" +viajeEnProceso.getEstado());
+		return new ModelAndView("menu_chofer_viajeActivo",model);
 	}
 	
 }

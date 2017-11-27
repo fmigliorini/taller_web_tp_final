@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.LogViaje;
+import ar.edu.unlam.tallerweb1.modelo.Viaje;
 
 @Repository("LogViajeDao")
 public class LogViajeDaoImpl implements LogViajeDao {
@@ -25,7 +26,7 @@ public class LogViajeDaoImpl implements LogViajeDao {
 	}
 
 	@Override
-	public List<LogViaje> listarLogViajes() {
+	public List<LogViaje> listarLogViajesPorViaje() {
 		final Session session=sessionFactory.getCurrentSession();
 		List<LogViaje>logDeViajes=session.createCriteria(LogViaje.class)
 				.list();

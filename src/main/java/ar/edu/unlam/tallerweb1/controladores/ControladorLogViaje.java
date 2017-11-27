@@ -3,20 +3,28 @@ package ar.edu.unlam.tallerweb1.controladores;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.LogViaje;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.Viaje;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogViaje;
+import ar.edu.unlam.tallerweb1.servicios.ServicioViaje;
 
 @Controller
 public class ControladorLogViaje {
 	@Inject 
 	ServicioLogViaje servicioLogViaje;
+	@Inject 
+	ServicioViaje servicioViaje;
+	
 	@RequestMapping("logViajeForm")
 	public ModelAndView irAFormularioLogViaje(){
 		LogViaje logViaje = new LogViaje();
@@ -34,7 +42,7 @@ public class ControladorLogViaje {
 	@RequestMapping("listaLogViaje")
 	public ModelAndView mostrarListaLogViaje(){
 		ModelMap modelo2=new ModelMap();
-		List<LogViaje> listaLog=servicioLogViaje.listarLogViaje();
+		List<LogViaje> listaLog=servicioLogViaje.listarLogViajePorViaje();
 		modelo2.put("listaLog", listaLog);
 		return new ModelAndView("listaLogViaje",modelo2);
 	}

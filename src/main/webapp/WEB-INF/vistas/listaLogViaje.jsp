@@ -25,6 +25,7 @@
 									<th scope="col">Id de viaje</th>
 									<th scope="col">Descripción</th>
 									<th scope="col">Precio</th>
+									<th rowspan="2">Total de log de viaje: </th>
 								</tr>
 							</thead>
 							<tbody>
@@ -32,11 +33,16 @@
 									<tr>
 										
 										<td><c:out value="${chofer.id}" /></td>
-										<td><c:out value="${chofer.viaje.id}" /></td>
+										<!-- No muestra el id de viaje -->
+										<td><c:out value="${chofer.getViaje().getId()}"/></td>
 										<td><c:out value="${chofer.tipoLogViaje}" /></td>
 										<td><c:out value="${chofer.precio}" /></td>
-									</tr>
+										
+									<tr>
+								
+									
 								</c:forEach>
+								
 							</tbody>
 						</table>
 					</div>

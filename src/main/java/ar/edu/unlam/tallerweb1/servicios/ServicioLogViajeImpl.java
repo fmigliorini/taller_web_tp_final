@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.dao.LogViajeDao;
 import ar.edu.unlam.tallerweb1.dao.PresupuestoDao;
 import ar.edu.unlam.tallerweb1.modelo.LogViaje;
+import ar.edu.unlam.tallerweb1.modelo.Viaje;
 
 @Service
 @Transactional(readOnly = true, propagation = Propagation.SUPPORTS )
@@ -32,12 +33,12 @@ public class ServicioLogViajeImpl implements ServicioLogViaje{
 		return logViaje;
 	}
 	@Override
-	public List<LogViaje> listarLogViaje() {
-		return logViajeDao.listarLogViajes();
-	}
-	@Override
 	public LogViaje buscarPorId(Long id) {
 		return logViajeDao.buscarPorId(id);
+	}
+	@Override
+	public List<LogViaje> listarLogViajePorViaje() {
+		return logViajeDao.listarLogViajesPorViaje();
 	}
 	
 }
