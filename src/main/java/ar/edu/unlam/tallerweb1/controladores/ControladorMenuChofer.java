@@ -46,7 +46,11 @@ public class ControladorMenuChofer {
 		return new ModelAndView("reportesDiarioDeViaje");
 	}
 	@RequestMapping("menu_chofer_viajeActivo")
-	public ModelAndView irAlMenuDeViajeActivo(){
+	public ModelAndView irAlMenuDeViajeActivo(HttpServletRequest request){
+		Long idUsuario=(Long)request.getSession().getAttribute("idUsuario");
+		Viaje viaje=servicioViaje.buscarViajePorId(idUsuario);
+		Usuario chofer=servicioUsuario.buscarPorId(idUsuario);
+		viaje.setEstado("En proceso");
 		return new ModelAndView("menu_chofer_viajeActivo");
 	}
 	

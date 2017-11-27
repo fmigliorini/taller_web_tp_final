@@ -44,7 +44,7 @@
 	            </li>
 	            <li class="nav-item">
 	               <!-- Por ahora el finalizar viaje redireccionará a menú de chofer -->
-	              <a class="nav-link" href="indexChofer">Finalizar viaje</a>
+	              <a class="nav-link" href="index_chofer">Finalizar viaje</a>
 	            </li>
 	    
 	          </ul>

@@ -10,4 +10,6 @@ public interface ServicioViaje {
 	Viaje buscarViajePorId(Long id);
 	List<Viaje> buscarViajesDeChoferId(Long id);
 	List<Viaje>listarViajesActivos(Usuario chofer);
+	//viaje en proceso es cuando el chofer esta en camino
+     Viaje viajeEnProceso();
 }

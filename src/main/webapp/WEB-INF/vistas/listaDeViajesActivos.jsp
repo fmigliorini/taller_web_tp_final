@@ -42,7 +42,6 @@
 							<tbody>
 								<c:forEach var="viajeActivo" items="${listaViajeActivo}">
 									<tr>
-									  
 										<td><c:out value="${viajeActivo.id}" /></td>
 										<td><c:out value="${viajeActivo.hora}" /></td>
 										<td><c:out value="${viajeActivo.fecha}" /></td>
@@ -54,8 +53,7 @@
 							            <td><c:out value="${viajeActivo.peso}" /></td>
 										<td><c:out value="${viajeActivo.estado}" /></td>
 										<td><c:out value="${viajeActivo.tipoVehiculo.descripcion}" /></td>
-										
-											
+										<td><a href="menu_chofer_viajeActivo" class="btn btn-success">Iniciar recorrido</a></td>		
 									</tr>
 								</c:forEach>
 							</tbody>

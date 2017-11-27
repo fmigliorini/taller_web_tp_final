@@ -40,5 +40,11 @@ public class ServicioViajeImpl implements ServicioViaje {
 		
 		return viajeDao.listarViajesActivos(chofer);
 	}
+
+	@Override
+	public Viaje viajeEnProceso() {
+		
+		return viajeDao.viajeEnProceso();
+	}
 	
 }

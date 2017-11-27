@@ -22,6 +22,7 @@
 								<tr>
 									
 									<th scope="col">Id log de viaje</th>
+									<th scope="col">Id de viaje</th>
 									<th scope="col">Descripción</th>
 									<th scope="col">Precio</th>
 								</tr>
@@ -31,6 +32,7 @@
 									<tr>
 										
 										<td><c:out value="${chofer.id}" /></td>
+										<td><c:out value="${chofer.viaje.id}" /></td>
 										<td><c:out value="${chofer.tipoLogViaje}" /></td>
 										<td><c:out value="${chofer.precio}" /></td>
 									</tr>

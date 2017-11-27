@@ -60,7 +60,16 @@ public class ViajeDaoImpl implements ViajeDao {
 				.add(Restrictions.eq("ch.rol", "chofer"))
 				.list();
 		return viajesActivos;
-		
-	
 	}
+   //Viaje en proceso
+	@Override
+	public Viaje viajeEnProceso() {
+		final Session session = sessionFactotry.getCurrentSession();
+		return  (Viaje) session.createCriteria(Viaje.class)
+				.add(Restrictions.eq("estado", "En proceso"))
+				.uniqueResult();
+		
+	}
+	
+	
 }
