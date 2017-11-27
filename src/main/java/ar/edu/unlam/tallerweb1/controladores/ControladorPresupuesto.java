@@ -132,4 +132,11 @@ public class ControladorPresupuesto {
 		return new ModelAndView("redirect:/verPresupuesto/" + presupuesto.getId());
 	}
 	
+	@RequestMapping(path = "/rechazarPresupuesto")
+	public ModelAndView rechazarPresupuesto(@RequestParam("idPresupuesto") Long idPresupuesto) {
+		Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
+		presupuesto.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Rechazado"));
+		servicioMovimiento.guardarMovimiento(presupuesto);
+		return new ModelAndView("redirect:/verPresupues	to/" + presupuesto.getId());
+	}
 }
