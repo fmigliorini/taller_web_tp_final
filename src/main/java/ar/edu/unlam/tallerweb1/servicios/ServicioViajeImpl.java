@@ -35,6 +35,6 @@ public class ServicioViajeImpl implements ServicioViaje {
 	}
 	public void ActualizarViaje(Viaje viaje){
 
-		return viajeDao.ActualizarViaje(viaje);
+		viajeDao.ActualizarViaje(viaje);
 	}
 }
