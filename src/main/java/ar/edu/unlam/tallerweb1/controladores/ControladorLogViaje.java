@@ -40,9 +40,10 @@ public class ControladorLogViaje {
 		return new ModelAndView("invoiceLogViaje",modelo);
 	}
 	@RequestMapping("listaLogViaje")
-	public ModelAndView mostrarListaLogViaje(){
+	public ModelAndView mostrarListaLogViaje(Long id){
 		ModelMap modelo2=new ModelMap();
-		List<LogViaje> listaLog=servicioLogViaje.listarLogViajePorViaje();
+		Viaje viaje =servicioViaje.buscarViajePorId(id);
+		List<LogViaje> listaLog = servicioLogViaje.listarLogViajePorViaje(viaje);
 		modelo2.put("listaLog", listaLog);
 		return new ModelAndView("listaLogViaje",modelo2);
 	}

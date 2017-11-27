@@ -8,8 +8,9 @@ import ar.edu.unlam.tallerweb1.modelo.Viaje;
 public interface LogViajeDao {
 	
 	LogViaje gardarLogViaje(LogViaje logViaje);
-	List<LogViaje>listarLogViajesPorViaje();
+	List<LogViaje>listarLogViajesPorViaje(Viaje viaje);
 	LogViaje buscarPorId(Long id);
+	public List<LogViaje> buscarPorIdViaje(Long id);
 	
 		
 }
