@@ -26,7 +26,7 @@ public class MovimientoDaoImpl implements MovimientoDao {
 	public Movimiento guardarMovimiento(Movimiento movimiento){
 		
 		final Session session = sessionFactory.getCurrentSession();
-		session.save(movimiento);
+		session.saveOrUpdate(movimiento);
 		return movimiento;
 	}
 	
