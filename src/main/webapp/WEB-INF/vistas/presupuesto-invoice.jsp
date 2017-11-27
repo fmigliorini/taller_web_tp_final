@@ -116,6 +116,7 @@
                 </div>
             </div>
             <hr />
+           	<c:if test="${presupuesto.estadoMovimiento.descripcion.equals('Activo')}">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                 	<form method="post" action="${pageContext.request.contextPath}/aceptarPresupuesto">
@@ -130,7 +131,7 @@
                    	</form>
                 </div>
             </div>
-            
+            </c:if>
             <hr>
 
         </div>
