@@ -57,6 +57,7 @@ public class ControladorLogin {
 	}
 	
 	public void setServicioLogin(ServicioLogin servicioLogin) {
+		
 		this.servicioLogin = servicioLogin;
 	}
 
