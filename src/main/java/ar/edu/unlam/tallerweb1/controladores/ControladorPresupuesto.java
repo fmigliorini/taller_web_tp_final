@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Movimiento;
@@ -123,4 +124,12 @@ public class ControladorPresupuesto {
 		return new ModelAndView("presupuesto-invoice", modelMap);
 	}
 
+	@RequestMapping(path = "/aceptarPresupuesto")
+	public ModelAndView aceptarPresupuesto(@RequestParam("idPresupuesto") Long idPresupuesto) {
+		Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
+		presupuesto.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Aceptado"));
+		servicioMovimiento.guardarMovimiento(presupuesto);
+		return new ModelAndView("redirect:/verPresupuesto/" + presupuesto.getId());
+	}
+	
 }

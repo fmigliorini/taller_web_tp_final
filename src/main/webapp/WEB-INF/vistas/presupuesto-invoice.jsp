@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-    <form action="generarFactura">
+
 <div class="container">
     <div class="row color-invoice">
         <div class="col-md-12">
@@ -118,7 +118,10 @@
             <hr />
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <a class="btn btn-success btn-sm">Aceptar Presupuesto</a>
+                	<form method="post" action="${pageContext.request.contextPath}/aceptarPresupuesto">
+                		<input type="hidden" name="idPresupuesto" value="${presupuesto.id}"/>
+                    	<input type="submit" class="btn btn-success btn-sm" value="Aceptar Presupuesto" ></input>
+                   	</form>
                     <a href="#" class="btn btn-danger btn-sm">Rechazar Presupuesto</a>
                 </div>
             </div>
