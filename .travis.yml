@@ -6,3 +6,7 @@ jdk:
 notifications:
   email:
     - facundo.mig@gmail.com
+    - Erikaromanczuk@Gmail.com
+    - daniela_mansilla94@hotmail.com
+  on_success: always
+  on_failure: always
