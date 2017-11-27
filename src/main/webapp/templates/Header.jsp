@@ -38,9 +38,10 @@
 	        <div class="collapse navbar-collapse" id="navbarResponsive">
 	          <ul class="navbar-nav ml-auto">
 	            <li class="nav-item">
-	              <a class="nav-link" href="presupuestoForm">Nuevo Presupuesto
-	                <!-- <span class="sr-only">(current)</span>  -->
-	              </a>
+	              <a class="nav-link" href="presupuestoForm">Nuevo Presupuesto</a>
+	            </li>
+	            <li class="nav-item">
+	              <a class="nav-link" href="listarPresupuestosCliente">Listar Presupuesto</a>
 	            </li>
 	          </ul>
 	        </div>

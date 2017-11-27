@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -47,8 +48,9 @@ public class ControladorPresupuesto {
 	@Inject
 	private ServicioMovimiento servicioMovimiento;
 
-	@Inject ServicioUsuario servicioUsuario;
-	
+	@Inject
+	ServicioUsuario servicioUsuario;
+
 	@RequestMapping("/presupuestoForm")
 	public ModelAndView irAFormularioPresupuesto(HttpServletRequest request) {
 
@@ -105,7 +107,6 @@ public class ControladorPresupuesto {
 		// seteo el viaje
 		movimiento.setViaje(viaje);
 
-		
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
 		Usuario usuario = servicioUsuario.buscarPorId(idUsuario);
 		// seteo el cliente
@@ -131,12 +132,24 @@ public class ControladorPresupuesto {
 		servicioMovimiento.guardarMovimiento(presupuesto);
 		return new ModelAndView("redirect:/verPresupuesto/" + presupuesto.getId());
 	}
-	
+
 	@RequestMapping(path = "/rechazarPresupuesto")
 	public ModelAndView rechazarPresupuesto(@RequestParam("idPresupuesto") Long idPresupuesto) {
 		Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
 		presupuesto.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Rechazado"));
 		servicioMovimiento.guardarMovimiento(presupuesto);
 		return new ModelAndView("redirect:/verPresupues	to/" + presupuesto.getId());
+	}
+
+	@RequestMapping(path = "/listarPresupuestosCliente")
+	public ModelAndView listarPresupuestosCliente(HttpServletRequest request) {
+		
+		// validar rol cliente
+		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
+		
+		List<Movimiento> listaMovimiento = servicioMovimiento.buscarMovimientosPorUsuario(idUsuario, servicioTipoMovimiento.buscarPorDescripcion("Presupuesto").getId());
+		ModelMap model = new ModelMap();
+		model.put("presupuestos", listaMovimiento);
+		return new ModelAndView("cliente-lista-presupuesto",model);
 	}
 }
