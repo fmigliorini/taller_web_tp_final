@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +24,7 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioEstadoMovimiento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioMovimiento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTipoMovimiento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTipoVehiculo;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioViaje;
 
 @Controller
@@ -43,6 +45,8 @@ public class ControladorPresupuesto {
 	@Inject
 	private ServicioMovimiento servicioMovimiento;
 
+	@Inject ServicioUsuario servicioUsuario;
+	
 	@RequestMapping("/presupuestoForm")
 	public ModelAndView irAFormularioPresupuesto(HttpServletRequest request) {
 
@@ -59,7 +63,7 @@ public class ControladorPresupuesto {
 	}
 
 	@RequestMapping(path = "/generarPresupuesto", method = RequestMethod.POST)
-	public ModelAndView generarPresupuesto(@ModelAttribute("viaje") Viaje viaje) {
+	public ModelAndView generarPresupuesto(@ModelAttribute("viaje") Viaje viaje, HttpServletRequest request) {
 
 		// GENERACION DE UN VIAJE
 		TipoVehiculo tv = servicioTipoVehiculo.buscarPorPesoMaximo(viaje.getPeso());
@@ -71,7 +75,7 @@ public class ControladorPresupuesto {
 			modeMapError.put("error", "No existe un vehiculo disponible para ese peso");
 			return new ModelAndView("presupuestoForm", modeMapError);
 		}
-		
+
 		viaje.setTipoVehiculo(tv);
 		viaje.setPrecio(tv.getPrecio() * viaje.getKilometros());
 		servicioViaje.guardarViaje(viaje);
@@ -99,11 +103,21 @@ public class ControladorPresupuesto {
 		// seteo el viaje
 		movimiento.setViaje(viaje);
 
+		
+		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
+		// seteo el cliente
+		movimiento.setUsuario(servicioUsuario.buscarPorId(idUsuario));
 		servicioMovimiento.guardarMovimiento(movimiento);
 
-		ModelMap modeMap = new ModelMap();
+		return new ModelAndView("redirect:/verPresupuesto/" + movimiento.getId());
+	}
 
-		return new ModelAndView("invoice", modeMap);
+	@RequestMapping(path = "/verPresupuesto/{idPresupuesto}")
+	public ModelAndView verPresupuesto(@PathVariable("idPresupuesto") Long idPresupuesto) {
+		ModelMap modelMap = new ModelMap();
+		Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
+		modelMap.put("presupuesto", presupuesto);
+		return new ModelAndView("presupuesto-invoice", modelMap);
 	}
 
 }

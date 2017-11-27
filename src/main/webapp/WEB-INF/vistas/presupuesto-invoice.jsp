@@ -33,33 +33,20 @@
             </div>
             <hr />
             <!--  CLIENT SIDE -->
-            <div class="row">
-                <div class="col-lg-7 col-md-7 col-sm-7">
-                    <h4>Datos del Cliente : </h4>
-                    <strong>${presupuesto.usuario.apellido }, ${presupuesto.usuario.nombre } </strong> 
-                    <br />DNI: ${presupuesto.usuario.dni }
-                    <br />Direccion: ${presupuesto.usuario.direccion }
-                </div>
-                <div class="col-lg-5 col-md-5 col-sm-5">
-                    <h4>Datos de Contacto :</h4>
-                    email: ${presupuesto.usuario.email }
-                    <br> teléfono: ${presupuesto.usuario.telefono }
-                </div>
-            </div>
             <hr />
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <h4>Descripcion del servicio:</h4>
                     Fecha del servicio: 01/12/2017
                     <br> Hora: 16:00 hs.
-                    <br> Tipo de vehiculo: ${presupuesto.tipoVehiculo.descripcion }
+                    <br> Tipo de vehiculo: ${presupuesto.viaje.tipoVehiculo.descripcion }
                     
                 </div>
                 
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    <br> Direccion de origen: ${presupuesto.origen }
-                    <br> Direccion de destino: ${presupuesto.destino }
-                    <br> Kilometros Recorridos: ${presupuesto.kilometros }
+                    <br> Direccion de origen: ${presupuesto.viaje.origen }
+                    <br> Direccion de destino: ${presupuesto.viaje.destino }
+                    <br> Kilometros Recorridos: ${presupuesto.viaje.kilometros }
                     
                     
                     
@@ -89,10 +76,10 @@
                             <tbody>
                                 <tr>
                                     <td>Servicio de Mudanza con camion , recorrido 15,3</td>
-                                    <td>${presupuesto.kilometros }</td>
-                                    <td>$ ${presupuesto.tipoVehiculo.precio }</td>
+                                    <td>${presupuesto.viaje.kilometros }</td>
+                                    <td>$ ${presupuesto.viaje.tipoVehiculo.precio }</td>
                                     <td>0</td>
-                                    <td>$ ${presupuesto.precio }</td>
+                                    <td>$ ${presupuesto.viaje.precio }</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -103,7 +90,7 @@
                     </div>
                     <hr>
                     <div>
-                        <h3>  Total : $ ${ presupuesto.precio }  </h3>
+                        <h3>  Total : $ ${ presupuesto.viaje.precio }  </h3>
                     </div>
                     <hr />
                 </div>
@@ -111,7 +98,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <strong>Observaciones: </strong>
-                    <p>${presupuesto.descripcion}</p>
+                    <p>${presupuesto.viaje.descripcion}</p>
                 </div>
             </div>
             <hr />
