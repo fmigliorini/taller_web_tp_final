@@ -135,7 +135,7 @@
 					</c:when>
 					<c:when test="${ not empty factura.id }">
 						<div class="col-lg-6 col-md-6 col-sm-6">
-							<a class="btn btn-primary" href="${pageContext.request.contextPath}/verFactura/${factura.id}">Ver
+							<a class="btn btn-primary" href="${pageContext.request.contextPath}/verFactura/${factura.viaje.id}">Ver
 								Facutra</a>
 						</div>
 

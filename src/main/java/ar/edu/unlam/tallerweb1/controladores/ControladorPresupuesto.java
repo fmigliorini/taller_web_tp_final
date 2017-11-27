@@ -152,4 +152,15 @@ public class ControladorPresupuesto {
 		model.put("presupuestos", listaMovimiento);
 		return new ModelAndView("cliente-lista-presupuesto", model);
 	}
+
+	@RequestMapping(path = "/verFactura/{idViaje}")
+	public ModelAndView listarPresupuestosCliente(@PathVariable("idViaje") Long idViaje) {
+		TipoMovimiento tipoMovimiento = servicioTipoMovimiento.buscarPorDescripcion("Factura");
+		Movimiento factura = servicioMovimiento.buscarMovimientosPorViaje(idViaje, tipoMovimiento.getId());
+		ModelMap model = new ModelMap();		
+		model.put("factura", factura);
+		model.put("cliente", factura.getUsuario());
+		return new ModelAndView("factura-invoice", model);
+	}
+
 }

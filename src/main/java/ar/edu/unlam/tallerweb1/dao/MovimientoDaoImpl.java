@@ -129,8 +129,8 @@ public class MovimientoDaoImpl implements MovimientoDao {
 	public Movimiento buscarMovimientosPorViaje(Long idViaje, int idTipoMovimiento) {
 		final Session session = sessionFactory.getCurrentSession();
 		return (Movimiento) session.createCriteria(Movimiento.class)
-				.createAlias("viaje", "viaje")
-				.add(Restrictions.eq("viaje.id", idViaje))
+				.createAlias("viaje", "v")
+				.add(Restrictions.eq("v.id", idViaje))
 				.createAlias("tipoMovimiento", "tipo")
 				.add(Restrictions.eq("tipo.id", idTipoMovimiento))
 				.uniqueResult();
