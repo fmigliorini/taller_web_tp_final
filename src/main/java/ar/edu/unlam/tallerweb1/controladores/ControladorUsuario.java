@@ -60,7 +60,7 @@ public class ControladorUsuario {
 			servicioUsuario.generarUsuario(usuarioChofer);
 			List<Usuario>listaChoferes=servicioUsuario.listarChoferes();
 			modelo2.put("listaChoferes", listaChoferes);
-			return new ModelAndView("abmChofer",modelo2);
+			return new ModelAndView("listadoChoferes",modelo2);
 		}
 	
 }

@@ -28,12 +28,12 @@ public class ControladorWeb {
 		return new ModelAndView("index");
 	}
 	
-	@RequestMapping(path = "/indexChofer", method = RequestMethod.GET)
+	@RequestMapping(path = "/index_chofer", method = RequestMethod.GET)
 	public ModelAndView indexChofer() {
 		return new ModelAndView("index_chofer");
 	}
 	
-	@RequestMapping(path="/indexAdministrador", method=RequestMethod.GET)
+	@RequestMapping(path="/index_administrador", method=RequestMethod.GET)
 	public ModelAndView indexAdministrador(){
 		return new ModelAndView("index_administrador");
 	}

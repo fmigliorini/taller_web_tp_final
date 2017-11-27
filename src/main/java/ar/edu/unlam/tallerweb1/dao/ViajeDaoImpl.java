@@ -44,4 +44,7 @@ public class ViajeDaoImpl implements ViajeDao {
 								.list();
 		return viajesChofer ;
 	}
+	
+
+
 }
