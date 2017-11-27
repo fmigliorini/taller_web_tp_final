@@ -111,36 +111,40 @@
 				</div>
 			</div>
 			<hr />
-			<div class="row">
+			<div class="row text-center">
 				<c:choose>
 					<c:when
 						test="${presupuesto.estadoMovimiento.descripcion.equals('Activo')}">
-						<div class="col-lg-6 col-md-6 col-sm-6">
+						<div class="col-lg-4 col-md-4 col-sm-4">
 							<form method="post"
 								action="${pageContext.request.contextPath}/aceptarPresupuesto">
-								<input type="hidden" name="idPresupuesto"
-									value="${presupuesto.id}" /> <input type="submit"
-									class="btn btn-success btn-sm" value="Aceptar Presupuesto" />
+								<input type="hidden" name="idPresupuesto" value="${presupuesto.id}" /> 
+								<input type="submit" class="btn btn-success btn-sm" value="Aceptar Presupuesto" />
 							</form>
 						</div>
-						<div class="col-lg-6 col-md-6 col-sm-6">
+						<div class="col-lg-4 col-md-4 col-sm-4">
+							<a
+								href="${pageContext.request.contextPath}/listarPresupuestosCliente"
+								class="btn btn-primary btn-sm">Volver al listado</a>
+						</div>						
+						<div class="col-lg-4 col-md-4 col-sm-4">
 							<form method="post"
 								action="${pageContext.request.contextPath}/rechazarPresupuesto">
-								<input type="hidden" name="idPresupuesto"
-									value="${presupuesto.id}" /> <input type="submit"
-									class="btn btn-danger btn-sm pull-right"
-									value="Rechazar Presupuesto" />
+								<input type="hidden" name="idPresupuesto" value="${presupuesto.id}" /> 
+								<input type="submit" class="btn btn-danger btn-sm " value="Rechazar Presupuesto" />
 							</form>
 						</div>
 					</c:when>
 					<c:when test="${ not empty factura.id }">
 						<div class="col-lg-6 col-md-6 col-sm-6">
-							<a class="btn btn-primary" href="${pageContext.request.contextPath}/verFactura/${factura.viaje.id}">Ver
-								Facutra</a>
+							<a class="btn btn-warning btn-sm" href="${pageContext.request.contextPath}/verFactura/${factura.viaje.id}">Ver Facutra</a>
 						</div>
-
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<a href="${pageContext.request.contextPath}/listarPresupuestosCliente" class="btn btn-primary btn-sm">Volver al listado</a>
+						</div>
 					</c:when>
 				</c:choose>
+
 			</div>
 			<hr>
 

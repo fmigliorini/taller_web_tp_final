@@ -113,12 +113,11 @@
 			</div>
 			<hr />
 			<div class="row">
-				<a href="#" class="btn btn-primary">volver</a>
+				<a href="${pageContext.request.contextPath}/listarPresupuestosCliente" class="btn btn-primary">Volver al listado</a>
 			</div>
 			<hr>
 
 		</div>
 	</div>
 </div>
-</form>
 <%@include file='../../templates/Footer.jsp'%>
