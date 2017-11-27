@@ -35,7 +35,7 @@
 	          <ul class="navbar-nav ml-auto">	
 	            <li class="nav-item">
 	            <!--Aun no esta terminado --> 
-	              <a class="nav-link" href="listaDeViajesArealizar">Lista de Viajes a realizar</a>
+	              <a class="nav-link" href="listaDeViajesActivos">Lista de Viajes a realizar</a>
 	            </li>
 	            <li class="nav-item">
 	              <!--logViajeForm es la url  -->

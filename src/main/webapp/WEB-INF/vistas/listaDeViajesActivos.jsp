@@ -25,28 +25,37 @@
 								<tr>
 									
 									<th scope="col">Id viaje</th>
-									<th scope="col">Descripción</th>
+									<th scope="col">Hora</th>
+									<th scope="col">Fecha</th>
 									<th scope="col">Origen</th>
 									<th scope="col">Destino</th>
-									<th scope="col">Kilometros</th>
+									<!-- Falta kilometros -->
+									<th scope="col">Descripción</th>
 									<th scope="col">Precio</th>
-									<th scope="col">Fecha</th>
+									<th scope="col">Peso</th>
 									<th scope="col">Estado</th>
+									<th scope="col">Tipo de vehículo</th>
+									
+									
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="chofer" items="${listaLog}">
+								<c:forEach var="chofer" items="${listaChoferActivo}">
 									<tr>
-									   <!-- UNA VEZ QUE ESTE CARGADO LOS DATOS SE PUEDEN -->
+									  
 										<td><c:out value="${chofer.id}" /></td>
-										<td><c:out value="${chofer.descripcion}"/></td>
-										<td><c:out value="${chofer.origen}"/></td>
-										<td><c:out value="${chofer.destino}"/></td>
-										<td><c:out value="${chofer.Kilometros}"/></td>
-										<td><c:out value="${chofer.precio}"/></td>
-										<td><c:out value="${chofer.fecha_hora}"/></td>
-										<td><c:out value="${chofer.estado}"/></td>
-										<td></td>		
+										<td><c:out value="${chofer.hora}" /></td>
+										<td><c:out value="${chofer.fecha}" /></td>
+										<td><c:out value="${chofer.origen}" /></td>
+										<td><c:out value="${chofer.destino}" /></td>
+										<!-- Falta kilometros -->
+										<td><c:out value="${chofer.descripcion}" /></td>
+										<td><c:out value="${chofer.precio}" /></td>
+							            <td><c:out value="${chofer.peso}" /></td>
+										<td><c:out value="${chofer.estado}" /></td>
+										<td><c:out value="${chofer.tipoVehiculo.descripcion}" /></td>
+										
+											
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -56,7 +65,7 @@
 				
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12">
-					   <a href="menu_chofer_viajeActivo" class="btn btn-success">Activar recorrido</a>
+					  <!--  <a href="menu_chofer_viajeActivo" class="btn btn-success">Activar recorrido</a> -->
 						<a href="indexChofer" class="btn btn-primary">Volver al menú</a>	
 					</div>
 				</div>

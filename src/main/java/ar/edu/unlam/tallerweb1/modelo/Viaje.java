@@ -23,7 +23,7 @@ public class Viaje {
 	private String descripcion;
 	private Float precio;
     private Float peso;
-    
+    private String estado;
 	@OneToMany(mappedBy = "viaje", cascade = CascadeType.ALL)
 	private List<LogViaje> logViajes = new LinkedList<LogViaje>();
 
@@ -57,8 +57,6 @@ public class Viaje {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
 
 	public String getOrigen() {
 		return origen;
@@ -130,6 +128,14 @@ public class Viaje {
 
 	public void setPeso(Float peso) {
 		this.peso = peso;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 }

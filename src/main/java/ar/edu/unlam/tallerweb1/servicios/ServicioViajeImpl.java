@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.ViajeDao;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Viaje;
 
 @Service("servicioViaje")
@@ -32,6 +33,12 @@ public class ServicioViajeImpl implements ServicioViaje {
 	public List<Viaje> buscarViajesDeChoferId(Long id) {
 
 		return viajeDao.buscarViajesDeChoferId(id);
+	}
+	
+	@Override
+	public List<Viaje> listarViajesActivos(Usuario chofer) {
+		
+		return viajeDao.listarViajesActivos(chofer);
 	}
 	
 }
