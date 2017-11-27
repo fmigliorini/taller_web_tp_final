@@ -11,7 +11,9 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import ar.edu.unlam.tallerweb1.modelo.EstadoMovimiento;
 import ar.edu.unlam.tallerweb1.modelo.Movimiento;
+import ar.edu.unlam.tallerweb1.modelo.TipoMovimiento;
 
 
 @Repository("MovimientoDao")
@@ -48,6 +50,8 @@ public class MovimientoDaoImpl implements MovimientoDao {
 											.list();
 		return movimientosTipo;
 	}
+	
+	
 	
 	//Trae todos los movimientos del usuario
 	@Override
@@ -111,4 +115,25 @@ public class MovimientoDaoImpl implements MovimientoDao {
 		return numeroMovimiento;
 		
 	}
+	
+	//Trae todos los Presupuestos Aceptados
+			@Override
+	public List<Movimiento> BuscarPresupuestosAceptados(){
+			final Session session = sessionFactory.getCurrentSession();
+			
+			EstadoMovimiento  em= new EstadoMovimiento ();
+			em.setDescripcion("Aceptado");
+			em.setId(2);
+			
+			TipoMovimiento tp= new TipoMovimiento();
+			tp.setDescripcion("Presupuesto");
+			tp.setId(3);
+			
+			List <Movimiento> presupuestoaceptados =	session.createCriteria(Movimiento.class)										
+												//Le digo que me traiga los Movimientos correspondiente al tipo 
+												.add(Restrictions.eq("tipoMovimiento",tp))
+												.add(Restrictions.eq("estadoMovimiento",em))
+												.list();
+			return presupuestoaceptados;
+		}
 }

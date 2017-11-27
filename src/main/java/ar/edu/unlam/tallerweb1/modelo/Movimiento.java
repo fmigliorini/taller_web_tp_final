@@ -105,8 +105,8 @@ public class Movimiento {
 		this.tipoMovimiento = tipoMovimiento;
 	}
 	
-	public TipoMovimiento getEstadoMovimiento() {
-		return tipoMovimiento;
+	public EstadoMovimiento getEstadoMovimiento() {
+		return estadoMovimiento;
 	}
 
 	public void setEstadoMovimiento(EstadoMovimiento estadoMovimiento) {
