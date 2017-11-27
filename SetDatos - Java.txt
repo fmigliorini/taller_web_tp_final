@@ -1,0 +1,46 @@
+INSERT INTO `usuario` ( `apellido`, `direccion`, `dni`, `email`, `nombre`, `password`, `rol`, `telefono`) 
+VALUES ('Lopez', 'Mendoza 345 , San justo , Buenos aires', '28345234', 'chofer01@gmail.com', 'Pedro', '123', 'chofer', '44443333'),
+('Gonzales', 'Colon 345 , Moron , Buenos aires', '38344234', 'chofer02@gmail.com', 'Dario', '123', 'chofer', '45631234'),
+('Rodriguez', 'Estrada 345 , Capital Federal , Buenos aires', '28345234', 'chofer03@gmail.com', 'Martin', '123', 'chofer', '476512134'),
+
+('Rao', 'Berlin 345 , Isidro Casanova , Buenos aires', '28345234', 'cliente01@gmail.com', 'Jessica', '123', 'cliente', '44443333'),
+('Zuccarelli', 'Florencio Varela 645 , San justo , Buenos aires', '28345234', 'cliente02@gmail.com', 'Juan', '123', 'cliente', '44443333'),
+('Humano', 'Arieta 105 , San justo , Buenos aires', '28345234', 'cliente03@gmail.com', 'Miguel', '123', 'cliente', '44443333'),
+('Campo', 'Alvear 25 , Ramos Mejia , Buenos aires', '28345234', 'cliente04@gmail.com', 'Fabrizio', '123', 'cliente', '44443333'),
+('Mendoza', 'Av. La Plata 987 , Capital Federal, Buenos aires', '28345234', 'cliente05@gmail.com', 'Fabian', '123', 'cliente', '44443333'),
+
+('Romanczuk', 'Cachimayo 130 , Capital Federal , Buenos aires', '28345234', 'admin01@gmail.com', 'Facundo', '123', 'admin', '44443333'),
+('Migliorini', 'Peru 3435 , San justo , Buenos aires', '28345234', 'admin02@gmail.com', 'Erika', '123', 'admin', '44443333');
+
+INSERT INTO TipoMovimiento (descripcion)
+VALUES  					('Factura'),
+		    				('Remito'),
+							('Presupuesto');
+
+INSERT INTO TipoVehiculo (Precio,descripcion,pesoMaximo) 
+VALUES  				(100.00, "furgoneta", 500),
+						(200.00, "camioneta", 1500),
+						(300.00, "camion", 10000);
+						
+INSERT INTO EstadoMovimiento (descripcion)
+VALUES  					('Ativo'),
+		    				('Aceptado'),
+							('Rechazado'),
+							('Vencido');
+							
+INSERT INTO `vehiculo` (`marca`, `modelo`, `patente`, `chofer_id`, `tipoVehiculo_id`) 
+VALUES 				    ('furgoneta 01', 'furgoneta 01', 'asd001', '1', '1'),
+						('camioneta 02', 'camioneta 02', 'asd002', '2', '2'),
+						('camion 03', 'camion 03', 'asd003', '3', '3');
+							
+INSERT INTO `viaje` ( `Kilometros`, `descripcion`, `destino`, `fecha`, `hora`, `origen`, `peso`, `precio`, `tipoVehiculo_id`, `vehiculo_id`) 
+VALUES ( '5', 'tener cuidado con las cajas verdes', 'lynch 3457 , san justo, buenos aires', '30/10/2017', '10:30', 'Gral. Ocampo 3201-3299, B1754AYE San Justo, Buenos Aires', '30', '1000', '1', NULL),
+		( '20', 'tener cuidado con las cajas rojas ', 'lynch 3457 , san justo, buenos aires', '30/10/2017', '10:30', 'Gral. Ocampo 3201-3299, B1754AYE San Justo, Buenos Aires', '30', '1000', '1', NULL),
+	( '30', 'subir por ascensor', 'lynch 3457 , san justo, buenos aires', '30/10/2017', '10:30', 'Gral. Ocampo 3201-3299, B1754AYE San Justo, Buenos Aires', '30', '1000', '1', NULL),
+		( '35', 'subir por escaleras', 'lynch 3457 , san justo, buenos aires', '30/10/2017', '10:30', 'Tapalqué 5600-5502, C1440AEN CABA', '30', '1000', '1', NULL);
+		
+INSERT INTO `movimiento` (`fecha_hora`, `fecha_vencimiento`, `letra`, `numeroMovimiento`, `observaciones`, `puntoVenta`, `id_EstadoMovimento`, `id_tipoMovimento`, `id_Usuario`, `viaje_id`)
+ VALUES 				 ('01/01/2017', '16/01/2017', 'X', '00000001', 'Subir por escalera', '0001', '1', '3', '4', '1'),
+						 ('01/01/2017', '16/01/2017', 'X', '00000002', 'Subir por escalera', '0001', '2', '3', '5', '2'),
+						 ('01/01/2017', '16/01/2017', 'X', '00000003', 'Subir por escalera', '0001', '2', '3', '6', '3'),
+						 ('01/01/2017', '16/01/2017', 'X', '00000004', 'Subir por escalera', '0001', '2', '3', '7', '4');

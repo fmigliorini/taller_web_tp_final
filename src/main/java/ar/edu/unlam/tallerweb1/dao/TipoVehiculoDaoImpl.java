@@ -40,6 +40,7 @@ public class TipoVehiculoDaoImpl implements TipoVehiculoDao {
 		final Session session = sessionFactory.getCurrentSession();
 		return (TipoVehiculo ) session.createCriteria(TipoVehiculo.class)
 								.add(Restrictions.ge("pesoMaximo", peso))
+								.setMaxResults(1)
 								.uniqueResult();
 	}
 }

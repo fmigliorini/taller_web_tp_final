@@ -28,6 +28,7 @@ public class VehiculoDaoImpl implements VehiculoDao {
 	public List<Vehiculo> listarPorTipoVehiculo(TipoVehiculo tipoVehiculo) {
 		final Session session = sessionFactory.getCurrentSession();
 		List<Vehiculo> Vehiculos = session.createCriteria(Vehiculo.class)
+			
 									.add(Restrictions.eq("tipoVehiculo", tipoVehiculo))
 											.list();
 		return Vehiculos;
