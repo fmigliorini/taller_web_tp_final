@@ -12,6 +12,8 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-new.min.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-theme.min.css" />
 	    
+	    
+	   <link rel="stylesheet" href="${pageContext.request.contextPath}/csss/style.css"/>
 	</head>
 	<style>
 	body {

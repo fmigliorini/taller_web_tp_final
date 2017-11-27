@@ -19,4 +19,6 @@ public interface MovimientoDao {
 	//Trae los remitos para los choferes
 	List<Movimiento> buscarMovimientosParaChofer(Long idChofer);
 	long getLastNumber();
+	
+	List<Movimiento> BuscarPresupuestosAceptados();
 }
