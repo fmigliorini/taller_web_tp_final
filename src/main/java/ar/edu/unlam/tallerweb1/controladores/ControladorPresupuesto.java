@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Movimiento;
@@ -46,8 +48,9 @@ public class ControladorPresupuesto {
 	@Inject
 	private ServicioMovimiento servicioMovimiento;
 
-	@Inject ServicioUsuario servicioUsuario;
-	
+	@Inject
+	ServicioUsuario servicioUsuario;
+
 	@RequestMapping("/presupuestoForm")
 	public ModelAndView irAFormularioPresupuesto(HttpServletRequest request) {
 
@@ -104,7 +107,6 @@ public class ControladorPresupuesto {
 		// seteo el viaje
 		movimiento.setViaje(viaje);
 
-		
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
 		Usuario usuario = servicioUsuario.buscarPorId(idUsuario);
 		// seteo el cliente
@@ -120,7 +122,45 @@ public class ControladorPresupuesto {
 		Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
 		modelMap.put("presupuesto", presupuesto);
 		modelMap.put("cliente", presupuesto.getUsuario());
+		modelMap.put("factura", servicioMovimiento.buscarMovimientosPorViaje(presupuesto.getViaje().getId(),
+				servicioTipoMovimiento.buscarPorDescripcion("Factura").getId()));
 		return new ModelAndView("presupuesto-invoice", modelMap);
+	}
+
+	@RequestMapping(path = "/aceptarPresupuesto")
+	public ModelAndView aceptarPresupuesto(@RequestParam("idPresupuesto") Long idPresupuesto) {
+		Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
+		presupuesto.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Aceptado"));
+		servicioMovimiento.guardarMovimiento(presupuesto);
+		return new ModelAndView("redirect:/verPresupuesto/" + presupuesto.getId());
+	}
+
+	@RequestMapping(path = "/rechazarPresupuesto")
+	public ModelAndView rechazarPresupuesto(@RequestParam("idPresupuesto") Long idPresupuesto) {
+		Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
+		presupuesto.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Rechazado"));
+		servicioMovimiento.guardarMovimiento(presupuesto);
+		return new ModelAndView("redirect:/verPresupues	to/" + presupuesto.getId());
+	}
+
+	@RequestMapping(path = "/listarPresupuestosCliente")
+	public ModelAndView listarPresupuestosCliente(HttpServletRequest request) {
+		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
+		List<Movimiento> listaMovimiento = servicioMovimiento.buscarMovimientosPorUsuario(idUsuario,
+				servicioTipoMovimiento.buscarPorDescripcion("Presupuesto").getId());
+		ModelMap model = new ModelMap();
+		model.put("presupuestos", listaMovimiento);
+		return new ModelAndView("cliente-lista-presupuesto", model);
+	}
+
+	@RequestMapping(path = "/verFactura/{idViaje}")
+	public ModelAndView listarPresupuestosCliente(@PathVariable("idViaje") Long idViaje) {
+		TipoMovimiento tipoMovimiento = servicioTipoMovimiento.buscarPorDescripcion("Factura");
+		Movimiento factura = servicioMovimiento.buscarMovimientosPorViaje(idViaje, tipoMovimiento.getId());
+		ModelMap model = new ModelMap();		
+		model.put("factura", factura);
+		model.put("cliente", factura.getUsuario());
+		return new ModelAndView("factura-invoice", model);
 	}
 
 }
