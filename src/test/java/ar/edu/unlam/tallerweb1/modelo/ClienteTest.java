@@ -17,7 +17,7 @@ public class ClienteTest extends SpringTest {
 	@Test
 	@Transactional
 	@Rollback(true)
-	public void generarNuevoCliente() {
+	public void alGenerarUsuarioConRolClienteValidoElrolCorrecto() {
 		Usuario usu = new Usuario();
 		usu.setApellido("Apellido");
 		usu.setNombre("nombre");
