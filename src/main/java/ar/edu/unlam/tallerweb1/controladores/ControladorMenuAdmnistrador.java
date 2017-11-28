@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -100,11 +101,19 @@ public class ControladorMenuAdmnistrador {
 		Movimiento movimiento = servicioMovimiento.buscarIdMovimiento(idMovimiento);
 		Viaje viaje = servicioViaje.buscarViajePorId(movimiento.getViaje().getId());
 		Vehiculo vehiculo = servicioVehiculo.buscarPorId(idVehiculo);
+		//Cambia el estado a Facturado
+		movimiento.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorId(5));
 		viaje.setVehiculo(vehiculo);
 		movimiento.setViaje(viaje);
 		try{
+		//Actualizo el viaje	
 		servicioViaje.ActualizarViaje(movimiento.getViaje());
+	   //Actualizo el estado del presupuesto
+		servicioMovimiento.actualizarMovimiento(movimiento);
+
 		movimiento.setId(null);
+		movimiento.setLetra('A');
+		movimiento.setFecha_hora(LocalDateTime.now().toString());		
 		//Factura
 		movimiento.setTipoMovimiento(servicioTipoMovimiento.buscarPorId(1));
 		servicioMovimiento.guardarMovimiento(movimiento);

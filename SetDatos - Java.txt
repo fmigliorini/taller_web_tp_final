@@ -1,4 +1,4 @@
-INSERT INTO `usuario` ( `apellido`, `direccion`, `dni`, `email`, `nombre`, `password`, `rol`, `telefono`) 
+﻿INSERT INTO `usuario` ( `apellido`, `direccion`, `dni`, `email`, `nombre`, `password`, `rol`, `telefono`) 
 VALUES ('Lopez', 'Mendoza 345 , San justo , Buenos aires', '28345234', 'chofer01@gmail.com', 'Pedro', '123', 'chofer', '44443333'),
 ('Gonzales', 'Colon 345 , Moron , Buenos aires', '38344234', 'chofer02@gmail.com', 'Dario', '123', 'chofer', '45631234'),
 ('Rodriguez', 'Estrada 345 , Capital Federal , Buenos aires', '28345234', 'chofer03@gmail.com', 'Martin', '123', 'chofer', '476512134'),
@@ -26,7 +26,8 @@ INSERT INTO EstadoMovimiento (descripcion)
 VALUES  					('Ativo'),
 		    				('Aceptado'),
 							('Rechazado'),
-							('Vencido');
+							('Vencido'),
+('Facturado');
 							
 INSERT INTO `vehiculo` (`marca`, `modelo`, `patente`, `chofer_id`, `tipoVehiculo_id`) 
 VALUES 				    ('furgoneta 01', 'furgoneta 01', 'asd001', '1', '1'),
