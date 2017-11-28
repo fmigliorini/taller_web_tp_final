@@ -37,7 +37,7 @@ public class VehiculoDaoImpl implements VehiculoDao {
 	@Override
 	public Vehiculo buscarPorId(Long id) {
 		final Session session = sessionFactory.getCurrentSession();
-		return (Vehiculo) session.createCriteria(TipoVehiculo.class)
+		return (Vehiculo) session.createCriteria(Vehiculo.class)
 								.add(Restrictions.eq("id", id))
 								.uniqueResult();
 	}

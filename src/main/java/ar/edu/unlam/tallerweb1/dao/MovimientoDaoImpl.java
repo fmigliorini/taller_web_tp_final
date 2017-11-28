@@ -32,6 +32,14 @@ public class MovimientoDaoImpl implements MovimientoDao {
 	
 	
 	@Override
+	public Movimiento actualizarMovimiento(Movimiento movimiento){
+		
+		final Session session = sessionFactory.getCurrentSession();
+		session.update(movimiento);
+		return movimiento;
+	}
+	
+	@Override
 	public Movimiento buscarIdMovimiento(Long idMovimiento){
 		final Session session = sessionFactory.getCurrentSession();
 		return (Movimiento) session.createCriteria(Movimiento.class)

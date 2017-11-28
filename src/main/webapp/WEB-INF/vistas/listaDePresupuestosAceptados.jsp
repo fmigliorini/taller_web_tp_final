@@ -39,7 +39,7 @@
 										<td><fmt:formatNumber pattern="0000" type="number" value="${mov.getPuntoVenta()}" /> - <fmt:formatNumber pattern="00000000" type="number" value="${mov.getNumeroMovimiento()}" /></td>
 										<td><c:out value="${mov.getFecha_hora()}"/></td>
 										<td><c:out value="${mov.getViaje().getPrecio()}"/></td>
-										<td><c:out value=""/> <a class="btn btn-default btn-circle" href="${pageContext.request.contextPath}/asignarChofer?id=${mov.getId()}"><span class="glyphicon glyphicon-user">Agregar</span> </a>
+										<td><c:out value=""/> <a class="btn btn-default btn-circle" href="${pageContext.request.contextPath}/asignarVehiculo?id=${mov.getId()}"><span class="glyphicon glyphicon-user">Agregar</span> </a>
 										</td>							
 									</tr>
 								</c:forEach>

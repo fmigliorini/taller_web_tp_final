@@ -22,8 +22,11 @@ public class ServicioMovimientoImpl implements ServicioMovimiento {
 	{
 		return movimientoDao.guardarMovimiento(mov);
 	}
+	public Movimiento actualizarMovimiento(Movimiento mov)
+	{
+		return movimientoDao.actualizarMovimiento(mov);
+	}
 
-	
 	public Movimiento buscarIdMovimiento(Long idMovimiento){
 		return movimientoDao.buscarIdMovimiento(idMovimiento);
 	}

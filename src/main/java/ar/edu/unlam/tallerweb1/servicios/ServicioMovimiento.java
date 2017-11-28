@@ -7,7 +7,7 @@ import ar.edu.unlam.tallerweb1.modelo.Movimiento;
 public interface ServicioMovimiento {
 	Movimiento guardarMovimiento(Movimiento mov);
 
-	
+	Movimiento actualizarMovimiento(Movimiento movimiento);
 	Movimiento buscarIdMovimiento(Long idMovimiento);
 	
 	List<Movimiento> buscarMovimientosPorTipo(Long idTipoMovimiento);
