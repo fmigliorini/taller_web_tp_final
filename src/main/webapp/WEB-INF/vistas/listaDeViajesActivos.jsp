@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@include file='../../templates/Menu_chofer.jsp' %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -40,20 +41,23 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="viajeActivo" items="${listaViajeActivo}">
+								<c:forEach var="viaje" items="${listaViajeActivo}">
 									<tr>
-										<td><c:out value="${viajeActivo.id}" /></td>
-										<td><c:out value="${viajeActivo.hora}" /></td>
-										<td><c:out value="${viajeActivo.fecha}" /></td>
-										<td><c:out value="${viajeActivo.origen}" /></td>
-										<td><c:out value="${viajeActivo.destino}" /></td>
-										<td><c:out value="${viajeActivo.kilometros}" /></td>
-										<td><c:out value="${viajeActivo.descripcion}" /></td>
-										<td><c:out value="${viajeActivo.precio}" /></td>
-							            <td><c:out value="${viajeActivo.peso}" /></td>
-										<td><c:out value="${viajeActivo.estado}" /></td>
-										<td><c:out value="${viajeActivo.tipoVehiculo.descripcion}" /></td>
-										<td><a href="menu_chofer_viajeActivo" class="btn btn-success">Iniciar recorrido</a></td>		
+										<td><c:out value="${viaje.id}" /></td>
+										<td><c:out value="${viaje.hora}" /></td>
+										<td><c:out value="${viaje.fecha}" /></td>
+										<td><c:out value="${viaje.origen}" /></td>
+										<td><c:out value="${viaje.destino}" /></td>
+										<td><c:out value="${viaje.kilometros}" /></td>
+										<td><c:out value="${viaje.descripcion}" /></td>
+										<td><c:out value="${viaje.precio}" /></td>
+							            <td><c:out value="${viaje.peso}" /></td>
+										<td><c:out value="${viaje.estado}" /></td>
+										<td><c:out value="${viaje.tipoVehiculo.descripcion}" /></td>
+										<td><form:form role="form" action="menu_chofer_viajeActivo" modelAttribute="viaje" method="post" name="comenzarViaje">
+										<form:input type="hidden" path="id" value="${viaje.id }"/>
+										<form:button class="btn btn-success">Iniciar recorrido</form:button></form:form></td>
+										
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -63,7 +67,6 @@
 				
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12">
-					  <!--  <a href="menu_chofer_viajeActivo" class="btn btn-success">Activar recorrido</a> -->
 						<a href="indexChofer" class="btn btn-primary">Volver al menú</a>	
 					</div>
 				</div>

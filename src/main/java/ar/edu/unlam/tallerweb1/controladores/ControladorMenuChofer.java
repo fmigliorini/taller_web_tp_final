@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -29,24 +31,24 @@ public class ControladorMenuChofer {
 		Usuario chofer=servicioUsuario.buscarPorId(idUsuario);
 		ModelMap model = new ModelMap();
 		List<Viaje>listaViajeActivo=servicioViaje.listarViajesActivos(chofer);
-		model.put("viaje", new Viaje());
 		model.put("listaViajeActivo",listaViajeActivo);
+		model.put("viaje", new Viaje());
 		return new ModelAndView("listaDeViajesActivos",model);
 	}
 	
 	//Luego de iniciar el viaje llega a este lugar.
-		@RequestMapping("menu_chofer_viajeActivo")
-		public ModelAndView irAlMenuDeViajeActivo(HttpServletRequest request){
-			Long idUsuario=(Long)request.getSession().getAttribute("idUsuario");
-			Viaje viajeEnProceso=servicioViaje.buscarViajePorId(idUsuario);
-			ModelMap model=new ModelMap();
-			viajeEnProceso.setEstado("En proceso");
-			servicioViaje.viajeActualizadoEnProceso(viajeEnProceso);
-			servicioViaje.guardarViaje(viajeEnProceso);
-			model.put("viajeEnProceso", viajeEnProceso);
-			System.out.println("estado de viaje---" +viajeEnProceso.getEstado());
-			return new ModelAndView("menu_chofer_viajeActivo",model);
-		}
+	@RequestMapping(path="menu_chofer_viajeActivo", method = RequestMethod.POST)
+	public ModelAndView irAlMenuDeViajeActivo(@ModelAttribute("viaje")Viaje viaje, HttpServletRequest request){
+		Long idUsuario=(Long)request.getSession().getAttribute("idUsuario");
+		Viaje viajeEnProceso=servicioViaje.buscarViajePorId(idUsuario);
+		ModelMap model=new ModelMap();
+		viajeEnProceso.setEstado("En proceso");
+		servicioViaje.viajeActualizadoEnProceso(viajeEnProceso);
+		servicioViaje.guardarViaje(viajeEnProceso);
+		model.put("viajeEnProceso", viajeEnProceso);
+		System.out.println("estado de viaje---" +viajeEnProceso.getEstado());
+		return new ModelAndView("menu_chofer_viajeActivo",model);
+	}
 		//Este vendría después de tocar el boton finalizar viaje
 		@RequestMapping("finalizarViaje")
 		public ModelAndView irAFinalizarViaje(){

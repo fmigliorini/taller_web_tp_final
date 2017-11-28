@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>   
@@ -51,6 +52,56 @@
 	        </div>
 	      </div>
 	    </nav>
-
+        <div class="container">
+    		<div class="row color-invoice">
+        		<div class="col-md-12">
+            
+            		
+     						<h1>Ustede se encuentra en el siguiente recorrido: </h1>
+     						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th scope="col">Id viaje</th>
+									<th scope="col">Hora</th>
+									<th scope="col">Fecha</th>
+									<th scope="col">Origen</th>
+									<th scope="col">Destino</th>
+									<th scope="col">Kilometros</th>
+									<th scope="col">Descripción</th>
+									<th scope="col">Precio</th>
+									<th scope="col">Peso</th>
+									<th scope="col">Estado</th>
+									<th scope="col">Tipo de vehículo</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									    <td><c:out value="${viajeEnProceso.id}" /></td>
+										<td><c:out value="${viajeEnProceso.hora}" /></td>
+										<td><c:out value="${viajeEnProceso.fecha}" /></td>
+										<td><c:out value="${viajeEnProceso.origen}" /></td>
+										<td><c:out value="${viajeEnProceso.destino}" /></td>
+										<td><c:out value="${viajeEnProceso.kilometros}" /></td>
+										<td><c:out value="${viajeEnProceso.descripcion}" /></td>
+										<td><c:out value="${viajeEnProceso.precio}" /></td>
+							            <td><c:out value="${viajeEnProceso.peso}" /></td>
+										<td><c:out value="${viajeEnProceso.estado}" /></td>
+										<td><c:out value="${viajeEnProceso.tipoVehiculo.descripcion}" /></td>
+								</tr>
+							</tbody>
+						</table>
+     					 </div>
+     				</div>
+     		   </div>
+     	       <div class="container">
+    		     <div class="row color-invoice">
+        		   <div class="col-md-12">										
+				            <form:form role="form" action="finalizarViaje" modelAttribute="viaje" method="post" name="comenzarViaje">
+			     	        <form:input type="hidden" path="id" value="${viaje.id }"/>
+							<form:button class="btn btn-success">Finalizar viaje</form:button></form:form>
+				  </div>
+				 </div>
+				</div>
+			
 	</body>
 </html>

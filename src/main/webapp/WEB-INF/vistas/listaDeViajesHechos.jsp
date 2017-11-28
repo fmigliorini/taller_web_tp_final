@@ -22,36 +22,40 @@
 								<tr>
 									
 									<th scope="col">Id viaje</th>
+									<th scope="col">Fecha</th>
+									<th scope="col">Hora</th>
 									<th scope="col">Descripción</th>
 									<th scope="col">Origen</th>
 									<th scope="col">Destino</th>
 									<th scope="col">Kilometros</th>
-									<th scope="col">Precio</th>
-									<th scope="col">Fecha</th>
+									<th scope="col">Peso</th>
 									<th scope="col">Estado</th>
+									<th scope="col">Tipo de vehículo</th>
+									<th scope="col">Precio</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="chofer2" items="${listaLog}">
+								<c:forEach var="viajeTerminado" items="${listaDeViajesTerminados}">
 									<tr>
 									   <!-- UNA VEZ QUE ESTE CARGADO LOS DATOS SE PUEDEN -->
-										<td><c:out value="${chofer.id}" /></td>
-										<td><c:out value="${chofer.descripcion}"/></td>
-										<td><c:out value="${chofer.origen}"/></td>
-										<td><c:out value="${chofer.destino}"/></td>
-										<td><c:out value="${chofer.Kilometros}"/></td>
-										<td><c:out value="${chofer.precio}"/></td>
-										<td><c:out value="${chofer.fecha_hora}"/></td>
-										<td><c:out value="${chofer.estado}"/></td>
-										<td></td>		
+										<td><c:out value="${viajeTerminado.id}" /></td>
+										<td><c:out value="${viajeTerminado.fecha}" /></td>
+										<td><c:out value="${viajeTerminado.hora}" /></td>
+										<td><c:out value="${viajeTerminado.descripcion}"/></td>
+										<td><c:out value="${viajeTerminado.origen}"/></td>
+										<td><c:out value="${viajeTerminado.destino}"/></td>
+										<td><c:out value="${viajeTerminado.kilometros}"/></td>
+										<td><c:out value="${viajeTerminado.peso}" /></td>
+										<td><c:out value="${viajeTerminado.estado}"/></td>
+										<td><c:out value="${viajeTerminado.tipoVehiculo.descripcion}" /></td>
+										<td><c:out value="${viajeTerminado.precio}" /></td>
+										
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
 					</div>
 				</div>
-				
-				
 			</div>
 		</div>
 	</div>
