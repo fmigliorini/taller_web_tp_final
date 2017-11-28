@@ -18,6 +18,7 @@
 							<th scope="col">Descripción</th>
 							<th scope="col">Precio</th>
 							<th scope="col">Fecha inicio</th>
+							<th scope="col">Id de viaje</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -26,6 +27,7 @@
 							<td><c:out value="${logViaje.tipoLogViaje}" /></td>
 							<td><c:out value="${logViaje.precio}" /></td>
 							<td>20/11/2016</td>
+							<td><c:out value="${logViaje.viaje.id}" /></td>
 						</tr>
 					</tbody>
 				</table>

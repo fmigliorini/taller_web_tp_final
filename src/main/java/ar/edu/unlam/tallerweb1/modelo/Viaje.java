@@ -1,4 +1,5 @@
 package ar.edu.unlam.tallerweb1.modelo;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -17,6 +18,7 @@ public class Viaje {
 	private Long id;
 	private String hora;
 	private String fecha;
+	private Date f;
 	private String origen;
 	private String destino;
 	private Integer kilometros;

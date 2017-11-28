@@ -29,14 +29,14 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="chofer" items="${listaLog}">
+								<c:forEach var="logViaje" items="${listaLog}">
 									<tr>
 										
-										<td><c:out value="${chofer.id}" /></td>
+										<td><c:out value="${logViaje.id}" /></td>
 										<!-- No muestra el id de viaje -->
-										<td><c:out value="${chofer.getViaje().getId()}"/></td>
-										<td><c:out value="${chofer.tipoLogViaje}" /></td>
-										<td><c:out value="${chofer.precio}" /></td>
+										<td><c:out value="${logViaje.viaje.id}"/></td>
+										<td><c:out value="${logViaje.tipoLogViaje}" /></td>
+										<td><c:out value="${logViaje.precio}" /></td>
 										
 									<tr>
 								
