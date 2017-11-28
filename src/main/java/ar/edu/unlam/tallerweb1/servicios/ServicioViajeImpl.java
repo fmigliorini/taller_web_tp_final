@@ -33,5 +33,8 @@ public class ServicioViajeImpl implements ServicioViaje {
 
 		return viajeDao.buscarViajesDeChoferId(id);
 	}
-	
+	public void ActualizarViaje(Viaje viaje){
+
+		return viajeDao.ActualizarViaje(viaje);
+	}
 }

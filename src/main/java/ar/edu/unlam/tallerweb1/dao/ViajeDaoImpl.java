@@ -45,6 +45,14 @@ public class ViajeDaoImpl implements ViajeDao {
 		return viajesChofer ;
 	}
 	
+	
+	public void ActualizarViaje(Viaje viaje) {
+		final Session session = sessionFactotry.getCurrentSession();
+		session.beginTransaction();
+		session.update(viaje);
+		session.getTransaction().commit();
+		session.close();
+	}
 
 
 }

@@ -8,4 +8,5 @@ public interface ServicioViaje {
 	Viaje guardarViaje(Viaje viaje);
 	Viaje buscarViajePorId(Long id);
 	List<Viaje> buscarViajesDeChoferId(Long id);
+    void ActualizarViaje(Viaje viaje);
 }
