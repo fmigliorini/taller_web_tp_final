@@ -57,7 +57,7 @@
         		<div class="col-md-12">
             
             		
-     						<h1>Ustede se encuentra en el siguiente recorrido: </h1>
+     						<h1>${viajeEnProceso.vehiculo.chofer.nombre} se encuentra en el siguiente recorrido: </h1>
      						<table class="table table-bordered">
 							<thead>
 								<tr>
