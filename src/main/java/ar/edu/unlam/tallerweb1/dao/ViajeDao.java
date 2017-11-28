@@ -6,5 +6,5 @@ public interface ViajeDao {
 	Viaje guardarViaje(Viaje viaje);
 	Viaje buscarViajePorId(Long id);
 	List<Viaje> buscarViajesDeChoferId(Long id);
-	void ActualizarViaje(Viaje viaje);
+	Viaje ActualizarViaje(Viaje viaje);
 }

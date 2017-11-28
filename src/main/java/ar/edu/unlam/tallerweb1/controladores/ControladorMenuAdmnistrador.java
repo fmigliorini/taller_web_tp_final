@@ -96,13 +96,13 @@ public class ControladorMenuAdmnistrador {
 	@RequestMapping("generarMovimientos")
 	public ModelAndView generarMovimientos( @RequestParam("idVehiculo") Long idVehiculo,
 											@RequestParam("idMovimiento") Long idMovimiento){
-		
+		ModelMap model = new ModelMap();
 		Movimiento movimiento = servicioMovimiento.buscarIdMovimiento(idMovimiento);
 		Viaje viaje = servicioViaje.buscarViajePorId(movimiento.getViaje().getId());
 		Vehiculo vehiculo = servicioVehiculo.buscarPorId(idVehiculo);
 		viaje.setVehiculo(vehiculo);
 		movimiento.setViaje(viaje);
-		
+		try{
 		servicioViaje.ActualizarViaje(movimiento.getViaje());
 		movimiento.setId(null);
 		//Factura
@@ -113,9 +113,17 @@ public class ControladorMenuAdmnistrador {
 		movimiento.setTipoMovimiento(servicioTipoMovimiento.buscarPorId(3));
 		servicioMovimiento.guardarMovimiento(movimiento);
 
-		ModelMap model = new ModelMap();
+		
 		model.put("titulo", "Se acepto con exito el presupuesto");
 		model.put("mensaje",String.format("El presupuesto con el IdMovimiento %d fue aceptado con exito. Se generaron una factura y un remito para ese presupuesto.", idMovimiento) );
+		}
+		catch(Exception  excepcion)
+		{
+
+			model.put("titulo", "Se genero un problema");
+			model.put("mensaje",String.format("El presupuesto con el IdMovimiento %d tuvo algun inconveniente en actualizar el viaje con el vehiculo asignado o en genera las factura y remito.", idMovimiento) );
+			
+		}
 		return new ModelAndView("notificacionGestion",model);
 	}
 	
@@ -123,14 +131,25 @@ public class ControladorMenuAdmnistrador {
 	public ModelAndView rechazarMovimiento( @RequestParam("idMovimiento") Long idMovimiento){
 		
 		Movimiento movimiento = servicioMovimiento.buscarIdMovimiento(idMovimiento);
-
+		ModelMap model = new ModelMap();
 		
 		movimiento.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorId(3));
+	try{
 		servicioMovimiento.actualizarMovimiento(movimiento);
 
-		ModelMap model = new ModelMap();
+	
 		model.put("titulo", "Se rechazo con exito el presupuesto");
 		model.put("mensaje",String.format("El presupuesto con el IdMovimiento %d fue rechazado con exito.", idMovimiento) );
+		
+	}
+	catch(Exception  excepcion)
+	{
+
+		model.put("titulo", "Se genero un problema");
+		model.put("mensaje",String.format("El presupuesto con el IdMovimiento %d tuvo algun inconveniente en actualizar su estado de Rechazado.", idMovimiento) );
+		
+	}
+		
 		return new ModelAndView("notificacionGestion",model);
 	}
 

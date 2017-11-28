@@ -14,7 +14,7 @@
 
     
 <div class="container">
-	  <form:form action="" method="POST" modelAttribute="">
+	 
 	<h1> Asignar vehiculo al Presupuesto <fmt:formatNumber pattern="0000" type="number" value="${mov.getPuntoVenta()}" /> - <fmt:formatNumber pattern="00000000" type="number" value="${mov.getNumeroMovimiento()}" /> </h1>
 	      <div class="row">
   			  <div class="col-lg-6 col-md-6 col-sm-6">
@@ -33,27 +33,28 @@
             </div>
 	
 	
-   <div class="row">
- <div class="form-group col-md-12">
-		        <label for="origen">Vehiculo</label>
-		        <select name="idVehiculo" class="form-group">
-					<c:forEach items="${listVehiculos}" var="vehiculo">
-   						<option value="${vehiculo.getId()}">${vehiculo.getModelo()} ${vehiculo.getMarca()} ${vehiculo.getPatente()}</option>
-					</c:forEach>
-				</select>
-				 </div>
+	
+ <form action="generarMovimientos" method="POST" action="${pageContext.request.contextPath}/generarMovimientos" >
+	<input type="hidden" name="idMovimiento" value="${mov.getId()}">
+	<div class="row">
+		<div class="form-group col-md-12">
+			<label for="origen">Vehiculo</label> 
+			<select name="idVehiculo" class="form-group">
+				<c:forEach items="${listVehiculos}" var="vehiculo">
+					<option value="${vehiculo.getId()}">${vehiculo.getModelo()}
+						${vehiculo.getMarca()} ${vehiculo.getPatente()}</option>
+				</c:forEach>
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group col-md-12">
+			<input type="submit" class="btn btn-primary" value="asignarVehiculo">
+			<a class="btn btn-danger" href="${pageContext.request.contextPath}/rechazarMovimiento?idMovimiento=${mov.getId()}">Rechazar Presupuesto</a>
+		</div>
+	</div>
+</form>
+	
  </div>
-	    <div class="row">
-	     <div class="form-group col-md-12">
-	   <a class="btn btn-default" href="${pageContext.request.contextPath}/generarMovimientos?idVehiculo=${idVehiculo}&idMovimiento=${mov.getId()}">Asignar Vehiculo </a>
-   	    <a class="btn btn-danger" href="${pageContext.request.contextPath}/rechazarMovimiento?idMovimiento=${mov.getId()}">Rechazar Presupuesto</a>
-	    </div></div>
-	</form:form>
-</div>
-    
-
-
-	    
-
 </body>
 </html>
