@@ -26,7 +26,7 @@
 							<td><c:out value="${logViaje.id}" /></td>
 							<td><c:out value="${logViaje.tipoLogViaje}" /></td>
 							<td><c:out value="${logViaje.precio}" /></td>
-							<td>20/11/2016</td>
+						    <td><c:out value="${logViaje.fecha}" /></td>
 							<td><c:out value="${logViaje.viaje.id}" /></td>
 						</tr>
 					</tbody>

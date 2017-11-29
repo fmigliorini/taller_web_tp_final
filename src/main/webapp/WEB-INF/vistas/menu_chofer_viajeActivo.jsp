@@ -41,7 +41,7 @@
 	            </li>
 	            <li class="nav-item">
 	              <!--logViajeForm es la url  -->
-	              <a class="nav-link" href="logViajeForm">Cargar Log de viaje</a>
+	              <a class="nav-link" href="logViajeForm?idViaje=${viajeEnProceso.id}">Cargar Log de viaje</a>
 	            </li>
 	            <li class="nav-item">
 	               <!-- Por ahora el finalizar viaje redireccionará a menú de chofer -->
@@ -97,8 +97,9 @@
     		     <div class="row color-invoice">
         		   <div class="col-md-12">										
 				            <form:form role="form" action="finalizarViaje" modelAttribute="viaje" method="post" name="comenzarViaje">
-			     	        <form:input type="hidden" path="id" value="${viaje.id }"/>
-							<form:button class="btn btn-success">Finalizar viaje</form:button></form:form>
+					     	        <input type="hidden"  value="${viajeEnProceso.id }"/>
+									<button class="btn btn-success">Finalizar viaje</button>
+							</form:form>
 				  </div>
 				 </div>
 				</div>

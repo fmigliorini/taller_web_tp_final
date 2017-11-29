@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -25,9 +26,10 @@ public class ControladorLogViaje {
 	@Inject 
 	ServicioViaje servicioViaje;
 	
-	@RequestMapping("logViajeForm")
-	public ModelAndView irAFormularioLogViaje(){
-		LogViaje logViaje = new LogViaje();
+	@RequestMapping(path="logViajeForm", method=RequestMethod.GET)
+	public ModelAndView irAFormularioLogViaje(@RequestParam("idViaje") Long idViaje){
+		LogViaje logViaje=new LogViaje();
+		logViaje.setViaje(servicioViaje.buscarViajePorId(idViaje));
 		ModelMap model = new ModelMap();
 		model.put("logViaje", logViaje);//El "logViaje" (la clave) es la que esta en el modelAttribute del form
 		return new ModelAndView("logViaje-form1", model);
@@ -36,26 +38,28 @@ public class ControladorLogViaje {
 	public ModelAndView cargarLogViaje(@ModelAttribute("logViaje") LogViaje logViaje){
 		servicioLogViaje.gardarLogViaje(logViaje);
 		ModelMap modelo = new ModelMap();
+		//Trae la fecha de ahora
+		logViaje.setFecha(LocalDateTime.now().toString());
 		modelo.put("logViaje", logViaje);
 		return new ModelAndView("invoiceLogViaje",modelo);
 	}
-	/*@RequestMapping("listaLogViaje")
+	@RequestMapping("listaLogViaje")
 	public ModelAndView mostrarListaLogViaje(Long id){
 		ModelMap modelo2=new ModelMap();
 		Viaje viaje =servicioViaje.buscarViajePorId(id);
 		List<LogViaje> listaLog = servicioLogViaje.listarLogViajePorViaje(viaje);
 		modelo2.put("listaLog", listaLog);
 		return new ModelAndView("listaLogViaje",modelo2);
-	}*/
+	}
 	
-	@RequestMapping("listaLogViaje")
+	/*@RequestMapping("listaLogViaje")
 	public ModelAndView mostrarListaLogViaje(Long id){
 		ModelMap modelo2=new ModelMap();
 		Viaje viaje =servicioViaje.buscarViajePorId(id);
 		List<LogViaje> listaLog =servicioLogViaje.traerLogViajeSegunViaje(viaje);
 		modelo2.put("listaLog", listaLog);
 		return new ModelAndView("listaLogViaje",modelo2);
-	}
+	}*/
 		                         
 }			                         
 	

@@ -40,20 +40,40 @@ public class ControladorMenuChofer {
 	@RequestMapping(path="menu_chofer_viajeActivo", method = RequestMethod.POST)
 	public ModelAndView irAlMenuDeViajeActivo(@ModelAttribute("viaje")Viaje viaje, HttpServletRequest request){
 		Long idUsuario=(Long)request.getSession().getAttribute("idUsuario");
-		Viaje viajeEnProceso=servicioViaje.buscarViajePorId(idUsuario);
+		Viaje viajeEnProceso=servicioViaje.buscarViajePorId(viaje.getId());
 		ModelMap model=new ModelMap();
 		viajeEnProceso.setEstado("En proceso");
 		servicioViaje.viajeActualizadoEnProceso(viajeEnProceso);
-		servicioViaje.guardarViaje(viajeEnProceso);
 		model.put("viajeEnProceso", viajeEnProceso);
 		System.out.println("estado de viaje---" +viajeEnProceso.getEstado());
 		return new ModelAndView("menu_chofer_viajeActivo",model);
 	}
-		//Este vendría después de tocar el boton finalizar viaje
-		@RequestMapping("finalizarViaje")
-		public ModelAndView irAFinalizarViaje(){
-			return new ModelAndView();
+	//Con seguridad
+	@RequestMapping(path="finalizarViaje", method = RequestMethod.POST)
+	public ModelAndView irAFinalizarViaje(@ModelAttribute("viaje")Viaje viaje, HttpServletRequest request){
+		Long idUsuario=(Long)request.getSession().getAttribute("idUsuario");
+		if(idUsuario!=null){
+			Usuario chofer=servicioUsuario.buscarPorId(idUsuario);
+			ModelMap modelo=new ModelMap();
+			if(chofer.getRol().equals("chofer")){
+				Viaje viajeTerminado=servicioViaje.buscarViajePorId(viaje.getId());
+				viajeTerminado.setEstado("Terminado");
+				servicioViaje.viajeActualizadoEnProceso(viajeTerminado);
+				modelo.put("tipo", "success"); 
+				modelo.put("titulo", "El viaje ha sido realizado con exito");
+				modelo.put("mensaje",String.format("El viaje fue realizado con exito.") );
+			}
+			else{
+				modelo.put("tipo", "danger"); 
+				modelo.put("titulo", "No tiene autorización");
+				modelo.put("mensaje",String.format("Entrar con rol chofer.") );
+			}
+			return new ModelAndView("notificacionGestion",modelo);
 		}
+		else{
+			return new ModelAndView("login");
+		}
+	}
 		//Falta cosas a este método
 		@RequestMapping("listaDeViajesHechos")
 		public ModelAndView irAlaListaDeViajesRealizados(HttpServletRequest request){

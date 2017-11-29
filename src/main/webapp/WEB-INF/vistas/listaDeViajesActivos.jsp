@@ -54,7 +54,7 @@
 							            <td><c:out value="${viaje.peso}" /></td>
 										<td><c:out value="${viaje.estado}" /></td>
 										<td><c:out value="${viaje.tipoVehiculo.descripcion}" /></td>
-										<td><form:form role="form" action="menu_chofer_viajeActivo" modelAttribute="viaje" method="post" name="comenzarViaje">
+										<td><form:form role="form" action="menu_chofer_viajeActivo" modelAttribute="viaje" method="POST" name="comenzarViaje">
 										<form:input type="hidden" path="id" value="${viaje.id }"/>
 										<form:button class="btn btn-success">Iniciar recorrido</form:button></form:form></td>
 										
