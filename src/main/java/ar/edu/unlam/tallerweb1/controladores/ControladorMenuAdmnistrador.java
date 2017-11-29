@@ -240,4 +240,21 @@ else{
 		model.put("totalPresupuestado", total);
 		return new ModelAndView("informePresupuestosFacturados",model);
 	}
+	
+	@RequestMapping("informeViajesChofer")
+	public ModelAndView informeViajesChofer(){
+		TipoMovimiento tipoMovimiento = servicioTipoMovimiento.buscarPorId(3);
+		List<Movimiento> presupuestos = servicioMovimiento.buscarMovimientosPorTipoyEstado(tipoMovimiento,servicioEstadoMovimiento.buscarPorId(5));
+		float total=0;
+		for(Movimiento p:presupuestos){
+		
+		total = total + p.getViaje().getPrecio();
+	}
+		
+		
+		ModelMap model = new ModelMap();
+		model.put("presupuestos",presupuestos );
+		model.put("totalPresupuestado", total);
+		return new ModelAndView("informeViajesChofer",model);
+	}
 }
