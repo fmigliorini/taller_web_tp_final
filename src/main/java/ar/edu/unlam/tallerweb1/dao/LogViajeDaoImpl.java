@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.LogViaje;
+import ar.edu.unlam.tallerweb1.modelo.Viaje;
 
 @Repository("LogViajeDao")
 public class LogViajeDaoImpl implements LogViajeDao {
@@ -25,11 +26,14 @@ public class LogViajeDaoImpl implements LogViajeDao {
 	}
 
 	@Override
-	public List<LogViaje> listarLogViajes() {
+	public List<LogViaje> listarLogViajesPorViaje(Viaje viaje) {
 		final Session session=sessionFactory.getCurrentSession();
 		List<LogViaje>logDeViajes=session.createCriteria(LogViaje.class)
+				.add(Restrictions.eq("viaje", viaje))
 				.list();
 		return logDeViajes;
+		
+		
 	}
 
 	@Override
@@ -40,7 +44,25 @@ public class LogViajeDaoImpl implements LogViajeDao {
 				.uniqueResult();
 		
 	}
-
+	@Override
+	public List<LogViaje> buscarPorIdViaje(Long id) {
+		final Session session=sessionFactory.getCurrentSession();
+		List<LogViaje>logDeViajes=session.createCriteria(LogViaje.class)
+			.add(Restrictions.eq("idViaje", id))
+			.list();
+		return logDeViajes;
+	}
+  
+	@Override
+	public List<LogViaje> findByViaje(Viaje viaje) {
+		final Session session=sessionFactory.getCurrentSession();
+		List<LogViaje>logDes=session.createCriteria(LogViaje.class)
+		.add(Restrictions.eq("viaje", viaje))
+		.list();
+		return logDes;
+	}
+	
+	
 
 
 }

@@ -34,7 +34,7 @@ public class ServicioVehiculoImpl implements ServicioVehiculo {
 	public Vehiculo buscarChofer(Usuario chofer) {
 		return vehiculoDao.buscarChofer( chofer);
 	}
-	
+	//viaje en proceso
 	@Override
 	public Vehiculo guardarVehiculo(Vehiculo vehiculo) {
 		return vehiculoDao.guardarVehiculo( vehiculo);

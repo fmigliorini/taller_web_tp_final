@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.dao.LogViajeDao;
 import ar.edu.unlam.tallerweb1.dao.PresupuestoDao;
 import ar.edu.unlam.tallerweb1.modelo.LogViaje;
+import ar.edu.unlam.tallerweb1.modelo.Viaje;
 
 @Service
 @Transactional(readOnly = true, propagation = Propagation.SUPPORTS )
@@ -32,12 +33,27 @@ public class ServicioLogViajeImpl implements ServicioLogViaje{
 		return logViaje;
 	}
 	@Override
-	public List<LogViaje> listarLogViaje() {
-		return logViajeDao.listarLogViajes();
-	}
-	@Override
 	public LogViaje buscarPorId(Long id) {
 		return logViajeDao.buscarPorId(id);
 	}
+
+	@Override
+	public List<LogViaje> listarLogViajePorViaje(Viaje viaje) {
+		
+	    return logViajeDao.listarLogViajesPorViaje(viaje);
+	}
+	@Override
+	public List<LogViaje> buscarPorIdViaje(Long id) {
+		
+		return logViajeDao.buscarPorIdViaje(id);
+	}
+	@Override
+	@Transactional(readOnly=true,propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	public List<LogViaje> traerLogViajeSegunViaje(Viaje viaje) {
+		
+		return logViajeDao.findByViaje(viaje);
+	}
+
+	
 	
 }

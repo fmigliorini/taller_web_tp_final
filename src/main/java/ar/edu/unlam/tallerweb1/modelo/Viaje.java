@@ -1,4 +1,5 @@
 package ar.edu.unlam.tallerweb1.modelo;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -17,13 +18,14 @@ public class Viaje {
 	private Long id;
 	private String hora;
 	private String fecha;
+	private Date f;
 	private String origen;
 	private String destino;
-	private Integer Kilometros;
+	private Integer kilometros;
 	private String descripcion;
 	private Float precio;
     private Float peso;
-    
+    private String estado;
 	@OneToMany(mappedBy = "viaje", cascade = CascadeType.ALL)
 	private List<LogViaje> logViajes = new LinkedList<LogViaje>();
 
@@ -58,8 +60,6 @@ public class Viaje {
 		this.id = id;
 	}
 
-
-
 	public String getOrigen() {
 		return origen;
 	}
@@ -92,14 +92,6 @@ public class Viaje {
 		this.vehiculo = vehiculo;
 	}
 
-	public Integer getKilometros() {
-		return Kilometros;
-	}
-
-	public void setKilometros(Integer kilometros) {
-		this.Kilometros = kilometros;
-	}
-
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -130,6 +122,22 @@ public class Viaje {
 
 	public void setPeso(Float peso) {
 		this.peso = peso;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public Integer getKilometros() {
+		return kilometros;
+	}
+
+	public void setKilometros(Integer kilometros) {
+		this.kilometros = kilometros;
 	}
 
 }
