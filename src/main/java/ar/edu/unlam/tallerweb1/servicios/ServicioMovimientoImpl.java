@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.MovimientoDao;
+import ar.edu.unlam.tallerweb1.modelo.EstadoMovimiento;
 import ar.edu.unlam.tallerweb1.modelo.Movimiento;
+import ar.edu.unlam.tallerweb1.modelo.TipoMovimiento;
 
 @Service("servicioMovimiento")
 @Transactional
@@ -59,5 +61,9 @@ public class ServicioMovimientoImpl implements ServicioMovimiento {
 	public long getLastNumber() {
 
 		return movimientoDao.getLastNumber();
+	}
+	
+	public List<Movimiento> buscarMovimientosPorTipoyEstado(TipoMovimiento presupuesto,EstadoMovimiento estadoMovimiento ){
+		return movimientoDao.buscarMovimientosPorTipoyEstado(presupuesto, estadoMovimiento);
 	}
 }

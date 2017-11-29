@@ -11,9 +11,11 @@
 <title>Notificacion</title>
 </head>
 <body>
-<div class = "container">
+<div class = "container" style="margin-top:60px!important">
+  <div class="alert alert-${tipo}">
 	<h1> ${titulo}</h1>
 <p>${mensaje}</p>
+</div>
 </div>
 
 </body>

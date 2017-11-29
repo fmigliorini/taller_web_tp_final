@@ -4,7 +4,7 @@
 				<div class='jumbotron'>
 				<div class='text-center'>
 				    	<h2 class="inner-title">Bienvenido a Mudanzas Pepe</h2>
-					<img src="${pageContext.request.contextPath}/img/mudanza01.png" alt="Mudanzas Pepe" class="img-responsive img-ar">
+					<img src="/img/mudanza01.png" alt="Mudanzas Pepe" class="img-responsive img-ar">
 				</div>
 				</div>
 		</div>
@@ -41,7 +41,7 @@
 		</div>
 			<div class='col-sm-4 hidden-xs'>
 				<div class='text-center'>
-					<img src="${pageContext.request.contextPath}\img\mapa-argentina.png" alt="Mudanzas en Capital Federal y en todo el país" width="180" height="350" class="img-responsive img-ar">
+					<img src="\img\mapa-argentina.png" alt="Mudanzas en Capital Federal y en todo el país" width="180" height="350" class="img-responsive img-ar">
 				</div>
 			</div>
 		

@@ -2,7 +2,9 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.modelo.EstadoMovimiento;
 import ar.edu.unlam.tallerweb1.modelo.Movimiento;
+import ar.edu.unlam.tallerweb1.modelo.TipoMovimiento;
 
 public interface ServicioMovimiento {
 	Movimiento guardarMovimiento(Movimiento mov);
@@ -26,4 +28,5 @@ public interface ServicioMovimiento {
 	long getLastNumber();
 	
 	Movimiento buscarMovimientosPorViaje(Long idViaje, int idTipoMovimiento);
+	List<Movimiento> buscarMovimientosPorTipoyEstado(TipoMovimiento presupuesto,EstadoMovimiento estadoMovimiento );
 }

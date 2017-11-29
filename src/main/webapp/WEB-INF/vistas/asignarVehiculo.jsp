@@ -13,7 +13,7 @@
 <body>
 
     
-<div class="container">
+<div class="container" style="margin-top:60px!important">
 	 
 	<h1> Asignar vehiculo al Presupuesto <fmt:formatNumber pattern="0000" type="number" value="${mov.getPuntoVenta()}" /> - <fmt:formatNumber pattern="00000000" type="number" value="${mov.getNumeroMovimiento()}" /> </h1>
 	      <div class="row">

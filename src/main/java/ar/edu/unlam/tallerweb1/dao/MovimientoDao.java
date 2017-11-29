@@ -1,7 +1,10 @@
 package ar.edu.unlam.tallerweb1.dao;
 
 import java.util.List;
+
+import ar.edu.unlam.tallerweb1.modelo.EstadoMovimiento;
 import ar.edu.unlam.tallerweb1.modelo.Movimiento;
+import ar.edu.unlam.tallerweb1.modelo.TipoMovimiento;
 
 public interface MovimientoDao {
 
@@ -25,4 +28,5 @@ public interface MovimientoDao {
 	List<Movimiento> BuscarPresupuestosAceptados();
 
 	Movimiento buscarMovimientosPorViaje(Long idViaje, int idTipoMovimiento);
+	List<Movimiento> buscarMovimientosPorTipoyEstado(TipoMovimiento presupuesto,EstadoMovimiento estadoMovimiento );
 }
