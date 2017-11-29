@@ -1,15 +1,17 @@
-<%@include file='menu_chofer_viajeActivo.jsp'%>
+<%@include file='../../templates/Header_chofer_viaje_activo.jsp' %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
 <div class="container">
+    <br>
+    <br>
+    <br>
+	<h3>Log cargado:</h3>
+	<br>
 	<div class="row color-invoice">
 		<div class="col-md-12">
-
 			<div class="row">
-				<h3>Log cargado:</h3>
 				<br><br>
 				<table class="table table-bordered">
 					<thead>

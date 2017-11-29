@@ -45,7 +45,6 @@ public class ControladorMenuChofer {
 		viajeEnProceso.setEstado("En proceso");
 		servicioViaje.viajeActualizadoEnProceso(viajeEnProceso);
 		model.put("viajeEnProceso", viajeEnProceso);
-		System.out.println("estado de viaje---" +viajeEnProceso.getEstado());
 		return new ModelAndView("menu_chofer_viajeActivo",model);
 	}
 	//Con seguridad

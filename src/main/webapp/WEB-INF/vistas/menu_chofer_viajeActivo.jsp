@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file='../../templates/Header_chofer_viaje_activo.jsp' %>
 <!DOCTYPE html>
 <html>
 	<head>   
@@ -26,32 +27,7 @@
 	}
 	</style>
 	<body>
-	  <!-- Navigation -->
-	    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-	      <div class="container">
-	        <a class="navbar-brand" href="menu_chofer_viajeActivo">Fletes Pepe </a>
-	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-	          <span class="navbar-toggler-icon"></span>
-	        </button>
-	        <div class="collapse navbar-collapse" id="navbarResponsive">
-	          <ul class="navbar-nav ml-auto">	
-	            <li class="nav-item">
-	            <!--Aun no esta terminado --> 
-	              <a class="nav-link" href="listaLogViaje">Ver log de viaje</a>
-	            </li>
-	            <li class="nav-item">
-	              <!--logViajeForm es la url  -->
-	              <a class="nav-link" href="logViajeForm?idViaje=${viajeEnProceso.id}">Cargar Log de viaje</a>
-	            </li>
-	            <li class="nav-item">
-	               <!-- Por ahora el finalizar viaje redireccionará a menú de chofer -->
-	              <a class="nav-link" href="index_chofer">Finalizar viaje</a>
-	            </li>
-	    
-	          </ul>
-	        </div>
-	      </div>
-	    </nav>
+	 
         <div class="container">
     		<div class="row color-invoice">
         		<div class="col-md-12">
