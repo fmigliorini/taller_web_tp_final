@@ -27,7 +27,7 @@
 	  <!-- Navigation -->
 	    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 	      <div class="container">
-	        <a class="navbar-brand" href="indexChofer">Fletes Pepe </a>
+	        <a class="navbar-brand" href="index_chofer">Fletes Pepe </a>
 	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 	          <span class="navbar-toggler-icon"></span>
 	        </button>
@@ -35,7 +35,7 @@
 	          <ul class="navbar-nav ml-auto">	
 	            <li class="nav-item">
 	            <!--Aun no esta terminado --> 
-	              <a class="nav-link" href="listaDeViajesArealizar">Lista de Viajes a realizar</a>
+	              <a class="nav-link" href="listaDeViajesActivos">Lista de Viajes a realizar</a>
 	            </li>
 	            <li class="nav-item">
 	              <!--logViajeForm es la url  -->

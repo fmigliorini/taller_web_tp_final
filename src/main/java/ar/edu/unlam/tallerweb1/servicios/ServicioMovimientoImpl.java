@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,45 +13,47 @@ import ar.edu.unlam.tallerweb1.modelo.Movimiento;
 @Service("servicioMovimiento")
 @Transactional
 public class ServicioMovimientoImpl implements ServicioMovimiento {
-	
+
 	@Inject
 	private MovimientoDao movimientoDao;
-	
-	public Movimiento guardarMovimiento(Movimiento mov)
-	{
+
+	public Movimiento guardarMovimiento(Movimiento mov) {
 		return movimientoDao.guardarMovimiento(mov);
 	}
 
-	
-	public Movimiento buscarIdMovimiento(Long idMovimiento){
+	public Movimiento buscarIdMovimiento(Long idMovimiento) {
 		return movimientoDao.buscarIdMovimiento(idMovimiento);
 	}
-	
-	public List<Movimiento> buscarMovimientosPorTipo(Long idTipoMovimiento)	{
+
+	public List<Movimiento> buscarMovimientosPorTipo(Long idTipoMovimiento) {
 		return movimientoDao.buscarMovimientosPorTipo(idTipoMovimiento);
 	}
-	
-	//Trae todos los movimientos del usuarioM
-	public List<Movimiento> buscarMovimientosPorUsuario(Long idUsuario)	{
+
+	// Trae todos los movimientos del usuarioM
+	public List<Movimiento> buscarMovimientosPorUsuario(Long idUsuario) {
 		return movimientoDao.buscarMovimientosPorUsuario(idUsuario);
 	}
-	
-	//Trae un movimiento especifico los movimientos del usuario M
-	public List<Movimiento> buscarMovimientosPorUsuario(Long idUsuario,int idTipoMovimiento)	{
-		return movimientoDao.buscarMovimientosPorUsuario(idUsuario,idTipoMovimiento);
+
+	// Trae un movimiento especifico los movimientos del usuario M
+	public List<Movimiento> buscarMovimientosPorUsuario(Long idUsuario, int idTipoMovimiento) {
+		return movimientoDao.buscarMovimientosPorUsuario(idUsuario, idTipoMovimiento);
 	}
-	
-	//Trae los remitos para los choferes
-	public List<Movimiento> buscarMovimientosParaChofer(Long idChofer)	{
+
+	// Trae los remitos para los choferes
+	public List<Movimiento> buscarMovimientosParaChofer(Long idChofer) {
 		return movimientoDao.buscarMovimientosParaChofer(idChofer);
 	}
-	
-	public List<Movimiento>BuscarPresupuestosAceptados(){
+
+	public List<Movimiento> BuscarPresupuestosAceptados() {
 		return movimientoDao.BuscarPresupuestosAceptados();
 	}
-	
-	public long getLastNumber(){
-		
+
+	public Movimiento buscarMovimientosPorViaje(Long idViaje, int idTipoMovimiento) {
+		return movimientoDao.buscarMovimientosPorViaje(idViaje, idTipoMovimiento);
+	}
+
+	public long getLastNumber() {
+
 		return movimientoDao.getLastNumber();
 	}
 }
