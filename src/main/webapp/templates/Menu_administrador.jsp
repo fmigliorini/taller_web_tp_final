@@ -23,6 +23,7 @@
 	</head>
 	       <style>
 
+	        <a class="navbar-brand" href="index_administrador">Fletes Pepe </a>
 .navbar-login
 {
     width: 305px;

@@ -19,6 +19,7 @@ public class LogViaje {
 	private Long id;
 	private String tipoLogViaje;
 	private Double precio;
+	private String fecha;
 
 
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -50,5 +51,11 @@ public class LogViaje {
 	}
 	public void setViaje(Viaje viaje) {
 		this.viaje = viaje;
+	}
+	public String getFecha() {
+		return fecha;
+	}
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
 	}
 }

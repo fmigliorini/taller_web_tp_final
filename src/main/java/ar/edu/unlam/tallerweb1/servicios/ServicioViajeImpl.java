@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.ViajeDao;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Viaje;
 
 @Service("servicioViaje")
@@ -36,5 +37,24 @@ public class ServicioViajeImpl implements ServicioViaje {
 	public Viaje ActualizarViaje(Viaje viaje){
 
 		return viajeDao.ActualizarViaje(viaje);
+	}
+	@Override
+	public List<Viaje> listarViajesActivos(Usuario chofer) {
+		
+		return viajeDao.listarViajesActivos(chofer);
+	}
+
+
+	//actualiza el estado de viaje
+	public void viajeActualizadoEnProceso(Viaje viaje){
+			
+			 viajeDao.viajeActualizadoEnProceso(viaje);
+			 viajeDao.guardarViaje(viaje);
+	}
+	//trae viajes terminados
+	@Override
+	public List<Viaje> listarViajesTerminados(Usuario chofer) {
+			
+			return viajeDao.listarViajesTerminados(chofer);
 	}
 }
