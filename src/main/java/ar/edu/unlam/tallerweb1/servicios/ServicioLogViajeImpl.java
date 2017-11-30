@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.LogViajeDao;
-import ar.edu.unlam.tallerweb1.dao.PresupuestoDao;
+
 import ar.edu.unlam.tallerweb1.modelo.LogViaje;
 import ar.edu.unlam.tallerweb1.modelo.Viaje;
 

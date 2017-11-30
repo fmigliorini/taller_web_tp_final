@@ -148,11 +148,11 @@ public class ControladorMenuAdmnistrador {
 					movimiento.setLetra('A');
 					movimiento.setFecha_hora(LocalDateTime.now().toString());
 					// Factura
-					movimiento.setTipoMovimiento(servicioTipoMovimiento.buscarPorId(1));
+					movimiento.setTipoMovimiento(servicioTipoMovimiento.buscarPorDescripcion("Factura"));
 					servicioMovimiento.guardarMovimiento(movimiento);
 					movimiento.setId(null);
 					// Remito
-					movimiento.setTipoMovimiento(servicioTipoMovimiento.buscarPorId(3));
+					movimiento.setTipoMovimiento(servicioTipoMovimiento.buscarPorDescripcion("Remito"));
 					servicioMovimiento.guardarMovimiento(movimiento);
 
 					model.put("tipo", "success");

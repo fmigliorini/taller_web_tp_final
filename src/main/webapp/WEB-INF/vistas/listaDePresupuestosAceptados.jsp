@@ -32,7 +32,7 @@
 								</tr>
 							</thead>
 							<tbody>
-							 <c:forEach var="mov" items="${listaLog}" >
+							 <c:forEach var="mov" items="${presupuestos}" >
 									<tr>
 									   <!-- UNA VEZ QUE ESTE CARGADO LOS DATOS SE PUEDEN -->
 										<td><fmt:formatNumber pattern="0000" type="number" value="${mov.getPuntoVenta()}" /> - <fmt:formatNumber pattern="00000000" type="number" value="${mov.getNumeroMovimiento()}" /></td>

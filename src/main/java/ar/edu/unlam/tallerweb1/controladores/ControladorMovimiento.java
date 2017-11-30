@@ -15,11 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Viaje;
 import ar.edu.unlam.tallerweb1.modelo.Movimiento;
-import ar.edu.unlam.tallerweb1.modelo.Presupuesto;
+
 import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEstadoMovimiento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioMovimiento;
-import ar.edu.unlam.tallerweb1.servicios.ServicioPresupuesto;
+
 import ar.edu.unlam.tallerweb1.servicios.ServicioTipoMovimiento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTipoVehiculo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
@@ -34,8 +34,6 @@ public class ControladorMovimiento {
 	@Inject
 	private ServicioTipoVehiculo servicioTipoVehiculo;
 	
-	@Inject
-	private ServicioPresupuesto servicioPresupuesto;
 
 	@Inject
 	private ServicioMovimiento servicioMovimiento;
