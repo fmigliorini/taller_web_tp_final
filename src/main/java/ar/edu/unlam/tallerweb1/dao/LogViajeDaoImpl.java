@@ -26,11 +26,10 @@ public class LogViajeDaoImpl implements LogViajeDao {
 	}
 
 	@Override
-	public List<LogViaje> listarLogViajesPorViaje(Viaje viaje) {
+	public List<LogViaje> listarLogViajePorViaje(Viaje viaje) {
 		final Session session=sessionFactory.getCurrentSession();
 		List<LogViaje>logDeViajes=session.createCriteria(LogViaje.class)
-				.add(Restrictions.eq("viaje", viaje))
-				.list();
+									.add(Restrictions.eq("viaje", viaje)).list();
 		return logDeViajes;
 		
 		
@@ -48,8 +47,8 @@ public class LogViajeDaoImpl implements LogViajeDao {
 	public List<LogViaje> buscarPorIdViaje(Long id) {
 		final Session session=sessionFactory.getCurrentSession();
 		List<LogViaje>logDeViajes=session.createCriteria(LogViaje.class)
-			.add(Restrictions.eq("idViaje", id))
-			.list();
+									.add(Restrictions.eq("idViaje", id))
+									.list();
 		return logDeViajes;
 	}
   
@@ -57,8 +56,8 @@ public class LogViajeDaoImpl implements LogViajeDao {
 	public List<LogViaje> findByViaje(Viaje viaje) {
 		final Session session=sessionFactory.getCurrentSession();
 		List<LogViaje>logDes=session.createCriteria(LogViaje.class)
-		.add(Restrictions.eq("viaje", viaje))
-		.list();
+								.add(Restrictions.eq("viaje", viaje))
+								.list();
 		return logDes;
 	}
 	

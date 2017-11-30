@@ -17,61 +17,65 @@ import ar.edu.unlam.tallerweb1.modelo.LogViaje;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Viaje;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogViaje;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioViaje;
 
 @Controller
 public class ControladorLogViaje {
-	@Inject 
+	@Inject
 	ServicioLogViaje servicioLogViaje;
-	@Inject 
+	@Inject
 	ServicioViaje servicioViaje;
-	
-	@RequestMapping(path="logViajeForm", method=RequestMethod.GET)
-	public ModelAndView irAFormularioLogViaje(@RequestParam("idViaje") Long idViaje){
-		LogViaje logViaje=new LogViaje();
-		logViaje.setViaje(servicioViaje.buscarViajePorId(idViaje));
-		ModelMap model = new ModelMap();
-		model.put("logViaje", logViaje);//El "logViaje" (la clave) es la que esta en el modelAttribute del form
-		return new ModelAndView("logViaje-form1", model);
+	@Inject
+	ServicioUsuario servicioUsuario;
+
+	@RequestMapping("listaLogViaje")
+	public ModelAndView mostrarListaLogViaje(HttpServletRequest request) {
+		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
+		if (idUsuario != null) {
+			Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
+			Viaje viajeEnProceso = servicioViaje.buscarViajeEnProceso(chofer);
+			ModelMap model = new ModelMap();
+			List<LogViaje> listaLogViajeEnProceso = servicioLogViaje.listarLogViajePorViaje(viajeEnProceso);
+			model.put("listaLogViajeEnProceso", listaLogViajeEnProceso);
+			return new ModelAndView("chofer-log-viaje-en-progreso", model);
+		} else {
+			return new ModelAndView("redirect:/login");
+		}
 	}
-	@RequestMapping(path="cargarLogViaje", method=RequestMethod.POST)
-	public ModelAndView cargarLogViaje(@ModelAttribute("logViaje") LogViaje logViaje){
+
+	@RequestMapping(path = "logViajeForm")
+	public ModelAndView irAFormularioLogViaje(HttpServletRequest request) {
+		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
+		if (idUsuario != null) {
+			Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
+			Viaje viajeEnProceso = servicioViaje.buscarViajeEnProceso(chofer);
+			LogViaje logViaje = new LogViaje();
+			logViaje.setViaje(servicioViaje.buscarViajePorId(viajeEnProceso.getId()));
+			ModelMap model = new ModelMap();
+			model.put("logViaje", logViaje);
+			return new ModelAndView("logViaje-form1", model);
+		} else {
+			return new ModelAndView("redirect:/login");
+		}
+	}
+
+	@RequestMapping(path = "cargarLogViaje", method = RequestMethod.POST)
+	public ModelAndView cargarLogViaje(@ModelAttribute("logViaje") LogViaje logViaje) {
 		servicioLogViaje.gardarLogViaje(logViaje);
 		ModelMap modelo = new ModelMap();
-		//Trae la fecha de ahora
+		// Trae la fecha de ahora
 		logViaje.setFecha(LocalDateTime.now().toString());
 		modelo.put("logViaje", logViaje);
-		return new ModelAndView("invoiceLogViaje",modelo);
+		return new ModelAndView("invoiceLogViaje", modelo);
 	}
-	@RequestMapping("listaLogViaje")
-	public ModelAndView mostrarListaLogViaje(Long id){
-		ModelMap modelo2=new ModelMap();
-		Viaje viaje =servicioViaje.buscarViajePorId(id);
-		List<LogViaje> listaLog = servicioLogViaje.listarLogViajePorViaje(viaje);
-		modelo2.put("listaLog", listaLog);
-		return new ModelAndView("listaLogViaje",modelo2);
-	}
-	
-	/*@RequestMapping("listaLogViaje")
-	public ModelAndView mostrarListaLogViaje(Long id){
-		ModelMap modelo2=new ModelMap();
-		Viaje viaje =servicioViaje.buscarViajePorId(id);
-		List<LogViaje> listaLog =servicioLogViaje.traerLogViajeSegunViaje(viaje);
-		modelo2.put("listaLog", listaLog);
-		return new ModelAndView("listaLogViaje",modelo2);
-	}*/
-		                         
-}			                         
-	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
 
-	
+	/*
+	 * @RequestMapping("listaLogViaje") public ModelAndView
+	 * mostrarListaLogViaje(Long id){ ModelMap modelo2=new ModelMap(); Viaje
+	 * viaje =servicioViaje.buscarViajePorId(id); List<LogViaje> listaLog
+	 * =servicioLogViaje.traerLogViajeSegunViaje(viaje); modelo2.put("listaLog",
+	 * listaLog); return new ModelAndView("listaLogViaje",modelo2); }
+	 */
+
+}
