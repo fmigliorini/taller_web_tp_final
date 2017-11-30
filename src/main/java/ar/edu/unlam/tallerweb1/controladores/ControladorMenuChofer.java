@@ -66,7 +66,6 @@ public class ControladorMenuChofer {
 		}
 	}
 
-	// Con seguridad
 	@RequestMapping(path = "finalizarViajeEnProgreso", method = RequestMethod.POST)
 	public ModelAndView finalizarViajeEnProgreso(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
@@ -87,31 +86,26 @@ public class ControladorMenuChofer {
 			}
 			return new ModelAndView("chofer-viaje-finalizado", modelo);
 		} else {
-			return new ModelAndView("login");
+			return new ModelAndView("redirect:/login");
 		}
 	}
 
-	// Falta cosas a este m�todo
-	@RequestMapping("listaDeViajesHechos")
-	public ModelAndView irAlaListaDeViajesRealizados(HttpServletRequest request) {
+	@RequestMapping("viajesFinalizados")
+	public ModelAndView irAListadoViajesFinalizados(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
 		Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
-		ModelMap modelo2 = new ModelMap();
-		List<Viaje> listaDeViajesTerminados = servicioViaje.listarViajesTerminados(chofer);
-		modelo2.put("listaDeViajesTerminados", listaDeViajesTerminados);
-		System.out.println("estado de viaje---" + ((Viaje) listaDeViajesTerminados).getEstado());
-		return new ModelAndView("listaDeViajesHechos", modelo2);
-
+		if (chofer != null) {
+			List<Viaje> listaViajeFinalizado = servicioViaje.listarViajesTerminados(chofer);
+			ModelMap model = new ModelMap();
+			model.put("listaViajesFinalizados", listaViajeFinalizado);
+			return new ModelAndView("chofer-lista-viajes-finalizado", model);
+		} else {
+			return new ModelAndView("redirect:/login");
+		}
 	}
 
 	@RequestMapping("listaDeRemitos")
 	public ModelAndView irAlaListaDeRemitos() {
 		return new ModelAndView("listaDeRemitos");
 	}
-
-	@RequestMapping("reportesDiarioDeViaje")
-	public ModelAndView irAlistaDeReportesDiariosDeViajes() {
-		return new ModelAndView("reportesDiarioDeViaje");
-	}
-
 }

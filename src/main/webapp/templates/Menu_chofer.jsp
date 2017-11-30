@@ -39,7 +39,7 @@
 	            </li>
 	            <li class="nav-item">
 	              <!--logViajeForm es la url  -->
-	              <a class="nav-link" href="listaDeViajesHechos">Lista de viajes realizados</a>
+	              <a class="nav-link" href="viajesFinalizados">Lista de viajes realizados</a>
 	            </li>
 	            <li class="nav-item">
 	               <!--Este no lo entiendo--> 
