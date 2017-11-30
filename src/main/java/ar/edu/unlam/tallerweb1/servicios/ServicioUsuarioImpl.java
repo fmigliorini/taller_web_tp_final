@@ -43,9 +43,26 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	}
 
 	@Override
+	public void actualizarUsuario( Usuario usuario )
+	{
+		 servicioUsuarioDao.actualizarUsuario(usuario);
+	}
+	
+	@Override
+	public void eliminarUsuario( Usuario usuario )
+	{
+		 servicioUsuarioDao.eliminarUsuario(usuario);
+	}
+	
+	@Override
 	public List<Usuario> listarChoferes() {
 		
 		return servicioUsuarioDao.listarChoferes();
+	}
+	@Override
+	public List<Usuario> usuariosRol(String rol) {
+		
+		return servicioUsuarioDao.usuariosRol(rol);
 	}
 	
 }

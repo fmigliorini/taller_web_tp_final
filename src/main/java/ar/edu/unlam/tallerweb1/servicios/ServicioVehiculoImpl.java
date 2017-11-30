@@ -21,23 +21,39 @@ public class ServicioVehiculoImpl implements ServicioVehiculo {
 	private VehiculoDao vehiculoDao;
 
 	@Override
+	public List<Vehiculo> getAll() {
+		return vehiculoDao.getAll();
+	}
+
+	@Override
 	public List<Vehiculo> listarPorTipoVehiculo(TipoVehiculo tipoVehiculo) {
 		return vehiculoDao.listarPorTipoVehiculo(tipoVehiculo);
 	}
-	
+
 	@Override
 	public Vehiculo buscarPorId(Long id) {
 		return vehiculoDao.buscarPorId(id);
 	}
-	
+
 	@Override
 	public Vehiculo buscarChofer(Usuario chofer) {
-		return vehiculoDao.buscarChofer( chofer);
+		return vehiculoDao.buscarChofer(chofer);
 	}
-	//viaje en proceso
+
+	// viaje en proceso
 	@Override
 	public Vehiculo guardarVehiculo(Vehiculo vehiculo) {
-		return vehiculoDao.guardarVehiculo( vehiculo);
+		return vehiculoDao.guardarVehiculo(vehiculo);
+	}
+
+	@Override
+	public void actualizarVehiculo(Vehiculo vehiculo) {
+		vehiculoDao.actualizarVehiculo(vehiculo);
+	}
+
+	@Override
+	public void eliminarVehiculo(Vehiculo vehiculo) {
+		vehiculoDao.eliminarVehiculo(vehiculo);
 	}
 
 }

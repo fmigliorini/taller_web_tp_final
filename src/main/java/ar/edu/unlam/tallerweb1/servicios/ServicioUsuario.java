@@ -9,13 +9,22 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+
 @Service
-//Interface que define los metodos del Servicio de Usuarios.
+// Interface que define los metodos del Servicio de Usuarios.
 
 public interface ServicioUsuario {
 
 	Usuario generarUsuario(Usuario usuario);
+
 	Usuario buscarPorId(Long id);
+
 	List<Usuario> listarChoferes();
+
+	void actualizarUsuario(Usuario usuario);
+
+	void eliminarUsuario(Usuario usuario);
+	
+	List<Usuario> usuariosRol(String rol);
 
 }
