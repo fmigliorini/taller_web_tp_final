@@ -32,21 +32,38 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	private UsuarioDao servicioUsuarioDao;
 
 	@Override
-	public Usuario generarUsuario (Usuario usuario) {
+	public Usuario generarUsuario(Usuario usuario) {
 		return servicioUsuarioDao.generarUsuario(usuario);
 	}
 
 	@Override
-	public Usuario buscarPorId( Long id )
-	{
+	public Usuario buscarPorId(Long id) {
 		return servicioUsuarioDao.buscarPorId(id);
 	}
 
 	@Override
+	public void actualizarUsuario(Usuario usuario) {
+		servicioUsuarioDao.actualizarUsuario(usuario);
+	}
+
+	@Override
+	public void eliminarUsuario(Usuario usuario) {
+		servicioUsuarioDao.eliminarUsuario(usuario);
+	}
+
+	@Override
 	public List<Usuario> listarChoferes() {
-		
+
 		return servicioUsuarioDao.listarChoferes();
 	}
-	
-}
 
+	@Override
+	public List<Usuario> usuariosRol(String rol) {
+
+		return servicioUsuarioDao.usuariosRol(rol);
+	}
+
+	public List<Usuario> listarChoferesSinVehiculo() {
+		return servicioUsuarioDao.listarChoferesSinVehiculo();
+	}
+}

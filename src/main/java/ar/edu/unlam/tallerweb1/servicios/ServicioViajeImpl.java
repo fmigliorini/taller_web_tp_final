@@ -27,16 +27,22 @@ public class ServicioViajeImpl implements ServicioViaje {
 	public Viaje buscarViajePorId(Long id) {
 		return viajeDao.buscarViajePorId(id);
 	}
-
+	
+public	List<Viaje>listarViajesAct(){
+	return viajeDao.listarViajesAct();
+}
 	@Override
 	public List<Viaje> buscarViajesDeChoferId(Long id) {
 		return viajeDao.buscarViajesDeChoferId(id);
 	}
 
-	public void ActualizarViaje(Viaje viaje) {
+@Override
+	public void ActualizarViaje(Viaje viaje){
 
-		viajeDao.ActualizarViaje(viaje);
+		 viajeDao.ActualizarViaje(viaje);
 	}
+
+
 
 	@Override
 	public List<Viaje> listarViajesActivos(Usuario chofer) {
@@ -44,6 +50,7 @@ public class ServicioViajeImpl implements ServicioViaje {
 	}
 
 	// actualiza el estado de viaje
+  @Override
 	public void viajeActualizadoEnProceso(Viaje viaje) {
 		viajeDao.viajeActualizadoEnProceso(viaje);
 		viajeDao.guardarViaje(viaje);

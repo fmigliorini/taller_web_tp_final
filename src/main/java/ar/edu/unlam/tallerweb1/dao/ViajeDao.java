@@ -16,6 +16,8 @@ public interface ViajeDao {
 
 	List<Viaje> listarViajesActivos(Usuario chofer);
 
+
+	List<Viaje> listarViajesAct();
 	// viaje en proceso es cuando el chofer esta en camino es una actualizacion
 	void viajeActualizadoEnProceso(Viaje viaje);
 
@@ -23,5 +25,6 @@ public interface ViajeDao {
 	List<Viaje> listarViajesTerminados(Usuario chofer);
 	
 	Viaje buscarViajeEnProceso(Usuario chofer);
+
 
 }
