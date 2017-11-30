@@ -67,25 +67,25 @@ public class ControladorMenuChofer {
 	}
 
 	// Con seguridad
-	@RequestMapping(path = "finalizarViaje", method = RequestMethod.POST)
-	public ModelAndView irAFinalizarViaje(@ModelAttribute("viaje") Viaje viaje, HttpServletRequest request) {
+	@RequestMapping(path = "finalizarViajeEnProgreso", method = RequestMethod.POST)
+	public ModelAndView finalizarViajeEnProgreso(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
 		if (idUsuario != null) {
 			Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
 			ModelMap modelo = new ModelMap();
 			if (chofer.getRol().equals("chofer")) {
-				Viaje viajeTerminado = servicioViaje.buscarViajePorId(viaje.getId());
+				Viaje viajeTerminado = servicioViaje.buscarViajeEnProceso(chofer);
 				viajeTerminado.setEstado("Terminado");
 				servicioViaje.viajeActualizadoEnProceso(viajeTerminado);
 				modelo.put("tipo", "success");
-				modelo.put("titulo", "El viaje ha sido realizado con exito");
-				modelo.put("mensaje", String.format("El viaje fue realizado con exito."));
+				modelo.put("titulo", "Viaje finalizado correctamente");
+				modelo.put("mensaje", String.format("El viaje fue completado."));
 			} else {
 				modelo.put("tipo", "danger");
-				modelo.put("titulo", "No tiene autorizaci�n");
+				modelo.put("titulo", "No tiene autorización");
 				modelo.put("mensaje", String.format("Entrar con rol chofer."));
 			}
-			return new ModelAndView("notificacionGestion", modelo);
+			return new ModelAndView("chofer-viaje-finalizado", modelo);
 		} else {
 			return new ModelAndView("login");
 		}
