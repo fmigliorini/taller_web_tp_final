@@ -18,7 +18,6 @@ public class LoginTest {
 	@Test
 	public void alLoguearseConUsuarioValidoDeberiaLlevarAHome() {
 		ControladorLogin controlador = new ControladorLogin();
-		// Mockeo la clase usuario 
 		Usuario usuario = mock(Usuario.class);
 		// Mockeo HttpServleRequest para evitar errores, de todas formas, lo que 
 		// vamos a hacer es usar una session de Mock ( HttpSession ).
