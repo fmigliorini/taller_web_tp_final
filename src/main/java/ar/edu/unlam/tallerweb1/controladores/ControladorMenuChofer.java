@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -36,8 +37,17 @@ public class ControladorMenuChofer {
 		return new ModelAndView("chofer-viajes-activo", model);
 	}
 
+	@RequestMapping(path = "activarViaje", method = RequestMethod.POST)
+	public ModelAndView activarViaje(@RequestParam("idViaje") Long idViaje, HttpServletRequest request) {
+		// Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
+		Viaje viaje = servicioViaje.buscarViajePorId(idViaje);
+		viaje.setEstado("En proceso");
+		servicioViaje.viajeActualizadoEnProceso(viaje);
+		return new ModelAndView("redirect:/viajeActivo");
+	}
+	
 	// Luego de iniciar el viaje llega a este lugar.
-	@RequestMapping(path = "menu_chofer_viajeActivo", method = RequestMethod.POST)
+	@RequestMapping(path = "viajeActivo", method = RequestMethod.POST)
 	public ModelAndView irAlMenuDeViajeActivo(@ModelAttribute("viaje") Viaje viaje, HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
 		Viaje viajeEnProceso = servicioViaje.buscarViajePorId(viaje.getId());

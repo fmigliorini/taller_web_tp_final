@@ -44,10 +44,9 @@
 										<td><c:out value="${viaje.precio}" /></td>
 										<td><c:out value="$ ${viaje.peso}" /></td>
 										<td><c:out value="${viaje.estado}" /></td>
-										<td><form:form role="form"
-												action="menu_chofer_viajeActivo" modelAttribute="viaje"
+										<td><form:form role="form" action="activarViaje"
 												method="POST" name="comenzarViaje">
-												<form:input type="hidden" path="id" value="${viaje.id }" />
+												<form:input type="hidden" path="id" value="${viaje.id}" />
 												<form:button class="btn btn-success">Iniciar</form:button>
 											</form:form></td>
 
