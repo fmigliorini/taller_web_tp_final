@@ -32,6 +32,14 @@ public class ViajeDaoImpl implements ViajeDao {
 		return (Viaje) session.createCriteria(Viaje.class).add(Restrictions.eq("id", id)).uniqueResult();
 	}
 
+	public List<Viaje> listarViajesAct() {
+		final Session session = sessionFactotry.getCurrentSession();
+		List<Viaje> viajesChofer = session.createCriteria(Viaje.class)
+
+				.add(Restrictions.eq("estado", "activo")).list();
+		return viajesChofer;
+	}
+
 	@Override
 	public List<Viaje> buscarViajesDeChoferId(Long idChofer) {
 		final Session session = sessionFactotry.getCurrentSession();

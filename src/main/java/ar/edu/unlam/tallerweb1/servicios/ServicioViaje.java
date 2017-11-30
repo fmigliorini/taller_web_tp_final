@@ -12,6 +12,8 @@ public interface ServicioViaje {
 
     void ActualizarViaje(Viaje viaje);
 
+	List<Viaje> listarViajesAct();
+    
 	List<Viaje>listarViajesActivos(Usuario chofer);
     //viaje en proceso es cuando el chofer esta en camino
  	void viajeActualizadoEnProceso(Viaje viaje);

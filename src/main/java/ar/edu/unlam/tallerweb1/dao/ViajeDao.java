@@ -17,5 +17,6 @@ public interface ViajeDao {
 	//lista viajes hechos
 	List<Viaje>listarViajesTerminados(Usuario chofer);
 
+	List<Viaje> listarViajesAct();
 
 }
