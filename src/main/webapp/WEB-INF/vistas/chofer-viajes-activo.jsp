@@ -58,7 +58,7 @@
 
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12">
-						<a href="indexChofer" class="btn btn-primary">Volver al menú</a>
+						<a href="index_chofer" class="btn btn-primary">Volver al menú</a>
 					</div>
 				</div>
 			</div>
