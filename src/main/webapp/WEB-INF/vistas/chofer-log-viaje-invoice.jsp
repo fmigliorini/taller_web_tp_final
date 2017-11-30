@@ -40,7 +40,7 @@
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">
 
-				<a href="menu_chofer_viajeActivo" class="btn btn-success btn-sm">Volver
+				<a href="viajeEnProceso" class="btn btn-success btn-sm">Volver
 					al menú viaje activo</a>
 			</div>
 		</div>
