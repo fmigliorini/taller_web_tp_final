@@ -35,6 +35,8 @@
 						</select>
 			</div>
 			<input type="submit" class="btn btn-primary" value="Guardar Vehiculo">
+	</div>
+	</div>
 	</form>
 </div>
 

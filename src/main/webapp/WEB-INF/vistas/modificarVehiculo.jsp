@@ -5,7 +5,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="container">
 	<h1>Modificar Vehiculo</h1>
-	<form:form action="actualizarVehiculo" modelAttribute="Vehiculo" method="POST">
+	<form:form action="actualizarVehiculo" modelAttribute="Vehiculo"
+		method="POST">
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				<div class="form-group col-md-12">
@@ -29,7 +30,7 @@
 
 				<div class="form-group col-md-12">
 					<label for="chofer">Chofer</label> <select name="chofer"
-						 id="chofer" class="form-group ">
+						id="chofer" class="form-group ">
 						<c:forEach items="${listChofer}" var="c">
 							<option value="${c.getId()}">${c.getNombre()}</option>
 						</c:forEach>
@@ -46,6 +47,8 @@
 				</div>
 				<input type="submit" class="btn btn-primary"
 					value="Actualizar Vehiculo">
+			</div>
+		</div>
 	</form:form>
 </div>
 

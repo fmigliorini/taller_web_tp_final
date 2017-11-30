@@ -22,15 +22,11 @@
 						<table class="table table-striped custab">
 							<thead>
 								<tr>
-									
 									<th scope="col" >Numero del presupuesto</th>
 									<th scope="col">Cliente</th>
 									<th scope="col">Chofer</th>
 									<th scope="col">Fecha</th>
 									<th scope="col">$Precio</th>
-									
-						
-								
 								</tr>
 							</thead>
 							<tbody>

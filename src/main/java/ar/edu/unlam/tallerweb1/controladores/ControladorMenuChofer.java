@@ -32,10 +32,12 @@ public class ControladorMenuChofer {
 	ServicioUsuario servicioUsuario;
 	@Inject
 	ServicioLogViaje servicioLogViaje;
-	@Inject 
+	@Inject
 	ServicioMovimiento servicioMovimiento;
-	@Inject 
+
+	@Inject
 	ServicioTipoMovimiento servicioTipoMovimiento;
+
 	@RequestMapping(path = "listaDeViajesActivos")
 	public ModelAndView irAlaListaDeViajesArealizar(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
@@ -90,7 +92,7 @@ public class ControladorMenuChofer {
 				modelo.put("mensaje", String.format("El viaje fue completado."));
 			} else {
 				modelo.put("tipo", "danger");
-				modelo.put("titulo", "No tiene autorización");
+				modelo.put("titulo", "No tiene autorizaciÃ³n");
 				modelo.put("mensaje", String.format("Entrar con rol chofer."));
 			}
 			return new ModelAndView("chofer-viaje-finalizado", modelo);
@@ -116,35 +118,34 @@ public class ControladorMenuChofer {
 	@RequestMapping("listaDeRemitos")
 	public ModelAndView irAlaListaDeRemitos(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
-		if(idUsuario != null){
+		if (idUsuario != null) {
 			Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
-			ModelMap modelo=new ModelMap();
-			if(chofer.getRol().equals("chofer")){
-				List<Movimiento>listaRemitos=servicioMovimiento.buscarMovimientosParaChofer(idUsuario);
+			ModelMap modelo = new ModelMap();
+			if (chofer.getRol().equals("chofer")) {
+				List<Movimiento> listaRemitos = servicioMovimiento.buscarMovimientosParaChofer(idUsuario);
 				modelo.put("listaRemitos", listaRemitos);
-			    return new ModelAndView("chofer-lista-remitos",modelo);
-		   }else{
+				return new ModelAndView("chofer-lista-remitos", modelo);
+			} else {
 				modelo.put("tipo", "danger");
-				modelo.put("titulo", "No tiene autorización");
+				modelo.put("titulo", "No tiene autorizaciÃ³n");
 				modelo.put("mensaje", String.format("Entrar con rol chofer."));
 				return new ModelAndView("notificacionGestion", modelo);
+			}
+		} else {
+			return new ModelAndView("redirect:/login");
 		}
-	}else{
-		return new ModelAndView("redirect:/login");
 	}
-}
-	//Este m�todo lo har�a si quiero mostrar los remitos
-		/*@RequestMapping(path = "/verRemito/{idRemito}")
-		public ModelAndView verRemito(@PathVariable("idRemito") Long idRemito, HttpServletRequest request) {
-			ModelMap modelMap = new ModelMap();
-			Movimiento remito = servicioMovimiento.buscarIdMovimiento(idRemito);
-			modelMap.put("remito", remito);
-			modelMap.put("chofer", remito.getUsuario());
-			modelMap.put("Factura", servicioMovimiento.buscarMovimientosPorViaje(remito.getViaje().getId(),
-					servicioTipoMovimientoImpl.buscarPorDescripcion("Factura").getId()));
-			return new ModelAndView("chofer-remito-invoice", modelMap);
-		}*/
-		
-		
-}
+	// Este método lo haría si quiero mostrar los remitos
+	/*
+	 * @RequestMapping(path = "/verRemito/{idRemito}") public ModelAndView
+	 * verRemito(@PathVariable("idRemito") Long idRemito, HttpServletRequest
+	 * request) { ModelMap modelMap = new ModelMap(); Movimiento remito =
+	 * servicioMovimiento.buscarIdMovimiento(idRemito); modelMap.put("remito",
+	 * remito); modelMap.put("chofer", remito.getUsuario());
+	 * modelMap.put("Factura",
+	 * servicioMovimiento.buscarMovimientosPorViaje(remito.getViaje().getId(),
+	 * servicioTipoMovimientoImpl.buscarPorDescripcion("Factura").getId()));
+	 * return new ModelAndView("chofer-remito-invoice", modelMap); }
+	 */
 
+}

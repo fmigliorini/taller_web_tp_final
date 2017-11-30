@@ -56,6 +56,7 @@
 				</select>
 			</div>
 			<input type="submit" class="btn btn-primary" value="Guardar Usuario">
+	</div>
 	</form>
 </div>
 
