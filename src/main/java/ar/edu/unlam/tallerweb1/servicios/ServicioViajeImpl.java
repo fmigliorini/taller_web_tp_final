@@ -41,11 +41,6 @@ public class ServicioViajeImpl implements ServicioViaje {
 	}
 
 
-	public void ActualizarViaje(Viaje viaje){
-
-		viajeDao.ActualizarViaje(viaje);
-  }
-	
 
 	@Override
 	public List<Viaje> listarViajesActivos(Usuario chofer) {

@@ -18,7 +18,6 @@ public interface ServicioViaje {
     //lista viajes hechos
   	List<Viaje>listarViajesTerminados(Usuario chofer);
 
-	void ActualizarViaje(Viaje viaje);
 
 }
 
