@@ -166,4 +166,24 @@ public class ControladorPresupuesto {
 	 * }
 	 */
 
+	public void setServicioTipoVehiculo(ServicioTipoVehiculo servicioTipoVehiculo){
+		this.servicioTipoVehiculo = servicioTipoVehiculo;
+	}
+	public void setServicioViaje(ServicioViaje servicioViaje){
+		this.servicioViaje = servicioViaje;
+	}
+	
+	public void setServicioTipoMovimiento(ServicioTipoMovimiento servicioTipoMovimiento){
+		this.servicioTipoMovimiento = servicioTipoMovimiento;
+	}
+	
+	public void setServicioEstadoMovimiento(ServicioEstadoMovimiento servicioEstadoMovimiento){
+		this.servicioEstadoMovimiento = servicioEstadoMovimiento;
+	}
+	public void setServicioUsuario(ServicioUsuario servicioUsuario){
+		this.servicioUsuario = servicioUsuario;
+	}
+	public void setServicioMovimiento(ServicioMovimiento servicioMovimiento){
+		this.servicioMovimiento = servicioMovimiento;
+	}
 }
