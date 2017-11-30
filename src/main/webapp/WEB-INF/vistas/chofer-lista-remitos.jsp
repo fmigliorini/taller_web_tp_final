@@ -25,7 +25,7 @@
 									<th scope="col">fecha_hora</th>
 									<th scope="col">Estado</th>
 									<th scope="col">TipoVehiculo</th>
-									<th scope="col">Operaciones</th>
+							
 								</tr>
 							</thead>
 							<tbody>

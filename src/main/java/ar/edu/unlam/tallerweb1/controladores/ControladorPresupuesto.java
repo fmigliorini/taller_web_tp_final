@@ -103,7 +103,7 @@ public class ControladorPresupuesto {
 		c.setTime(date);
 		c.add(Calendar.DATE, 1);
 		movimiento.setFecha_vencimiento(sdf.format(c.getTime()));
-
+		movimiento.setNumeroMovimiento(0001L);
 		// seteo el viaje
 		movimiento.setViaje(viaje);
 

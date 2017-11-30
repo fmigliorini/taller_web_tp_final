@@ -82,8 +82,8 @@ public class ControladorMenuAdmnistrador {
 		if (idUsuario != null) {
 			if (servicioUsuario.buscarPorId(idUsuario).getRol().equals("admin")) {
 
-				List<Movimiento> listaLog = servicioMovimiento.BuscarPresupuestosAceptados();
-				model.put("listaLog", listaLog);
+				List<Movimiento> presupuestos = servicioMovimiento.buscarMovimientosPorTipoyEstado(servicioTipoMovimiento.buscarPorDescripcion("Presupuesto"), servicioEstadoMovimiento.buscarPorDescripcion("Aceptado"));
+				model.put("presupuestos", presupuestos);
 				return new ModelAndView("listaDePresupuestosAceptados", model);
 			} else {
 				model.put("tipo", "danger");
