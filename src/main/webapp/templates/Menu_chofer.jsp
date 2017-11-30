@@ -34,15 +34,15 @@
 	        <div class="collapse navbar-collapse" id="navbarResponsive">
 	          <ul class="navbar-nav ml-auto">	
 	            <li class="nav-item">
-	            <!--Aun no esta terminado --> 
+	            
 	              <a class="nav-link" href="listaDeViajesActivos">Lista de Viajes a realizar</a>
 	            </li>
 	            <li class="nav-item">
-	              <!--logViajeForm es la url  -->
+	             
 	              <a class="nav-link" href="viajesFinalizados">Lista de viajes realizados</a>
 	            </li>
 	            <li class="nav-item">
-	               <!--Este no lo entiendo--> 
+	             
 	              <a class="nav-link" href="listaDeRemitos">Lista de remitos</a>
 	            </li>
 	    
