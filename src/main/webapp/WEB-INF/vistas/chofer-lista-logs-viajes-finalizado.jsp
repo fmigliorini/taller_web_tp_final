@@ -20,32 +20,22 @@
 						<table class="table table-bordered">
 							<thead>
 								<tr>
-									<th scope="col">Id viaje</th>
-									<th scope="col">Hora</th>
-									<th scope="col">Fecha</th>
-									<th scope="col">Origen</th>
-									<th scope="col">Destino</th>
-									<th scope="col">Kilometros</th>
-									<th scope="col">Precio</th>
-									<th scope="col">Peso</th>
-									<th scope="col">Logs</th>
+									<th scope="col">Id </th>
+									<th scope="col">Tipo </th>
+									<th scope="col">precio </th>
+									<th scope="col">Fecha </th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="viaje" items="${listaViajesFinalizados}">
+								<c:forEach var="Log" items="${listaLogsViajeFinalizado}">
 
 									<tr>
 
 										<td><c:out value="${viaje.id}" /></td>
 										<td><c:out value="${viaje.hora}" /></td>
+										<td><c:out value="${viaje.tipoLogViaje}" /></td>
 										<td><c:out value="${viaje.fecha}" /></td>
-										<td><c:out value="${viaje.origen}" /></td>
-										<td><c:out value="${viaje.destino}" /></td>
-										<td><c:out value="${viaje.kilometros}" /></td>
-										<td><c:out value="${viaje.precio}" /></td>
-										<td><c:out value="${viaje.peso}" /></td>
-										<td><a href="logViajeFinalizado?idViaje=${viaje.id}">ver más</a></td>
-
+										
 									</tr>
 								</c:forEach>
 							</tbody>

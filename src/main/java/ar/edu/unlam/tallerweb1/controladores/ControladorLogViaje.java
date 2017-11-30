@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.LogViaje;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -87,13 +89,19 @@ public class ControladorLogViaje {
 			return new ModelAndView("redirect:/login");
 		}
 	}
-
-	/*
-	 * @RequestMapping("listaLogViaje") public ModelAndView
-	 * mostrarListaLogViaje(Long id){ ModelMap modelo2=new ModelMap(); Viaje
-	 * viaje =servicioViaje.buscarViajePorId(id); List<LogViaje> listaLog
-	 * =servicioLogViaje.traerLogViajeSegunViaje(viaje); modelo2.put("listaLog",
-	 * listaLog); return new ModelAndView("listaLogViaje",modelo2); }
-	 */
-
+	// logViajeFinalizado?idViaje=1
+	@RequestMapping("logViajeFinalizado")
+	public ModelAndView irListadoLogsViajeFinalizado(@RequestParam("idViaje") Long idViaje, HttpServletRequest request) {
+		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
+		Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
+		if (chofer != null) {
+			Viaje viajeFinalizado = servicioViaje.buscarViajePorId(idViaje);
+			List<LogViaje> listaLogsViajeFinalizado = servicioLogViaje.buscarPorIdViaje(viajeFinalizado.getId());
+			ModelMap model = new ModelMap();
+			model.put("listaLogsViajeFinalizado", listaLogsViajeFinalizado);
+			return new ModelAndView("chofer-lista-logs-viajes-finalizado", model);
+		} else {
+			return new ModelAndView("redirect:/login");
+		}
+	}
 }

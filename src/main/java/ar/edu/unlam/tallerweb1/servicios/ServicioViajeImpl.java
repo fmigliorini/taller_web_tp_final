@@ -46,7 +46,6 @@ public class ServicioViajeImpl implements ServicioViaje {
 	// actualiza el estado de viaje
 	public void viajeActualizadoEnProceso(Viaje viaje) {
 		viajeDao.viajeActualizadoEnProceso(viaje);
-		viajeDao.guardarViaje(viaje);
 	}
 
 	// trae viajes terminados
