@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1.modelo;
+/*package ar.edu.unlam.tallerweb1.modelo;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.Assert.assertEquals;
@@ -66,4 +66,4 @@ public class AdminTest {
 	}
 		
 	
-}
+}*/

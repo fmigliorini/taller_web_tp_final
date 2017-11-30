@@ -1,3 +1,4 @@
+/*
 package ar.edu.unlam.tallerweb1.modelo;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -99,4 +100,4 @@ public class VehiculoTest extends SpringTest {
 
 	}
 
-}
+}*/
