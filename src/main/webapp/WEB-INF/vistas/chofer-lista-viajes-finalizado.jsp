@@ -26,10 +26,8 @@
 									<th scope="col">Origen</th>
 									<th scope="col">Destino</th>
 									<th scope="col">Kilometros</th>
-									<th scope="col">Descripción</th>
 									<th scope="col">Precio</th>
 									<th scope="col">Peso</th>
-									<th scope="col">Estado</th>
 									<th scope="col">Logs</th>
 								</tr>
 							</thead>
@@ -44,11 +42,9 @@
 										<td><c:out value="${viaje.origen}" /></td>
 										<td><c:out value="${viaje.destino}" /></td>
 										<td><c:out value="${viaje.kilometros}" /></td>
-										<td><c:out value="${viaje.descripcion}" /></td>
 										<td><c:out value="${viaje.precio}" /></td>
 										<td><c:out value="${viaje.peso}" /></td>
-										<td><c:out value="${viaje.estado}" /></td>
-										<td><c:out value="${viaje.estado}" /></td>
+										<td><a href="logViajeFinalizado/${viaje.id}">ver más</a></td>
 
 									</tr>
 								</c:forEach>
