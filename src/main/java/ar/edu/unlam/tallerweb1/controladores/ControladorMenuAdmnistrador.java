@@ -52,11 +52,7 @@ public class ControladorMenuAdmnistrador {
 	@Inject
 	private ServicioUsuario servicioUsuario;
 
-	@RequestMapping("listadoChoferes")
-	public ModelAndView irAlABMchofer() {
-		return new ModelAndView("listadoChoferes");
 
-	}
 
 	@RequestMapping("index_administrador")
 	public ModelAndView index_administrador(HttpServletRequest request) {
