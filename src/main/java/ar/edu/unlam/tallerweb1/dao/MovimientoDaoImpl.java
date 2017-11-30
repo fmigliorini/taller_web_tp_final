@@ -60,7 +60,6 @@ public class MovimientoDaoImpl implements MovimientoDao {
 	public List<Movimiento> buscarMovimientosPorTipoyEstado(TipoMovimiento tipoMovimiento,EstadoMovimiento estadoMovimiento ) {
 		final Session session = sessionFactory.getCurrentSession();
 		List<Movimiento> movimientosTipo = session.createCriteria(Movimiento.class)
-
 				.add(Restrictions.eq("estadoMovimiento", estadoMovimiento))
 				// Le digo que me traiga los Movimientos correspondiente al tipo
 				.add(Restrictions.eq("tipoMovimiento", tipoMovimiento)).list();

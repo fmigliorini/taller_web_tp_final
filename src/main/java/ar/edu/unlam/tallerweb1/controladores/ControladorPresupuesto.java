@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Movimiento;
-import ar.edu.unlam.tallerweb1.modelo.TipoMovimiento;
+
 import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Viaje;
@@ -152,15 +152,18 @@ public class ControladorPresupuesto {
 		model.put("presupuestos", listaMovimiento);
 		return new ModelAndView("cliente-lista-presupuesto", model);
 	}
-/*Este método lo haría si quiero mostrar el remito
-	@RequestMapping(path = "/verFactura/{idViaje}")
-	public ModelAndView listarPresupuestosCliente(@PathVariable("idViaje") Long idViaje) {
-		TipoMovimiento tipoMovimiento = servicioTipoMovimiento.buscarPorDescripcion("Factura");
-		Movimiento factura = servicioMovimiento.buscarMovimientosPorViaje(idViaje, tipoMovimiento.getId());
-		ModelMap model = new ModelMap();		
-		model.put("factura", factura);
-		model.put("cliente", factura.getUsuario());
-		return new ModelAndView("factura-invoice", model);
-	}*/
+	/*
+	 * Este método lo haría si quiero mostrar el remito
+	 * 
+	 * @RequestMapping(path = "/verFactura/{idViaje}") public ModelAndView
+	 * listarPresupuestosCliente(@PathVariable("idViaje") Long idViaje) {
+	 * TipoMovimiento tipoMovimiento =
+	 * servicioTipoMovimiento.buscarPorDescripcion("Factura"); Movimiento
+	 * factura = servicioMovimiento.buscarMovimientosPorViaje(idViaje,
+	 * tipoMovimiento.getId()); ModelMap model = new ModelMap();
+	 * model.put("factura", factura); model.put("cliente",
+	 * factura.getUsuario()); return new ModelAndView("factura-invoice", model);
+	 * }
+	 */
 
 }
