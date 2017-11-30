@@ -18,7 +18,6 @@ public class Viaje {
 	private Long id;
 	private String hora;
 	private String fecha;
-	private Date f;
 	private String origen;
 	private String destino;
 	private Integer kilometros;
