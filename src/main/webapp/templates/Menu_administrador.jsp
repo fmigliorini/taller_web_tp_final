@@ -56,18 +56,17 @@
         <div class="nav navbar-nav navbar-right">
             <ul class="nav navbar-nav">
                 <li><a href="listaDePresupuestosAceptados">Aceptar Presupuestos</a></li>
-                <li><a href="reportesDeViajes">ABM Chofer</a></li>
-                <li><a href="ABMVehiculo">ABM Vehiculo</a></li>
+                <li><a href="abmUsuario">ABM Usuario</a></li>
+                <li><a href="abmVehiculo">ABM Vehiculo</a></li>
                 <li><a href="contacto">Contacto</a></li> 
                  <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Informes
                     <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="InformePresupuestosAceptados">Presupuestos Aceptados</a></li>
-                        <li><a href="InformePresupuestosRechazados">Presupuestos Rechazados</a></li>
-                        <li><a href="InformePresupuestosFacturados">Presupuestos Facturados</a></li>
-                        <li><a href="InformePresupuestosEstados">Estados de Presupuesto Grafico</a></li>
+                        <li><a href="informePresupuestosFacturados">Presupuestos Facturados</a></li>
+                        <li><a href="informeViajesActivos">Viajes Activos</a></li>
+                        <li><a href="graficoDePresupuestos">Estados de Presupuesto Grafico</a></li>
                     </ul>
                  </li>              
    
