@@ -26,7 +26,7 @@ public class VehiculoDaoImpl implements VehiculoDao {
 	@Override
 	public List<Vehiculo> getAll() {
 		final Session session = sessionFactory.getCurrentSession();
-		List<Vehiculo> Vehiculos = session.createCriteria(Vehiculo.class).createAlias("chofer", null).list();
+		List<Vehiculo> Vehiculos = session.createCriteria(Vehiculo.class).list();
 		return Vehiculos;
 	}
 

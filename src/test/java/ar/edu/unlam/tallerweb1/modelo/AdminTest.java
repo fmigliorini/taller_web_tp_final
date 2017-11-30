@@ -1,8 +1,13 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.junit.Test;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +16,8 @@ import ar.edu.unlam.tallerweb1.controladores.ControladorMenuAdmnistrador;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 
 import static org.mockito.Mockito.*;
+
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -57,5 +64,6 @@ public class AdminTest {
 
 		
 	}
+		
 	
 }
