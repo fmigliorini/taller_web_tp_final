@@ -80,4 +80,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		return Usuarios;
 	}
 
+	@Override
+	public List<Usuario> listarChoferesSinVehiculo() {
+		final Session session = sessionFactory.getCurrentSession();
+		List<Usuario> Usuarios = session.createCriteria(Usuario.class).createAlias("Vehiculo", "vehiculo")
+				.add(Restrictions.eq("rol", "chofer")).add(Restrictions.eq("vehiculo", null)).list();
+		return Usuarios;
+	}
+
 }

@@ -26,5 +26,6 @@ public interface ServicioUsuario {
 	void eliminarUsuario(Usuario usuario);
 	
 	List<Usuario> usuariosRol(String rol);
+	List<Usuario>listarChoferesSinVehiculo();
 
 }
