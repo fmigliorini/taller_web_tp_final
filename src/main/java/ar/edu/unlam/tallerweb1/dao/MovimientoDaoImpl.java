@@ -103,9 +103,9 @@ public class MovimientoDaoImpl implements MovimientoDao {
 		final Session session = sessionFactory.getCurrentSession();
 		List<Movimiento> movimientosChofer = session.createCriteria(Movimiento.class)
 				// Creo el join con Usuario
-				.createAlias("Viaje", "viaje").createAlias("viaje.Chofer", "chofer")
+				.createAlias("viaje", "viaje").createAlias("viaje.vehiculo", "vehiculo").createAlias("vehiculo.chofer", "chofer")
 				// Creo el join con Tipo Movimiento
-				.createAlias("TipoMovimiento", "tipoMovimiento")
+				.createAlias("tipoMovimiento", "tipoMovimiento")
 				// Le digo que me traiga los Movimientos correspondiente al tipo
 				// 3 = Remito
 				.add(Restrictions.eq("tipoMovimiento.id", 3)).add(Restrictions.eq("chofer.id", idChofer))
@@ -113,6 +113,18 @@ public class MovimientoDaoImpl implements MovimientoDao {
 				.list();
 		return movimientosChofer;
 	}
+	
+	// Trae los remitos para los choferes
+/*	@Override
+	public List<Movimiento> buscarMovimientosParaChofer(Usuario chofer , TipoMovimeinto tm) {
+		final Session session = sessionFactory.getCurrentSession();
+		List<Movimiento> movimientosChofer = session.createCriteria(Movimiento.class)
+				.createAlias("viaje", "viaje").createAlias("viaje.Chofer", "chofer")
+				.add(Restrictions.eq("tipoMovimiento", tm)).add(Restrictions.eq("chofer", chofer))
+
+				.list();
+		return movimientosChofer;
+	}*/
 
 	public long getLastNumber() {
 
