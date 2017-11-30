@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +31,10 @@ public class ControladorMenuChofer {
 	public ModelAndView irAlaListaDeViajesArealizar(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
 		Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
+		Viaje viajeEnProceso = servicioViaje.buscarViajeEnProceso(chofer);
+		if (viajeEnProceso != null) {
+			return new ModelAndView("redirect:/viajeEnProceso");
+		}
 		ModelMap model = new ModelMap();
 		List<Viaje> listaViajeActivo = servicioViaje.listarViajesActivos(chofer);
 		model.put("listaViajeActivo", listaViajeActivo);
@@ -39,23 +44,26 @@ public class ControladorMenuChofer {
 
 	@RequestMapping(path = "activarViaje", method = RequestMethod.POST)
 	public ModelAndView activarViaje(@RequestParam("idViaje") Long idViaje, HttpServletRequest request) {
-		// Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
+		// Long idUsuario = (Long)
+		// request.getSession().getAttribute("idUsuario");
 		Viaje viaje = servicioViaje.buscarViajePorId(idViaje);
 		viaje.setEstado("En proceso");
 		servicioViaje.viajeActualizadoEnProceso(viaje);
-		return new ModelAndView("redirect:/viajeActivo");
+		return new ModelAndView("redirect:/viajeEnProceso");
 	}
-	
-	// Luego de iniciar el viaje llega a este lugar.
-	@RequestMapping(path = "viajeActivo", method = RequestMethod.POST)
-	public ModelAndView irAlMenuDeViajeActivo(@ModelAttribute("viaje") Viaje viaje, HttpServletRequest request) {
+
+	@RequestMapping(path = "viajeEnProceso")
+	public ModelAndView irAlMenuDeViajeActivo(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
-		Viaje viajeEnProceso = servicioViaje.buscarViajePorId(viaje.getId());
-		ModelMap model = new ModelMap();
-		viajeEnProceso.setEstado("En proceso");
-		servicioViaje.viajeActualizadoEnProceso(viajeEnProceso);
-		model.put("viajeEnProceso", viajeEnProceso);
-		return new ModelAndView("menu_chofer_viajeActivo", model);
+		Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
+		Viaje viajeEnProceso = servicioViaje.buscarViajeEnProceso(chofer);
+		if (viajeEnProceso != null) {
+			ModelMap model = new ModelMap();
+			model.put("viajeEnProceso", viajeEnProceso);
+			return new ModelAndView("chofer-viaje-en-proceso", model);
+		} else {
+			return new ModelAndView("redirect:/listaDeViajesActivos");
+		}
 	}
 
 	// Con seguridad

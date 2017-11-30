@@ -2,7 +2,6 @@
 	pageEncoding="ISO-8859-1"%>
 <%@include file='../../templates/Menu_chofer.jsp'%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,11 +43,11 @@
 										<td><c:out value="${viaje.precio}" /></td>
 										<td><c:out value="$ ${viaje.peso}" /></td>
 										<td><c:out value="${viaje.estado}" /></td>
-										<td><form:form role="form" action="activarViaje"
-												method="POST" name="comenzarViaje">
-												<form:input type="hidden" path="id" value="${viaje.id}" />
-												<form:button class="btn btn-success">Iniciar</form:button>
-											</form:form></td>
+										<td><form action="activarViaje" method="POST"
+												name="comenzarViaje">
+												<input type="hidden" name="idViaje" value="${viaje.id}" />
+												<button class="btn btn-success">Iniciar</button>
+											</form></td>
 
 									</tr>
 								</c:forEach>
