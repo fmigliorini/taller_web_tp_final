@@ -24,7 +24,7 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioViaje;
 public class PresupuestoMockito {
 
 	@Test
-	public void generacionDePresupuesto() {
+	public void validarQueSeGenereUnViajeAlGenerarPresupuesto() {
 
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		Viaje viaje = mock(Viaje.class);
@@ -64,12 +64,11 @@ public class PresupuestoMockito {
 		when(request.getSession()).thenReturn(sessionMock);
 		when(request.getSession().getAttribute("idUsuario")).thenReturn(1l);
 		
-		when(movimiento.getId()).thenReturn(1l);
-		
+			
 		ModelAndView mav = controlador.generarPresupuesto(viaje,request);
 		
-		
-		assertThat(mav.getViewName()).isEqualTo("redirect:/verPresupuesto/1");
+		// servicioViaje.guardarViaje(viaje);
+		verify(servicioViaje, times(1)).guardarViaje(viaje);
 
 	}
 
