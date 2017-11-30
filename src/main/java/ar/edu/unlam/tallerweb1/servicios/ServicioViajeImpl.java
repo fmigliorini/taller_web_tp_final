@@ -35,8 +35,7 @@ public	List<Viaje>listarViajesAct(){
 	public List<Viaje> buscarViajesDeChoferId(Long id) {
 		return viajeDao.buscarViajesDeChoferId(id);
 	}
-	
-	@Override
+
 @Override
 	public void ActualizarViaje(Viaje viaje){
 
@@ -50,12 +49,6 @@ public	List<Viaje>listarViajesAct(){
 		return viajeDao.listarViajesActivos(chofer);
 	}
 
-	// actualiza el estado de viaje
-  @Override
-	public void viajeActualizadoEnProceso(Viaje viaje) {
-		viajeDao.viajeActualizadoEnProceso(viaje);
-		viajeDao.guardarViaje(viaje);
-	}
 
 	//actualiza el estado de viaje
 	@Override
