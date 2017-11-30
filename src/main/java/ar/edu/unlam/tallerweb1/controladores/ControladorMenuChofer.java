@@ -35,7 +35,7 @@ public class ControladorMenuChofer {
 	@Inject 
 	ServicioMovimiento servicioMovimiento;
 	@Inject 
-	ServicioTipoMovimientoImpl servicioTipoMovimientoImpl;
+	ServicioTipoMovimiento servicioTipoMovimiento;
 	@RequestMapping(path = "listaDeViajesActivos")
 	public ModelAndView irAlaListaDeViajesArealizar(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
