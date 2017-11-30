@@ -52,8 +52,6 @@ public class ControladorMenuAdmnistrador {
 	@Inject
 	private ServicioUsuario servicioUsuario;
 
-
-
 	@RequestMapping("index_administrador")
 	public ModelAndView index_administrador(HttpServletRequest request) {
 
@@ -226,6 +224,8 @@ public class ControladorMenuAdmnistrador {
 		}
 	}
 
+	// Informes///
+
 	@RequestMapping("reportesDeViajes")
 	public ModelAndView irAreportesDeViajes() {
 		return new ModelAndView("reportesDeViajes");
@@ -297,7 +297,7 @@ public class ControladorMenuAdmnistrador {
 		ModelMap model = new ModelMap();
 		if (idUsuario != null) {
 			if (servicioUsuario.buscarPorId(idUsuario).getRol().equals("admin")) {
-	    		model.put("viajes", servicioViaje.listarViajesAct());
+				model.put("viajes", servicioViaje.listarViajesAct());
 				return new ModelAndView("informeViajesActivos", model);
 			} else {
 				model.put("tipo", "danger");
@@ -311,6 +311,10 @@ public class ControladorMenuAdmnistrador {
 		}
 
 	}
+
+	// ---------------//
+
+	// ABM USUARIO //
 
 	@RequestMapping("abmUsuario")
 	public ModelAndView abmUsuario(HttpServletRequest request) {
@@ -453,7 +457,9 @@ public class ControladorMenuAdmnistrador {
 			return new ModelAndView("redirect:/login");
 		}
 	}
+	/// -----------///
 
+	// ABM VEHICULO
 	@RequestMapping("abmVehiculo")
 	public ModelAndView abmVehiculo(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
@@ -473,8 +479,6 @@ public class ControladorMenuAdmnistrador {
 			return new ModelAndView("redirect:/login");
 		}
 	}
-
-
 
 	@RequestMapping("agregarVehiculo")
 	public ModelAndView agregarVehiculo(HttpServletRequest request) {
@@ -503,20 +507,17 @@ public class ControladorMenuAdmnistrador {
 		ModelMap model = new ModelMap();
 		if (idAdmin != null) {
 			if (servicioUsuario.buscarPorId(idAdmin).getRol().equals("admin")) {
-				try{
-				servicioVehiculo.guardarVehiculo(vehiculo);
-			
-				model.put("tipo", "success");
-				model.put("titulo", "Creacion Exitosa");
-				model.put("mensaje",
-						String.format("Se ah creado el usuario con el id %d de manera exitosa", vehiculo.getId()));
-				}
-				catch(Exception e)
-				{
+				try {
+					servicioVehiculo.guardarVehiculo(vehiculo);
+
+					model.put("tipo", "success");
+					model.put("titulo", "Creacion Exitosa");
+					model.put("mensaje",
+							String.format("Se ah creado el usuario con el id %d de manera exitosa", vehiculo.getId()));
+				} catch (Exception e) {
 					model.put("tipo", "danger");
 					model.put("titulo", "Creacion Fallida");
-					model.put("mensaje",
-							String.format("No se ah podido crear el vehiculo"));
+					model.put("mensaje", String.format("No se ah podido crear el vehiculo"));
 				}
 				return new ModelAndView("notificacionGestion", model);
 			} else {
@@ -532,7 +533,6 @@ public class ControladorMenuAdmnistrador {
 
 	}
 
-	
 	@RequestMapping(path = "/actualizarVehiculo", method = RequestMethod.POST)
 	public ModelAndView actualizarVehiculo(@ModelAttribute("Vehiculo") Vehiculo vehiculo, HttpServletRequest request) {
 
@@ -590,20 +590,18 @@ public class ControladorMenuAdmnistrador {
 		if (idAdmin != null) {
 			if (servicioUsuario.buscarPorId(idAdmin).getRol().equals("admin")) {
 				Vehiculo vehiculo = servicioVehiculo.buscarPorId(idVehiculo);
-			
-				try{servicioVehiculo.eliminarVehiculo(vehiculo);
-				model.put("tipo", "success");
-				model.put("titulo", "Eliminacion Exitosa");
-				model.put("mensaje","El vehiculo con   se a eliminado de manera exitosa");
-				}
-				catch (Exception e)
-				{
+
+				try {
+					servicioVehiculo.eliminarVehiculo(vehiculo);
+					model.put("tipo", "success");
+					model.put("titulo", "Eliminacion Exitosa");
+					model.put("mensaje", "El vehiculo con   se a eliminado de manera exitosa");
+				} catch (Exception e) {
 					model.put("tipo", "dangar");
 					model.put("titulo", "Eliminacion Canceñada");
 					model.put("mensaje",
 							String.format("El vehiculo con el id %d  no pudo eliminarse", vehiculo.getId()));
-			
-					
+
 				}
 				return new ModelAndView("notificacionGestion", model);
 			} else {
