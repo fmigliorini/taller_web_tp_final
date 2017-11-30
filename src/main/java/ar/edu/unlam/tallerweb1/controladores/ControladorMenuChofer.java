@@ -34,6 +34,7 @@ public class ControladorMenuChofer {
 	ServicioLogViaje servicioLogViaje;
 	@Inject
 	ServicioMovimiento servicioMovimiento;
+
 	@Inject
 	ServicioTipoMovimiento servicioTipoMovimiento;
 
@@ -91,7 +92,7 @@ public class ControladorMenuChofer {
 				modelo.put("mensaje", String.format("El viaje fue completado."));
 			} else {
 				modelo.put("tipo", "danger");
-				modelo.put("titulo", "No tiene autorización");
+				modelo.put("titulo", "No tiene autorizaciÃ³n");
 				modelo.put("mensaje", String.format("Entrar con rol chofer."));
 			}
 			return new ModelAndView("chofer-viaje-finalizado", modelo);
@@ -126,7 +127,7 @@ public class ControladorMenuChofer {
 				return new ModelAndView("chofer-lista-remitos", modelo);
 			} else {
 				modelo.put("tipo", "danger");
-				modelo.put("titulo", "No tiene autorización");
+				modelo.put("titulo", "No tiene autorizaciÃ³n");
 				modelo.put("mensaje", String.format("Entrar con rol chofer."));
 				return new ModelAndView("notificacionGestion", modelo);
 			}
@@ -134,7 +135,7 @@ public class ControladorMenuChofer {
 			return new ModelAndView("redirect:/login");
 		}
 	}
-	// Este m�todo lo har�a si quiero mostrar los remitos
+	// Este método lo haría si quiero mostrar los remitos
 	/*
 	 * @RequestMapping(path = "/verRemito/{idRemito}") public ModelAndView
 	 * verRemito(@PathVariable("idRemito") Long idRemito, HttpServletRequest
