@@ -31,7 +31,15 @@ public class MovimientoDaoImpl implements MovimientoDao {
 	}
 
 	@Override
-	public Movimiento buscarIdMovimiento(Long idMovimiento) {
+	public Movimiento actualizarMovimiento(Movimiento movimiento){
+		
+		final Session session = sessionFactory.getCurrentSession();
+		session.update(movimiento);
+		return movimiento;
+	}
+	
+	@Override
+	public Movimiento buscarIdMovimiento(Long idMovimiento){
 		final Session session = sessionFactory.getCurrentSession();
 		return (Movimiento) session.createCriteria(Movimiento.class).add(Restrictions.eq("id", idMovimiento))
 				.uniqueResult();
@@ -47,6 +55,18 @@ public class MovimientoDaoImpl implements MovimientoDao {
 				.add(Restrictions.eq("tipoMovimiento.id", idTipoMovimiento)).list();
 		return movimientosTipo;
 	}
+	
+	@Override
+	public List<Movimiento> buscarMovimientosPorTipoyEstado(TipoMovimiento tipoMovimiento,EstadoMovimiento estadoMovimiento ) {
+		final Session session = sessionFactory.getCurrentSession();
+		List<Movimiento> movimientosTipo = session.createCriteria(Movimiento.class)
+
+				.add(Restrictions.eq("estadoMovimiento", estadoMovimiento))
+				// Le digo que me traiga los Movimientos correspondiente al tipo
+				.add(Restrictions.eq("tipoMovimiento", tipoMovimiento)).list();
+		return movimientosTipo;
+	}
+	
 
 	// Trae todos los movimientos del usuario
 	@Override

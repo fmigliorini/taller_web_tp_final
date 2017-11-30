@@ -13,8 +13,7 @@
 	    <link href="css/bootstrap-new.min.css" rel="stylesheet" >
 	    <!-- Bootstrap theme -->
 	    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-	       <link rel="stylesheet" href="${pageContext.request.contextPath}/csss/style.css"/>
-
+	       <link rel="stylesheet" href="/css/style.css"/>
 	</head>
 	<style>
 	body {

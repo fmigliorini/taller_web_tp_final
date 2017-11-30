@@ -50,14 +50,13 @@ public class ViajeDaoImpl implements ViajeDao {
 	}
 	
 
-	
+	// Se utiliza para  agregar el chofer 
 	public void ActualizarViaje(Viaje viaje) {
+	
 		final Session session = sessionFactotry.getCurrentSession();
-		session.beginTransaction();
 		session.update(viaje);
-		session.getTransaction().commit();
-		session.close();
-	}
+  }
+
 
 
 	@Override
