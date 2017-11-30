@@ -147,14 +147,15 @@ public class ViajeTest extends SpringTest {
 		
 		for(Viaje viajesTerminado :listarViajesTerminados ){
 			assertEquals("chofer",viajesTerminado.getVehiculo().getChofer().getRol());
-			assertEquals("terminado",viajesTerminado);
+			assertEquals("terminado",viajesTerminado.getEstado());
 			
 		}
 	}
 	@Test
 	@Transactional
 	@Rollback(true)
-	public void testQuelisteLogDeViajesEnProceso() {
+	public void testQuelisteLogDeViajeEnProcesoDeUnSoloViaje() {
+    //En otras Palabras va a testear que el log sea de un solo viaje (en este caso chofer, un viaje se le asigna un solo chofer)
 		
 		Usuario chofer1;
 		Usuario chofer2;
