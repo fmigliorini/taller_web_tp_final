@@ -33,39 +33,33 @@ body {
 		<div class="row color-invoice">
 			<div class="col-md-12">
 
-
-				<h1>${viajeEnProceso.vehiculo.chofer.nombre}se encuentra en el
-					siguiente recorrido:</h1>
+                <br>
+				<h2>${viajeEnProceso.vehiculo.chofer.nombre} se encuentra en el
+					siguiente recorrido:</h2>
+					<br>
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th scope="col">Id viaje</th>
 							<th scope="col">Hora</th>
 							<th scope="col">Fecha</th>
 							<th scope="col">Origen</th>
 							<th scope="col">Destino</th>
-							<th scope="col">Kilometros</th>
-							<th scope="col">Descripción</th>
+							<th scope="col">KM</th>
 							<th scope="col">Precio</th>
 							<th scope="col">Peso</th>
 							<th scope="col">Estado</th>
-							<th scope="col">Tipo de vehículo</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td><c:out value="${viajeEnProceso.id}" /></td>
 							<td><c:out value="${viajeEnProceso.hora}" /></td>
 							<td><c:out value="${viajeEnProceso.fecha}" /></td>
 							<td><c:out value="${viajeEnProceso.origen}" /></td>
 							<td><c:out value="${viajeEnProceso.destino}" /></td>
 							<td><c:out value="${viajeEnProceso.kilometros}" /></td>
-							<td><c:out value="${viajeEnProceso.descripcion}" /></td>
-							<td><c:out value="${viajeEnProceso.precio}" /></td>
+							<td><c:out value="$ ${viajeEnProceso.precio}" /></td>
 							<td><c:out value="${viajeEnProceso.peso}" /></td>
 							<td><c:out value="${viajeEnProceso.estado}" /></td>
-							<td><c:out
-									value="${viajeEnProceso.tipoVehiculo.descripcion}" /></td>
 						</tr>
 					</tbody>
 				</table>
