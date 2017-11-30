@@ -49,7 +49,7 @@ public class ViajeDaoImpl implements ViajeDao {
 		return viajesChofer ;
 	}
 	
-	
+	// Se utiliza para  agregar el chofer 
 	public Viaje ActualizarViaje(Viaje viaje) {
 	
 		final Session session = sessionFactotry.getCurrentSession();
