@@ -31,10 +31,10 @@
 
 									<tr>
 
-										<td><c:out value="${viaje.id}" /></td>
-										<td><c:out value="${viaje.hora}" /></td>
-										<td><c:out value="${viaje.tipoLogViaje}" /></td>
-										<td><c:out value="${viaje.fecha}" /></td>
+										<td><c:out value="${Log.id}" /></td>
+										<td><c:out value="${Log.tipoLogViaje}" /></td>
+										<td><c:out value="${Log.tipoLogViaje}" /></td>
+										<td><c:out value="${Log.fecha}" /></td>
 										
 									</tr>
 								</c:forEach>
