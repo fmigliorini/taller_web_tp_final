@@ -25,22 +25,14 @@
 						placeholder="patente">
 				</div>
 		
-			<div class="form-group col-md-12">
-				<label for="chofer">Chofer</label> <select
-					name="chofer" id="chofer" class="form-group ">
-					<c:forEach items="${lisChofer}" var="c">
-						<option value="${c.getId()}">${c.getNombre()}</option>
-					</c:forEach>
-				</select>
-			</div>
 
 			<div class="form-group col-md-12">
 				<label for="tipovehiculo">Tipo del Vehiculo</label> <select
 					name="tipovehiculo" id="tipovehiculo" class="form-group ">
-					<c:forEach items="${lisTipovehiculos}" var="vehiculo">
-						<option value="${vehiculo.getId()}">${vehiculo.getDescripcion()}</option>
-					</c:forEach>
-				</select>
+						<option value="1">Furgoneta</option>
+						<option value="2">Camioneta</option>
+						<option value="3">Camion</option>
+						</select>
 			</div>
 			<input type="submit" class="btn btn-primary" value="Guardar Vehiculo">
 	</form>

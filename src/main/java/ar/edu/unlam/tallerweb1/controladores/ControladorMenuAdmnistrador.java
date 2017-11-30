@@ -478,16 +478,17 @@ public class ControladorMenuAdmnistrador {
 		}
 	}
 
-	@RequestMapping("altaVehiculo")
-	public ModelAndView altaVehiculo(HttpServletRequest request) {
+
+
+	@RequestMapping("agregarVehiculo")
+	public ModelAndView agregarVehiculo(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
 		ModelMap model = new ModelMap();
 		if (idUsuario != null) {
 			if (servicioUsuario.buscarPorId(idUsuario).getRol().equals("admin")) {
 				Vehiculo vehiculo = new Vehiculo();
-				model.put("lisTipovehiculos", servicioTipoVehiculo.listarTiposVehiculos());
 				model.put("Vehiculo", vehiculo);
-				return new ModelAndView("altaVehiculo", model);
+				return new ModelAndView("agregarVehiculo", model);
 			} else {
 				model.put("tipo", "danger");
 				model.put("titulo", "Acceso denegado");
@@ -500,6 +501,42 @@ public class ControladorMenuAdmnistrador {
 		}
 	}
 
+	@RequestMapping(path = "/guardarVehiculo", method = RequestMethod.POST)
+	public ModelAndView guardarVehiculo(@ModelAttribute("Vehiculo") Vehiculo vehiculo, HttpServletRequest request) {
+		Long idAdmin = (Long) request.getSession().getAttribute("idUsuario");
+		ModelMap model = new ModelMap();
+		if (idAdmin != null) {
+			if (servicioUsuario.buscarPorId(idAdmin).getRol().equals("admin")) {
+				try{
+				servicioVehiculo.guardarVehiculo(vehiculo);
+			
+				model.put("tipo", "success");
+				model.put("titulo", "Creacion Exitosa");
+				model.put("mensaje",
+						String.format("Se ah creado el usuario con el id %d de manera exitosa", vehiculo.getId()));
+				}
+				catch(Exception e)
+				{
+					model.put("tipo", "danger");
+					model.put("titulo", "Creacion Fallida");
+					model.put("mensaje",
+							String.format("No se ah podido crear el vehiculo"));
+				}
+				return new ModelAndView("notificacionGestion", model);
+			} else {
+				model.put("tipo", "danger");
+				model.put("titulo", "Acceso denegado");
+				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
+
+				return new ModelAndView("notificacionGestion", model);
+			}
+		} else {
+			return new ModelAndView("redirect:/login");
+		}
+
+	}
+
+	
 	@RequestMapping(path = "/actualizarVehiculo", method = RequestMethod.POST)
 	public ModelAndView actualizarVehiculo(@ModelAttribute("Vehiculo") Vehiculo vehiculo, HttpServletRequest request) {
 
@@ -557,11 +594,21 @@ public class ControladorMenuAdmnistrador {
 		if (idAdmin != null) {
 			if (servicioUsuario.buscarPorId(idAdmin).getRol().equals("admin")) {
 				Vehiculo vehiculo = servicioVehiculo.buscarPorId(idVehiculo);
-				servicioVehiculo.eliminarVehiculo(vehiculo);
+			
+				try{servicioVehiculo.eliminarVehiculo(vehiculo);
 				model.put("tipo", "success");
 				model.put("titulo", "Eliminacion Exitosa");
-				model.put("mensaje",
-						String.format("El vehiculo con el id %d  se a eliminado de manera exitosa", vehiculo.getId()));
+				model.put("mensaje","El vehiculo con   se a eliminado de manera exitosa");
+				}
+				catch (Exception e)
+				{
+					model.put("tipo", "dangar");
+					model.put("titulo", "Eliminacion Canceñada");
+					model.put("mensaje",
+							String.format("El vehiculo con el id %d  no pudo eliminarse", vehiculo.getId()));
+			
+					
+				}
 				return new ModelAndView("notificacionGestion", model);
 			} else {
 				model.put("tipo", "danger");
