@@ -34,6 +34,11 @@ public class ServicioViajeImpl implements ServicioViaje {
 
 		return viajeDao.buscarViajesDeChoferId(id);
 	}
+
+	public void ActualizarViaje(Viaje viaje){
+
+		viajeDao.ActualizarViaje(viaje);
+  }
 	
 	@Override
 	public List<Viaje> listarViajesActivos(Usuario chofer) {
@@ -53,5 +58,6 @@ public class ServicioViajeImpl implements ServicioViaje {
 	public List<Viaje> listarViajesTerminados(Usuario chofer) {
 			
 			return viajeDao.listarViajesTerminados(chofer);
+
 	}
 }

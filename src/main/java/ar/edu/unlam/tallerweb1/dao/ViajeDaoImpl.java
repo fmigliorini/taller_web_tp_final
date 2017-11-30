@@ -49,6 +49,17 @@ public class ViajeDaoImpl implements ViajeDao {
 		return viajesChofer ;
 	}
 	
+
+	
+	public void ActualizarViaje(Viaje viaje) {
+		final Session session = sessionFactotry.getCurrentSession();
+		session.beginTransaction();
+		session.update(viaje);
+		session.getTransaction().commit();
+		session.close();
+	}
+
+
 	@Override
 	public List<Viaje> listarViajesActivos(Usuario chofer) {
 		final Session session = sessionFactotry.getCurrentSession();
@@ -64,7 +75,7 @@ public class ViajeDaoImpl implements ViajeDao {
 		return viajesActivos;
 	}
    
-	//Viaje en proceso es la actualización de viajeActivo a viajeEnProceso.
+	//Viaje en proceso es la actualizaciÃ³n de viajeActivo a viajeEnProceso.
 		@Override
 		public void viajeActualizadoEnProceso(Viaje viaje) {
 			final Session session = sessionFactotry.getCurrentSession();
@@ -83,6 +94,5 @@ public class ViajeDaoImpl implements ViajeDao {
 					.list();
 			return viajesTerminados;
 		}
-	
 	
 }
