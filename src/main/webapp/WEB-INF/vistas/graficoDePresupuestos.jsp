@@ -21,15 +21,15 @@
 		var data = new google.visualization.DataTable();
 		data.addColumn('string', 'Estado');
 		data.addColumn('number', 'Cantidad de presupuesto por estado');
-		data.addRows([ [ 'Activo', document.getElementById('activo') ],
-				[ 'Aceptado', document.getElementById('aceptado') ],
-				[ 'Reachazado', document.getElementById('rechazado') ],
-				[ 'Vencido', document.getElementById('vencido') ],
-				[ 'Facturado', document.getElementById('facturado') ] ]);
+		data.addRows([ [ 'Activo', ${activo} ],
+				[ 'Aceptado', ${aceptado} ],
+				[ 'Reachazado', ${rechazado} ],
+				[ 'Vencido', ${vencido} ],
+				[ 'Facturado', ${facturado} ] ]);
 		var options = {
 			'title' : 'Presupuestos realizados por estados',
-			'width' : 400,
-			'height' : 300
+			'width' : 450,
+			'height' : 400
 		};
 		var chart = new google.visualization.PieChart(document
 				.getElementById('chart_div1'));
@@ -40,18 +40,9 @@
 </head>
 <body>
 
-	<div class="content-wrapper" style="margin-top:60px">
+	<div class="content-wrapper" style="margin-top: 60px">
 
 		<h1>Bienvenido a Graficos</h1>
-
-		<br> <input type="hidden" name="idMovimiento" id="activo"
-			value="${activo}"> <input type="hidden" name="idMovimiento"
-			id="aceptado" value="${aceptado}"> <input type="hidden"
-			name="idMovimiento" id="rechazado" value="${rechazado}"> <input
-			type="hidden" name="idMovimiento" id="vencido" value="${vencido}">
-		<input type="hidden" name="idMovimiento" id="facturado"
-			value="${facturado}">
-
 
 		<div class="container">
 			<div class="col-sm-10 no-gutter">
