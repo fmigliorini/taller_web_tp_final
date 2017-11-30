@@ -50,12 +50,6 @@ public class ViajeDaoImpl implements ViajeDao {
 				.createAlias("vehiculo", "veh").createAlias("veh.chofer", "ch").createAlias("ch.usuario", "us")
 				.add(Restrictions.eq("us.id", idChofer)).list();
 
-										// Creo el join con usuario/chofer
-										.createAlias("vehiculo", "veh")
-										.createAlias("veh.chofer", "ch")
-										.createAlias("ch.usuario", "us")
-										.add(Restrictions.eq("us.id", idChofer))
-										.list();
 
 		return viajesChofer;
 	}

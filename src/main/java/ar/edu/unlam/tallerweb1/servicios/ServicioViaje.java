@@ -19,9 +19,7 @@ public interface ServicioViaje {
 	List<Viaje>listarViajesActivos(Usuario chofer);
     //viaje en proceso es cuando el chofer esta en camino
  	void viajeActualizadoEnProceso(Viaje viaje);
-    //lista viajes hechos
-  	List<Viaje>listarViajesTerminados(Usuario chofer);
-
+   
 	// lista viajes hechos
 	List<Viaje> listarViajesTerminados(Usuario chofer);
 
