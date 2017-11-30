@@ -40,8 +40,8 @@
 										<td><c:out value="${viaje.origen}" /></td>
 										<td><c:out value="${viaje.destino}" /></td>
 										<td><c:out value="${viaje.kilometros}" /></td>
-										<td><c:out value="${viaje.precio}" /></td>
-										<td><c:out value="$ ${viaje.peso}" /></td>
+										<td><c:out value="$ ${viaje.precio}" /></td>
+										<td><c:out value="${viaje.peso}" /></td>
 										<td><c:out value="${viaje.estado}" /></td>
 										<td><form action="activarViaje" method="POST"
 												name="comenzarViaje">

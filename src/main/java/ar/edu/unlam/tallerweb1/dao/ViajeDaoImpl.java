@@ -70,7 +70,7 @@ public class ViajeDaoImpl implements ViajeDao {
 				.createAlias("vehiculo", "veh").createAlias("veh.chofer", "ch")
 
 				.add(Restrictions.eq("ch.id", chofer.getId())).add(Restrictions.eq("ch.rol", "chofer"))
-				.addOrder(Order.asc("f")).list();
+				.list();
 		return viajesActivos;
 	}
 
