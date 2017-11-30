@@ -30,7 +30,7 @@
 				<div class="form-group col-md-12">
 					<label for="chofer">Chofer</label> <select name="chofer"
 						 id="chofer" class="form-group ">
-						<c:forEach items="${lisChofer}" var="c">
+						<c:forEach items="${listChofer}" var="c">
 							<option value="${c.getId()}">${c.getNombre()}</option>
 						</c:forEach>
 					</select>

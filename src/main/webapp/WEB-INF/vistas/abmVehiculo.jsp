@@ -43,8 +43,8 @@
 										<td><c:out value="${c.marca}" /></td>
 										<td><c:out value="${c.modelo}" /></td>
 										<td><c:out value="${c.chofer.nombre}" /></td>
-										<td><c:out value="${c.tipovehiculo.descripcion}" /></td>
-										<td><c:out value="${c.email}" /></td>
+										<td><c:out value="${c.tipoVehiculo.descripcion}" /></td>
+								
 										<td><c:out value="" /><a class="btn btn-default btn-circle"
 											href="${pageContext.request.contextPath}/modificarVehiculo?idVehiculo=${c.getId()}"><span
 												class="glyphicon glyphicon-pencil"></span></a></td>
