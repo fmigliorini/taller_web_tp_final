@@ -125,17 +125,23 @@ public class ControladorPresupuesto {
 		if (idUsuario != null) {
 			ModelMap modelMap = new ModelMap();
 			Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
-			modelMap.put("presupuesto", presupuesto);
-			modelMap.put("cliente", presupuesto.getUsuario());
-			modelMap.put("factura", servicioMovimiento.buscarMovimientosPorViaje(presupuesto.getViaje().getId(),
-					servicioTipoMovimiento.buscarPorDescripcion("Factura").getId()));
-			return new ModelAndView("presupuesto-invoice", modelMap);
+			if (presupuesto != null) {
+				modelMap.put("presupuesto", presupuesto);
+				modelMap.put("cliente", presupuesto.getUsuario());
+				modelMap.put("factura", servicioMovimiento.buscarMovimientosPorViaje(presupuesto.getViaje().getId(),
+						servicioTipoMovimiento.buscarPorDescripcion("Factura").getId()));
+				return new ModelAndView("presupuesto-invoice", modelMap);
+			} else {
+				// ENVIAR UN ERROR, NO AL LOGIN, QUIZÁS A LA VISTA DE LISTADO DE PRESUPUESTO.
+				return new ModelAndView("redirect:/login");
+			}
 		}
 		return new ModelAndView("redirect:/login");
 	}
 
 	@RequestMapping(path = "/aceptarPresupuesto")
-	public ModelAndView aceptarPresupuesto(@RequestParam("idPresupuesto") Long idPresupuesto, HttpServletRequest request) {
+	public ModelAndView aceptarPresupuesto(@RequestParam("idPresupuesto") Long idPresupuesto,
+			HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
 		if (idUsuario != null) {
 			Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
@@ -148,7 +154,8 @@ public class ControladorPresupuesto {
 	}
 
 	@RequestMapping(path = "/rechazarPresupuesto")
-	public ModelAndView rechazarPresupuesto(@RequestParam("idPresupuesto") Long idPresupuesto, HttpServletRequest request) {
+	public ModelAndView rechazarPresupuesto(@RequestParam("idPresupuesto") Long idPresupuesto,
+			HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
 		if (idUsuario != null) {
 			Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
