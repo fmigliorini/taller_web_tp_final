@@ -68,122 +68,125 @@ public class ControladorPresupuesto {
 
 	@RequestMapping(path = "/generarPresupuesto", method = RequestMethod.POST)
 	public ModelAndView generarPresupuesto(@ModelAttribute("viaje") Viaje viaje, HttpServletRequest request) {
-
-		// GENERACION DE UN VIAJE
-		TipoVehiculo tv = servicioTipoVehiculo.buscarPorPesoMaximo(viaje.getPeso());
-
-		if (tv == null) {
-			// No poseemos un vehiculo que permita llevar dicha carga.
-			ModelMap modeMapError = new ModelMap();
-			modeMapError.put("viaje", viaje);
-			modeMapError.put("error", "No existe un vehiculo disponible para ese peso");
-			return new ModelAndView("presupuestoForm", modeMapError);
-		}
-
-		viaje.setTipoVehiculo(tv);
-		viaje.setPrecio(tv.getPrecio() * viaje.getKilometros());
-		servicioViaje.guardarViaje(viaje);
-
-		// GENERACION DE UN MOVIMIENTO DE TIPO PRESUPUESTO
-		Movimiento movimiento = new Movimiento();
-
-		// seteo el tipo de movimiento
-		movimiento.setTipoMovimiento(servicioTipoMovimiento.buscarPorDescripcion("Presupuesto"));
-
-		// Seteo el estado del movimiento
-		movimiento.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Activo"));
-
-		// seteo la fecha del presupuesto
-		final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		movimiento.setFecha_hora(sdf.format(date));
-
-		// Seteo la fecha de vencimiento del presupuesto
-		Calendar c = Calendar.getInstance();
-		c.setTime(date);
-		c.add(Calendar.DATE, 1);
-		movimiento.setFecha_vencimiento(sdf.format(c.getTime()));
-		movimiento.setNumeroMovimiento(0001L);
-		// seteo el viaje
-		movimiento.setViaje(viaje);
-
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
-		Usuario usuario = servicioUsuario.buscarPorId(idUsuario);
-		// seteo el cliente
-		movimiento.setUsuario(usuario);
-		servicioMovimiento.guardarMovimiento(movimiento);
+		if (idUsuario != null) {
+			// GENERACION DE UN VIAJE
+			TipoVehiculo tv = servicioTipoVehiculo.buscarPorPesoMaximo(viaje.getPeso());
 
-		return new ModelAndView("redirect:/verPresupuesto/" + movimiento.getId());
+			if (tv == null) {
+				// No poseemos un vehiculo que permita llevar dicha carga.
+				ModelMap modelMapError = new ModelMap();
+				modelMapError.put("viaje", viaje);
+				modelMapError.put("error", "No existe un vehiculo disponible para ese peso");
+				return new ModelAndView("presupuestoForm", modelMapError);
+			}
+
+			viaje.setTipoVehiculo(tv);
+			viaje.setPrecio(tv.getPrecio() * viaje.getKilometros());
+			servicioViaje.guardarViaje(viaje);
+
+			// GENERACION DE UN MOVIMIENTO DE TIPO PRESUPUESTO
+			Movimiento movimiento = new Movimiento();
+
+			// seteo el tipo de movimiento
+			movimiento.setTipoMovimiento(servicioTipoMovimiento.buscarPorDescripcion("Presupuesto"));
+
+			// Seteo el estado del movimiento
+			movimiento.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Activo"));
+
+			// seteo la fecha del presupuesto
+			final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date date = new Date();
+			movimiento.setFecha_hora(sdf.format(date));
+
+			// Seteo la fecha de vencimiento del presupuesto
+			Calendar c = Calendar.getInstance();
+			c.setTime(date);
+			c.add(Calendar.DATE, 1);
+			movimiento.setFecha_vencimiento(sdf.format(c.getTime()));
+			movimiento.setNumeroMovimiento(0001L);
+			// seteo el viaje
+			movimiento.setViaje(viaje);
+
+			Usuario usuario = servicioUsuario.buscarPorId(idUsuario);
+			// seteo el cliente
+			movimiento.setUsuario(usuario);
+			servicioMovimiento.guardarMovimiento(movimiento);
+
+			return new ModelAndView("redirect:/verPresupuesto/" + movimiento.getId());
+		}
+		return new ModelAndView("redirect:/login");
+
 	}
 
 	@RequestMapping(path = "/verPresupuesto/{idPresupuesto}")
 	public ModelAndView verPresupuesto(@PathVariable("idPresupuesto") Long idPresupuesto, HttpServletRequest request) {
-		ModelMap modelMap = new ModelMap();
-		Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
-		modelMap.put("presupuesto", presupuesto);
-		modelMap.put("cliente", presupuesto.getUsuario());
-		modelMap.put("factura", servicioMovimiento.buscarMovimientosPorViaje(presupuesto.getViaje().getId(),
-				servicioTipoMovimiento.buscarPorDescripcion("Factura").getId()));
-		return new ModelAndView("presupuesto-invoice", modelMap);
+		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
+		if (idUsuario != null) {
+			ModelMap modelMap = new ModelMap();
+			Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
+			if (presupuesto != null) {
+				modelMap.put("presupuesto", presupuesto);
+				modelMap.put("cliente", presupuesto.getUsuario());
+				modelMap.put("factura", servicioMovimiento.buscarMovimientosPorViaje(presupuesto.getViaje().getId(),
+						servicioTipoMovimiento.buscarPorDescripcion("Factura").getId()));
+				return new ModelAndView("presupuesto-invoice", modelMap);
+			} else {
+				// ENVIAR UN ERROR, NO AL LOGIN, QUIZ√ÅS A LA VISTA DE LISTADO DE PRESUPUESTO.
+				return new ModelAndView("redirect:/login");
+			}
+		}
+		return new ModelAndView("redirect:/login");
 	}
 
 	@RequestMapping(path = "/aceptarPresupuesto")
-	public ModelAndView aceptarPresupuesto(@RequestParam("idPresupuesto") Long idPresupuesto) {
-		Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
-		presupuesto.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Aceptado"));
-		servicioMovimiento.guardarMovimiento(presupuesto);
-		return new ModelAndView("redirect:/verPresupuesto/" + presupuesto.getId());
+	public ModelAndView aceptarPresupuesto(@RequestParam("idPresupuesto") Long idPresupuesto,
+			HttpServletRequest request) {
+		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
+		if (idUsuario != null) {
+			Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
+			presupuesto.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Aceptado"));
+			servicioMovimiento.guardarMovimiento(presupuesto);
+			return new ModelAndView("redirect:/verPresupuesto/" + presupuesto.getId());
+		}
+		return new ModelAndView("redirect:/login");
+
 	}
 
 	@RequestMapping(path = "/rechazarPresupuesto")
-	public ModelAndView rechazarPresupuesto(@RequestParam("idPresupuesto") Long idPresupuesto) {
-		Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
-		presupuesto.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Rechazado"));
-		servicioMovimiento.guardarMovimiento(presupuesto);
-		return new ModelAndView("redirect:/verPresupues	to/" + presupuesto.getId());
-	}
-
-	@RequestMapping(path = "/listarPresupuestosCliente")
-	public ModelAndView listarPresupuestosCliente(HttpServletRequest request) {
+	public ModelAndView rechazarPresupuesto(@RequestParam("idPresupuesto") Long idPresupuesto,
+			HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
-		List<Movimiento> listaMovimiento = servicioMovimiento.buscarMovimientosPorUsuario(idUsuario,
-				servicioTipoMovimiento.buscarPorDescripcion("Presupuesto").getId());
-		ModelMap model = new ModelMap();
-		model.put("presupuestos", listaMovimiento);
-		return new ModelAndView("cliente-lista-presupuesto", model);
+		if (idUsuario != null) {
+			Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
+			presupuesto.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Rechazado"));
+			servicioMovimiento.guardarMovimiento(presupuesto);
+			return new ModelAndView("redirect:/verPresupues	to/" + presupuesto.getId());
+		}
+		return new ModelAndView("redirect:/login");
 	}
-	/*
-	 * Este mÈtodo lo harÌa si quiero mostrar el remito
-	 * 
-	 * @RequestMapping(path = "/verFactura/{idViaje}") public ModelAndView
-	 * listarPresupuestosCliente(@PathVariable("idViaje") Long idViaje) {
-	 * TipoMovimiento tipoMovimiento =
-	 * servicioTipoMovimiento.buscarPorDescripcion("Factura"); Movimiento
-	 * factura = servicioMovimiento.buscarMovimientosPorViaje(idViaje,
-	 * tipoMovimiento.getId()); ModelMap model = new ModelMap();
-	 * model.put("factura", factura); model.put("cliente",
-	 * factura.getUsuario()); return new ModelAndView("factura-invoice", model);
-	 * }
-	 */
 
-	public void setServicioTipoVehiculo(ServicioTipoVehiculo servicioTipoVehiculo){
+	public void setServicioTipoVehiculo(ServicioTipoVehiculo servicioTipoVehiculo) {
 		this.servicioTipoVehiculo = servicioTipoVehiculo;
 	}
-	public void setServicioViaje(ServicioViaje servicioViaje){
+
+	public void setServicioViaje(ServicioViaje servicioViaje) {
 		this.servicioViaje = servicioViaje;
 	}
-	
-	public void setServicioTipoMovimiento(ServicioTipoMovimiento servicioTipoMovimiento){
+
+	public void setServicioTipoMovimiento(ServicioTipoMovimiento servicioTipoMovimiento) {
 		this.servicioTipoMovimiento = servicioTipoMovimiento;
 	}
-	
-	public void setServicioEstadoMovimiento(ServicioEstadoMovimiento servicioEstadoMovimiento){
+
+	public void setServicioEstadoMovimiento(ServicioEstadoMovimiento servicioEstadoMovimiento) {
 		this.servicioEstadoMovimiento = servicioEstadoMovimiento;
 	}
-	public void setServicioUsuario(ServicioUsuario servicioUsuario){
+
+	public void setServicioUsuario(ServicioUsuario servicioUsuario) {
 		this.servicioUsuario = servicioUsuario;
 	}
-	public void setServicioMovimiento(ServicioMovimiento servicioMovimiento){
+
+	public void setServicioMovimiento(ServicioMovimiento servicioMovimiento) {
 		this.servicioMovimiento = servicioMovimiento;
 	}
 }
