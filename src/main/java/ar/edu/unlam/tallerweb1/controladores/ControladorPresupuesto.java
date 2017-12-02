@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Movimiento;
-import ar.edu.unlam.tallerweb1.modelo.TipoMovimiento;
+
 import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Viaje;
@@ -103,7 +103,7 @@ public class ControladorPresupuesto {
 		c.setTime(date);
 		c.add(Calendar.DATE, 1);
 		movimiento.setFecha_vencimiento(sdf.format(c.getTime()));
-
+		movimiento.setNumeroMovimiento(0001L);
 		// seteo el viaje
 		movimiento.setViaje(viaje);
 
@@ -152,15 +152,38 @@ public class ControladorPresupuesto {
 		model.put("presupuestos", listaMovimiento);
 		return new ModelAndView("cliente-lista-presupuesto", model);
 	}
+	/*
+	 * Este método lo haría si quiero mostrar el remito
+	 * 
+	 * @RequestMapping(path = "/verFactura/{idViaje}") public ModelAndView
+	 * listarPresupuestosCliente(@PathVariable("idViaje") Long idViaje) {
+	 * TipoMovimiento tipoMovimiento =
+	 * servicioTipoMovimiento.buscarPorDescripcion("Factura"); Movimiento
+	 * factura = servicioMovimiento.buscarMovimientosPorViaje(idViaje,
+	 * tipoMovimiento.getId()); ModelMap model = new ModelMap();
+	 * model.put("factura", factura); model.put("cliente",
+	 * factura.getUsuario()); return new ModelAndView("factura-invoice", model);
+	 * }
+	 */
 
-	@RequestMapping(path = "/verFactura/{idViaje}")
-	public ModelAndView listarPresupuestosCliente(@PathVariable("idViaje") Long idViaje) {
-		TipoMovimiento tipoMovimiento = servicioTipoMovimiento.buscarPorDescripcion("Factura");
-		Movimiento factura = servicioMovimiento.buscarMovimientosPorViaje(idViaje, tipoMovimiento.getId());
-		ModelMap model = new ModelMap();		
-		model.put("factura", factura);
-		model.put("cliente", factura.getUsuario());
-		return new ModelAndView("factura-invoice", model);
+	public void setServicioTipoVehiculo(ServicioTipoVehiculo servicioTipoVehiculo){
+		this.servicioTipoVehiculo = servicioTipoVehiculo;
 	}
-
+	public void setServicioViaje(ServicioViaje servicioViaje){
+		this.servicioViaje = servicioViaje;
+	}
+	
+	public void setServicioTipoMovimiento(ServicioTipoMovimiento servicioTipoMovimiento){
+		this.servicioTipoMovimiento = servicioTipoMovimiento;
+	}
+	
+	public void setServicioEstadoMovimiento(ServicioEstadoMovimiento servicioEstadoMovimiento){
+		this.servicioEstadoMovimiento = servicioEstadoMovimiento;
+	}
+	public void setServicioUsuario(ServicioUsuario servicioUsuario){
+		this.servicioUsuario = servicioUsuario;
+	}
+	public void setServicioMovimiento(ServicioMovimiento servicioMovimiento){
+		this.servicioMovimiento = servicioMovimiento;
+	}
 }

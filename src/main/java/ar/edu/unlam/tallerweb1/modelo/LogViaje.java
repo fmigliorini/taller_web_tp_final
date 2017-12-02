@@ -24,7 +24,7 @@ public class LogViaje {
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_Viaje")
-	private Viaje viaje ;
+	private Viaje viaje;
 	
 
 	public Long getId() {

@@ -10,9 +10,7 @@
 </head>
 <body>
 	<div class="container">
-		<br>
-	    <br>
-	    <br>
+		<br> <br> <br>
 		<h3>Esta es la lista de los Log cargados:</h3>
 		<br>
 		<div class="row color-invoice">
@@ -23,41 +21,31 @@
 							<thead>
 								<tr>
 									<th scope="col">Id log de viaje</th>
-									<th scope="col">Id de viaje</th>
 									<th scope="col">Descripción</th>
 									<th scope="col">Precio</th>
-									<th rowspan="2">Total de log de viaje: </th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="logViaje" items="${listaLog}">
+								<c:forEach var="logViaje" items="${listaLogViajeEnProceso}">
 									<tr>
-										
+
 										<td><c:out value="${logViaje.id}" /></td>
 										<!-- No muestra el id de viaje -->
-										<td><c:out value="${logViaje.viaje.id}"/></td>
 										<td><c:out value="${logViaje.tipoLogViaje}" /></td>
 										<td><c:out value="${logViaje.precio}" /></td>
-										
 									<tr>
-								
-									
 								</c:forEach>
-								
+
 							</tbody>
 						</table>
 					</div>
 				</div>
-				<hr />
-				<hr />
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12">
-						<a href="menu_chofer_viajeActivo" class="btn btn-success btn-sm">Volver
+						<a href="viajeEnProceso" class="btn btn-success btn-sm">Volver
 							al menú viaje activo</a>
 					</div>
 				</div>
-				<hr>
-				<div class="row"></div>
 			</div>
 		</div>
 	</div>

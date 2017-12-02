@@ -14,44 +14,56 @@ import ar.edu.unlam.tallerweb1.modelo.Viaje;
 @Service("servicioViaje")
 @Transactional
 public class ServicioViajeImpl implements ServicioViaje {
-	
+
 	@Inject
 	private ViajeDao viajeDao;
 
 	@Override
 	public Viaje guardarViaje(Viaje viaje) {
-	
 		return viajeDao.guardarViaje(viaje);
 	}
 
 	@Override
 	public Viaje buscarViajePorId(Long id) {
-		return viajeDao.buscarViajePorId( id);
+		return viajeDao.buscarViajePorId(id);
+	}
+
+	public List<Viaje> listarViajesAct() {
+		return viajeDao.listarViajesAct();
 	}
 
 	@Override
 	public List<Viaje> buscarViajesDeChoferId(Long id) {
-
 		return viajeDao.buscarViajesDeChoferId(id);
 	}
-	
+
+	@Override
+	public void ActualizarViaje(Viaje viaje) {
+
+		viajeDao.ActualizarViaje(viaje);
+	}
+
 	@Override
 	public List<Viaje> listarViajesActivos(Usuario chofer) {
-		
 		return viajeDao.listarViajesActivos(chofer);
 	}
 
+	// actualiza el estado de viaje
+	@Override
+	public void viajeActualizadoEnProceso(Viaje viaje) {
 
-	//actualiza el estado de viaje
-	public void viajeActualizadoEnProceso(Viaje viaje){
-			
-			 viajeDao.viajeActualizadoEnProceso(viaje);
-			 viajeDao.guardarViaje(viaje);
+		viajeDao.viajeActualizadoEnProceso(viaje);
+		viajeDao.guardarViaje(viaje);
 	}
-	//trae viajes terminados
+
+	// trae viajes terminados
 	@Override
 	public List<Viaje> listarViajesTerminados(Usuario chofer) {
-			
-			return viajeDao.listarViajesTerminados(chofer);
+		return viajeDao.listarViajesTerminados(chofer);
+	}
+
+	@Override
+	public Viaje buscarViajeEnProceso(Usuario chofer) {
+		return viajeDao.buscarViajeEnProceso(chofer);
 	}
 }
