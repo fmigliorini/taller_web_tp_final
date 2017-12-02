@@ -17,6 +17,7 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioMovimiento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTipoMovimiento;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
 public class ControladorCliente {
@@ -27,10 +28,13 @@ public class ControladorCliente {
 	@Inject
 	private ServicioTipoMovimiento servicioTipoMovimiento;
 
+	@Inject
+	private ServicioUsuario servicioUsuario;
+	
 	@RequestMapping("/home")
 	public ModelAndView irAFormularioPresupuesto(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
-		if (idUsuario != null) {
+		if (idUsuario != null && servicioUsuario.buscarPorId(idUsuario).getRol().equals("cliente")) {
 			return new ModelAndView("home");
 		}
 		return new ModelAndView("redirect:/login");
@@ -39,7 +43,7 @@ public class ControladorCliente {
 	@RequestMapping(path = "/listarPresupuestosCliente")
 	public ModelAndView listarPresupuestosCliente(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
-		if (idUsuario != null) {
+		if (idUsuario != null && servicioUsuario.buscarPorId(idUsuario).getRol().equals("cliente")) {
 			List<Movimiento> listaMovimiento = servicioMovimiento.buscarMovimientosPorUsuario(idUsuario,
 					servicioTipoMovimiento.buscarPorDescripcion("Presupuesto").getId());
 			ModelMap model = new ModelMap();
