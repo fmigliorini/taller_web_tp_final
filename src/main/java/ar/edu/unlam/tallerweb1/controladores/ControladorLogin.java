@@ -55,6 +55,13 @@ public class ControladorLogin {
 		return new ModelAndView("redirect:/login", model);
 	}
 
+	@RequestMapping("cerrarSession")
+	public ModelAndView cerrarSession(HttpServletRequest request) {
+		request.getSession().setAttribute("rol", null);
+		request.getSession().setAttribute("idUsuario", null);
+		return new ModelAndView("redirect:/login");
+	}
+
 	public void setServicioLogin(ServicioLogin servicioLogin) {
 
 		this.servicioLogin = servicioLogin;
