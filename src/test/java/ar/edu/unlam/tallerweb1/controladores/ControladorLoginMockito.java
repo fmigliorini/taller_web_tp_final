@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1.modelo;
+package ar.edu.unlam.tallerweb1.controladores;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.controladores.ControladorLogin;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 
 import static org.mockito.Mockito.*;
@@ -13,7 +14,7 @@ import static org.mockito.Mockito.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class LoginTest {
+public class ControladorLoginMockito {
 
 	@Test
 	public void alLoguearseConUsuarioValidoDeberiaLlevarAHome() {
