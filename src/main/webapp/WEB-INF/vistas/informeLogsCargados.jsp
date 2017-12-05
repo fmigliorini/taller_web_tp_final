@@ -1,0 +1,58 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@include file='../../templates/Menu_administrador.jsp'%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Lista de Presupuestos Aceptados</title>
+</head>
+<body>
+	<div class="container" style="margin-top: 60px !important">
+		<div class="row color-invoice">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-12">
+						<h1>Informe de Logs Cargados</h1>
+
+						<table class="table table-striped custab">
+							<thead>
+								<tr>
+									<th scope="col">Tipo</th>
+									<th scope="col">Precio</th>
+									<th scope="col">Fecha</th>
+									<th scope="col">Viaje Id.</th>
+									<th scope="col">Chofer</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="l" items="${listlogs}">
+									<tr>
+										<!-- UNA VEZ QUE ESTE CARGADO LOS DATOS SE PUEDEN -->
+										<td><c:out value="${l.tipoLogViaje}" /></td>
+										<td><c:out value="${l.precio}" /></td>
+										<td><c:out value="${l.fecha}" /></td>
+										<!-- 	<td><c:out value="${l.getViaje().getId()}"/></td>	 -->
+										<!--	<td><c:out value="${l.getViaje().getVehiculo().getChofer().getNombre()}"/></td>			 -->
+									</tr>
+								</c:forEach>
+								<tr>
+									<td></td>
+									<td>Total Gastado</td>
+									<td><c:out value="${total}" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

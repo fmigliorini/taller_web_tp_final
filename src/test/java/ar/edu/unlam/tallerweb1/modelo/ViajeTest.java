@@ -1,5 +1,4 @@
-
-/*	package ar.edu.unlam.tallerweb1.modelo;
+package ar.edu.unlam.tallerweb1.modelo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
@@ -238,4 +237,4 @@ Usuario chofer1;
 			
 		}
 	}
-}*/
+}

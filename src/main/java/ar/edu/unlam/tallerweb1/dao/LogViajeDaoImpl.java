@@ -34,7 +34,14 @@ public class LogViajeDaoImpl implements LogViajeDao {
 		return logDeViajes;
 
 	}
+	@Override
+	public List<LogViaje> listarLogViaje() {
+		final Session session = sessionFactory.getCurrentSession();
+		List<LogViaje> logDeViajes = session.createCriteria(LogViaje.class)
+									.list();
+		return logDeViajes;
 
+	}
 	@Override
 	public LogViaje buscarPorId(Long id) {
 		final Session session = sessionFactory.getCurrentSession();

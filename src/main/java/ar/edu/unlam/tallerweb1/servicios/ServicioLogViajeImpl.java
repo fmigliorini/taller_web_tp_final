@@ -46,6 +46,11 @@ public class ServicioLogViajeImpl implements ServicioLogViaje {
 	}
 
 	@Override
+	public List<LogViaje> listarLogViaje(){
+		return logViajeDao.listarLogViaje();
+	}
+	
+	@Override
 	public List<LogViaje> buscarPorIdViaje(Long id) {
 
 		return logViajeDao.buscarPorIdViaje(id);

@@ -68,6 +68,7 @@
 							<li><a href="informeViajesActivos">Viajes Activos</a></li>
 							<li><a href="graficoDePresupuestos">Estados de
 									Presupuesto Grafico</a></li>
+										<li><a href="graficoDePresupuestos"> Logs de viaje</a></li>
 						</ul></li>
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"

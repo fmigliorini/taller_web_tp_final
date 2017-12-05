@@ -21,6 +21,7 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Viaje;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEstadoMovimiento;
+import ar.edu.unlam.tallerweb1.servicios.ServicioLogViaje;
 import ar.edu.unlam.tallerweb1.servicios.ServicioMovimiento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTipoMovimiento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTipoVehiculo;
@@ -48,6 +49,9 @@ public class ControladorMenuAdmnistrador {
 
 	@Inject
 	private ServicioViaje servicioViaje;
+	
+	@Inject
+	private ServicioLogViaje servicioLogViaje;
 
 	@Inject
 	private ServicioUsuario servicioUsuario;
@@ -312,6 +316,27 @@ public class ControladorMenuAdmnistrador {
 
 	}
 
+	
+	@RequestMapping("informeLogsCargados")
+	public ModelAndView informeLogsCargados(HttpServletRequest request) {
+		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
+		ModelMap model = new ModelMap();
+		if (idUsuario != null) {
+			if (servicioUsuario.buscarPorId(idUsuario).getRol().equals("admin")) {
+				model.put("listlogs", servicioLogViaje.listarLogViaje());
+				return new ModelAndView("informeLogsCargados", model);
+			} else {
+				model.put("tipo", "danger");
+				model.put("titulo", "Acceso denegado");
+				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
+
+				return new ModelAndView("notificacionGestion", model);
+			}
+		} else {
+			return new ModelAndView("redirect:/login");
+		}
+
+	}
 	// ---------------//
 
 	// ABM USUARIO //

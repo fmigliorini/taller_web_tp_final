@@ -16,5 +16,5 @@ public interface LogViajeDao {
 	public List<LogViaje> buscarPorIdViaje(Long id);
 
 	List<LogViaje> findByViaje(Viaje viaje);
-
+	public List<LogViaje> listarLogViaje();
 }
