@@ -34,6 +34,8 @@ public class ControladorLogViajeMockito {
 	private Viaje viajeEnProceso;
     @Mock
     private List<LogViaje> listaLogViajeEnProceso;
+    @Mock
+    private LogViaje logViaje;
 	@Mock
 	private HttpServletRequest request;
 	@Mock 
@@ -46,10 +48,9 @@ public class ControladorLogViajeMockito {
 	}
 	
 	@Test 
-	public void testQueMeRedirijaAlLogin(){
+	public void testQueNoMeMuestreLaListaLogViajeYMeRedirijaAlLogin(){
 		//preparacion 
 		when(request.getSession()).thenReturn(session);
-
 		when(servicioLogin.consultarUsuario(any(Usuario.class))).thenReturn(null);
 		//ejecucion
 		ModelAndView mav=controladorLogViaje.mostrarListaLogViaje(request);
@@ -58,27 +59,75 @@ public class ControladorLogViajeMockito {
 		assertThat(mav.getModel()).isEmpty();
 		verify(chofer,never()).getRol();
 	}
-	
 	@Test
-	public void TestQueMuestreListaLogViaje(){
+	public void testQueMuestreListaLogViaje(){
 		//preparacion
 		when(request.getSession()).thenReturn(session);
-		when(session.getAttribute(any(String.class))).thenReturn(3L);
+		when(session.getAttribute(any(String.class))).thenReturn(1L);
 		when(servicioUsuario.buscarPorId(any(Long.class))).thenReturn(chofer);
 		when(servicioViaje.buscarViajeEnProceso(any(Usuario.class))).thenReturn(viajeEnProceso);
 		when(servicioLogViaje.listarLogViajePorViaje(any(Viaje.class))).thenReturn(listaLogViajeEnProceso);
-	
 		//ejecucion
 		ModelAndView mav=controladorLogViaje.mostrarListaLogViaje(request);
 		//verificacion
 		assertThat(mav.getViewName()).isEqualTo("chofer-log-viaje-en-progreso");
 		assertThat(mav.getModel()).isNotEmpty();
-		verify(servicioUsuario,times(1)).buscarPorId(3L);
+		verify(servicioUsuario,times(1)).buscarPorId(1L);
 		verify(servicioViaje,times(1)).buscarViajeEnProceso(chofer);
 		verify(servicioLogViaje,times(1)).listarLogViajePorViaje(viajeEnProceso);
 		assertThat(mav.getModelMap()).isNotEmpty();
-		
-		
 	}
+	@Test
+	public void testQueMeDirijaAFormularioLogViaje(){
+		//preparacion
+		when(request.getSession()).thenReturn(session);
+		when(session.getAttribute(any(String.class))).thenReturn(2L);
+		when(servicioUsuario.buscarPorId(any(Long.class))).thenReturn(chofer);
+		when(servicioViaje.buscarViajeEnProceso(any(Usuario.class))).thenReturn(viajeEnProceso);
+		when(servicioViaje.buscarViajePorId(any(Long.class))).thenReturn(viajeEnProceso);
+		//ejecucion
+		ModelAndView mav2=controladorLogViaje.irAFormularioLogViaje(request);
+		//verificacion
+		assertThat(mav2.getViewName()).isEqualTo("chofer-log-viaje-form");
+		assertThat(mav2.getModel()).isNotEmpty();
+		verify(servicioUsuario,times(1)).buscarPorId(2L);
+		verify(servicioViaje,times(1)).buscarViajeEnProceso(chofer); 
+		//verify(servicioViaje,times(1)).buscarViajePorId(2L);
+	}
+	@Test
+	public void testQueCargueLogViaje(){
+		//preparacion
+		when(request.getSession()).thenReturn(session);
+		when(session.getAttribute(any(String.class))).thenReturn(3L);
+		when(servicioUsuario.buscarPorId(any(Long.class))).thenReturn(chofer);
+		when(servicioViaje.buscarViajeEnProceso(any(Usuario.class))).thenReturn(viajeEnProceso);
+		when(servicioLogViaje.gardarLogViaje(any(LogViaje.class))).thenReturn(logViaje);
+		//ejecucion
+		ModelAndView mav3=controladorLogViaje.cargarLogViaje(logViaje, request);
+		//verificacion
+		assertThat(mav3.getViewName()).isEqualTo("chofer-log-viaje-invoice");
+		assertThat(mav3.getModel()).isNotEmpty();
+		verify(servicioUsuario,times(1)).buscarPorId(3L);
+		verify(servicioViaje,times(1)).buscarViajeEnProceso(chofer);
+		verify(servicioLogViaje,times(1)).gardarLogViaje(logViaje);
+	}
+	@Test
+	public void testQueDirijaAlListadoLogsViajeFinalizado(){
+		//preparacion
+		when(request.getSession()).thenReturn(session);
+		when(session.getAttribute(any(String.class))).thenReturn(4L);
+		when(servicioUsuario.buscarPorId(any(Long.class))).thenReturn(chofer);
+		when(servicioViaje.buscarViajePorId(any(Long.class))).thenReturn(viajeEnProceso);
+		when(servicioLogViaje.buscarPorIdViaje(any(Long.class))).thenReturn(listaLogViajeEnProceso);
+		//ejecucion
+		ModelAndView mav4=controladorLogViaje.irListadoLogsViajeFinalizado(4L, request);
+		//verificacion
+		assertThat(mav4.getViewName()).isEqualTo("chofer-lista-logs-viajes-finalizado");
+		assertThat(mav4.getModel()).isNotEmpty();
+		verify(servicioUsuario,times(1)).buscarPorId(4L);
+		verify(servicioViaje,times(1)).buscarViajePorId(4L);
+		//verify(servicioLogViaje,times(1)).buscarPorIdViaje(4L);
+	}
+	
 	
 }
