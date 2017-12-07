@@ -102,14 +102,16 @@ public class ControladorLogViajeMockito {
 		when(servicioUsuario.buscarPorId(any(Long.class))).thenReturn(chofer);
 		when(servicioViaje.buscarViajeEnProceso(any(Usuario.class))).thenReturn(viajeEnProceso);
 		when(servicioLogViaje.gardarLogViaje(any(LogViaje.class))).thenReturn(logViaje);
+		when(servicioLogViaje.listarLogViajePorViaje(any(Viaje.class))).thenReturn(listaLogViajeEnProceso);
 		//ejecucion
 		ModelAndView mav3=controladorLogViaje.cargarLogViaje(logViaje, request);
 		//verificacion
-		assertThat(mav3.getViewName()).isEqualTo("chofer-log-viaje-invoice");
+		assertThat(mav3.getViewName()).isEqualTo("chofer-log-viaje-en-progreso");
 		assertThat(mav3.getModel()).isNotEmpty();
 		verify(servicioUsuario,times(1)).buscarPorId(3L);
 		verify(servicioViaje,times(1)).buscarViajeEnProceso(chofer);
 		verify(servicioLogViaje,times(1)).gardarLogViaje(logViaje);
+		verify(servicioLogViaje,times(1)).listarLogViajePorViaje(viajeEnProceso);
 	}
 	@Test
 	public void testQueDirijaAlListadoLogsViajeFinalizado(){
