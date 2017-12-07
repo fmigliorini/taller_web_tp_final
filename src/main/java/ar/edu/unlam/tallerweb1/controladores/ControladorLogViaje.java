@@ -83,8 +83,10 @@ public class ControladorLogViaje {
 
 			ModelMap modelo = new ModelMap();
 
-			modelo.put("logViaje", logViaje);
-			return new ModelAndView("chofer-log-viaje-invoice", modelo);
+			List<LogViaje> listaLogViajeEnProceso = servicioLogViaje.listarLogViajePorViaje(viajeEnProceso);
+			modelo.put("listaLogViajeEnProceso", listaLogViajeEnProceso);
+			
+			return new ModelAndView("chofer-log-viaje-en-progreso", modelo);
 		} else {
 			return new ModelAndView("redirect:/login");
 		}

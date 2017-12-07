@@ -1,9 +1,6 @@
-/*
 package ar.edu.unlam.tallerweb1.modelo;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
-
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -18,9 +15,9 @@ public class VehiculoTest extends SpringTest {
 	@Test
 	@Transactional
 	@Rollback(true)
-	public void testlistarPorTipoVehiculoTest() {
+	public void testQueListePorTipoVehiculo() {
 
-	
+		 Session session=getSession();
 		TipoVehiculo tipoVehiculo1 = new TipoVehiculo();
 		tipoVehiculo1.setId(1L);
 		tipoVehiculo1.setDescripcion("furgoneta");
@@ -75,8 +72,7 @@ public class VehiculoTest extends SpringTest {
 		v3.setPatente("patente3");
 		v3.setTipoVehiculo(tipoVehiculo3);
 
-		Session session = null;
-		session.getSessionFactory();
+		
 		// salvamos
 		session.save(tipoVehiculo3);
 		session.save(tipoVehiculo2);
@@ -89,15 +85,15 @@ public class VehiculoTest extends SpringTest {
 		session.save(v1);
 		session.save(v2);
 
-		List<Vehiculo> listarPorTipoVehiculoTest = session.createCriteria(Vehiculo.class)
+		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class)
 				.add(Restrictions.eq("tipoVehiculo", tipoVehiculo1)).list();
 
-		assertThat(listarPorTipoVehiculoTest).hasSize(1);
+		assertThat(vehiculos).hasSize(1);
 
-		for (Vehiculo v : listarPorTipoVehiculoTest) {
-			assertEquals("tipoVehiculo1", v.getTipoVehiculo());
+		for (Vehiculo v : vehiculos) {
+			assertEquals("furgoneta", v.getTipoVehiculo().getDescripcion());
 		}
 
 	}
 
-}*/
+}
