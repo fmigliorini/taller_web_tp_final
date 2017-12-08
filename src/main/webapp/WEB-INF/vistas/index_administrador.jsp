@@ -1,4 +1,4 @@
-<%@include file='../../templates/Menu_administrador.jsp' %>	
+<%@include file='../../templates/Header.jsp' %>	
 <div class = "container" style="margin-top:60px!important">
 	<h1>Bienvenido a Mudanzas Pepe </h1>
 	<h2>Parte del administrador</h2>
