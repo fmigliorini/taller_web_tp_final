@@ -80,23 +80,4 @@ public class ControladorUsuario {
 
 	}
 
-	// Hace el formulario de ch�fer
-	@RequestMapping(path = "/chofer-form")
-	public ModelAndView irFormularioChofer() {
-		ModelMap modelo1 = new ModelMap();
-		modelo1.put("usuario", new Usuario());
-		return new ModelAndView("chofer-form", modelo1);
-	}
-
-	// Registra el ch�fer
-	@RequestMapping(path = "/registrar-chofer", method = RequestMethod.POST)
-	public ModelAndView registrarChofer(@ModelAttribute("Usuario") Usuario usuarioChofer) {
-		ModelMap modelo2 = new ModelMap();
-		usuarioChofer.setRol("chofer");
-		servicioUsuario.generarUsuario(usuarioChofer);
-		List<Usuario> listaChoferes = servicioUsuario.listarChoferes();
-		modelo2.put("listaChoferes", listaChoferes);
-		return new ModelAndView("listadoChoferes", modelo2);
-	}
-
 }

@@ -3,9 +3,15 @@ package ar.edu.unlam.tallerweb1.dao;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
 import org.springframework.stereotype.Repository;
 
+import com.mysql.jdbc.Statement;
+
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -79,13 +85,28 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		List<Usuario> Usuarios = session.createCriteria(Usuario.class).add(Restrictions.eq("rol", "chofer")).list();
 		return Usuarios;
 	}
-
+	
 	@Override
 	public List<Usuario> listarChoferesSinVehiculo() {
 		final Session session = sessionFactory.getCurrentSession();
-		List<Usuario> Usuarios = session.createCriteria(Usuario.class).createAlias("Vehiculo", "vehiculo")
-				.add(Restrictions.eq("rol", "chofer")).add(Restrictions.eq("vehiculo", null)).list();
-		return Usuarios;
+		String query = "SELECT u.id , u.apellido, u.nombre , u.direccion , u.dni , u.email , u.password, u.rol , u.telefono FROM usuario u LEFT JOIN  vehiculo v ON v.chofer_id=u.id WHERE u.rol='chofer'";
+		List<Object[]> rows = session.createSQLQuery(query).list();
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+
+		for(Object[] row : rows){
+			Usuario u = new Usuario();
+			u.setId(Long.parseLong(row[0].toString()));
+			u.setApellido(row[1].toString());
+			u.setNombre(row[2].toString());
+			u.setDireccion(row[3].toString());
+			u.setDni(row[4].toString());
+			u.setEmail(row[5].toString());
+			u.setPassword(row[6].toString());
+			u.setRol(row[7].toString());
+			u.setTelefono(row[8].toString());
+			usuarios.add(u);
+		}
+		return usuarios;
 	}
 
 }

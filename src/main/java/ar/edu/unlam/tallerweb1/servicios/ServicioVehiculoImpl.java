@@ -56,4 +56,10 @@ public class ServicioVehiculoImpl implements ServicioVehiculo {
 		vehiculoDao.eliminarVehiculo(vehiculo);
 	}
 
+	@Override
+	public List<Vehiculo> listarVehiculosDisponibles(String diaInicioViaje, String horaInicioViaje, String diaFinViaje,
+			String horaFinViaje) {
+		return vehiculoDao.listarVehiculosDisponibles(diaInicioViaje, horaInicioViaje, diaFinViaje, horaFinViaje);
+	}
+
 }
