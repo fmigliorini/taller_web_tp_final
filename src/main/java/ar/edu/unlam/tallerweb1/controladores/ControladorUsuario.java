@@ -36,24 +36,25 @@ public class ControladorUsuario {
 	public ModelAndView profile(HttpServletRequest request) {
 
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
-		ModelMap model = new ModelMap();
+		
 		if (idUsuario != null) {
 			Usuario usuario = servicioUsuario.buscarPorId(idUsuario);
 
-			if (usuario.getRol() == "admin") {
-				model.put("Menu", "Menu_adminisitrador");
-			} else if (usuario.getRol() == "chofer") {
-				model.put("Menu", "Menu_chofer");
-			} else if (usuario.getRol() == "cliente") {
-				model.put("Menu", "Header");
+			ModelMap model = new ModelMap();
+			model.put("Usuario", usuario);
+			if (usuario.getRol().equals("admin")) {
+				return new ModelAndView("admin-profile", model);
+			} else if (usuario.getRol().equals("chofer")) {
+				return new ModelAndView("chofer-profile", model);
+			} else if (usuario.getRol().equals("cliente")) {
+				return new ModelAndView("cliente-profile", model);
 			}
 
-			model.put("Usuario", usuario);
-			return new ModelAndView("profile", model);
 		}
 		return new ModelAndView("redirect:/login");
 	}
-
+	
+	
 	@RequestMapping(path = "/actualizarDatos", method = RequestMethod.POST)
 	public ModelAndView actualizarDatos(@ModelAttribute("Usuario") Usuario usuario, HttpServletRequest request) {
 
@@ -78,6 +79,5 @@ public class ControladorUsuario {
 		return new ModelAndView("redirect:/login");
 
 	}
-
 
 }
