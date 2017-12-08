@@ -39,7 +39,7 @@
 	<div class="row">
 		<div class="form-group col-md-12">
 			<label for="origen">Vehiculo</label> 
-			<select name="idVehiculo" class="form-group">
+			<select name="idVehiculo" class="form-group col-md-12">
 				<c:forEach items="${listVehiculos}" var="vehiculo">
 					<option value="${vehiculo.getId()}">${vehiculo.getModelo()}
 						${vehiculo.getMarca()} ${vehiculo.getPatente()}</option>

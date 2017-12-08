@@ -26,14 +26,23 @@
 				</div>
 		
 
-			<div class="form-group col-md-12">
-				<label for="tipovehiculo">Tipo del Vehiculo</label> <select
-					name="tipovehiculo" id="tipovehiculo" class="form-group ">
-						<option value="1">Furgoneta</option>
-						<option value="2">Camioneta</option>
-						<option value="3">Camion</option>
-						</select>
-			</div>
+				<div class="form-group col-md-12">
+					<label for="tipovehiculo">Tipo del Vehiculo</label> <select
+						name="tipovehiculo" id="idTipoVehiculo" class="form-group ">
+						<c:forEach items="${lisTipovehiculos}" var="vehiculo">
+							<option value="${vehiculo.getId()}">${vehiculo.getDescripcion()}</option>
+						</c:forEach>
+					</select>
+				</div>
+				
+			    <div class="form-group col-md-12">
+					<label for="tipovehiculo">Chofer</label> <select
+						name="tipovehiculo" id="chofer" class="form-group ">
+						<c:forEach items="${listChoferes}" var="chofer">
+							<option value="${chofer.getId()}">${chofer.getNombre()} ${chofer.getApellido()}</option>
+						</c:forEach>
+					</select>
+				</div>
 			<input type="submit" class="btn btn-primary" value="Guardar Vehiculo">
 	</div>
 	</div>
