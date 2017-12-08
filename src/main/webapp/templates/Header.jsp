@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@ page import="javax.servlet.http.HttpServletRequest"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,19 +54,20 @@
 						class="icon-bar"></span>
 				</button>
 			</div>
-			<c:choose>
-				<c:when test="${ request.getAttribute("rol") == 'admim' }">
-					<%@include file='./menu_administrador.jsp'%>
-				</c:when>
-				<c:when test="${ request.getAttribute("rol") == 'chofer' }">
-					<%@include file='./menu_chofer.jsp'%>
-				</c:when>
-				<c:when test="${ request.getAttribute("rol") == 'cliente' }">
+			<% 
+				String rol = (String)request.getSession().getAttribute("rol");
+			   	if( rol != null && rol.equals("admin")) {
+		   	%>
+			<p>
+				Rol User :
+				<c:out value="${rol}"></c:out>
+			</p>
+			<%@ include file="./menu_administrador.jsp"%>
+			<% }else if(rol != null && rol.equals("cliente")) { %>
 					<%@include file='./menu_cliente.jsp'%>
-				</c:when>
-			</c:choose>
-
-
+			<% } else if (rol != null && rol.equals("chofer")) {%>
+				<%@include file='./menu_chofer.jsp'%>
+			<% } %>
 		</div>
 	</div>
 	<br>
