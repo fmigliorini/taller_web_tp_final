@@ -42,14 +42,8 @@ public class ControladorUsuario {
 
 			ModelMap model = new ModelMap();
 			model.put("Usuario", usuario);
-			if (usuario.getRol().equals("admin")) {
-				return new ModelAndView("admin-profile", model);
-			} else if (usuario.getRol().equals("chofer")) {
-				return new ModelAndView("chofer-profile", model);
-			} else if (usuario.getRol().equals("cliente")) {
-				return new ModelAndView("cliente-profile", model);
-			}
-
+			return new ModelAndView("profile", model);
+			
 		}
 		return new ModelAndView("redirect:/login");
 	}
