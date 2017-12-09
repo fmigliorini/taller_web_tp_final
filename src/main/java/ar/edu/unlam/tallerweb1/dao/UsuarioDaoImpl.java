@@ -89,7 +89,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Override
 	public List<Usuario> listarChoferesSinVehiculo() {
 		final Session session = sessionFactory.getCurrentSession();
-		String query = "SELECT u.id , u.apellido, u.nombre , u.direccion , u.dni , u.email , u.password, u.rol , u.telefono FROM usuario u LEFT JOIN  vehiculo v ON v.chofer_id=u.id WHERE u.rol='chofer'";
+		String query = "SELECT u.id , u.apellido, u.nombre , u.direccion , u.dni , u.email , u.password, u.rol , u.telefono FROM usuario u LEFT JOIN  vehiculo v ON v.chofer_id=u.id WHERE u.rol='chofer' and v.id=null";
 		List<Object[]> rows = session.createSQLQuery(query).list();
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 

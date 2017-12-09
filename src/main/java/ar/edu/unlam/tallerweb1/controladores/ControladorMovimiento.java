@@ -48,13 +48,16 @@ public class ControladorMovimiento {
 
 	@RequestMapping("/listarFacturas")
 	public ModelAndView mostrarFacturas(HttpServletRequest request) {
-		// Long idUsuario =
-		// (Long)request.getSession().getAttribute("idUsuario");
-		long usuarioid = 1;
-		ModelMap model = new ModelMap();
-		model.put("idCliente", usuarioid);
-		model.put("movimiento", servicioMovimiento.buscarMovimientosPorUsuario(usuarioid, 1));
-		return new ModelAndView("listaMovimientos", model);
+		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
+		if (idUsuario != null) {
+			ModelMap model = new ModelMap();
+			model.put("idCliente", idUsuario);
+			model.put("movimiento", servicioMovimiento.buscarMovimientosPorUsuario(idUsuario));
+			return new ModelAndView("listaMovimientos", model);
+		}else{
+			return new ModelAndView("redirect:/login");
+		}
+		
 
 	}
 
