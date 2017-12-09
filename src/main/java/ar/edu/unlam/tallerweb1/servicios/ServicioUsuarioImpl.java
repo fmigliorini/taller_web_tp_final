@@ -62,8 +62,9 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
 		return servicioUsuarioDao.usuariosRol(rol);
 	}
-
+	@Override
 	public List<Usuario> listarChoferesSinVehiculo() {
 		return servicioUsuarioDao.listarChoferesSinVehiculo();
 	}
+
 }

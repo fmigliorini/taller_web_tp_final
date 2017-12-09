@@ -1,11 +1,11 @@
-<%@include file='../../templates/Menu_administrador.jsp'%>
+<%@include file='../../templates/Header.jsp'%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="container">
 	<h1>Modificar Vehiculo</h1>
-	<form:form action="actualizarVehiculo" modelAttribute="Vehiculo"
+	<form:form action="actualizarVehiculo" modelAttribute="vehiculo"
 		method="POST">
 		<div class="form-row">
 			<div class="form-group col-md-12">
@@ -28,14 +28,7 @@
 						id="patente" name="patente" path="patente" />
 				</div>
 
-				<div class="form-group col-md-12">
-					<label for="chofer">Chofer</label> <select name="chofer"
-						id="chofer" class="form-group ">
-						<c:forEach items="${listChofer}" var="c">
-							<option value="${c.getId()}">${c.getNombre()}</option>
-						</c:forEach>
-					</select>
-				</div>
+
 
 				<div class="form-group col-md-12">
 					<label for="tipovehiculo">Tipo del Vehiculo</label> <select
@@ -45,6 +38,16 @@
 						</c:forEach>
 					</select>
 				</div>
+				
+			    <div class="form-group col-md-12">
+					<label for="tipovehiculo">Chofer</label> <select
+						name="tipovehiculo" id="chofer" class="form-group ">
+						<c:forEach items="${listChoferes}" var="chofer">
+							<option value="${chofer.getId()}">${chofer.getNombre()} ${chofer.getApellido()}</option>
+						</c:forEach>
+					</select>
+				</div>
+				
 				<input type="submit" class="btn btn-primary"
 					value="Actualizar Vehiculo">
 			</div>

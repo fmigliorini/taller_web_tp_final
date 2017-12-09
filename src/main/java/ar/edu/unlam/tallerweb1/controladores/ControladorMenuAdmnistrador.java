@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.LogViaje;
 import ar.edu.unlam.tallerweb1.modelo.Movimiento;
 import ar.edu.unlam.tallerweb1.modelo.TipoMovimiento;
+import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Viaje;
@@ -112,11 +113,7 @@ public class ControladorMenuAdmnistrador {
 				model.put("listVehiculos", listVehiculos);
 				return new ModelAndView("asignarVehiculo", model);
 			} else {
-				model.put("tipo", "danger");
-				model.put("titulo", "Acceso denegado");
-				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
-
-				return new ModelAndView("notificacionGestion", model);
+				return new ModelAndView("redirect:/login");
 			}
 		} else {
 			return new ModelAndView("redirect:/login");
@@ -172,11 +169,7 @@ public class ControladorMenuAdmnistrador {
 				}
 				return new ModelAndView("notificacionGestion", model);
 			} else {
-				model.put("tipo", "danger");
-				model.put("titulo", "Acceso denegado");
-				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
-
-				return new ModelAndView("notificacionGestion", model);
+				return new ModelAndView("redirect:/login");
 			}
 		} else {
 			return new ModelAndView("redirect:/login");
@@ -251,11 +244,7 @@ public class ControladorMenuAdmnistrador {
 						.buscarMovimientosPorTipoyEstado(presupuesto, servicioEstadoMovimiento.buscarPorId(5)).size());
 				return new ModelAndView("graficoDePresupuestos", model);
 			} else {
-				model.put("tipo", "danger");
-				model.put("titulo", "Acceso denegado");
-				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
-
-				return new ModelAndView("notificacionGestion", model);
+				return new ModelAndView("redirect:/login");
 			}
 		} else {
 			return new ModelAndView("redirect:/login");
@@ -280,11 +269,7 @@ public class ControladorMenuAdmnistrador {
 				model.put("totalPresupuestado", total);
 				return new ModelAndView("informePresupuestosFacturados", model);
 			} else {
-				model.put("tipo", "danger");
-				model.put("titulo", "Acceso denegado");
-				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
-
-				return new ModelAndView("notificacionGestion", model);
+				return new ModelAndView("redirect:/login");
 			}
 		} else {
 			return new ModelAndView("redirect:/login");
@@ -300,11 +285,7 @@ public class ControladorMenuAdmnistrador {
 				model.put("viajes", servicioViaje.listarViajesAct());
 				return new ModelAndView("informeViajesActivos", model);
 			} else {
-				model.put("tipo", "danger");
-				model.put("titulo", "Acceso denegado");
-				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
-
-				return new ModelAndView("notificacionGestion", model);
+				return new ModelAndView("redirect:/login");
 			}
 		} else {
 			return new ModelAndView("redirect:/login");
@@ -327,11 +308,7 @@ public class ControladorMenuAdmnistrador {
 				model.put("admin", servicioUsuario.usuariosRol("admin"));
 				return new ModelAndView("abmUsuario", model);
 			} else {
-				model.put("tipo", "danger");
-				model.put("titulo", "Acceso denegado");
-				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
-
-				return new ModelAndView("notificacionGestion", model);
+				return new ModelAndView("redirect:/login");
 			}
 		} else {
 			return new ModelAndView("redirect:/login");
@@ -348,12 +325,9 @@ public class ControladorMenuAdmnistrador {
 				model.put("usuario", usuario);
 				return new ModelAndView("agregarUsuario", model);
 			} else {
-				model.put("tipo", "danger");
-				model.put("titulo", "Acceso denegado");
-				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
-
-				return new ModelAndView("notificacionGestion", model);
+				return new ModelAndView("redirect:/login");
 			}
+			
 		} else {
 			return new ModelAndView("redirect:/login");
 		}
@@ -373,11 +347,7 @@ public class ControladorMenuAdmnistrador {
 						String.format("Se ah creado el usuario con el id %d de manera exitosa", usuario.getId()));
 				return new ModelAndView("notificacionGestion", model);
 			} else {
-				model.put("tipo", "danger");
-				model.put("titulo", "Acceso denegado");
-				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
-
-				return new ModelAndView("notificacionGestion", model);
+				return new ModelAndView("redirect:/login");
 			}
 		} else {
 			return new ModelAndView("redirect:/login");
@@ -395,11 +365,7 @@ public class ControladorMenuAdmnistrador {
 				model.put("Usuario", usuario);
 				return new ModelAndView("modificarUsuario", model);
 			} else {
-				model.put("tipo", "danger");
-				model.put("titulo", "Acceso denegado");
-				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
-
-				return new ModelAndView("notificacionGestion", model);
+				return new ModelAndView("redirect:/login");
 			}
 		} else {
 			return new ModelAndView("redirect:/login");
@@ -421,11 +387,7 @@ public class ControladorMenuAdmnistrador {
 						String.format("El usuario con el id %d  se a modificado de manera exitosa", usuario.getId()));
 				return new ModelAndView("notificacionGestion", model);
 			} else {
-				model.put("tipo", "danger");
-				model.put("titulo", "Acceso denegado");
-				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
-
-				return new ModelAndView("notificacionGestion", model);
+				return new ModelAndView("redirect:/login");
 			}
 		} else {
 			return new ModelAndView("redirect:/login");
@@ -447,11 +409,7 @@ public class ControladorMenuAdmnistrador {
 						String.format("El usuario con el id %d  se a eliminado de manera exitosa", usuario.getId()));
 				return new ModelAndView("notificacionGestion", model);
 			} else {
-				model.put("tipo", "danger");
-				model.put("titulo", "Acceso denegado");
-				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
-
-				return new ModelAndView("notificacionGestion", model);
+				return new ModelAndView("redirect:/login");
 			}
 		} else {
 			return new ModelAndView("redirect:/login");
@@ -469,11 +427,7 @@ public class ControladorMenuAdmnistrador {
 				model.put("vehiculo", servicioVehiculo.getAll());
 				return new ModelAndView("abmVehiculo", model);
 			} else {
-				model.put("tipo", "danger");
-				model.put("titulo", "Acceso denegado");
-				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
-
-				return new ModelAndView("notificacionGestion", model);
+				return new ModelAndView("redirect:/login");
 			}
 		} else {
 			return new ModelAndView("redirect:/login");
@@ -488,13 +442,11 @@ public class ControladorMenuAdmnistrador {
 			if (servicioUsuario.buscarPorId(idUsuario).getRol().equals("admin")) {
 				Vehiculo vehiculo = new Vehiculo();
 				model.put("Vehiculo", vehiculo);
+				model.put("lisTipovehiculos", servicioTipoVehiculo.listarTiposVehiculos());
+				model.put("listChoferes", servicioUsuario.listarChoferesSinVehiculo());
 				return new ModelAndView("agregarVehiculo", model);
 			} else {
-				model.put("tipo", "danger");
-				model.put("titulo", "Acceso denegado");
-				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
-
-				return new ModelAndView("notificacionGestion", model);
+				return new ModelAndView("redirect:/login");
 			}
 		} else {
 			return new ModelAndView("redirect:/login");
@@ -502,12 +454,14 @@ public class ControladorMenuAdmnistrador {
 	}
 
 	@RequestMapping(path = "/guardarVehiculo", method = RequestMethod.POST)
-	public ModelAndView guardarVehiculo(@ModelAttribute("Vehiculo") Vehiculo vehiculo, HttpServletRequest request) {
+	public ModelAndView guardarVehiculo(@RequestParam("idTipoVehiculo") Long idTipoVehiculo, @RequestParam("chofer") Long chofer,@ModelAttribute("Vehiculo") Vehiculo vehiculo, HttpServletRequest request) {
 		Long idAdmin = (Long) request.getSession().getAttribute("idUsuario");
 		ModelMap model = new ModelMap();
 		if (idAdmin != null) {
 			if (servicioUsuario.buscarPorId(idAdmin).getRol().equals("admin")) {
 				try {
+					vehiculo.setChofer(servicioUsuario.buscarPorId(chofer));
+					vehiculo.setTipoVehiculo(servicioTipoVehiculo.buscarPorId(idTipoVehiculo));
 					servicioVehiculo.guardarVehiculo(vehiculo);
 
 					model.put("tipo", "success");
@@ -521,11 +475,7 @@ public class ControladorMenuAdmnistrador {
 				}
 				return new ModelAndView("notificacionGestion", model);
 			} else {
-				model.put("tipo", "danger");
-				model.put("titulo", "Acceso denegado");
-				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
-
-				return new ModelAndView("notificacionGestion", model);
+				return new ModelAndView("redirect:/login");
 			}
 		} else {
 			return new ModelAndView("redirect:/login");
@@ -534,12 +484,14 @@ public class ControladorMenuAdmnistrador {
 	}
 
 	@RequestMapping(path = "/actualizarVehiculo", method = RequestMethod.POST)
-	public ModelAndView actualizarVehiculo(@ModelAttribute("Vehiculo") Vehiculo vehiculo, HttpServletRequest request) {
+	public ModelAndView actualizarVehiculo(@ModelAttribute("vehiculo") Vehiculo vehiculo,@RequestParam("tipovehiculo") Long tipovehiculo,@RequestParam("chofer") Long chofer ,HttpServletRequest request) {
 
 		Long idAdmin = (Long) request.getSession().getAttribute("idUsuario");
 		ModelMap model = new ModelMap();
 		if (idAdmin != null) {
 			if (servicioUsuario.buscarPorId(idAdmin).getRol().equals("admin")) {
+				vehiculo.setChofer(servicioUsuario.buscarPorId(chofer));
+				vehiculo.setTipoVehiculo(servicioTipoVehiculo.buscarPorId(tipovehiculo));
 				servicioVehiculo.actualizarVehiculo(vehiculo);
 				model.put("tipo", "success");
 				model.put("titulo", "Actualizacion Exitosa");
@@ -547,11 +499,7 @@ public class ControladorMenuAdmnistrador {
 						vehiculo.getId()));
 				return new ModelAndView("notificacionGestion", model);
 			} else {
-				model.put("tipo", "danger");
-				model.put("titulo", "Acceso denegado");
-				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
-
-				return new ModelAndView("notificacionGestion", model);
+				return new ModelAndView("redirect:/login");
 			}
 		} else {
 			return new ModelAndView("redirect:/login");
@@ -568,14 +516,10 @@ public class ControladorMenuAdmnistrador {
 				Vehiculo vehiculo = servicioVehiculo.buscarPorId(idVehiculo);
 				model.put("lisTipovehiculos", servicioTipoVehiculo.listarTiposVehiculos());
 				model.put("listChoferes", servicioUsuario.listarChoferesSinVehiculo());
-				model.put("Vehiculo", vehiculo);
+				model.put("vehiculo", vehiculo);
 				return new ModelAndView("modificarVehiculo", model);
 			} else {
-				model.put("tipo", "danger");
-				model.put("titulo", "Acceso denegado");
-				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
-
-				return new ModelAndView("notificacionGestion", model);
+				return new ModelAndView("redirect:/login");
 			}
 		} else {
 			return new ModelAndView("redirect:/login");
@@ -605,11 +549,7 @@ public class ControladorMenuAdmnistrador {
 				}
 				return new ModelAndView("notificacionGestion", model);
 			} else {
-				model.put("tipo", "danger");
-				model.put("titulo", "Acceso denegado");
-				model.put("mensaje", "Para entrar a esta pagina usted debe tener rol Administrador");
-
-				return new ModelAndView("notificacionGestion", model);
+				return new ModelAndView("redirect:/login");
 			}
 		} else {
 			return new ModelAndView("redirect:/login");

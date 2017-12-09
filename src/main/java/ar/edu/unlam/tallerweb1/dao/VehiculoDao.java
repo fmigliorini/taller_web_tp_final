@@ -20,4 +20,7 @@ public interface VehiculoDao {
 	void actualizarVehiculo(Vehiculo vehiculo);
 
 	void eliminarVehiculo(Vehiculo vehiculo);
+
+	List<Vehiculo> listarVehiculosDisponibles(String diaInicioViaje, String horaInicioViaje, String diaFinViaje,
+			String horaFinViaje);
 }

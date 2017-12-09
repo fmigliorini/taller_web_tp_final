@@ -28,4 +28,5 @@ public interface ServicioUsuario {
 	List<Usuario> usuariosRol(String rol);
 	List<Usuario>listarChoferesSinVehiculo();
 
+
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@include file='../../templates/Menu_administrador.jsp' %>
+<%@include file='../../templates/Header.jsp' %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt"
           prefix="fmt" %>
@@ -39,7 +39,7 @@
 	<div class="row">
 		<div class="form-group col-md-12">
 			<label for="origen">Vehiculo</label> 
-			<select name="idVehiculo" class="form-group">
+			<select name="idVehiculo" class="form-group col-md-12">
 				<c:forEach items="${listVehiculos}" var="vehiculo">
 					<option value="${vehiculo.getId()}">${vehiculo.getModelo()}
 						${vehiculo.getMarca()} ${vehiculo.getPatente()}</option>
