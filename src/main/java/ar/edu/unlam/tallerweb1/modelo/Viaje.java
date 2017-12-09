@@ -16,8 +16,10 @@ public class Viaje {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String hora;
-	private String fecha;
+	private String hora; // Inicio
+	private String fecha; //Inicio
+	private String horaFin;
+	private String fechaFin;
 	private String origen;
 	private String destino;
 	private Integer kilometros;
@@ -35,7 +37,21 @@ public class Viaje {
 	@OneToOne
 	private Vehiculo vehiculo;
 
+	public String getFechaFin() {
+		return fechaFin;
+	}
 
+	public void setFechaFin(String fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+	
+	public String getHoraFin() {
+		return horaFin;
+	}
+
+	public void setHoraFin(String horaFin) {
+		this.horaFin = horaFin;
+	}
 	public String getFecha() {
 		return fecha;
 	}
