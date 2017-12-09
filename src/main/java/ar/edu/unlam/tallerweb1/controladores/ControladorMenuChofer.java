@@ -41,40 +41,53 @@ public class ControladorMenuChofer {
 	@RequestMapping(path = "listaDeViajesActivos")
 	public ModelAndView irAlaListaDeViajesArealizar(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
-		Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
-		Viaje viajeEnProceso = servicioViaje.buscarViajeEnProceso(chofer);
-		if (viajeEnProceso != null) {
-			return new ModelAndView("redirect:/viajeEnProceso");
-		}
-		ModelMap model = new ModelMap();
-		List<Viaje> listaViajeActivo = servicioViaje.listarViajesActivos(chofer);
-		model.put("listaViajeActivo", listaViajeActivo);
-		model.put("viaje", new Viaje());
-		return new ModelAndView("chofer-viajes-activo", model);
+		if(idUsuario != null && servicioUsuario.buscarPorId(idUsuario).getRol().equals("chofer")){
+			Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
+			Viaje viajeEnProceso = servicioViaje.buscarViajeEnProceso(chofer);
+			if (viajeEnProceso != null) {
+				return new ModelAndView("redirect:/viajeEnProceso");
+			}
+			ModelMap model = new ModelMap();
+			List<Viaje> listaViajeActivo = servicioViaje.listarViajesActivos(chofer);
+			model.put("listaViajeActivo", listaViajeActivo);
+			model.put("viaje", new Viaje());
+			return new ModelAndView("chofer-viajes-activo", model);
+		}else{
+			return new ModelAndView("redirect:/login");
+		}	
 	}
 
 	@RequestMapping(path = "activarViaje", method = RequestMethod.POST)
 	public ModelAndView activarViaje(@RequestParam("idViaje") Long idViaje, HttpServletRequest request) {
-		// Long idUsuario = (Long)
-		// request.getSession().getAttribute("idUsuario");
-		Viaje viaje = servicioViaje.buscarViajePorId(idViaje);
-		viaje.setEstado("En proceso");
-		servicioViaje.viajeActualizadoEnProceso(viaje);
-		return new ModelAndView("redirect:/viajeEnProceso");
+		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
+		if(idUsuario != null && servicioUsuario.buscarPorId(idUsuario).getRol().equals("chofer")){
+			Viaje viaje = servicioViaje.buscarViajePorId(idViaje);
+			viaje.setEstado("En proceso");
+			servicioViaje.viajeActualizadoEnProceso(viaje);
+			return new ModelAndView("redirect:/viajeEnProceso");
+		}else{
+			return new ModelAndView("redirect:/login");
+
+		}
 	}
 
 	@RequestMapping(path = "viajeEnProceso")
 	public ModelAndView irAlMenuDeViajeActivo(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
-		Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
-		Viaje viajeEnProceso = servicioViaje.buscarViajeEnProceso(chofer);
-		if (viajeEnProceso != null) {
-			ModelMap model = new ModelMap();
-			model.put("viajeEnProceso", viajeEnProceso);
-			return new ModelAndView("chofer-viaje-en-proceso", model);
-		} else {
-			return new ModelAndView("redirect:/listaDeViajesActivos");
+		if(idUsuario != null && servicioUsuario.buscarPorId(idUsuario).getRol().equals("chofer")){
+			Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
+			Viaje viajeEnProceso = servicioViaje.buscarViajeEnProceso(chofer);
+			if (viajeEnProceso != null) {
+				ModelMap model = new ModelMap();
+				model.put("viajeEnProceso", viajeEnProceso);
+				return new ModelAndView("chofer-viaje-en-proceso", model);
+			} else {
+				return new ModelAndView("redirect:/listaDeViajesActivos");
+			}
+		}else{
+			return new ModelAndView("redirect:/login");
 		}
+		
 	}
 
 	@RequestMapping(path = "finalizarViajeEnProgreso", method = RequestMethod.POST)
@@ -90,10 +103,12 @@ public class ControladorMenuChofer {
 				modelo.put("tipo", "success");
 				modelo.put("titulo", "Viaje finalizado correctamente");
 				modelo.put("mensaje", String.format("El viaje fue completado."));
+				
 			} else {
 				modelo.put("tipo", "danger");
 				modelo.put("titulo", "No tiene autorizaciÃ³n");
 				modelo.put("mensaje", String.format("Entrar con rol chofer."));
+				return new ModelAndView("redirect:/login");
 			}
 			return new ModelAndView("chofer-viaje-finalizado", modelo);
 		} else {
@@ -104,17 +119,16 @@ public class ControladorMenuChofer {
 	@RequestMapping("viajesFinalizados")
 	public ModelAndView irAListadoViajesFinalizados(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
-		Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
-		if (chofer != null) {
+		if(idUsuario != null && servicioUsuario.buscarPorId(idUsuario).getRol().equals("chofer")){
+			Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
 			List<Viaje> listaViajeFinalizado = servicioViaje.listarViajesTerminados(chofer);
 			ModelMap model = new ModelMap();
 			model.put("listaViajesFinalizados", listaViajeFinalizado);
 			return new ModelAndView("chofer-lista-viajes-finalizado", model);
-		} else {
+		}else{
 			return new ModelAndView("redirect:/login");
-		}
-	}
-
+	   }
+ }
 	@RequestMapping("listaDeRemitos")
 	public ModelAndView listaDeRemitos(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
