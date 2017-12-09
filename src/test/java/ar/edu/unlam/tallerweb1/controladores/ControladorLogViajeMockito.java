@@ -59,7 +59,7 @@ public class ControladorLogViajeMockito {
 		assertThat(mav.getModel()).isEmpty();
 		verify(chofer,never()).getRol();
 	}
-	@Test
+	/*@Test
 	public void testQueMuestreListaLogViaje(){
 		//preparacion
 		when(request.getSession()).thenReturn(session);
@@ -129,7 +129,7 @@ public class ControladorLogViajeMockito {
 		verify(servicioUsuario,times(1)).buscarPorId(4L);
 		verify(servicioViaje,times(1)).buscarViajePorId(4L);
 		//verify(servicioLogViaje,times(1)).buscarPorIdViaje(4L);
-	}
+	}*/
 	
 	
 }

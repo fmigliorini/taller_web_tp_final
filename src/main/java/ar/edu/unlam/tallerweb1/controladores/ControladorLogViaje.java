@@ -35,7 +35,7 @@ public class ControladorLogViaje {
 	@RequestMapping("listaLogViaje")
 	public ModelAndView mostrarListaLogViaje(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
-		if (idUsuario != null) {
+		if(idUsuario != null && servicioUsuario.buscarPorId(idUsuario).getRol().equals("chofer")){
 			Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
 			Viaje viajeEnProceso = servicioViaje.buscarViajeEnProceso(chofer);
 			ModelMap model = new ModelMap();
@@ -50,7 +50,7 @@ public class ControladorLogViaje {
 	@RequestMapping(path = "logViajeForm")
 	public ModelAndView irAFormularioLogViaje(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
-		if (idUsuario != null) {
+		if(idUsuario != null && servicioUsuario.buscarPorId(idUsuario).getRol().equals("chofer")){
 			Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
 			Viaje viajeEnProceso = servicioViaje.buscarViajeEnProceso(chofer);
 			LogViaje logViaje = new LogViaje();
@@ -67,7 +67,7 @@ public class ControladorLogViaje {
 	public ModelAndView cargarLogViaje(@ModelAttribute("logViaje") LogViaje logViaje, HttpServletRequest request) {
 
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
-		if (idUsuario != null) {
+		if(idUsuario != null && servicioUsuario.buscarPorId(idUsuario).getRol().equals("chofer")){
 			Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
 			Viaje viajeEnProceso = servicioViaje.buscarViajeEnProceso(chofer);
 			
@@ -95,8 +95,8 @@ public class ControladorLogViaje {
 	@RequestMapping("logViajeFinalizado")
 	public ModelAndView irListadoLogsViajeFinalizado(@RequestParam("idViaje") Long idViaje, HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
-		Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
-		if (chofer != null) {
+		if(idUsuario != null && servicioUsuario.buscarPorId(idUsuario).getRol().equals("chofer")){
+		    Usuario chofer = servicioUsuario.buscarPorId(idUsuario);
 			Viaje viajeFinalizado = servicioViaje.buscarViajePorId(idViaje);
 			List<LogViaje> listaLogsViajeFinalizado = servicioLogViaje.buscarPorIdViaje(viajeFinalizado.getId());
 			ModelMap model = new ModelMap();
