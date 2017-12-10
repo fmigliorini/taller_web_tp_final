@@ -59,12 +59,13 @@ public class ControladorLogViajeMockito {
 		assertThat(mav.getModel()).isEmpty();
 		verify(chofer,never()).getRol();
 	}
-	/*@Test
+	@Test
 	public void testQueMuestreListaLogViaje(){
 		//preparacion
 		when(request.getSession()).thenReturn(session);
 		when(session.getAttribute(any(String.class))).thenReturn(1L);
 		when(servicioUsuario.buscarPorId(any(Long.class))).thenReturn(chofer);
+		when(chofer.getRol()).thenReturn("chofer");
 		when(servicioViaje.buscarViajeEnProceso(any(Usuario.class))).thenReturn(viajeEnProceso);
 		when(servicioLogViaje.listarLogViajePorViaje(any(Viaje.class))).thenReturn(listaLogViajeEnProceso);
 		//ejecucion
@@ -72,7 +73,7 @@ public class ControladorLogViajeMockito {
 		//verificacion
 		assertThat(mav.getViewName()).isEqualTo("chofer-log-viaje-en-progreso");
 		assertThat(mav.getModel()).isNotEmpty();
-		verify(servicioUsuario,times(1)).buscarPorId(1L);
+		verify(servicioUsuario,times(2)).buscarPorId(1L);
 		verify(servicioViaje,times(1)).buscarViajeEnProceso(chofer);
 		verify(servicioLogViaje,times(1)).listarLogViajePorViaje(viajeEnProceso);
 		assertThat(mav.getModelMap()).isNotEmpty();
@@ -83,6 +84,7 @@ public class ControladorLogViajeMockito {
 		when(request.getSession()).thenReturn(session);
 		when(session.getAttribute(any(String.class))).thenReturn(2L);
 		when(servicioUsuario.buscarPorId(any(Long.class))).thenReturn(chofer);
+		when(chofer.getRol()).thenReturn("chofer");
 		when(servicioViaje.buscarViajeEnProceso(any(Usuario.class))).thenReturn(viajeEnProceso);
 		when(servicioViaje.buscarViajePorId(any(Long.class))).thenReturn(viajeEnProceso);
 		//ejecucion
@@ -90,7 +92,7 @@ public class ControladorLogViajeMockito {
 		//verificacion
 		assertThat(mav2.getViewName()).isEqualTo("chofer-log-viaje-form");
 		assertThat(mav2.getModel()).isNotEmpty();
-		verify(servicioUsuario,times(1)).buscarPorId(2L);
+		verify(servicioUsuario,times(2)).buscarPorId(2L);
 		verify(servicioViaje,times(1)).buscarViajeEnProceso(chofer); 
 		//verify(servicioViaje,times(1)).buscarViajePorId(2L);
 	}
@@ -100,6 +102,7 @@ public class ControladorLogViajeMockito {
 		when(request.getSession()).thenReturn(session);
 		when(session.getAttribute(any(String.class))).thenReturn(3L);
 		when(servicioUsuario.buscarPorId(any(Long.class))).thenReturn(chofer);
+		when(chofer.getRol()).thenReturn("chofer");
 		when(servicioViaje.buscarViajeEnProceso(any(Usuario.class))).thenReturn(viajeEnProceso);
 		when(servicioLogViaje.gardarLogViaje(any(LogViaje.class))).thenReturn(logViaje);
 		when(servicioLogViaje.listarLogViajePorViaje(any(Viaje.class))).thenReturn(listaLogViajeEnProceso);
@@ -108,7 +111,7 @@ public class ControladorLogViajeMockito {
 		//verificacion
 		assertThat(mav3.getViewName()).isEqualTo("chofer-log-viaje-en-progreso");
 		assertThat(mav3.getModel()).isNotEmpty();
-		verify(servicioUsuario,times(1)).buscarPorId(3L);
+		verify(servicioUsuario,times(2)).buscarPorId(3L);
 		verify(servicioViaje,times(1)).buscarViajeEnProceso(chofer);
 		verify(servicioLogViaje,times(1)).gardarLogViaje(logViaje);
 		verify(servicioLogViaje,times(1)).listarLogViajePorViaje(viajeEnProceso);
@@ -119,6 +122,7 @@ public class ControladorLogViajeMockito {
 		when(request.getSession()).thenReturn(session);
 		when(session.getAttribute(any(String.class))).thenReturn(4L);
 		when(servicioUsuario.buscarPorId(any(Long.class))).thenReturn(chofer);
+		when(chofer.getRol()).thenReturn("chofer");
 		when(servicioViaje.buscarViajePorId(any(Long.class))).thenReturn(viajeEnProceso);
 		when(servicioLogViaje.buscarPorIdViaje(any(Long.class))).thenReturn(listaLogViajeEnProceso);
 		//ejecucion
@@ -126,10 +130,10 @@ public class ControladorLogViajeMockito {
 		//verificacion
 		assertThat(mav4.getViewName()).isEqualTo("chofer-lista-logs-viajes-finalizado");
 		assertThat(mav4.getModel()).isNotEmpty();
-		verify(servicioUsuario,times(1)).buscarPorId(4L);
+		verify(servicioUsuario,times(2)).buscarPorId(4L);
 		verify(servicioViaje,times(1)).buscarViajePorId(4L);
 		//verify(servicioLogViaje,times(1)).buscarPorIdViaje(4L);
-	}*/
+	}
 	
 	
 }
