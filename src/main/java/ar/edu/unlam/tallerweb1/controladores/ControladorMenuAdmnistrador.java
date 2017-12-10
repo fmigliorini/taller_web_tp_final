@@ -344,7 +344,6 @@ public class ControladorMenuAdmnistrador {
 		ModelMap model = new ModelMap();
 		if (idAdmin != null) {
 			if (servicioUsuario.buscarPorId(idAdmin).getRol().equals("admin")) {
-				try {
 					if (servicioUsuario.consultarUsuarioPorEmail(usuario) == null) {
 						servicioUsuario.generarUsuario(usuario);
 						model.put("usuario", usuario);
@@ -360,15 +359,7 @@ public class ControladorMenuAdmnistrador {
 						model.put("mensaje", String.format("Otro usuario ya está usando este correo: %s",usuario.getEmail()));
 						return new ModelAndView("notificacionGestion", model);
 
-						
 					}
-
-				} catch (NullPointerException e) {
-					model.put("mensaje", e.getMessage());
-					model.put("usuario", usuario);
-					return new ModelAndView("notificacionGestion",model);
-				}
-
 			} else {
 				return new ModelAndView("redirect:/login");
 			}
@@ -403,12 +394,20 @@ public class ControladorMenuAdmnistrador {
 		ModelMap model = new ModelMap();
 		if (idAdmin != null) {
 			if (servicioUsuario.buscarPorId(idAdmin).getRol().equals("admin")) {
-				servicioUsuario.actualizarUsuario(usuario);
-				model.put("tipo", "success");
-				model.put("titulo", "Actualizacion Exitosa");
-				model.put("mensaje",
-						String.format("El usuario con el id %d  se a modificado de manera exitosa", usuario.getId()));
-				return new ModelAndView("notificacionGestion", model);
+					if(servicioUsuario.consultarUsuarioPorEmail(usuario) == null){
+						servicioUsuario.actualizarUsuario(usuario);
+						model.put("tipo", "success");
+						model.put("titulo", "Actualizacion Exitosa");
+						model.put("mensaje",
+								String.format("El usuario con el id %d  se a modificado de manera exitosa", usuario.getId()));
+						return new ModelAndView("notificacionGestion", model);
+					}else{
+						model.put("tipo", "danger");
+						model.put("titulo", "El E-mail ya se encuentra en uso.");
+						model.put("mensaje", String.format("Otro usuario ya está usando este correo: %s",usuario.getEmail()));
+						return new ModelAndView("notificacionGestion", model);
+					}
+				
 			} else {
 				return new ModelAndView("redirect:/login");
 			}
@@ -416,7 +415,7 @@ public class ControladorMenuAdmnistrador {
 			return new ModelAndView("redirect:/login");
 		}
 	}
-
+	
 	@RequestMapping("eliminarUsuario")
 	public ModelAndView eliminarUsuario(@RequestParam("idUsuario") Long idUsuario, HttpServletRequest request) {
 
@@ -569,7 +568,7 @@ public class ControladorMenuAdmnistrador {
 					model.put("mensaje", "El vehiculo con   se a eliminado de manera exitosa");
 				} catch (Exception e) {
 					model.put("tipo", "dangar");
-					model.put("titulo", "Eliminacion Canceñada");
+					model.put("titulo", "Eliminacion Cancelada");
 					model.put("mensaje",
 							String.format("El vehiculo con el id %d  no pudo eliminarse", vehiculo.getId()));
 
