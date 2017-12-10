@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.JOptionPane;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -34,16 +35,12 @@ public class ControladorUsuario {
 
 	@RequestMapping("profile")
 	public ModelAndView profile(HttpServletRequest request) {
-
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
-		
-		if (idUsuario != null) {
+		if(idUsuario != null && servicioUsuario.buscarPorId(idUsuario).getRol().equals("cliente")){
 			Usuario usuario = servicioUsuario.buscarPorId(idUsuario);
-
 			ModelMap model = new ModelMap();
 			model.put("Usuario", usuario);
-			return new ModelAndView("profile", model);
-			
+			return new ModelAndView("profile", model);	
 		}
 		return new ModelAndView("redirect:/login");
 	}
@@ -69,9 +66,14 @@ public class ControladorUsuario {
 	@RequestMapping(path = "/registrar-cliente", method = RequestMethod.POST)
 	public ModelAndView registrarCliente(@ModelAttribute("Usuario") Usuario usuario) {
 		usuario.setRol("cliente");
-		servicioUsuario.generarUsuario(usuario);
-		return new ModelAndView("redirect:/login");
-
+		if (servicioUsuario.consultarUsuarioPorEmail(usuario) == null) {
+			servicioUsuario.generarUsuario(usuario);
+			return new ModelAndView("redirect:/login");
+		}else{
+			JOptionPane.showMessageDialog(null, "Otro usuario ya está usando este correo.", "El Email ya existe", JOptionPane.WARNING_MESSAGE);
+			return new ModelAndView("cliente-form");
+		}
+		
 	}
 
 }

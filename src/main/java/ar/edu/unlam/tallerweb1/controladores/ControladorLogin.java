@@ -52,7 +52,7 @@ public class ControladorLogin {
 		} else {
 			model.put("error", "Usuario o clave incorrecta");
 		}
-		return new ModelAndView("redirect:/login", model);
+		return new ModelAndView("login", model);
 	}
 
 	@RequestMapping("cerrarSession")
