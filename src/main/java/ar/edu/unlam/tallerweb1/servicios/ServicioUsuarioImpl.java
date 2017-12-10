@@ -67,4 +67,10 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		return servicioUsuarioDao.listarChoferesSinVehiculo();
 	}
 
+	@Override
+	public Usuario consultarUsuarioPorEmail(Usuario usuario) {
+		
+		return servicioUsuarioDao.consultarUsuarioPorEmail(usuario);
+	}
+
 }

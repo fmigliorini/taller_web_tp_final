@@ -80,7 +80,8 @@ public class ControladorPresupuesto {
 				modelMapError.put("error", "No existe un vehiculo disponible para ese peso");
 				return new ModelAndView("presupuestoForm", modelMapError);
 			}
-
+	
+		    //TO DO : HAcer la fecha fin y hora fin 
 			viaje.setTipoVehiculo(tv);
 			viaje.setPrecio(tv.getPrecio() * viaje.getKilometros());
 			servicioViaje.guardarViaje(viaje);
@@ -95,7 +96,7 @@ public class ControladorPresupuesto {
 			movimiento.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Activo"));
 
 			// seteo la fecha del presupuesto
-			final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			final DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 			Date date = new Date();
 			movimiento.setFecha_hora(sdf.format(date));
 
@@ -132,7 +133,7 @@ public class ControladorPresupuesto {
 						servicioTipoMovimiento.buscarPorDescripcion("Factura").getId()));
 				return new ModelAndView("presupuesto-invoice", modelMap);
 			} else {
-				// ENVIAR UN ERROR, NO AL LOGIN, QUIZÁS A LA VISTA DE LISTADO DE PRESUPUESTO.
+				// ENVIAR UN ERROR, NO AL LOGIN, QUIZaS A LA VISTA DE LISTADO DE PRESUPUESTO.
 				return new ModelAndView("redirect:/login");
 			}
 		}

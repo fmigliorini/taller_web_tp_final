@@ -23,5 +23,7 @@ public interface UsuarioDao {
 
 	List<Usuario> listarChoferesSinVehiculo();
 	
+    Usuario consultarUsuarioPorEmail(Usuario usuario);
+	
 
 }
