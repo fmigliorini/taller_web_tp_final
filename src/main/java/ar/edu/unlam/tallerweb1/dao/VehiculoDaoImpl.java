@@ -72,26 +72,25 @@ public class VehiculoDaoImpl implements VehiculoDao {
 		final Session session = sessionFactory.getCurrentSession();
 		session.delete(vehiculo);
 	}
-	
+
 	@Override
-	public List<Vehiculo> listarVehiculosDisponibles(String diaInicioViaje , String horaInicioViaje, String diaFinViaje , String horaFinViaje) {
+	public List<Vehiculo> listarVehiculosDisponibles(String diaInicioViaje, String horaInicioViaje, String diaFinViaje,
+			String horaFinViaje) {
 		final Session session = sessionFactory.getCurrentSession();
-		String query = 	String.format("SELECT ve.id, ve.marca , ve.modelo , ve.patente , ve.chofer_id , ve.tipoVehiculo_id FROM vehiculo ve where not EXISTS(SELECT * FROM viaje v JOIN vehiculo a  ON v.vehiculo_id=a.id  WHERE (v.horaInicio BETWEEN '%s' AND '%s') and (v.horaFin BETWEEN '%s' AND '%s') AND (v.fechaInicio BETWEEN '%s' AND '%s') AND (v.fechaFin BETWEEN '%s' AND '%s') and ve.id=a.id)", horaInicioViaje , horaFinViaje ,  horaInicioViaje , horaFinViaje , diaFinViaje,diaInicioViaje , diaFinViaje,diaInicioViaje);
+		String query = String.format(
+				"SELECT ve.id FROM vehiculo ve where not EXISTS(SELECT * FROM viaje v JOIN vehiculo a  ON v.vehiculo_id=a.id  WHERE (v.hora BETWEEN '%s' AND '%s') and (v.horaFin BETWEEN '%s' AND '%s') AND (v.fecha BETWEEN '%s' AND '%s') AND (v.fechaFin BETWEEN '%s' AND '%s') and ve.id=a.id)",
+				horaInicioViaje, horaFinViaje, horaInicioViaje, horaFinViaje, diaFinViaje, diaInicioViaje, diaFinViaje,
+				diaInicioViaje);
 		List<Object[]> rows = session.createSQLQuery(query).list();
 		List<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
 
-		for(Object[] row : rows){
+		for (Object[] row : rows) {
 			Vehiculo v = new Vehiculo();
-			v.setId(Long.parseLong(row[0].toString()));
-			v.setMarca(row[1].toString());
-			v.setModelo(row[2].toString());
-			v.setPatente(row[3].toString());
-			long idChofer =(Long.parseLong(row[4].toString()));
-			long idTipoVehiculo= (Long.parseLong(row[5].toString()));		
+			long id = (Long.parseLong(row[0].toString()));
+			v = buscarPorId(id);
 			vehiculos.add(v);
 		}
 		return vehiculos;
 	}
-
 
 }
