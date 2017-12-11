@@ -70,6 +70,7 @@ public class ControladorMovimientoMockito {
 		verify(servicioMovimiento,times(1)).buscarMovimientosPorUsuario(1L);
 		assertThat(mav1.getModelMap()).isNotEmpty();
 	}
+	//Falta
 	/*@Test
 	public void testQueListePresupuestos(){
 		//preparacion
@@ -84,6 +85,7 @@ public class ControladorMovimientoMockito {
 		assertThat(mav2.getModel()).isNotEmpty();
 		assertThat(mav2.getViewName()).isEqualTo("listaMovimientos");
 	}*/
+	//Falta
 	/*@Test
 	public void testQueGenereFactura(){
 		//preparacion
