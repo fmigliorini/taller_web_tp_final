@@ -235,4 +235,168 @@ Usuario chofer1;
 			
 		}
 	}
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testActivarViaje() {
+		Usuario chofer1;
+		Usuario chofer2;
+		Viaje viaje1;
+		Viaje viaje2;
+		TipoVehiculo camion;
+		TipoVehiculo furgoneta;
+		Vehiculo v1;
+		Vehiculo v2;
+		LogViaje combustible;
+		LogViaje peaje;
+		Session session;
+
+		session = getSession();
+		chofer1 = new Usuario();
+		chofer2 = new Usuario();
+		viaje1 = new Viaje();
+		viaje2 = new Viaje();
+		camion = new TipoVehiculo();
+		furgoneta = new TipoVehiculo();
+		v1 = new Vehiculo();
+		v2 = new Vehiculo();
+		peaje=new LogViaje();
+		combustible=new LogViaje();
+		
+	
+
+		// Primer viaje
+		chofer1.setRol("chofer");
+		chofer1.setNombre("Pablo");
+		v1.setChofer(chofer1);
+		viaje1.setTipoVehiculo(furgoneta);
+		furgoneta.setDescripcion("furgoneta");
+		viaje1.setVehiculo(v1);
+		viaje1.setEstado("En proceso");
+		viaje1.setTipoVehiculo(furgoneta);
+		combustible.setTipoLogViaje("combustible");
+		combustible.setViaje(viaje1);
+
+		// Segundo viaje
+		chofer2.setRol("chofer");
+		chofer2.setNombre("Mario");
+		v2.setChofer(chofer2);
+		viaje2.setTipoVehiculo(camion);
+		camion.setDescripcion("camion");
+		viaje2.setVehiculo(v2);
+		viaje2.setEstado("Terminado");
+		viaje2.setTipoVehiculo(camion);
+		peaje.setTipoLogViaje("peaje");
+		peaje.setViaje(viaje2);
+
+		// salvamos
+		session.save(chofer1);
+		session.save(furgoneta);
+		session.save(v1);
+		session.save(viaje1);
+		session.save(combustible);
+
+		session.save(chofer2);
+		session.save(camion);
+		session.save(v2);
+		session.save(viaje2);
+		session.save(peaje);
+		
+		List<Viaje> viajesActivos = session.createCriteria(Viaje.class)
+				.add(Restrictions.eq("estado", "En proceso"))
+				.createAlias("vehiculo", "veh")
+				.createAlias("veh.chofer", "ch")
+				.add(Restrictions.eq("ch.rol", "chofer"))
+				.list();
+
+		assertThat(viajesActivos).hasSize(1);
+		
+		for(Viaje ListaviajesTerminado :viajesActivos ){
+			assertEquals("chofer",ListaviajesTerminado.getVehiculo().getChofer().getRol());
+			assertEquals("En proceso",ListaviajesTerminado.getEstado());
+			
+		}
+	}
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testFinalizarViajeEnProgreso() {
+		Usuario chofer1;
+		Usuario chofer2;
+		Viaje viaje1;
+		Viaje viaje2;
+		TipoVehiculo camion;
+		TipoVehiculo furgoneta;
+		Vehiculo v1;
+		Vehiculo v2;
+		LogViaje combustible;
+		LogViaje peaje;
+		Session session;
+
+		session = getSession();
+		chofer1 = new Usuario();
+		chofer2 = new Usuario();
+		viaje1 = new Viaje();
+		viaje2 = new Viaje();
+		camion = new TipoVehiculo();
+		furgoneta = new TipoVehiculo();
+		v1 = new Vehiculo();
+		v2 = new Vehiculo();
+		peaje=new LogViaje();
+		combustible=new LogViaje();
+		
+	
+
+		// Primer viaje
+		chofer1.setRol("chofer");
+		chofer1.setNombre("Pablo");
+		v1.setChofer(chofer1);
+		viaje1.setTipoVehiculo(furgoneta);
+		furgoneta.setDescripcion("furgoneta");
+		viaje1.setVehiculo(v1);
+		viaje1.setEstado("En proceso");
+		viaje1.setTipoVehiculo(furgoneta);
+		combustible.setTipoLogViaje("combustible");
+		combustible.setViaje(viaje1);
+
+		// Segundo viaje
+		chofer2.setRol("chofer");
+		chofer2.setNombre("Mario");
+		v2.setChofer(chofer2);
+		viaje2.setTipoVehiculo(camion);
+		camion.setDescripcion("camion");
+		viaje2.setVehiculo(v2);
+		viaje2.setEstado("Terminado");
+		viaje2.setTipoVehiculo(camion);
+		peaje.setTipoLogViaje("peaje");
+		peaje.setViaje(viaje2);
+
+		// salvamos
+		session.save(chofer1);
+		session.save(furgoneta);
+		session.save(v1);
+		session.save(viaje1);
+		session.save(combustible);
+
+		session.save(chofer2);
+		session.save(camion);
+		session.save(v2);
+		session.save(viaje2);
+		session.save(peaje);
+		
+		List<Viaje> finalizarViajes = session.createCriteria(Viaje.class)
+				.add(Restrictions.eq("estado", "Terminado"))
+				.createAlias("vehiculo", "veh")
+				.createAlias("veh.chofer", "ch")
+				.add(Restrictions.eq("ch.rol", "chofer"))
+				.list();
+
+		assertThat(finalizarViajes).hasSize(1);
+		
+		for(Viaje ListaviajesTerminado :finalizarViajes ){
+			assertEquals("chofer",ListaviajesTerminado.getVehiculo().getChofer().getRol());
+			assertEquals("Terminado",ListaviajesTerminado.getEstado());
+			
+		}
+	}
 }
