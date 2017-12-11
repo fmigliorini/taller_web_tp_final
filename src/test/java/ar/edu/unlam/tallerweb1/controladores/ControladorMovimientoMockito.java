@@ -70,28 +70,25 @@ public class ControladorMovimientoMockito {
 		verify(servicioMovimiento,times(1)).buscarMovimientosPorUsuario(1L);
 		assertThat(mav1.getModelMap()).isNotEmpty();
 	}
-	//Falta
-	/*@Test
+	
+	@Test
 	public void testQueListePresupuestos(){
 		//preparacion
 		when(request.getSession()).thenReturn(session);
 		when(session.getAttribute(any(String.class))).thenReturn(2L);
 		when(servicioUsuario.buscarPorId(any(Long.class))).thenReturn(cliente);
-		//when(servicioMovimiento.buscarMovimientosPorUsuario((any(Long.class)),any(int.class))).thenReturn(cliente,2);
-		//when(servicioMovimiento.buscarMovimientosPorUsuario(any(Long.class))).thenReturn(movimientosTipo);
+		when(cliente.getRol()).thenReturn("cliente");
+		when(servicioMovimiento.buscarMovimientosPorUsuario(any(Long.class))).thenReturn(movimientosTipo);
+		
 		//ejecucion
 		ModelAndView mav2=controladorMovimiento.mostrarPresupuestos(request);
 		//verificacion
 		assertThat(mav2.getModel()).isNotEmpty();
 		assertThat(mav2.getViewName()).isEqualTo("listaMovimientos");
-	}*/
-	//Falta
-	/*@Test
-	public void testQueGenereFactura(){
-		//preparacion
-		//ejecucion
-		ModelAndView mav3=controladorMovimiento.generarFactura(idCliente, idTipoVehiculo, fecha_hora, origen, destino, kilometros, descripcion, request);
-		//verificacion
-	}*/
+		verify(servicioMovimiento,times(1)).buscarMovimientosPorUsuario(2L, 2);
+		verify(cliente,times(1)).getRol();
+		verify(servicioUsuario,times(1)).buscarPorId(2L);
+	}
+	
 	
 }

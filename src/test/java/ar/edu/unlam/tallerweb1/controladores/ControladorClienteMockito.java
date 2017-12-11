@@ -44,8 +44,10 @@ public class ControladorClienteMockito {
 	@Mock
 	private ServicioUsuario servicioUsuario;
 	@Mock
-	private TipoMovimiento tipoMovimiento;
+	private TipoMovimiento presupuesto;
 	
+	@Mock
+    private List <Movimiento> movimientosTipo;
 	@InjectMocks private ControladorCliente controladorCliente;
 	@Before 
 	public void inyeccionAntesDeCadaTest(){
@@ -81,29 +83,28 @@ public class ControladorClienteMockito {
 		verify(cliente,times(1)).getRol();
 		
 	}
-	//Falta
-	/*@Test
+	
+	@Test
 	public void testListePresupuestosCliente(){
 		//preparacion
 		when(request.getSession()).thenReturn(session);
 		when(session.getAttribute(any(String.class))).thenReturn(2L);
 		when(servicioUsuario.buscarPorId(any(Long.class))).thenReturn(cliente);
 		when(cliente.getRol()).thenReturn("cliente");
+		when(presupuesto.getId()).thenReturn(2);
+		when(servicioMovimiento.buscarMovimientosPorUsuario(any(Long.class))).thenReturn(movimientosTipo);
+		when(servicioTipoMovimiento.buscarPorDescripcion(any(String.class))).thenReturn(presupuesto);
 		//ejecucion
 		ModelAndView mav2=controladorCliente.listarPresupuestosCliente(request);
 		//verificacion
 		assertThat(mav2.getViewName()).isEqualTo("cliente-lista-presupuesto");
-		//verify(cliente,times(1)).getRol();*/
-		//verify(servicioUsuario,times(1)).buscarPorId(1L);
+		verify(cliente,times(1)).getRol();
+		verify(servicioUsuario,times(1)).buscarPorId(2L);
+		verify(servicioMovimiento,times(1)).buscarMovimientosPorUsuario(2L, 2);
+		verify(servicioTipoMovimiento,times(1)).buscarPorDescripcion("Presupuesto");
+		verify(presupuesto,times(1)).getId();
+
 		
-		//when(servicioMovimiento.buscarMovimientosPorUsuario(any(Long.class))).thenReturn(tipoMovimiento);
-		//when(servicioMovimiento.buscarMovimientosPorUsuario(any(Long.class)))).thenReturn(tipoMovimiento);
-		
-		/*
-			List<Movimiento> listaMovimiento = servicioMovimiento.buscarMovimientosPorUsuario(idUsuario,
-					servicioTipoMovimiento.buscarPorDescripcion("Presupuesto").getId());
-			ModelMap model = new ModelMap();
-			model.put("presupuestos", listaMovimiento);
-			return new ModelAndView("cliente-lista-presupuesto", model);*/
 	}
 
+}
