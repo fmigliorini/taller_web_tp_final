@@ -66,4 +66,9 @@ public class ServicioViajeImpl implements ServicioViaje {
 	public Viaje buscarViajeEnProceso(Usuario chofer) {
 		return viajeDao.buscarViajeEnProceso(chofer);
 	}
+
+	@Override
+	public List<Viaje> listarViajesIntervalo(String fecha, String fechaFin, String hora, String horaFin) {
+		return viajeDao.listarViajesIntervalo(fecha, fechaFin, hora, horaFin);
+	}
 }

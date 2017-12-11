@@ -24,5 +24,7 @@ public interface ServicioViaje {
 	List<Viaje> listarViajesTerminados(Usuario chofer);
 
 	Viaje buscarViajeEnProceso(Usuario chofer);
+	
+	List<Viaje> listarViajesIntervalo(String fecha, String fechaFin , String hora, String horaFin);
 
 }

@@ -105,4 +105,14 @@ public class ViajeDaoImpl implements ViajeDao {
 							
 	}
 
+;
+
+@Override
+public List<Viaje> listarViajesIntervalo(String fecha, String fechaFin , String hora, String horaFin) {
+	final Session session = sessionFactotry.getCurrentSession();
+	List<Viaje> viajesChofer = session.createCriteria(Viaje.class)
+
+			.add(Restrictions.ge("fecha", fecha)).add(Restrictions.lt("fechaFin", fecha)).list();
+	return viajesChofer;
+}
 }

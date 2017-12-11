@@ -26,5 +26,5 @@ public interface ViajeDao {
 	
 	Viaje buscarViajeEnProceso(Usuario chofer);
 
-
+	 List<Viaje> listarViajesIntervalo(String fecha, String fechaFin , String hora, String horaFin);
 }
