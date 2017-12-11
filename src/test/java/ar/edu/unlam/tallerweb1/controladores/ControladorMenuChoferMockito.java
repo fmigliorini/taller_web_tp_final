@@ -19,6 +19,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Movimiento;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Viaje;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogViaje;
@@ -47,13 +48,15 @@ public class ControladorMenuChoferMockito {
 	@Mock
 	private HttpSession session;
 	@Mock
-	private Usuario chofer;
+	private Usuario chofer,cliente;
 	@Mock
 	private Viaje viajeEnProceso;
 	@Mock
 	private List<Viaje> listaViajes;
 	@Mock
 	private Viaje viaje;
+	@Mock
+	private List<Movimiento>listaRemitos;
 	@InjectMocks
 	private ControladorMenuChofer controladorMenuChofer;
 
@@ -120,24 +123,6 @@ public class ControladorMenuChoferMockito {
 		verify(chofer, times(1)).getRol();
 	}
 
-	//Falta
-	/*@Test
-	public void testActivarViaje() {
-		// preparacion
-		when(request.getSession()).thenReturn(session);
-		when(session.getAttribute(any(String.class))).thenReturn(2L);
-		when(servicioLogin.consultarUsuario(any(Usuario.class))).thenReturn(chofer);
-		when(chofer.getRol()).thenReturn("chofer");
-		when(servicioViaje.buscarViajePorId(any(Long.class))).thenReturn(viaje);
-		when(viaje.getEstado()).thenReturn("En proceso");
-		// when(servicioViaje.viajeActualizadoEnProceso(any(Viaje.class))).thenReturn(chofer);
-		// ejecucion
-		ModelAndView mav3 = controladorMenuChofer.activarViaje(2L, request);
-		// verificacion
-		assertThat(mav3.getViewName()).isEqualTo("redirect:/viajeEnProceso");
-
-	}*/
-
 	@Test
 	public void testIrAlMenuDeViajeActivo() {
 		// preparacion
@@ -157,21 +142,6 @@ public class ControladorMenuChoferMockito {
 		verify(servicioUsuario,times(2)).buscarPorId(2L);
 		
 	}
-
-	//Falta
-	/*@Test
-	public void testFinalizarViajeEnProgreso() {
-		// preparacion
-		when(request.getSession()).thenReturn(session);
-		when(session.getAttribute(any(String.class))).thenReturn(2L);
-		when(servicioLogin.consultarUsuario(any(Usuario.class))).thenReturn(chofer);
-		when(chofer.getRol()).thenReturn("chofer");
-		// ejecucion
-		ModelAndView mav5 = controladorMenuChofer.finalizarViajeEnProgreso(request);
-		// verificacion
-		
-	}*/
-
 	@Test
 	public void testIrAListadoViajesFinalizadoso() {
 		// preparacion
@@ -192,14 +162,44 @@ public class ControladorMenuChoferMockito {
 		
 		
 	}
-	//Falta
-	/*@Test
+	@Test
 	public void testListaDeRemitos() {
 		// preparacion
 		when(request.getSession()).thenReturn(session);
-		when(session.getAttribute(any(String.class))).thenReturn(2L);
+		when(session.getAttribute(any(String.class))).thenReturn(7L);
 		when(servicioLogin.consultarUsuario(any(Usuario.class))).thenReturn(chofer);
 		when(chofer.getRol()).thenReturn("chofer");
-	}*/
+		when(servicioUsuario.buscarPorId(any(Long.class))).thenReturn(chofer);
+		when(servicioMovimiento.buscarMovimientosParaChofer(any(Long.class))).thenReturn(listaRemitos);
+		//ejecucion
+		ModelAndView mav7 = controladorMenuChofer.listaDeRemitos(request);
+		//verificacion
+		assertThat(mav7.getViewName()).isEqualTo("chofer-lista-remitos");
+		assertThat(mav7.getModelMap()).isNotEmpty();
+		verify(chofer, times(1)).getRol();
+		verify(servicioUsuario,times(1)).buscarPorId(7L);
+		verify(servicioMovimiento,times(1)).buscarMovimientosParaChofer(7L);
+		
+	}
+	@Test
+	public void testListaDeRemitosNoAutorizadoPorSerRolDiferenteAchofer() {
+		// preparacion
+		when(request.getSession()).thenReturn(session);
+		when(session.getAttribute(any(String.class))).thenReturn(8L);
+		when(servicioLogin.consultarUsuario(any(Usuario.class))).thenReturn(cliente);
+		when(cliente.getRol()).thenReturn("cliente");
+		when(servicioUsuario.buscarPorId(any(Long.class))).thenReturn(cliente);
+		when(servicioMovimiento.buscarMovimientosParaChofer(any(Long.class))).thenReturn(null);
+		//ejecucion
+		ModelAndView mav7 = controladorMenuChofer.listaDeRemitos(request);
+		//verificacion
+		assertThat(mav7.getViewName()).isEqualTo("notificacionGestion");
+		assertThat(mav7.getModelMap()).isNotEmpty();
+		verify(cliente, times(1)).getRol();
+		verify(servicioUsuario,times(1)).buscarPorId(8L);
+		verify(servicioMovimiento,never()).buscarMovimientosParaChofer(8L);
+		assertThat(mav7.getModel().get("mensaje")).isEqualTo("Entrar con rol chofer.");
+		
+	}
 
 }
