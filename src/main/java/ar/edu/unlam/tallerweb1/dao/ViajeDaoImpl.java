@@ -110,9 +110,13 @@ public class ViajeDaoImpl implements ViajeDao {
 @Override
 public List<Viaje> listarViajesIntervalo(String fecha, String fechaFin , String hora, String horaFin) {
 	final Session session = sessionFactotry.getCurrentSession();
-	List<Viaje> viajesChofer = session.createCriteria(Viaje.class)
+	List<Viaje> viajes = session.createCriteria(Viaje.class)
+			.add(Restrictions.ge("fecha", fecha)).add(Restrictions.lt("fechaFin", fecha))
+			.add(Restrictions.ge("fecha", fechaFin)).add(Restrictions.lt("fechaFin", fechaFin))
+			.add(Restrictions.ge("hora", hora)).add(Restrictions.lt("horaFin", hora))
+			.add(Restrictions.ge("hora", horaFin)).add(Restrictions.lt("horaFin", horaFin))			
+			.list();
 
-			.add(Restrictions.ge("fecha", fecha)).add(Restrictions.lt("fechaFin", fecha)).list();
-	return viajesChofer;
+	return viajes;
 }
 }

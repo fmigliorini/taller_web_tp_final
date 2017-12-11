@@ -86,7 +86,8 @@ public class ControladorPresupuesto {
 				modelMapError.put("error", "No existe un vehiculo disponible para ese peso");
 				return new ModelAndView("presupuestoForm", modelMapError);
 			}
-
+	
+		    //TO DO : HAcer la fecha fin y hora fin 
 			viaje.setTipoVehiculo(tv);
 			viaje.setPrecio(tv.getPrecio() * viaje.getKilometros());
 			servicioViaje.guardarViaje(viaje);
@@ -101,7 +102,7 @@ public class ControladorPresupuesto {
 			movimiento.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Activo"));
 
 			// seteo la fecha del presupuesto
-			final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			final DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 			Date date = new Date();
 			movimiento.setFecha_hora(sdf.format(date));
 
@@ -138,8 +139,6 @@ public class ControladorPresupuesto {
 						servicioTipoMovimiento.buscarPorDescripcion("Factura").getId()));
 				return new ModelAndView("presupuesto-invoice", modelMap);
 			} else {
-				// ENVIAR UN ERROR, NO AL LOGIN, QUIZaS A LA VISTA DE LISTADO DE
-				// PRESUPUESTO.
 				return new ModelAndView("redirect:/login");
 			}
 		}
@@ -153,8 +152,7 @@ public class ControladorPresupuesto {
 		if (idUsuario != null) {
 
 			Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
-			presupuesto.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Aceptado"));
-			servicioMovimiento.guardarMovimiento(presupuesto);
+
 			long idMovimiento = presupuesto.getId();
 
 			boolean error = false;
@@ -164,6 +162,9 @@ public class ControladorPresupuesto {
 
 			error = AsignarChofer(viaje, presupuesto);
 			if (!error) {
+				
+				presupuesto.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Facturado"));
+				servicioMovimiento.guardarMovimiento(presupuesto);
 				// Actualizo el estado del presupuesto
 				servicioMovimiento.actualizarMovimiento(presupuesto);
 				presupuesto.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Factura"));
@@ -178,11 +179,13 @@ public class ControladorPresupuesto {
 				presupuesto.setTipoMovimiento(servicioTipoMovimiento.buscarPorDescripcion("Remito"));
 				servicioMovimiento.guardarMovimiento(presupuesto);
 
-				return new ModelAndView("redirect:/verPresupuesto/" + presupuesto.getId());
+				return new ModelAndView("redirect:/verPresupuesto/" + idMovimiento);
 
 			}
 
 			else {
+				presupuesto.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Aceptado"));
+				servicioMovimiento.guardarMovimiento(presupuesto);
 				ModelMap model = new ModelMap();
 				model.put("tipo", "success");
 				model.put("titulo", "No se pudo generar la Factura y el Remito");
@@ -205,7 +208,7 @@ public class ControladorPresupuesto {
 
 	public boolean AsignarChofer(Viaje viaje, Movimiento presupuesto) {
 		// Cambia el estado a Facturado
-		long idVehiculo = 0; // servicioVehiculo.getIdVehiculoDisponible();
+		long idVehiculo = servicioVehiculo.getIdVehiculoDisponible(viaje.getFecha(), viaje.getFechaFin(), viaje.getHora(),viaje.getHoraFin());
 		if (idVehiculo > 0) {
 			viaje.setVehiculo(servicioVehiculo.buscarPorId(idVehiculo));
 			viaje.setEstado("activo");

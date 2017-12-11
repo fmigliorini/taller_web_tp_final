@@ -23,8 +23,10 @@ public interface ServicioVehiculo {
 	void actualizarVehiculo(Vehiculo vehiculo);
 
 	void eliminarVehiculo(Vehiculo vehiculo);
-	
+
 	List<Vehiculo> listarVehiculosDisponibles(String diaInicioViaje, String horaInicioViaje, String diaFinViaje,
 			String horaFinViaje);
 
+	List<Vehiculo> getVehiculosDisponibles(String fecha, String hora, String fechaFin, String horaFin);
+	long getIdVehiculoDisponible(String fecha, String hora, String fechaFin, String horaFin);
 }

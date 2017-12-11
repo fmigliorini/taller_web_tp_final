@@ -109,4 +109,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		return usuarios;
 	}
 
+	@Override
+	public Usuario consultarUsuarioPorEmail(Usuario usuario) {
+		final Session session=sessionFactory.getCurrentSession();
+		return (Usuario) sessionFactory.getCurrentSession().createCriteria(Usuario.class)
+				.add(Restrictions.eq("email", usuario.getEmail()))
+				.uniqueResult();
+	}
+
 }

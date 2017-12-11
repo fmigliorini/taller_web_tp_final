@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -83,7 +85,9 @@ public class ControladorMenuAdmnistrador {
 		if (idUsuario != null) {
 			if (servicioUsuario.buscarPorId(idUsuario).getRol().equals("admin")) {
 
-				List<Movimiento> presupuestos = servicioMovimiento.buscarMovimientosPorTipoyEstado(servicioTipoMovimiento.buscarPorDescripcion("Presupuesto"), servicioEstadoMovimiento.buscarPorDescripcion("Aceptado"));
+				List<Movimiento> presupuestos = servicioMovimiento.buscarMovimientosPorTipoyEstado(
+						servicioTipoMovimiento.buscarPorDescripcion("Presupuesto"),
+						servicioEstadoMovimiento.buscarPorDescripcion("Aceptado"));
 				model.put("presupuestos", presupuestos);
 				return new ModelAndView("listaDePresupuestosAceptados", model);
 			} else {
@@ -313,6 +317,7 @@ public class ControladorMenuAdmnistrador {
 		} else {
 			return new ModelAndView("redirect:/login");
 		}
+
 	}
 
 	@RequestMapping("agregarUsuario")
@@ -327,7 +332,7 @@ public class ControladorMenuAdmnistrador {
 			} else {
 				return new ModelAndView("redirect:/login");
 			}
-			
+
 		} else {
 			return new ModelAndView("redirect:/login");
 		}
@@ -339,13 +344,22 @@ public class ControladorMenuAdmnistrador {
 		ModelMap model = new ModelMap();
 		if (idAdmin != null) {
 			if (servicioUsuario.buscarPorId(idAdmin).getRol().equals("admin")) {
-				servicioUsuario.generarUsuario(usuario);
-				model.put("usuario", usuario);
-				model.put("tipo", "success");
-				model.put("titulo", "Creacion Exitosa");
-				model.put("mensaje",
-						String.format("Se ah creado el usuario con el id %d de manera exitosa", usuario.getId()));
-				return new ModelAndView("notificacionGestion", model);
+					if (servicioUsuario.consultarUsuarioPorEmail(usuario) == null) {
+						servicioUsuario.generarUsuario(usuario);
+						model.put("usuario", usuario);
+						model.put("tipo", "success");
+						model.put("titulo", "Creacion Exitosa");
+						model.put("mensaje", String.format("Se ah creado el usuario con el id %d de manera exitosa",
+								usuario.getId()));
+						return new ModelAndView("notificacionGestion", model);
+					} else {
+						model.put("usuario", usuario);
+						model.put("tipo", "danger");
+						model.put("titulo", "El E-mail ya se encuentra en uso");
+						model.put("mensaje", String.format("Otro usuario ya está usando este correo: %s",usuario.getEmail()));
+						return new ModelAndView("notificacionGestion", model);
+
+					}
 			} else {
 				return new ModelAndView("redirect:/login");
 			}
@@ -380,12 +394,20 @@ public class ControladorMenuAdmnistrador {
 		ModelMap model = new ModelMap();
 		if (idAdmin != null) {
 			if (servicioUsuario.buscarPorId(idAdmin).getRol().equals("admin")) {
-				servicioUsuario.actualizarUsuario(usuario);
-				model.put("tipo", "success");
-				model.put("titulo", "Actualizacion Exitosa");
-				model.put("mensaje",
-						String.format("El usuario con el id %d  se a modificado de manera exitosa", usuario.getId()));
-				return new ModelAndView("notificacionGestion", model);
+					if(servicioUsuario.consultarUsuarioPorEmail(usuario) == null){
+						servicioUsuario.actualizarUsuario(usuario);
+						model.put("tipo", "success");
+						model.put("titulo", "Actualizacion Exitosa");
+						model.put("mensaje",
+								String.format("El usuario con el id %d  se a modificado de manera exitosa", usuario.getId()));
+						return new ModelAndView("notificacionGestion", model);
+					}else{
+						model.put("tipo", "danger");
+						model.put("titulo", "El E-mail ya se encuentra en uso.");
+						model.put("mensaje", String.format("Otro usuario ya está usando este correo: %s",usuario.getEmail()));
+						return new ModelAndView("notificacionGestion", model);
+					}
+				
 			} else {
 				return new ModelAndView("redirect:/login");
 			}
@@ -393,7 +415,7 @@ public class ControladorMenuAdmnistrador {
 			return new ModelAndView("redirect:/login");
 		}
 	}
-
+	
 	@RequestMapping("eliminarUsuario")
 	public ModelAndView eliminarUsuario(@RequestParam("idUsuario") Long idUsuario, HttpServletRequest request) {
 
@@ -454,7 +476,9 @@ public class ControladorMenuAdmnistrador {
 	}
 
 	@RequestMapping(path = "/guardarVehiculo", method = RequestMethod.POST)
-	public ModelAndView guardarVehiculo(@RequestParam("idTipoVehiculo") Long idTipoVehiculo, @RequestParam("chofer") Long chofer,@ModelAttribute("Vehiculo") Vehiculo vehiculo, HttpServletRequest request) {
+	public ModelAndView guardarVehiculo(@RequestParam("idTipoVehiculo") Long idTipoVehiculo,
+			@RequestParam("chofer") Long chofer, @ModelAttribute("Vehiculo") Vehiculo vehiculo,
+			HttpServletRequest request) {
 		Long idAdmin = (Long) request.getSession().getAttribute("idUsuario");
 		ModelMap model = new ModelMap();
 		if (idAdmin != null) {
@@ -484,7 +508,9 @@ public class ControladorMenuAdmnistrador {
 	}
 
 	@RequestMapping(path = "/actualizarVehiculo", method = RequestMethod.POST)
-	public ModelAndView actualizarVehiculo(@ModelAttribute("vehiculo") Vehiculo vehiculo,@RequestParam("tipovehiculo") Long tipovehiculo,@RequestParam("chofer") Long chofer ,HttpServletRequest request) {
+	public ModelAndView actualizarVehiculo(@ModelAttribute("vehiculo") Vehiculo vehiculo,
+			@RequestParam("tipovehiculo") Long tipovehiculo, @RequestParam("chofer") Long chofer,
+			HttpServletRequest request) {
 
 		Long idAdmin = (Long) request.getSession().getAttribute("idUsuario");
 		ModelMap model = new ModelMap();
@@ -542,7 +568,7 @@ public class ControladorMenuAdmnistrador {
 					model.put("mensaje", "El vehiculo con   se a eliminado de manera exitosa");
 				} catch (Exception e) {
 					model.put("tipo", "dangar");
-					model.put("titulo", "Eliminacion Canceñada");
+					model.put("titulo", "Eliminacion Cancelada");
 					model.put("mensaje",
 							String.format("El vehiculo con el id %d  no pudo eliminarse", vehiculo.getId()));
 
