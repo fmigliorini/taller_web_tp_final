@@ -20,22 +20,34 @@
 		    </div>
 	    </div>
 	    <div class="form-row">	
+
 	        <div class="form-group col-md-6">
-	            <label for="fecha">Fecha</label>
-	            <form:input type="date" required="required" class="form-control" id="fecha" path="fecha" />
-	        </div>
-	        <div class="form-group col-md-6">
-	            <label for="hora">Hora</label>
-	            <form:input type="time" required="required" class="form-control" id="hora" path="hora" />
+	            <label for="hora">Fecha y Hora de partida</label>
+	            <form:input type="datetime-local" required="required" class="form-control" id="fechaHora" path="fechaHora" />
 	        </div>
         </div>
+        
+        	    <div class="form-row">	
+
+	        <div class="form-group col-md-6">
+	            <label for="hora">Fecha y Hora de llegada</label>
+	            <form:input type="datetime-local" required="required" class="form-control" id="fechaHoraFin" path="fechaHoraFin" />
+	        </div>
+        </div>
+    	    <div class="form-row">	
+
+	        <div class="form-group col-md-6">
+	            <label for="hora">Duracion</label>
+	            <input type="text" required="required" class="form-control" id="duracion"/>
+	        </div>
+        </div>    
 	    <div class="form-row">	
 	        <div class="form-group col-md-12">
 	            <label for="kilometros">Kilometros</label>
 	            <form:input type="number" required="required" class="form-control" id="kilometros" path="kilometros" readonly="readonly" />
 	        </div>
 	        <div class="form-group col-md-12">
-		        <label for="descripcion">peso </label>
+		        <label for="descripcion">Peso </label>
 		        <form:input type="number" required="required" class="form-control" id="peso" path="peso" rows="3" />
 		    </div>
 		    <div class="form-group col-md-12">

@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.Date;
 import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -25,6 +26,6 @@ public interface ServicioViaje {
 
 	Viaje buscarViajeEnProceso(Usuario chofer);
 	
-	List<Viaje> listarViajesIntervalo(String fecha, String fechaFin , String hora, String horaFin);
+	List<Viaje> listarViajesIntervalo(Date fechaHora, Date fechaHoraFin );
 
 }

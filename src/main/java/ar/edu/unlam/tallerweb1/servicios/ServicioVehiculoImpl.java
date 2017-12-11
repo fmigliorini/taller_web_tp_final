@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -61,16 +62,15 @@ public class ServicioVehiculoImpl implements ServicioVehiculo {
 	}
 
 	@Override
-	public List<Vehiculo> listarVehiculosDisponibles(String diaInicioViaje, String horaInicioViaje, String diaFinViaje,
-			String horaFinViaje) {
-		return vehiculoDao.listarVehiculosDisponibles(diaInicioViaje, horaInicioViaje, diaFinViaje, horaFinViaje);
+	public List<Vehiculo> listarVehiculosDisponibles(Date fechaHora, Date fechaHoraFin) {
+		return vehiculoDao.listarVehiculosDisponibles(fechaHora, fechaHoraFin);
 	}
 
 	@Override
-	public List<Vehiculo> getVehiculosDisponibles(String fecha, String hora, String fechaFin, String horaFin) {
+	public List<Vehiculo> getVehiculosDisponibles(Date fechaHora, Date fechaHoraFin, TipoVehiculo tipoVehiculo) {
 
-		List<Vehiculo> vehiculos = vehiculoDao.getAll();
-		List<Viaje> viajes = servicioViaje.listarViajesIntervalo(fecha, hora, fechaFin, horaFin);
+		List<Vehiculo> vehiculos = vehiculoDao.listarPorTipoVehiculo(tipoVehiculo);
+		List<Viaje> viajes = servicioViaje.listarViajesIntervalo(fechaHora, fechaHoraFin);
 
 		for (Vehiculo vehiculo : vehiculos) {
 			if (vehiculo != null) {
@@ -84,8 +84,8 @@ public class ServicioVehiculoImpl implements ServicioVehiculo {
 	}
 
 	@Override
-	public long getIdVehiculoDisponible(String fecha, String hora, String fechaFin, String horaFin) {
-		List<Vehiculo> vehiculos = getVehiculosDisponibles(fecha, hora, fechaFin, horaFin);
+	public long getIdVehiculoDisponible(Date fechaHora, Date fechaHoraFin, TipoVehiculo tipoVehiculo) {
+		List<Vehiculo> vehiculos = getVehiculosDisponibles(fechaHora, fechaHoraFin, tipoVehiculo);
 
 		if (vehiculos.isEmpty()) {
 			return 0;

@@ -208,7 +208,7 @@ public class ControladorPresupuesto {
 
 	public boolean AsignarChofer(Viaje viaje, Movimiento presupuesto) {
 		// Cambia el estado a Facturado
-		long idVehiculo = servicioVehiculo.getIdVehiculoDisponible(viaje.getFecha(), viaje.getFechaFin(), viaje.getHora(),viaje.getHoraFin());
+		long idVehiculo = servicioVehiculo.getIdVehiculoDisponible(viaje.getFechaHora(), viaje.getFechaHoraFin(),  viaje.getTipoVehiculo());
 		if (idVehiculo > 0) {
 			viaje.setVehiculo(servicioVehiculo.buscarPorId(idVehiculo));
 			viaje.setEstado("activo");

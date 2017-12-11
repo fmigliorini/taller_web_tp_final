@@ -1,11 +1,13 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import ar.edu.unlam.tallerweb1.dao.ViajeDao;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -68,7 +70,7 @@ public class ServicioViajeImpl implements ServicioViaje {
 	}
 
 	@Override
-	public List<Viaje> listarViajesIntervalo(String fecha, String fechaFin, String hora, String horaFin) {
-		return viajeDao.listarViajesIntervalo(fecha, fechaFin, hora, horaFin);
+	public List<Viaje> listarViajesIntervalo(Date fechaHora, Date fechaHoraFin ) {
+		return viajeDao.listarViajesIntervalo(fechaHora, fechaHoraFin);
 	}
 }
