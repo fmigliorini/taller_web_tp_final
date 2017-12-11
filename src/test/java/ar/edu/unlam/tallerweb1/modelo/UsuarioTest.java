@@ -10,10 +10,11 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import static org.junit.Assert.*;
 import ar.edu.unlam.tallerweb1.SpringTest;
+import junit.framework.Assert;
 
 public class UsuarioTest extends SpringTest{
 	
-	private Usuario cliente, chofer, administrador;
+	private Usuario cliente, chofer, administrador,usuario;
 	private Session session;
 	
 	@Before
@@ -22,6 +23,7 @@ public class UsuarioTest extends SpringTest{
 		chofer=new Usuario();
 		administrador=new Usuario();
 		session = getSession();
+		usuario=new Usuario();
     	
     }
 
@@ -102,6 +104,37 @@ public class UsuarioTest extends SpringTest{
 					assertEquals("admin",listaUsuario.getRol());
 				}
 				
+		
+	}
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testActualizarDatos(){
+		
+		usuario.setApellido("Ramirez");
+		usuario.setNombre("Mario");
+		usuario.setDireccion("Velarde 2345");
+		usuario.setPassword("ramirez12@gmail.com");
+		usuario.setPassword("1234");
+		usuario.setTelefono("123456789");
+		usuario.setDni("38465322");
+		usuario.setRol("cliente");
+		
+		session.save(usuario);
+		
+		usuario.setDireccion("Urdaneta 1860");
+		
+	
+		
+		List<Usuario> usuarios = session.createCriteria(Usuario.class)
+				.list();
+
+		assertThat(usuarios).hasSize(1);
+
+		for (Usuario v : usuarios) {
+			assertEquals("Urdaneta 1860", v.getDireccion());
+		}
+		
 		
 	}
 	
