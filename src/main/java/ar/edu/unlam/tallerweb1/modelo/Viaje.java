@@ -16,10 +16,8 @@ public class Viaje {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String hora; // Inicio
-	private String fecha; //Inicio
-	private String horaFin;
-	private String fechaFin;
+	private Date fechaHoraFin;
+	private Date fechaHora;
 	private String origen;
 	private String destino;
 	private Integer kilometros;
@@ -37,36 +35,23 @@ public class Viaje {
 	@OneToOne
 	private Vehiculo vehiculo;
 
-	public String getFechaFin() {
-		return fechaFin;
+	public Date getFechaHoraFin() {
+		return fechaHoraFin;
 	}
 
-	public void setFechaFin(String fechaFin) {
-		this.fechaFin = fechaFin;
+	public void setFechaHoraFin(Date fechaHoraFin) {
+		this.fechaHoraFin = fechaHoraFin;
 	}
 	
-	public String getHoraFin() {
-		return horaFin;
+
+	public Date getFechaHora() {
+		return fechaHora;
 	}
 
-	public void setHoraFin(String horaFin) {
-		this.horaFin = horaFin;
-	}
-	public String getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
+	public void setFechaHora(Date fechaHora) {
+		this.fechaHora = fechaHora;
 	}
 	
-	public String getHora() {
-		return hora;
-	}
-
-	public void setHora(String hora) {
-		this.hora = hora;
-	}
 	public Long getId() {
 		return id;
 	}

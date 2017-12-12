@@ -16,27 +16,33 @@
 			value="${idCliente}">
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label for="origen">Origen</label> <form:input type="text"
-					required="required" class="form-control" id="origen" path="origen"
-					placeholder="Calle Falsa, Ramos Mejias, La Matanza, Buenos Aires" />
-			</div>
-			<div class="form-group col-md-6">
-				<label for="destino">Destino</label>
+				<label for="origen">Origen</label>
 				<form:input type="text" required="required" class="form-control"
-					id="destino" path="destino"
-					placeholder="Calle Verdadera, Isidro Casanova, La Matanza, Buenos Aires" />
+					id="origen" path="origen"
+					placeholder="Calle altura, Localidad, Provincia, Pais" />
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label for="fecha">Fecha</label>
-				<form:input type="date" required="required" class="form-control"
-					id="fecha" path="fecha" />
+				<label for="destino">Destino</label>
+				<form:input type="text" required="required" class="form-control"
+					id="destino" path="destino"
+					placeholder="Calle altura, Localidad, Provincia, Pais" />
 			</div>
+
 			<div class="form-group col-md-6">
-				<label for="hora">Hora</label>
-				<form:input type="time" required="required" class="form-control"
-					id="hora" path="hora" />
+				<label for="hora">Fecha y Hora de partida</label> <input
+					type="datetime-local" required="required" class="form-control"
+					id="fechaHoraInicio" name="fechaHoraInicio"
+					pattern="dd/MM/yyyy HH:mm:ss" />
+			</div>
+		</div>
+
+		<div class="form-row">
+
+			<div class="form-group col-md-6">
+				<label for="hora">Duracion</label> <input type="text"
+					required="required" class="form-control" id="duracion" />
 			</div>
 		</div>
 		<div class="form-row">
@@ -46,16 +52,19 @@
 					id="kilometros" path="kilometros" readonly="readonly" min="1" />
 			</div>
 			<div class="form-group col-md-12">
-				<label for="descripcion">peso </label>
+				<label for="descripcion">Peso </label>
 				<form:input type="number" required="required" class="form-control "
 					id="peso" path="peso" rows="3" min="0" readonly="readonly" />
 			</div>
 			<div class="form-group col-md-12">
-				<label for="descripcion">Descripción </label>
+				<label for="descripcion">Observacion </label>
 				<form:input type="text" required="required" class="form-control"
 					id="descripcion" path="descripcion" />
 			</div>
 		</div>
+
+		<input type="number" class="hidden" name="duracionInt"
+			id="duracionInt" />
 		<input type="submit" class="btn btn-primary"
 			value="Generar Presupuesto">
 		<button type="submit" class="btn btn-danger">Cancelar</button>

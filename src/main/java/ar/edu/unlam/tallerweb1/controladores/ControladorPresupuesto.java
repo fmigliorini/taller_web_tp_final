@@ -1,7 +1,9 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -22,12 +24,14 @@ import ar.edu.unlam.tallerweb1.modelo.Movimiento;
 
 import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Viaje;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEstadoMovimiento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioMovimiento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTipoMovimiento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTipoVehiculo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioVehiculo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioViaje;
 
 @Controller
@@ -51,6 +55,9 @@ public class ControladorPresupuesto {
 	@Inject
 	ServicioUsuario servicioUsuario;
 
+	@Inject
+	ServicioVehiculo servicioVehiculo;
+
 	@RequestMapping("/presupuestoForm")
 	public ModelAndView irAFormularioPresupuesto(HttpServletRequest request) {
 
@@ -66,8 +73,13 @@ public class ControladorPresupuesto {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	@RequestMapping(path = "/generarPresupuesto", method = RequestMethod.POST)
-	public ModelAndView generarPresupuesto(@ModelAttribute("viaje") Viaje viaje, HttpServletRequest request) {
+	public ModelAndView generarPresupuesto(@ModelAttribute("viaje") Viaje viaje, HttpServletRequest request,
+			@RequestParam("duracionInt") int duracionInt, @RequestParam("fechaHoraInicio") String fechaHoraInicio)
+			throws ParseException { //// ,@RequestParam("duracionInt")
+		//// int
+		//// duracionInt
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
 		if (idUsuario != null) {
 			// GENERACION DE UN VIAJE
@@ -80,8 +92,15 @@ public class ControladorPresupuesto {
 				modelMapError.put("error", "No existe un vehiculo disponible para ese peso");
 				return new ModelAndView("presupuesto-form", modelMapError);
 			}
-	
-		    //TO DO : HAcer la fecha fin y hora fin 
+			fechaHoraInicio = fechaHoraInicio.replace("T", " ");
+			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			Date fechaI = sdf1.parse(fechaHoraInicio);
+			viaje.setFechaHora(fechaI);
+			Date fechaF = sdf1.parse(fechaHoraInicio);
+			fechaF.setSeconds(duracionInt);
+			Date fechaHoraFin = fechaF;
+			viaje.setFechaHoraFin(fechaHoraFin);
+
 			viaje.setTipoVehiculo(tv);
 			viaje.setPrecio(tv.getPrecio() * viaje.getKilometros());
 			servicioViaje.guardarViaje(viaje);
@@ -133,7 +152,6 @@ public class ControladorPresupuesto {
 						servicioTipoMovimiento.buscarPorDescripcion("Factura").getId()));
 				return new ModelAndView("presupuesto-invoice", modelMap);
 			} else {
-				// ENVIAR UN ERROR, NO AL LOGIN, QUIZaS A LA VISTA DE LISTADO DE PRESUPUESTO.
 				return new ModelAndView("redirect:/login");
 			}
 		}
@@ -145,12 +163,76 @@ public class ControladorPresupuesto {
 			HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
 		if (idUsuario != null) {
+
 			Movimiento presupuesto = servicioMovimiento.buscarIdMovimiento(idPresupuesto);
-			presupuesto.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Aceptado"));
-			servicioMovimiento.guardarMovimiento(presupuesto);
-			return new ModelAndView("redirect:/verPresupuesto/" + presupuesto.getId());
+
+			long idMovimiento = presupuesto.getId();
+
+			boolean error = false;
+
+			Viaje viaje = presupuesto.getViaje();
+			Vehiculo vehiculo = new Vehiculo();
+
+			error = AsignarChofer(viaje, presupuesto);
+			if (!error) {
+
+				presupuesto.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Facturado"));
+				servicioMovimiento.guardarMovimiento(presupuesto);
+				// Actualizo el estado del presupuesto
+				servicioMovimiento.actualizarMovimiento(presupuesto);
+				presupuesto.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Factura"));
+				presupuesto.setId(null);
+				presupuesto.setLetra('A');
+				presupuesto.setFecha_hora(LocalDateTime.now().toString());
+				// Factura
+				presupuesto.setTipoMovimiento(servicioTipoMovimiento.buscarPorDescripcion("Factura"));
+				servicioMovimiento.guardarMovimiento(presupuesto);
+				presupuesto.setId(null);
+				// Remito
+				presupuesto.setTipoMovimiento(servicioTipoMovimiento.buscarPorDescripcion("Remito"));
+				servicioMovimiento.guardarMovimiento(presupuesto);
+
+				return new ModelAndView("redirect:/verPresupuesto/" + idMovimiento);
+
+			}
+
+			else {
+				presupuesto.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Aceptado"));
+				servicioMovimiento.guardarMovimiento(presupuesto);
+				ModelMap model = new ModelMap();
+				model.put("tipo", "success");
+				model.put("titulo", "No se pudo generar la Factura y el Remito");
+				model.put("mensaje",
+						String.format(
+								"No se pudo generar la factura por falta de disponibilidad de vehículos, un representante va a estar viendo como lo pueda solucionar, en breve se está contactando con usted vía email para brindarle una resolución.",
+								idMovimiento));
+
+				return new ModelAndView("redirect:/notificacionGestion");
+			}
+
 		}
 		return new ModelAndView("redirect:/login");
+
+	}
+
+	public void GenerarFacturaRemito() {
+		this.servicioTipoVehiculo = servicioTipoVehiculo;
+	}
+
+	public boolean AsignarChofer(Viaje viaje, Movimiento presupuesto) {
+		// Cambia el estado a Facturado
+		long idVehiculo = servicioVehiculo.getIdVehiculoDisponible(viaje.getFechaHora(), viaje.getFechaHoraFin(),
+				viaje.getTipoVehiculo());
+		if (idVehiculo > 0) {
+			viaje.setVehiculo(servicioVehiculo.buscarPorId(idVehiculo));
+			viaje.setEstado("activo");
+			presupuesto.setViaje(viaje);
+			// Actualizo el viaje
+			servicioViaje.ActualizarViaje(presupuesto.getViaje());
+			return false;
+		} else {
+			return true;
+		}
 
 	}
 

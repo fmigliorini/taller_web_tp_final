@@ -2,6 +2,7 @@
 package ar.edu.unlam.tallerweb1.dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -74,13 +75,11 @@ public class VehiculoDaoImpl implements VehiculoDao {
 	}
 
 	@Override
-	public List<Vehiculo> listarVehiculosDisponibles(String diaInicioViaje, String horaInicioViaje, String diaFinViaje,
-			String horaFinViaje) {
+	public List<Vehiculo> listarVehiculosDisponibles(Date fechaHora, Date fechaHoraFin) {
 		final Session session = sessionFactory.getCurrentSession();
 		String query = String.format(
-				"SELECT ve.id FROM vehiculo ve where not EXISTS(SELECT * FROM viaje v JOIN vehiculo a  ON v.vehiculo_id=a.id  WHERE (v.hora BETWEEN '%s' AND '%s') and (v.horaFin BETWEEN '%s' AND '%s') AND (v.fecha BETWEEN '%s' AND '%s') AND (v.fechaFin BETWEEN '%s' AND '%s') and ve.id=a.id)",
-				horaInicioViaje, horaFinViaje, horaInicioViaje, horaFinViaje, diaFinViaje, diaInicioViaje, diaFinViaje,
-				diaInicioViaje);
+				"SELECT ve.id FROM vehiculo ve where not EXISTS(SELECT * FROM viaje v JOIN vehiculo a  ON v.vehiculo_id=a.id  WHERE (v.fechaHora BETWEEN '%s' AND '%s') and (v.fechaHoraFin BETWEEN '%s' AND '%s') AND ve.id=a.id)",
+				fechaHora, fechaHoraFin, fechaHora, fechaHoraFin);
 		List<Object[]> rows = session.createSQLQuery(query).list();
 		List<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
 

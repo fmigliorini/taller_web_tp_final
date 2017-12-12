@@ -1,6 +1,8 @@
 package ar.edu.unlam.tallerweb1.dao;
 
 import javax.inject.Inject;
+
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -105,4 +107,16 @@ public class ViajeDaoImpl implements ViajeDao {
 							
 	}
 
+;
+
+@Override
+public List<Viaje> listarViajesIntervalo(Date fechaHora, Date fechaHoraFin ) {
+	final Session session = sessionFactotry.getCurrentSession();
+	List<Viaje> viajes = session.createCriteria(Viaje.class)
+			.add(Restrictions.ge("fechaHora", fechaHora)).add(Restrictions.lt("fechaHoraFin", fechaHora))
+			.add(Restrictions.ge("fechaHora", fechaHoraFin)).add(Restrictions.lt("fechaHoraFin", fechaHoraFin))		
+			.list();
+
+	return viajes;
+}
 }
