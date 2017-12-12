@@ -16,8 +16,8 @@
 						<thead>
 							<tr>
 								<th scope="col">Id</th>
-								<th scope="col">Hora</th>
-								<th scope="col">Fecha</th>
+								<th scope="col">Fecha y Hora de Inicio</th>
+								<th scope="col">Fecha y Hora de Fin</th>
 								<th scope="col">Origen</th>
 								<th scope="col">Destino</th>
 								<th scope="col">Kilometros</th>
@@ -30,8 +30,8 @@
 								<tr>
 									<!-- UNA VEZ QUE ESTE CARGADO LOS DATOS SE PUEDEN -->
 									<td><c:out value="${v.id}" /></td>
-									<td><c:out value="${v.hora}" /></td>
-									<td><c:out value="${v.fecha}" /></td>
+									<td><c:out value="${v.fechaHora}" /></td>
+									<td><c:out value="${v.fechaHoraFin}" /></td>
 									<td><c:out value="${v.origen}" /></td>
 									<td><c:out value="${v.destino}" /></td>
 									<td><c:out value="${v.kilometros}" /></td>
