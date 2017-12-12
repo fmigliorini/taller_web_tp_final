@@ -90,7 +90,7 @@ public class ControladorPresupuesto {
 				ModelMap modelMapError = new ModelMap();
 				modelMapError.put("viaje", viaje);
 				modelMapError.put("error", "No existe un vehiculo disponible para ese peso");
-				return new ModelAndView("presupuestoForm", modelMapError);
+				return new ModelAndView("presupuesto-form", modelMapError);
 			}
 			fechaHoraInicio = fechaHoraInicio.replace("T", " ");
 			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
