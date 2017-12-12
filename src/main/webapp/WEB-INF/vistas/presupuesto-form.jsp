@@ -7,7 +7,7 @@
 
 <div class="container">
 	<h1>Generar presupuesto para nuevo viaje.</h1>
-	<form:form action="generarPresupuesto" method="POST"
+	<form:form id ="formPre" action="generarPresupuesto" method="POST"
 		modelAttribute="viaje">
 		<input type="hidden" id="idCliente" name="idCliente"
 			value="${idCliente}">
@@ -40,12 +40,12 @@
 			<div class="form-group col-md-12">
 				<label for="kilometros">Kilometros</label>
 				<form:input type="number" required="required" class="form-control"
-					id="kilometros" path="kilometros" readonly="readonly" />
+					id="kilometros" path="kilometros" readonly="readonly" min="1" />
 			</div>
 			<div class="form-group col-md-12">
 				<label for="descripcion">peso </label>
-				<form:input type="number" required="required" class="form-control"
-					id="peso" path="peso" rows="3" />
+				<form:input type="number" required="required" class="form-control "
+					id="peso" path="peso" rows="3" min="0" readonly="readonly" />
 			</div>
 			<div class="form-group col-md-12">
 				<label for="descripcion">Descripción </label>
@@ -61,3 +61,9 @@
 </div>
 
 <%@include file='../../templates/Footer.jsp'%>
+
+<script>
+$("#kilometros").keydown(function (evt) {
+	evt.preventDefault();
+});
+</script>
