@@ -78,7 +78,7 @@ public class ControladorPresupuesto {
 				ModelMap modelMapError = new ModelMap();
 				modelMapError.put("viaje", viaje);
 				modelMapError.put("error", "No existe un vehiculo disponible para ese peso");
-				return new ModelAndView("presupuestoForm", modelMapError);
+				return new ModelAndView("presupuesto-form", modelMapError);
 			}
 	
 		    //TO DO : HAcer la fecha fin y hora fin 

@@ -7,15 +7,18 @@
 
 <div class="container">
 	<h1>Generar presupuesto para nuevo viaje.</h1>
-	<form:form id ="formPre" action="generarPresupuesto" method="POST"
+	<form:form id="formPre" action="generarPresupuesto" method="POST"
 		modelAttribute="viaje">
+		<c:if test="${ !empty error }">
+			<h2 style="color: red;">${error }</h2>
+		</c:if>
 		<input type="hidden" id="idCliente" name="idCliente"
 			value="${idCliente}">
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label for="origen">Origen</label> <input type="text"
-					required="required" class="form-control" id="origen" name="origen"
-					placeholder="Calle Falsa, Ramos Mejias, La Matanza, Buenos Aires">
+				<label for="origen">Origen</label> <form:input type="text"
+					required="required" class="form-control" id="origen" path="origen"
+					placeholder="Calle Falsa, Ramos Mejias, La Matanza, Buenos Aires" />
 			</div>
 			<div class="form-group col-md-6">
 				<label for="destino">Destino</label>
@@ -63,7 +66,7 @@
 <%@include file='../../templates/Footer.jsp'%>
 
 <script>
-$("#kilometros").keydown(function (evt) {
-	evt.preventDefault();
-});
+	$("#kilometros").keydown(function(evt) {
+		evt.preventDefault();
+	});
 </script>
