@@ -8,8 +8,7 @@ function MeasureDistance(origin, destiny, fechaHora){
         unitSystem: google.maps.UnitSystem.METRIC,
         durationInTraffic: true,
         avoidHighways: false,
-        avoidTolls: false,
-        departureTime: new Date([fechaHora]),
+        avoidTolls: false
     },MeasureDistanceSuccess);
 }
 
@@ -18,9 +17,9 @@ function MeasureDistanceSuccess(response, status){
             console.log('Error:', status);
         } else {
             console.log(response);
-            debugger;
             $("#kilometros").val((response.rows[0].elements[0].distance.value/1000).toFixed(0));
-            $("#fechaHoraFin").val((response.rows[0].elements[0].duration.text).toFixed(0));
+            $("#duracion").val(response.rows[0].elements[0].duration_in_traffic.text);
+            $("#duracionInt").val(response.rows[0].elements[0].duration_in_traffic.value);
         }
 }
 
@@ -29,8 +28,8 @@ function initMap() {
 }
 
 $(document).ready(function(){
-	$("#origen, #destino" ,"#fechaHora").change(function(){
-
-		MeasureDistance($("#origen").val(), $("#destino").val(), $("#fechaHora").val());
+	$("#origen, #destino").change(function(){
+        debugger;
+		MeasureDistance($("#origen").val(), $("#destino").val());
 	});
 });

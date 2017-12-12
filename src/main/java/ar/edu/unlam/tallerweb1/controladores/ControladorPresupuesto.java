@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Calendar;
@@ -72,8 +73,13 @@ public class ControladorPresupuesto {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	@RequestMapping(path = "/generarPresupuesto", method = RequestMethod.POST)
-	public ModelAndView generarPresupuesto(@ModelAttribute("viaje") Viaje viaje, HttpServletRequest request) {
+	public ModelAndView generarPresupuesto(@ModelAttribute("viaje") Viaje viaje, HttpServletRequest request,
+			@RequestParam("duracionInt") int duracionInt, @RequestParam("fechaHoraInicio") String fechaHoraInicio)
+			throws ParseException { //// ,@RequestParam("duracionInt")
+		//// int
+		//// duracionInt
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
 		if (idUsuario != null) {
 			// GENERACION DE UN VIAJE
@@ -86,8 +92,15 @@ public class ControladorPresupuesto {
 				modelMapError.put("error", "No existe un vehiculo disponible para ese peso");
 				return new ModelAndView("presupuestoForm", modelMapError);
 			}
-	
-		    //TO DO : HAcer la fecha fin y hora fin 
+			fechaHoraInicio = fechaHoraInicio.replace("T", " ");
+			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			Date fechaI = sdf1.parse(fechaHoraInicio);
+			viaje.setFechaHora(fechaI);
+			Date fechaF = sdf1.parse(fechaHoraInicio);
+			fechaF.setSeconds(duracionInt);
+			Date fechaHoraFin = fechaF;
+			viaje.setFechaHoraFin(fechaHoraFin);
+
 			viaje.setTipoVehiculo(tv);
 			viaje.setPrecio(tv.getPrecio() * viaje.getKilometros());
 			servicioViaje.guardarViaje(viaje);
@@ -162,7 +175,7 @@ public class ControladorPresupuesto {
 
 			error = AsignarChofer(viaje, presupuesto);
 			if (!error) {
-				
+
 				presupuesto.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Facturado"));
 				servicioMovimiento.guardarMovimiento(presupuesto);
 				// Actualizo el estado del presupuesto
@@ -208,7 +221,8 @@ public class ControladorPresupuesto {
 
 	public boolean AsignarChofer(Viaje viaje, Movimiento presupuesto) {
 		// Cambia el estado a Facturado
-		long idVehiculo = servicioVehiculo.getIdVehiculoDisponible(viaje.getFechaHora(), viaje.getFechaHoraFin(),  viaje.getTipoVehiculo());
+		long idVehiculo = servicioVehiculo.getIdVehiculoDisponible(viaje.getFechaHora(), viaje.getFechaHoraFin(),
+				viaje.getTipoVehiculo());
 		if (idVehiculo > 0) {
 			viaje.setVehiculo(servicioVehiculo.buscarPorId(idVehiculo));
 			viaje.setEstado("activo");
