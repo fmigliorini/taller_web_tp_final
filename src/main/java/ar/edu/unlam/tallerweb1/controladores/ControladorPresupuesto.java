@@ -93,6 +93,7 @@ public class ControladorPresupuesto {
 				return new ModelAndView("presupuesto-form", modelMapError);
 			}
 			fechaHoraInicio = fechaHoraInicio.replace("T", " ");
+			final DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			Date fechaI = sdf1.parse(fechaHoraInicio);
 			viaje.setFechaHora(fechaI);
@@ -115,7 +116,7 @@ public class ControladorPresupuesto {
 			movimiento.setEstadoMovimiento(servicioEstadoMovimiento.buscarPorDescripcion("Activo"));
 
 			// seteo la fecha del presupuesto
-			final DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		
 			Date date = new Date();
 			movimiento.setFecha_hora(sdf.format(date));
 
