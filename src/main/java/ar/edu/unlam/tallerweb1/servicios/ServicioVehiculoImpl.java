@@ -62,20 +62,57 @@ public class ServicioVehiculoImpl implements ServicioVehiculo {
 	}
 
 	@Override
-	public List<Vehiculo> listarVehiculosDisponibles(Date fechaHora, Date fechaHoraFin) {
-		return vehiculoDao.listarVehiculosDisponibles(fechaHora, fechaHoraFin);
+	public List<Vehiculo> listarVehiculosDisponibles(Date fechaHora, Date fechaHoraFin, long idTipoVehiculo) {
+		return vehiculoDao.listarVehiculosDisponibles(fechaHora, fechaHoraFin, idTipoVehiculo);
 	}
+
+	@Override
+	public List<Vehiculo> listarVehiculosDisponiblesC(Date fechaHora, Date fechaHoraFin, long idTipoVehiculo) {
+		return vehiculoDao.listarVehiculosDisponiblesC(fechaHora, fechaHoraFin, idTipoVehiculo);
+	}
+
+	// @Override
+	// public List<Vehiculo> getVehiculosDisponibles(Date fechaHora, Date
+	// fechaHoraFin, TipoVehiculo tipoVehiculo) {
+
+	// List<Vehiculo> vehiculos =
+	// vehiculoDao.listarPorTipoVehiculo(tipoVehiculo);
+	// List<Viaje> viajes = servicioViaje.listarViajesIntervalo(fechaHora,
+	// fechaHoraFin);
+
+	// for (Vehiculo vehiculo : vehiculos) {
+	// if (vehiculo != null) {
+	// if (viajes.contains(vehiculo) ||
+	// vehiculo.getTipoVehiculo().getDescripcion() == "Terceros") {
+	// vehiculos.remove(vehiculo);
+	// }
+	// }
+	// }
+
+	// return vehiculos;
+	// }
 
 	@Override
 	public List<Vehiculo> getVehiculosDisponibles(Date fechaHora, Date fechaHoraFin, TipoVehiculo tipoVehiculo) {
 
 		List<Vehiculo> vehiculos = vehiculoDao.listarPorTipoVehiculo(tipoVehiculo);
-		List<Viaje> viajes = servicioViaje.listarViajesIntervalo(fechaHora, fechaHoraFin);
+		// List<Viaje> viajes = servicioViaje.listarViajesIntervalo(fechaHora,
+		// fechaHoraFin);
+		List<Viaje> viajes = servicioViaje.listarViajesActVeh(tipoVehiculo);
 
 		for (Vehiculo vehiculo : vehiculos) {
 			if (vehiculo != null) {
-				if (viajes.contains(vehiculo) || vehiculo.getTipoVehiculo().getDescripcion() == "Terceros") {
-					vehiculos.remove(vehiculo);
+
+				for (Viaje viaje : viajes) {
+					int p1 = viaje.getFechaHora().compareTo(fechaHora);
+					int p2 = viaje.getFechaHoraFin().compareTo(fechaHora);
+					int p3 = viaje.getFechaHora().compareTo(fechaHoraFin);
+					int p4 = viaje.getFechaHoraFin().compareTo(fechaHoraFin);
+
+					if ((p1 <= 0 && p2 >= 0) || (p3 <= 0 && p4 >= 0)
+							|| vehiculo.getTipoVehiculo().getDescripcion() == "Terceros") {
+						vehiculos.remove(viaje.getVehiculo());
+					}
 				}
 			}
 		}

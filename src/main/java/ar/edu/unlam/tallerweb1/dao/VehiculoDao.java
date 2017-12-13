@@ -22,5 +22,7 @@ public interface VehiculoDao {
 
 	void eliminarVehiculo(Vehiculo vehiculo);
 
-	List<Vehiculo> listarVehiculosDisponibles(Date fechaHora, Date fechaHoraFin);
+	List<Vehiculo>  listarVehiculosDisponibles(Date fechaHora, Date fechaHoraFin, long idTipoVehiculo);
+	
+    List<Vehiculo> listarVehiculosDisponiblesC(Date fechaHora, Date fechaHoraFin, long idTipoVehiculo);
 }

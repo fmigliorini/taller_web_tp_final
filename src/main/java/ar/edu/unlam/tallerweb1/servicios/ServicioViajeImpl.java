@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import ar.edu.unlam.tallerweb1.dao.ViajeDao;
+import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Viaje;
 
@@ -73,4 +74,11 @@ public class ServicioViajeImpl implements ServicioViaje {
 	public List<Viaje> listarViajesIntervalo(Date fechaHora, Date fechaHoraFin ) {
 		return viajeDao.listarViajesIntervalo(fechaHora, fechaHoraFin);
 	}
+	
+	public List<Viaje> listarViajesActVeh(TipoVehiculo t){
+		return viajeDao.listarViajesActVeh(t);
+		
+	}
+	
+	
 }
