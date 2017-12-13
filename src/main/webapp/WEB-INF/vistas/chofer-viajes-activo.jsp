@@ -21,8 +21,8 @@
 						<table class="table table-bordered text-center">
 							<thead>
 								<tr>
-									<th scope="col">Hora</th>
-									<th scope="col">Fecha</th>
+									<th scope="col">Fecha y Hora de Inicio</th>
+									<th scope="col">Fecha y Hora Fin</th>
 									<th scope="col">Origen</th>
 									<th scope="col">Destino</th>
 									<th scope="col">KM</th>
@@ -35,8 +35,8 @@
 							<tbody>
 								<c:forEach var="viaje" items="${listaViajeActivo}">
 									<tr>
-										<td><c:out value="${viaje.hora}" /></td>
-										<td><c:out value="${viaje.fecha}" /></td>
+										<td><c:out value="${viaje.fechaHora}" /></td>
+										<td><c:out value="${viaje.fechaHoraFin}" /></td>
 										<td><c:out value="${viaje.origen}" /></td>
 										<td><c:out value="${viaje.destino}" /></td>
 										<td><c:out value="${viaje.kilometros}" /></td>
