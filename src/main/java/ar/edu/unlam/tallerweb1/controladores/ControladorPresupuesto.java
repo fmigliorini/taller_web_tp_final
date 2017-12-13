@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Movimiento;
-
+import ar.edu.unlam.tallerweb1.modelo.TipoMovimiento;
 import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Viaje;
@@ -80,8 +80,8 @@ public class ControladorPresupuesto {
 				modelMapError.put("error", "No existe un vehiculo disponible para ese peso");
 				return new ModelAndView("presupuesto-form", modelMapError);
 			}
-	
-		    //TO DO : HAcer la fecha fin y hora fin 
+
+			// TO DO : HAcer la fecha fin y hora fin
 			viaje.setTipoVehiculo(tv);
 			viaje.setPrecio(tv.getPrecio() * viaje.getKilometros());
 			servicioViaje.guardarViaje(viaje);
@@ -133,7 +133,8 @@ public class ControladorPresupuesto {
 						servicioTipoMovimiento.buscarPorDescripcion("Factura").getId()));
 				return new ModelAndView("presupuesto-invoice", modelMap);
 			} else {
-				// ENVIAR UN ERROR, NO AL LOGIN, QUIZaS A LA VISTA DE LISTADO DE PRESUPUESTO.
+				// ENVIAR UN ERROR, NO AL LOGIN, QUIZaS A LA VISTA DE LISTADO DE
+				// PRESUPUESTO.
 				return new ModelAndView("redirect:/login");
 			}
 		}
@@ -165,6 +166,16 @@ public class ControladorPresupuesto {
 			return new ModelAndView("redirect:/verPresupues	to/" + presupuesto.getId());
 		}
 		return new ModelAndView("redirect:/login");
+	}
+
+	@RequestMapping(path = "/verFactura/{idViaje}")
+	public ModelAndView listarPresupuestosCliente(@PathVariable("idViaje") Long idViaje) {
+		TipoMovimiento tipoMovimiento = servicioTipoMovimiento.buscarPorDescripcion("Factura");
+		Movimiento factura = servicioMovimiento.buscarMovimientosPorViaje(idViaje, tipoMovimiento.getId());
+		ModelMap model = new ModelMap();
+		model.put("factura", factura);
+		model.put("cliente", factura.getUsuario());
+		return new ModelAndView("factura-invoice", model);
 	}
 
 	public void setServicioTipoVehiculo(ServicioTipoVehiculo servicioTipoVehiculo) {
