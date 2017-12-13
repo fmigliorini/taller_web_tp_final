@@ -9,6 +9,7 @@
 	<div class="row color-invoice">
 		<div class="col-md-12">
 
+<<<<<<< HEAD
 			<br>
 			<h2>${viajeEnProceso.vehiculo.chofer.nombre}seencuentraenel
 				siguiente recorrido:</h2>
@@ -42,6 +43,42 @@
 					</tr>
 				</tbody>
 			</table>
+=======
+				<br>
+				<h2>${viajeEnProceso.vehiculo.chofer.nombre}seencuentraenel
+					siguiente recorrido:</h2>
+				<br>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">Fecha y Hora Inicio</th>
+							<th scope="col">Fecha y Hora Fin</th>
+							<th scope="col">Origen</th>
+							<th scope="col">Destino</th>
+							<th scope="col">KM</th>
+							<th scope="col">Precio</th>
+							<th scope="col">Peso</th>
+							<th scope="col">Finalizar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><c:out value="${viajeEnProceso.fechaHora}" /></td>
+							<td><c:out value="${viajeEnProceso.fechaHoraFin}" /></td>
+							<td><c:out value="${viajeEnProceso.origen}" /></td>
+							<td><c:out value="${viajeEnProceso.destino}" /></td>
+							<td><c:out value="${viajeEnProceso.kilometros}" /></td>
+							<td><c:out value="$ ${viajeEnProceso.precio}" /></td>
+							<td><c:out value="${viajeEnProceso.peso}" /></td>
+							<td><form:form role="form" action="finalizarViajeEnProgreso"
+									method="post" name="comenzarViaje">
+									<button class="btn btn-success">Finalizar viaje</button>
+								</form:form></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+>>>>>>> 09d97fe82d3c2d5b1591c89ada44d94437433cf8
 		</div>
 	</div>
 </div>

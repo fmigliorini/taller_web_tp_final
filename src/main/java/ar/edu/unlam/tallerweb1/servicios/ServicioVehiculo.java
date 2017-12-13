@@ -1,6 +1,7 @@
 
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
@@ -23,8 +24,12 @@ public interface ServicioVehiculo {
 	void actualizarVehiculo(Vehiculo vehiculo);
 
 	void eliminarVehiculo(Vehiculo vehiculo);
-	
-	List<Vehiculo> listarVehiculosDisponibles(String diaInicioViaje, String horaInicioViaje, String diaFinViaje,
-			String horaFinViaje);
 
+	List<Vehiculo> listarVehiculosDisponibles(Date fechaHora, Date fechaHoraFin, long idTipoVehiculo);
+
+	List<Vehiculo> listarVehiculosDisponiblesC(Date fechaHora, Date fechaHoraFin, long idTipoVehiculo);
+	
+	List<Vehiculo> getVehiculosDisponibles(Date fechaHora, Date fechaHoraFin, TipoVehiculo tipoVehiculo);
+
+	long getIdVehiculoDisponible(Date fechaHora, Date fechaHoraFin, TipoVehiculo tipoVehiculo);
 }

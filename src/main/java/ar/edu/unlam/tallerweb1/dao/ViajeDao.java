@@ -1,7 +1,9 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.util.Date;
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Viaje;
 
@@ -26,5 +28,7 @@ public interface ViajeDao {
 	
 	Viaje buscarViajeEnProceso(Usuario chofer);
 
-
+	 List<Viaje> listarViajesIntervalo(Date fechaHora, Date fechaHoraFin );
+	 
+	 List<Viaje> listarViajesActVeh(TipoVehiculo t);
 }
