@@ -17,7 +17,7 @@ INSERT INTO TipoVehiculo (Precio,descripcion,pesoMaximo) VALUES (100.00, "furgon
 						
 INSERT INTO EstadoMovimiento (descripcion) VALUES ('Ativo'), ('Aceptado'), ('Rechazado'), ('Vencido'), ('Facturado');
 							
-INSERT INTO vehiculo (marca, modelo, patente, chofer_id, tipoVehiculo_id) VALUES
-('furgoneta 01', 'furgoneta 01', 'asd001', '1', '1'),
-('camioneta 02', 'camioneta 02', 'asd002', '2', '2'),
-('camion 03', 'camion 03', 'asd003', '3', '3');
+INSERT INTO Vehiculo (marca, modelo, patente, chofer_id, tipoVehiculo_id, externo) VALUES
+('furgoneta 01', 'furgoneta 01', 'asd001', '1', '1', false),
+('camioneta 02', 'camioneta 02', 'asd002', '2', '2', false),
+('camion 03', 'camion 03', 'asd003', '3', '3', false);
