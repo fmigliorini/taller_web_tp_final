@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.UsuarioDao;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 
 // Implelemtacion del Servicio de usuarios, la anotacion @Service indica a Spring que esta clase es un componente que debe
 
@@ -27,6 +29,9 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 @Service("ServicioUsuario")
 @Transactional
 public class ServicioUsuarioImpl implements ServicioUsuario {
+
+	@Inject
+	private ServicioVehiculo servicioVehiculo;
 
 	@Inject
 	private UsuarioDao servicioUsuarioDao;
@@ -62,14 +67,25 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
 		return servicioUsuarioDao.usuariosRol(rol);
 	}
+
 	@Override
 	public List<Usuario> listarChoferesSinVehiculo() {
-		return servicioUsuarioDao.listarChoferesSinVehiculo();
+		List<Usuario> choferes = servicioUsuarioDao.listarChoferes();
+		List<Usuario> choferEliminar = new ArrayList<Usuario>();
+		for (Usuario chofer : choferes) {
+			Vehiculo vehiculo = servicioVehiculo.buscarChofer(chofer);
+			if (vehiculo != null) {
+				choferEliminar.add(chofer);
+			}
+
+		}
+		choferes.removeAll(choferEliminar);
+		return choferes;
 	}
 
 	@Override
 	public Usuario consultarUsuarioPorEmail(Usuario usuario) {
-		
+
 		return servicioUsuarioDao.consultarUsuarioPorEmail(usuario);
 	}
 

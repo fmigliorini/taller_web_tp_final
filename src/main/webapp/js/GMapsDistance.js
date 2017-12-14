@@ -1,4 +1,4 @@
-function MeasureDistance(origin, destiny){
+function MeasureDistance(origin, destiny, fechaHora){
      //Find the distance
      var distanceService = new google.maps.DistanceMatrixService();
      distanceService.getDistanceMatrix({
@@ -18,6 +18,8 @@ function MeasureDistanceSuccess(response, status){
         } else {
             console.log(response);
             $("#kilometros").val((response.rows[0].elements[0].distance.value/1000).toFixed(0));
+            $("#duracion").val(response.rows[0].elements[0].duration_in_traffic.text);
+            $("#duracionInt").val(response.rows[0].elements[0].duration_in_traffic.value);
         }
 }
 
@@ -27,6 +29,7 @@ function initMap() {
 
 $(document).ready(function(){
 	$("#origen, #destino").change(function(){
+        debugger;
 		MeasureDistance($("#origen").val(), $("#destino").val());
 	});
 });

@@ -1,5 +1,8 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,10 +15,14 @@ import ar.edu.unlam.tallerweb1.dao.VehiculoDao;
 import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
+import ar.edu.unlam.tallerweb1.modelo.Viaje;
 
 @Service("servicioVehiculo")
 @Transactional
 public class ServicioVehiculoImpl implements ServicioVehiculo {
+
+	@Inject
+	private ServicioViaje servicioViaje;
 
 	@Inject
 	private VehiculoDao vehiculoDao;
@@ -57,9 +64,37 @@ public class ServicioVehiculoImpl implements ServicioVehiculo {
 	}
 
 	@Override
-	public List<Vehiculo> listarVehiculosDisponibles(String diaInicioViaje, String horaInicioViaje, String diaFinViaje,
-			String horaFinViaje) {
-		return vehiculoDao.listarVehiculosDisponibles(diaInicioViaje, horaInicioViaje, diaFinViaje, horaFinViaje);
+	public List<Vehiculo> listarVehiculosDisponibles(Date fechaHora, Date fechaHoraFin, long idTipoVehiculo) {
+		return vehiculoDao.listarVehiculosDisponibles(fechaHora, fechaHoraFin, idTipoVehiculo);
+	}
+
+	public List<Vehiculo> getVehiculosDisponibles(Date fechaHora, Date fechaHoraFin, TipoVehiculo tipoVehiculo, boolean externo) {
+
+		List<Vehiculo> vehiculos = vehiculoDao.listarPorTipoVehiculo(tipoVehiculo);
+		List<Vehiculo> vehiculosEliminar = new ArrayList<Vehiculo>();
+		for (Vehiculo vehiculo : vehiculos) {
+			if (vehiculo != null) {
+				List<Viaje> viajes = servicioViaje.listarViajesIntervalo(fechaHora, fechaHoraFin, vehiculo);
+				if (viajes != null && viajes.size() > 0 || vehiculo.isExterno()!= externo) {
+					vehiculosEliminar.add(vehiculo);
+				}
+			}
+			
+		}
+		vehiculos.removeAll(vehiculosEliminar);
+		return vehiculos;
+	}
+
+	@Override
+	public long getIdVehiculoDisponible(Date fechaHora, Date fechaHoraFin, TipoVehiculo tipoVehiculo, boolean externo) {
+		List<Vehiculo> vehiculos = getVehiculosDisponibles(fechaHora, fechaHoraFin, tipoVehiculo, externo);
+
+		if (vehiculos.isEmpty()) {
+			return 0;
+		} else {
+			return vehiculos.get(0).getId();
+		}
+
 	}
 
 }

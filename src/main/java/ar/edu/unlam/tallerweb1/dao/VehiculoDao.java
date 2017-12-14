@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.dao;
 
 import java.util.List;
 
+import java.util.Date;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -21,6 +22,7 @@ public interface VehiculoDao {
 
 	void eliminarVehiculo(Vehiculo vehiculo);
 
-	List<Vehiculo> listarVehiculosDisponibles(String diaInicioViaje, String horaInicioViaje, String diaFinViaje,
-			String horaFinViaje);
+	List<Vehiculo>  listarVehiculosDisponibles(Date fechaHora, Date fechaHoraFin, long idTipoVehiculo);
+	
+    List<Vehiculo> listarVehiculosDisponiblesC(Date fechaHora, Date fechaHoraFin, long idTipoVehiculo);
 }

@@ -22,8 +22,8 @@
 								<tr>
 									
 									<th scope="col">Id viaje</th>
-									<th scope="col">Fecha</th>
-									<th scope="col">Hora</th>
+									<th scope="col">Fecha y Hora inicio</th>
+									<th scope="col">Fecha y Hora fin</th>
 									<th scope="col">Descripción</th>
 									<th scope="col">Origen</th>
 									<th scope="col">Destino</th>

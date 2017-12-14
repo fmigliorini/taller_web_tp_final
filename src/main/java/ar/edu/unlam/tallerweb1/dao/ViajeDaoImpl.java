@@ -1,6 +1,8 @@
 package ar.edu.unlam.tallerweb1.dao;
 
 import javax.inject.Inject;
+
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,7 +10,9 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Viaje;
 
 @Repository("ViajeDao")
@@ -32,12 +36,21 @@ public class ViajeDaoImpl implements ViajeDao {
 		final Session session = sessionFactotry.getCurrentSession();
 		return (Viaje) session.createCriteria(Viaje.class).add(Restrictions.eq("id", id)).uniqueResult();
 	}
-@Override
+
+	@Override
 	public List<Viaje> listarViajesAct() {
 		final Session session = sessionFactotry.getCurrentSession();
 		List<Viaje> viajesChofer = session.createCriteria(Viaje.class)
 
 				.add(Restrictions.eq("estado", "activo")).list();
+		return viajesChofer;
+	}
+
+	@Override
+	public List<Viaje> listarViajesActVeh(TipoVehiculo t) {
+		final Session session = sessionFactotry.getCurrentSession();
+		List<Viaje> viajesChofer = session.createCriteria(Viaje.class).createAlias("vehiculo", "ve")
+				.add(Restrictions.eq("ve.tipoVehiculo", t)).add(Restrictions.eq("estado", "activo")).list();
 		return viajesChofer;
 	}
 
@@ -50,12 +63,11 @@ public class ViajeDaoImpl implements ViajeDao {
 				.createAlias("vehiculo", "veh").createAlias("veh.chofer", "ch").createAlias("ch.usuario", "us")
 				.add(Restrictions.eq("us.id", idChofer)).list();
 
-
 		return viajesChofer;
 	}
 
 	// Se utiliza para agregar el chofer
-  @Override
+	@Override
 	public void ActualizarViaje(Viaje viaje) {
 
 		final Session session = sessionFactotry.getCurrentSession();
@@ -69,8 +81,7 @@ public class ViajeDaoImpl implements ViajeDao {
 		List<Viaje> viajesActivos = session.createCriteria(Viaje.class).add(Restrictions.eq("estado", "activo"))
 				.createAlias("vehiculo", "veh").createAlias("veh.chofer", "ch")
 
-				.add(Restrictions.eq("ch.id", chofer.getId())).add(Restrictions.eq("ch.rol", "chofer"))
-				.list();
+				.add(Restrictions.eq("ch.id", chofer.getId())).add(Restrictions.eq("ch.rol", "chofer")).list();
 		return viajesActivos;
 	}
 
@@ -92,17 +103,31 @@ public class ViajeDaoImpl implements ViajeDao {
 		return viajesTerminados;
 	}
 
-@Override
+	@Override
 	public Viaje buscarViajeEnProceso(Usuario chofer) {
 		final Session session = sessionFactotry.getCurrentSession();
-		return (Viaje) session.createCriteria(Viaje.class)
-							.add(Restrictions.eq("estado","En proceso"))
-							.createAlias("vehiculo", "veh")
-							.createAlias("veh.chofer", "ch")
-							.add(Restrictions.eq("ch.id", chofer.getId()))
-							.add(Restrictions.eq("ch.rol", "chofer"))
-							.uniqueResult();
-							
+		return (Viaje) session.createCriteria(Viaje.class).add(Restrictions.eq("estado", "En proceso"))
+				.createAlias("vehiculo", "veh").createAlias("veh.chofer", "ch")
+				.add(Restrictions.eq("ch.id", chofer.getId())).add(Restrictions.eq("ch.rol", "chofer")).uniqueResult();
+
 	}
 
+	;
+
+	@Override
+	public List<Viaje> listarViajesIntervalo(Date fechaHora, Date fechaHoraFin, Vehiculo vehiculo) {
+		final Session session = sessionFactotry.getCurrentSession();
+		List<Viaje> viajes = session.createCriteria(Viaje.class)
+				.add(Restrictions.eq("estado", "activo"))
+				.add(Restrictions.eq("vehiculo", vehiculo))
+				.add(Restrictions.between("fechaHora", fechaHora, fechaHoraFin))
+				.add(Restrictions.between("fechaHoraFin", fechaHora, fechaHoraFin)).list();
+
+		// .add(Restrictions.ge("fechaHora",
+		// fechaHora)).add(Restrictions.lt("fechaHoraFin", fechaHora))
+		// .add(Restrictions.ge("fechaHora",
+		// fechaHoraFin)).add(Restrictions.lt("fechaHoraFin", fechaHoraFin))
+		// .list();
+		return viajes;
+	}
 }

@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.dao;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
@@ -85,36 +86,47 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		List<Usuario> Usuarios = session.createCriteria(Usuario.class).add(Restrictions.eq("rol", "chofer")).list();
 		return Usuarios;
 	}
-	
-	@Override
-	public List<Usuario> listarChoferesSinVehiculo() {
-		final Session session = sessionFactory.getCurrentSession();
-		String query = "SELECT u.id , u.apellido, u.nombre , u.direccion , u.dni , u.email , u.password, u.rol , u.telefono FROM usuario u LEFT JOIN  vehiculo v ON v.chofer_id=u.id WHERE u.rol='chofer' and v.id=null";
-		List<Object[]> rows = session.createSQLQuery(query).list();
-		List<Usuario> usuarios = new ArrayList<Usuario>();
 
-		for(Object[] row : rows){
-			Usuario u = new Usuario();
-			u.setId(Long.parseLong(row[0].toString()));
-			u.setApellido(row[1].toString());
-			u.setNombre(row[2].toString());
-			u.setDireccion(row[3].toString());
-			u.setDni(row[4].toString());
-			u.setEmail(row[5].toString());
-			u.setPassword(row[6].toString());
-			u.setRol(row[7].toString());
-			u.setTelefono(row[8].toString());
-			usuarios.add(u);
-		}
-		return usuarios;
-	}
+//	@Override
+//	public List<Usuario> listarChoferesSinVehiculo() {
+//		final Session session = sessionFactory.getCurrentSession();
+//		List<Usuario> Usuarios = session.createCriteria(Usuario.class).add(Restrictions.eq("rol", "chofer"))
+//				.createAlias("vehiculo", "v", CriteriaSpecification.LEFT_JOIN).add(Restrictions.isNull("v.id")).list();
+
+//		return Usuarios;
+//	}
+
+	// @Override
+	// public List<Usuario> listarChoferesSinVehiculo() {
+	// final Session session = sessionFactory.getCurrentSession();
+	// String query = "SELECT u.id , u.apellido, u.nombre , u.direccion , u.dni
+	// , u.email , u.password, u.rol , u.telefono FROM usuario u LEFT JOIN
+	// vehiculo v ON v.chofer_id=u.id WHERE u.rol='chofer' and v.id is null";
+	// List<Object[]> rows = session.createSQLQuery(query).list();
+	// List<Usuario> usuarios = new ArrayList<Usuario>();
+
+	// for(Object[] row : rows){
+	// Usuario u = new Usuario();
+	// u.setId(Long.parseLong(row[0].toString()));
+	// u.setApellido(row[1].toString());
+	// u.setNombre(row[2].toString());
+	// u.setDireccion(row[3].toString());
+	// u.setDni(row[4].toString());
+	// u.setEmail(row[5].toString());
+	// u.setPassword(row[6].toString());
+	// u.setRol(row[7].toString());
+	// u.setTelefono(row[8].toString());
+	// usuarios.add(u);
+	// }
+	//return usuarios;
+
+	//}
 
 	@Override
 	public Usuario consultarUsuarioPorEmail(Usuario usuario) {
-		final Session session=sessionFactory.getCurrentSession();
+		final Session session = sessionFactory.getCurrentSession();
 		return (Usuario) sessionFactory.getCurrentSession().createCriteria(Usuario.class)
-				.add(Restrictions.eq("email", usuario.getEmail()))
-				.uniqueResult();
+				.add(Restrictions.eq("email", usuario.getEmail())).uniqueResult();
 	}
 
 }
