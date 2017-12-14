@@ -13,7 +13,7 @@
 					<h1>Lista de Vehiculos</h1>
 					<a class="btn btn-default btn-circle"
 						href="${pageContext.request.contextPath}/agregarVehiculo"><span
-						class="glyphicon glyphicon-user">Agregar Vehiculo</span></a>
+						class="glyphicon glyphicon-trash"></span> Agregar Vehiculo</a>
 
 					<table class="table table-striped custab">
 						<thead>

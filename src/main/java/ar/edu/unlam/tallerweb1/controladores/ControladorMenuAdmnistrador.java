@@ -24,6 +24,7 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Viaje;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEstadoMovimiento;
+import ar.edu.unlam.tallerweb1.servicios.ServicioLogViaje;
 import ar.edu.unlam.tallerweb1.servicios.ServicioMovimiento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTipoMovimiento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTipoVehiculo;
@@ -51,6 +52,9 @@ public class ControladorMenuAdmnistrador {
 
 	@Inject
 	private ServicioViaje servicioViaje;
+
+	@Inject
+	private ServicioLogViaje servicioLogViaje;
 
 	@Inject
 	private ServicioUsuario servicioUsuario;
@@ -233,6 +237,33 @@ public class ControladorMenuAdmnistrador {
 		return new ModelAndView("reportesDeViajes");
 	}
 
+	@RequestMapping("graficoDeRentabilidad")
+	public ModelAndView graficoDeRentabilidad(HttpServletRequest request) {
+		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
+		ModelMap model = new ModelMap();
+		if (idUsuario != null) {
+			if (servicioUsuario.buscarPorId(idUsuario).getRol().equals("admin")) {
+				double logViajeTotal = 0;
+				double viajeTotal = 0;
+				List<Viaje> viajes = servicioViaje.listarViajesEstado("Terminado");
+				List<LogViaje> logViajes = servicioLogViaje.getAll();
+				for (Viaje v : viajes) {
+					viajeTotal = viajeTotal + v.getPrecio();
+				}
+				for (LogViaje l : logViajes) {
+					logViajeTotal = logViajeTotal + l.getPrecio();
+				}
+				model.put("viajeTotal", viajeTotal);
+				model.put("logViajeTotal", logViajeTotal);
+				return new ModelAndView("graficoDeRentabilidad", model);
+			} else {
+				return new ModelAndView("redirect:/login");
+			}
+		} else {
+			return new ModelAndView("redirect:/login");
+		}
+	}
+
 	@RequestMapping("graficoDePresupuestos")
 	public ModelAndView graficoDePresupuestos(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
@@ -303,6 +334,51 @@ public class ControladorMenuAdmnistrador {
 	}
 
 	// ---------------//
+
+	// Informe Viajes Finalizados ///
+	@RequestMapping("informeViajesFinalizados")
+	public ModelAndView informeViajesFinallizados(HttpServletRequest request) {
+		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
+		ModelMap model = new ModelMap();
+		if (idUsuario != null) {
+			if (servicioUsuario.buscarPorId(idUsuario).getRol().equals("admin")) {
+				model.put("viajes", servicioViaje.listarViajesEstado("Terminado"));
+				return new ModelAndView("informeViajesFinalizados", model);
+			} else {
+				return new ModelAndView("redirect:/login");
+			}
+		} else {
+			return new ModelAndView("redirect:/login");
+		}
+
+	}
+	//
+
+	// InformeLogViaje?idViaje=${v.getId()}
+	@RequestMapping("informeLogViaje")
+	public ModelAndView InformeLogViaje(@RequestParam("idViaje") Long idViaje, HttpServletRequest request) {
+		Long idAdmin = (Long) request.getSession().getAttribute("idUsuario");
+		ModelMap model = new ModelMap();
+		if (idAdmin != null) {
+			if (servicioUsuario.buscarPorId(idAdmin).getRol().equals("admin")) {
+				double total = 0;
+				Viaje viaje = servicioViaje.buscarViajePorId(idViaje);
+				List<LogViaje> logViajes = servicioLogViaje.buscarPorIdViaje(idViaje);
+				for (LogViaje lv : logViajes) {
+					total = total + lv.getPrecio();
+				}
+				model.put("total", total);
+				model.put("viaje", viaje);
+				model.put("logViajes", logViajes);
+				return new ModelAndView("informeLogViaje", model);
+			} else {
+				return new ModelAndView("redirect:/login");
+			}
+		} else {
+			return new ModelAndView("redirect:/login");
+		}
+
+	}
 
 	// ABM USUARIO //
 
@@ -471,21 +547,19 @@ public class ControladorMenuAdmnistrador {
 			if (servicioUsuario.buscarPorId(idUsuario).getRol().equals("admin")) {
 				Vehiculo vehiculo = new Vehiculo();
 				List<Usuario> listChoferes = servicioUsuario.listarChoferesSinVehiculo();
-				if(listChoferes.size()>0)
-				{
+				if (listChoferes.size() > 0) {
 					model.put("Vehiculo", vehiculo);
 					model.put("lisTipovehiculos", servicioTipoVehiculo.listarTiposVehiculos());
 
-					model.put("listChoferes",listChoferes);
+					model.put("listChoferes", listChoferes);
 					return new ModelAndView("agregarVehiculo", model);
-				}
-				else
-				{
+				} else {
 					model.put("tipo", "danger");
 					model.put("titulo", "No tiene choferes:");
-					model.put("mensaje","Para poder crear un vehiculo , necesita tener al menos un chofer sin vehiculo asignado");
+					model.put("mensaje",
+							"Para poder crear un vehiculo , necesita tener al menos un chofer sin vehiculo asignado");
 					return new ModelAndView("notificacionGestion", model);
-					
+
 				}
 
 			} else {

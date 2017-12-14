@@ -46,6 +46,17 @@ public class ViajeDaoImpl implements ViajeDao {
 		return viajesChofer;
 	}
 
+	
+	@Override
+	public List<Viaje> listarViajesEstado(String estado) {
+		final Session session = sessionFactotry.getCurrentSession();
+		List<Viaje> viajesChofer = session.createCriteria(Viaje.class)
+
+				.add(Restrictions.eq("estado", estado)).list();
+		return viajesChofer;
+	}
+	
+	
 	@Override
 	public List<Viaje> listarViajesActVeh(TipoVehiculo t) {
 		final Session session = sessionFactotry.getCurrentSession();

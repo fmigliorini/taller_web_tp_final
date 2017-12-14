@@ -32,4 +32,6 @@ public interface ViajeDao {
 	 List<Viaje> listarViajesIntervalo(Date fechaHora, Date fechaHoraFin, Vehiculo vehiculo );
 	 
 	 List<Viaje> listarViajesActVeh(TipoVehiculo t);
+	 
+	 List<Viaje> listarViajesEstado(String estado);
 }

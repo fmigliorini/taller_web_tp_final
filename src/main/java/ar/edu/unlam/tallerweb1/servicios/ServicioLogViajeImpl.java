@@ -58,4 +58,8 @@ public class ServicioLogViajeImpl implements ServicioLogViaje {
 		return logViajeDao.findByViaje(viaje);
 	}
 
+	public List<LogViaje> getAll() {
+		return logViajeDao.getAll();
+	}
+
 }

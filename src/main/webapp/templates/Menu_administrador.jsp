@@ -63,11 +63,11 @@
 						data-toggle="dropdown">Informes <span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="informePresupuestosFacturados">Presupuestos
-									Facturados</a></li>
+							<li><a href="informePresupuestosFacturados">Presupuestos Facturados</a></li>
 							<li><a href="informeViajesActivos">Viajes Activos</a></li>
-							<li><a href="graficoDePresupuestos">Estados de
-									Presupuesto Grafico</a></li>
+							<li><a href="informeViajesFinalizados">Viajes Finalizados</a></li>
+							<li><a href="graficoDePresupuestos">Estados de Presupuesto Grafico</a></li>
+							<li><a href="graficoDeRentabilidad">Grafico de rentabilidad</a></li>
 						</ul></li>
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"

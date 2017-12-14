@@ -13,7 +13,7 @@
 						<h1>Lista de Usuarios</h1>
 						<a class="btn btn-default btn-circle"
 							href="${pageContext.request.contextPath}/agregarUsuario"><span
-							class="glyphicon glyphicon-user">Agregar Usuario</span></a>
+							class="glyphicon glyphicon-user"></span> Agregar Usuario</a>
 						<h3>Lista de Choferes</h3>
 						<table class="table table-striped custab">
 							<thead>
