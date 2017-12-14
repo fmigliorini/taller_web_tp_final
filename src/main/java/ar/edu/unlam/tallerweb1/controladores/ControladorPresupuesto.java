@@ -208,7 +208,7 @@ public class ControladorPresupuesto {
 								"No se pudo generar la factura por falta de disponibilidad de vehículos, un representante va a estar viendo como lo pueda solucionar, en breve se está contactando con usted vía email para brindarle una resolución.",
 								idMovimiento));
 
-				return new ModelAndView("redirect:/notificacionGestion");
+				return new ModelAndView("/notificacionGestion",model);
 			}
 
 		}
@@ -223,7 +223,7 @@ public class ControladorPresupuesto {
 	public boolean AsignarChofer(Viaje viaje, Movimiento presupuesto) {
 		// Cambia el estado a Facturado
 		long idVehiculo = servicioVehiculo.getIdVehiculoDisponible(viaje.getFechaHora(), viaje.getFechaHoraFin(),
-				viaje.getTipoVehiculo());
+				viaje.getTipoVehiculo(), false);
 		if (idVehiculo > 0) {
 			viaje.setVehiculo(servicioVehiculo.buscarPorId(idVehiculo));
 			viaje.setEstado("activo");
