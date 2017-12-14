@@ -21,7 +21,7 @@ public interface UsuarioDao {
 
 	List<Usuario> usuariosRol(String rol);
 
-	List<Usuario> listarChoferesSinVehiculo();
+//	List<Usuario> listarChoferesSinVehiculo();
 	
     Usuario consultarUsuarioPorEmail(Usuario usuario);
 	

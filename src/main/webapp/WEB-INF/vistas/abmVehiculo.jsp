@@ -24,6 +24,7 @@
 								<th scope="col">Modelo</th>
 								<th scope="col">Chofer</th>
 								<th scope="col">Tipo de Vehiculo</th>
+								<th scope="col">Externo</th>
 								<th scope="col">Editar</th>
 								<th scope="col">Eliminar</th>
 							</tr>
@@ -38,7 +39,7 @@
 									<td><c:out value="${c.modelo}" /></td>
 									<td><c:out value="${c.chofer.nombre}" /></td>
 									<td><c:out value="${c.tipoVehiculo.descripcion}" /></td>
-
+									<td><c:out value="${c.externo}" /></td>
 									<td><c:out value="" /><a
 										class="btn btn-default btn-circle"
 										href="${pageContext.request.contextPath}/modificarVehiculo?idVehiculo=${c.getId()}"><span

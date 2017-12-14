@@ -18,8 +18,8 @@
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-6">
 			<br>
-			<strong> Fecha del servicio:</strong>${mov.getViaje().getFecha() } <br>
-			<strong> Hora:</strong> ${mov.getViaje().getHora() } <br>
+			<strong> Fecha y hora de comienzo del servicio:</strong>${mov.getViaje().getFechaHora() } <br>
+			<strong> Fecha y hora de  aproximada de finalizacion :</strong> ${mov.getViaje().getFechaHoraFin() } <br>
 			<strong> Tipo de vehiculo:</strong>
 			${mov.getViaje().getTipoVehiculo().getDescripcion() }
 		</div>
@@ -46,15 +46,14 @@
 					class="form-group col-md-12">
 					<c:forEach items="${listVehiculos}" var="vehiculo">
 						<option value="${vehiculo.getId()}">${vehiculo.getModelo()}
-							${vehiculo.getMarca()} ${vehiculo.getPatente()}</option>
+							${vehiculo.getMarca()} ${vehiculo.getPatente()} - ${vehiculo.isExterno()}</option>
 					</c:forEach>
 				</select>
 			</div>
 		</div>
 		<div class="row">
 			<div class="form-group col-md-12">
-				<input type="submit" class="btn btn-primary" value="asignarVehiculo">
-				<a class="btn btn-danger"
+				<input type="submit" class="btn btn-primary" value="asignarVehiculo"> <a class="btn btn-danger"
 					href="${pageContext.request.contextPath}/rechazarMovimiento?idMovimiento=${mov.getId()}">Rechazar
 					Presupuesto</a>
 			</div>

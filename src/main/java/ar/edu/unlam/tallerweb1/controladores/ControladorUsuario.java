@@ -36,16 +36,15 @@ public class ControladorUsuario {
 	@RequestMapping("profile")
 	public ModelAndView profile(HttpServletRequest request) {
 		Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
-		if(idUsuario != null && servicioUsuario.buscarPorId(idUsuario).getRol().equals("cliente")){
+		if (idUsuario != null && servicioUsuario.buscarPorId(idUsuario).getRol().equals("cliente")) {
 			Usuario usuario = servicioUsuario.buscarPorId(idUsuario);
 			ModelMap model = new ModelMap();
 			model.put("Usuario", usuario);
-			return new ModelAndView("profile", model);	
+			return new ModelAndView("profile", model);
 		}
 		return new ModelAndView("redirect:/login");
 	}
-	
-	
+
 	@RequestMapping(path = "/actualizarDatos", method = RequestMethod.POST)
 	public ModelAndView actualizarDatos(@ModelAttribute("Usuario") Usuario usuario, HttpServletRequest request) {
 
@@ -69,11 +68,12 @@ public class ControladorUsuario {
 		if (servicioUsuario.consultarUsuarioPorEmail(usuario) == null) {
 			servicioUsuario.generarUsuario(usuario);
 			return new ModelAndView("redirect:/login");
-		}else{
-			JOptionPane.showMessageDialog(null, "Otro usuario ya está usando este correo.", "El Email ya existe", JOptionPane.WARNING_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(null, "Otro usuario ya está usando este correo.", "El Email ya existe",
+					JOptionPane.WARNING_MESSAGE);
 			return new ModelAndView("cliente-form");
 		}
-		
+
 	}
 
 }

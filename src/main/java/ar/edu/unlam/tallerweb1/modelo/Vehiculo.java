@@ -18,6 +18,7 @@ public class Vehiculo {
 	private String patente;
 	private String marca;
 	private String modelo;
+	private boolean externo;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private TipoVehiculo tipoVehiculo;
@@ -73,6 +74,14 @@ public class Vehiculo {
 
 	public void setPatente(String patente) {
 		this.patente = patente;
+	}
+
+	public boolean isExterno() {
+		return externo;
+	}
+
+	public void setExterno(boolean externo) {
+		this.externo = externo;
 	}
 
 
