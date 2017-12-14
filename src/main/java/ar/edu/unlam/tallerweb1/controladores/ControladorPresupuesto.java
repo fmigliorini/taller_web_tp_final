@@ -92,7 +92,7 @@ public class ControladorPresupuesto {
 				modelMapError.put("error", "No existe un vehiculo disponible para ese peso");
 				return new ModelAndView("presupuesto-form", modelMapError);
 			}
-			fechaHoraInicio = fechaHoraInicio.replace("T", " ");
+=========			fechaHoraInicio = fechaHoraInicio.replace("T", " ");
 			final DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			Date fechaI = sdf1.parse(fechaHoraInicio);
@@ -153,7 +153,7 @@ public class ControladorPresupuesto {
 						servicioTipoMovimiento.buscarPorDescripcion("Factura").getId()));
 				return new ModelAndView("presupuesto-invoice", modelMap);
 			} else {
-				return new ModelAndView("redirect:/login");
+>>>>>>>>> Temporary merge branch 2				return new ModelAndView("redirect:/login");
 			}
 		}
 		return new ModelAndView("redirect:/login");
@@ -205,10 +205,10 @@ public class ControladorPresupuesto {
 				model.put("titulo", "No se pudo generar la Factura y el Remito");
 				model.put("mensaje",
 						String.format(
-								"No se pudo generar la factura por falta de disponibilidad de vehículos, un representante va a estar viendo como lo pueda solucionar, en breve se está contactando con usted vía email para brindarle una resolución.",
+								"No se pudo generar la factura por falta de disponibilidad de vehï¿½culos, un representante va a estar viendo como lo pueda solucionar, en breve se estï¿½ contactando con usted vï¿½a email para brindarle una resoluciï¿½n.",
 								idMovimiento));
 
-				return new ModelAndView("redirect:/notificacionGestion");
+				return new ModelAndView("/notificacionGestion",model);
 			}
 
 		}
@@ -223,7 +223,7 @@ public class ControladorPresupuesto {
 	public boolean AsignarChofer(Viaje viaje, Movimiento presupuesto) {
 		// Cambia el estado a Facturado
 		long idVehiculo = servicioVehiculo.getIdVehiculoDisponible(viaje.getFechaHora(), viaje.getFechaHoraFin(),
-				viaje.getTipoVehiculo());
+				viaje.getTipoVehiculo(), false);
 		if (idVehiculo > 0) {
 			viaje.setVehiculo(servicioVehiculo.buscarPorId(idVehiculo));
 			viaje.setEstado("activo");

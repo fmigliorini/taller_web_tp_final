@@ -29,7 +29,6 @@
 				</div>
 
 
-
 				<div class="form-group col-md-12">
 					<label for="tipovehiculo">Tipo del Vehiculo</label> <select
 						name="tipovehiculo" id="tipovehiculo" class="form-group ">

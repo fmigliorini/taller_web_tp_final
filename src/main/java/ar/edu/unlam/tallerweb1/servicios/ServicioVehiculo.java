@@ -26,10 +26,8 @@ public interface ServicioVehiculo {
 	void eliminarVehiculo(Vehiculo vehiculo);
 
 	List<Vehiculo> listarVehiculosDisponibles(Date fechaHora, Date fechaHoraFin, long idTipoVehiculo);
-
-	List<Vehiculo> listarVehiculosDisponiblesC(Date fechaHora, Date fechaHoraFin, long idTipoVehiculo);
 	
-	List<Vehiculo> getVehiculosDisponibles(Date fechaHora, Date fechaHoraFin, TipoVehiculo tipoVehiculo);
+	List<Vehiculo> getVehiculosDisponibles(Date fechaHora, Date fechaHoraFin, TipoVehiculo tipoVehiculo, boolean externo);
 
-	long getIdVehiculoDisponible(Date fechaHora, Date fechaHoraFin, TipoVehiculo tipoVehiculo);
+	long getIdVehiculoDisponible(Date fechaHora, Date fechaHoraFin, TipoVehiculo tipoVehiculo, boolean externo);
 }

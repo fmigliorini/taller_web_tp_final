@@ -50,7 +50,7 @@ public class VehiculoDaoImpl implements VehiculoDao {
 	@Override
 	public Vehiculo buscarChofer(Usuario chofer) {
 		final Session session = sessionFactory.getCurrentSession();
-		return (Vehiculo) session.createCriteria(Vehiculo.class).add(Restrictions.ge("chofer", chofer)).uniqueResult();
+		return (Vehiculo) session.createCriteria(Vehiculo.class).add(Restrictions.eq("chofer", chofer)).uniqueResult();
 	}
 
 	@Override

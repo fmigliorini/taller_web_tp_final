@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Viaje;
 
 @Repository("ViajeDao")
@@ -114,18 +115,19 @@ public class ViajeDaoImpl implements ViajeDao {
 	;
 
 	@Override
-	public List<Viaje> listarViajesIntervalo(Date fechaHora, Date fechaHoraFin) {
+	public List<Viaje> listarViajesIntervalo(Date fechaHora, Date fechaHoraFin, Vehiculo vehiculo) {
 		final Session session = sessionFactotry.getCurrentSession();
 		List<Viaje> viajes = session.createCriteria(Viaje.class)
-				.add(Restrictions.between("fechaHora", fechaHora, fechaHora))
-				.add(Restrictions.between("fechaHoraFin", fechaHora, fechaHora)).list();
+				.add(Restrictions.eq("estado", "activo"))
+				.add(Restrictions.eq("vehiculo", vehiculo))
+				.add(Restrictions.between("fechaHora", fechaHora, fechaHoraFin))
+				.add(Restrictions.between("fechaHoraFin", fechaHora, fechaHoraFin)).list();
 
 		// .add(Restrictions.ge("fechaHora",
 		// fechaHora)).add(Restrictions.lt("fechaHoraFin", fechaHora))
 		// .add(Restrictions.ge("fechaHora",
 		// fechaHoraFin)).add(Restrictions.lt("fechaHoraFin", fechaHoraFin))
 		// .list();
-
 		return viajes;
 	}
 }

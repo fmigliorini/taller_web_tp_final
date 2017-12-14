@@ -3,7 +3,7 @@
 <%@include file='../../templates/Header.jsp'%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<div class="container" style="margin-top: 60px !important">
+<div class="container" >
 	<div class="alert alert-${tipo}">
 		<h1>${titulo}</h1>
 		<p>${mensaje}</p>
