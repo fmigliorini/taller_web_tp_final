@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.dao;
 
 import javax.inject.Inject;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
@@ -126,17 +127,17 @@ public class ViajeDaoImpl implements ViajeDao {
 	@Override
 	public List<Viaje> listarViajesIntervalo(Date fechaHora, Date fechaHoraFin, Vehiculo vehiculo) {
 		final Session session = sessionFactotry.getCurrentSession();
-		List<Viaje> viajes = session.createCriteria(Viaje.class).add(Restrictions.eq("estado", "activo"))
-				.add(Restrictions.eq("vehiculo", vehiculo))
-				.add(Restrictions.between("fechaHora", fechaHora, fechaHoraFin))
-				.add(Restrictions.between("fechaHoraFin", fechaHora, fechaHoraFin)).list();
-
-		// .add(Restrictions.ge("fechaHora",
-		// fechaHora)).add(Restrictions.lt("fechaHoraFin", fechaHora))
-		// .add(Restrictions.ge("fechaHora",
-		// fechaHoraFin)).add(Restrictions.lt("fechaHoraFin", fechaHoraFin))
-		// .list();
-		return viajes;
+        List<Viaje> viajesReturn = new ArrayList<Viaje>();
+        List<Viaje> viajes = session.createCriteria(Viaje.class)
+                .add(Restrictions.eq("vehiculo", vehiculo))
+                .add(Restrictions.between("fechaHora", fechaHora, fechaHoraFin))
+                .add(Restrictions.between("fechaHoraFin", fechaHora, fechaHoraFin)).list();
+        for(Viaje v: viajes){
+            if(v.getEstado().equals("activo")){
+                viajesReturn.add(v);
+            }
+        }
+        return viajesReturn;
 	}
 
 	@Override
