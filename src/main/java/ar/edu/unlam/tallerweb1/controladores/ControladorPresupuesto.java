@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Movimiento;
-
+import ar.edu.unlam.tallerweb1.modelo.TipoMovimiento;
 import ar.edu.unlam.tallerweb1.modelo.TipoVehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
@@ -92,6 +92,7 @@ public class ControladorPresupuesto {
 				modelMapError.put("error", "No existe un vehiculo disponible para ese peso");
 				return new ModelAndView("presupuesto-form", modelMapError);
 			}
+
 			fechaHoraInicio = fechaHoraInicio.replace("T", " ");
 			final DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -153,6 +154,7 @@ public class ControladorPresupuesto {
 						servicioTipoMovimiento.buscarPorDescripcion("Factura").getId()));
 				return new ModelAndView("presupuesto-invoice", modelMap);
 			} else {
+
 				return new ModelAndView("redirect:/login");
 			}
 		}
@@ -205,7 +207,7 @@ public class ControladorPresupuesto {
 				model.put("titulo", "No se pudo generar la Factura y el Remito");
 				model.put("mensaje",
 						String.format(
-								"No se pudo generar la factura por falta de disponibilidad de vehículos, un representante va a estar viendo como lo pueda solucionar, en breve se está contactando con usted vía email para brindarle una resolución.",
+								"No se pudo generar la factura por falta de disponibilidad de vehï¿½culos, un representante va a estar viendo como lo pueda solucionar, en breve se estï¿½ contactando con usted vï¿½a email para brindarle una resoluciï¿½n.",
 								idMovimiento));
 
 				return new ModelAndView("/notificacionGestion",model);
@@ -248,6 +250,16 @@ public class ControladorPresupuesto {
 			return new ModelAndView("redirect:/verPresupues	to/" + presupuesto.getId());
 		}
 		return new ModelAndView("redirect:/login");
+	}
+
+	@RequestMapping(path = "/verFactura/{idViaje}")
+	public ModelAndView listarPresupuestosCliente(@PathVariable("idViaje") Long idViaje) {
+		TipoMovimiento tipoMovimiento = servicioTipoMovimiento.buscarPorDescripcion("Factura");
+		Movimiento factura = servicioMovimiento.buscarMovimientosPorViaje(idViaje, tipoMovimiento.getId());
+		ModelMap model = new ModelMap();
+		model.put("factura", factura);
+		model.put("cliente", factura.getUsuario());
+		return new ModelAndView("factura-invoice", model);
 	}
 
 	public void setServicioTipoVehiculo(ServicioTipoVehiculo servicioTipoVehiculo) {

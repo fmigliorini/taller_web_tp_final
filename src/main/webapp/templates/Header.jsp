@@ -54,19 +54,13 @@
 						class="icon-bar"></span>
 				</button>
 			</div>
-			<% 
-				String rol = (String)request.getSession().getAttribute("rol");
-			   	if( rol != null && rol.equals("admin")) {
-		   	%>
-			<p>
-				Rol User :
-				<c:out value="${rol}"></c:out>
-			</p>
-			<%@ include file="./menu_administrador.jsp"%>
-			<% }else if(rol != null && rol.equals("cliente")) { %>
+			<% String rol = (String) request.getSession().getAttribute("rol"); %>
+			<% if (rol != null && rol.equals("admin")) { %>
+					<%@ include file="./menu_administrador.jsp"%>
+			<% } else if (rol != null && rol.equals("cliente")) { %>
 					<%@include file='./menu_cliente.jsp'%>
-			<% } else if (rol != null && rol.equals("chofer")) {%>
-				<%@include file='./menu_chofer.jsp'%>
+			<% } else if (rol != null && rol.equals("chofer")) { %>
+					<%@include file='./menu_chofer.jsp'%>
 			<% } %>
 		</div>
 	</div>

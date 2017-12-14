@@ -61,6 +61,4 @@
 
 	</div>
 
-
-</body>
-</html>
+<%@include file='../../templates/Footer.jsp'%>
