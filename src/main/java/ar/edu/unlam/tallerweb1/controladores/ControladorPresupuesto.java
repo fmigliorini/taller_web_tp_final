@@ -208,7 +208,7 @@ public class ControladorPresupuesto {
 								"No se pudo generar la factura por falta de disponibilidad de vehículos, un representante va a estar viendo como lo pueda solucionar, en breve se está contactando con usted vía email para brindarle una resolución.",
 								idMovimiento));
 
-				return new ModelAndView("redirect:/notificacionGestion");
+				return new ModelAndView("/notificacionGestion",model);
 			}
 
 		}

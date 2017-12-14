@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -96,27 +98,17 @@ public class ServicioVehiculoImpl implements ServicioVehiculo {
 	public List<Vehiculo> getVehiculosDisponibles(Date fechaHora, Date fechaHoraFin, TipoVehiculo tipoVehiculo) {
 
 		List<Vehiculo> vehiculos = vehiculoDao.listarPorTipoVehiculo(tipoVehiculo);
-		// List<Viaje> viajes = servicioViaje.listarViajesIntervalo(fechaHora,
-		// fechaHoraFin);
-		List<Viaje> viajes = servicioViaje.listarViajesActVeh(tipoVehiculo);
-
+		List<Vehiculo> vehiculosEliminar = new ArrayList<Vehiculo>();
 		for (Vehiculo vehiculo : vehiculos) {
 			if (vehiculo != null) {
-
-				for (Viaje viaje : viajes) {
-					int p1 = viaje.getFechaHora().compareTo(fechaHora);
-					int p2 = viaje.getFechaHoraFin().compareTo(fechaHora);
-					int p3 = viaje.getFechaHora().compareTo(fechaHoraFin);
-					int p4 = viaje.getFechaHoraFin().compareTo(fechaHoraFin);
-
-					if ((p1 <= 0 && p2 >= 0) || (p3 <= 0 && p4 >= 0)
-							|| vehiculo.getTipoVehiculo().getDescripcion() == "Terceros") {
-						vehiculos.remove(viaje.getVehiculo());
-					}
+				List<Viaje> viajes = servicioViaje.listarViajesIntervalo(fechaHora, fechaHoraFin, vehiculo);
+				if (viajes != null && viajes.size() > 0) {
+					vehiculosEliminar.add(vehiculo);
 				}
 			}
+			
 		}
-
+		vehiculos.removeAll(vehiculosEliminar);
 		return vehiculos;
 	}
 
