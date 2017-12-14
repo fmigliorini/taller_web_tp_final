@@ -55,7 +55,7 @@ color:white;
 </style>
 <body>
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-		<div class="container">
+		<div class="container" style="padding:0 30px;">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target=".navbar-collapse">
@@ -66,8 +66,8 @@ color:white;
 			<img src="img/mudanzaspepeLogo.png" href="home" height="50px"/> 
 			<div class="nav navbar-nav navbar-right">
 				<ul class="nav navbar-nav">
-					<li><a href="${pageContext.request.contextPath}/servicio">Servicios</a></li>
-					<li><a href="${pageContext.request.contextPath}/contacto">Contactanos</a></li>
+					<li><a href="#servicio">Servicios</a></li>
+					<li><a href="#contacto">Contactanos</a></li>
 					<li><a href="${pageContext.request.contextPath}/login">Login</a></li>
 				</ul>
 			</div>

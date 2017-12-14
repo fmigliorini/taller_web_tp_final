@@ -26,9 +26,9 @@
 
 
 	</div>
-
+	<a name="servicio"></a>
 	<div class="row steps">
-		<h3>Nuestra Servicio</h3>
+		<h3>Nuestro Servicio</h3>
 		<div class="col-md-4">
 			<center>
 				<img alt="Paso 1 - formulario online" src="img/paso1-formulario.jpg" />
@@ -136,17 +136,18 @@
 			</center>
 		</div>
 	</div>
+	<a name="contacto"></a>
 	<div class="row" id="opinion-right"
 		style="background: url(img/C01.jpg) no-repeat center; margin-top: 0;">
 		<div class="col-md-6"></div>
-		<div class="col-md-6" style="color: white;">
-			<h3>Sobresaliente servicio !</h3>
-			<p>Rosario Sepúlveda</p>
-			<p>Co-Fundadora de IngeAgro</p>
-
+		<div class="col-md-6" style="color: black;">
+			<h3>Contacto !</h3>
+			<p>Email: viajes@mudanzaspepe.com</p>
+			<p>Numero: +52 011 - 11-2157-4422 </p>
+			<p>Dirección: calle falsa 123 </p>
 		</div>
 	</div>
-
+	
 <script type="text/javascript">
 	var stop = false;
 	$(document)
