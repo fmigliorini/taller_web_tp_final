@@ -2,16 +2,32 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file='../../templates/Header_web.jsp' %>
 
-		<div class="container">
-			<div id="" style="margin-top:50px;" class="mainbox col-md-6 offset-md-3 col-sm-8 offset-sm-2">
-				<%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
-				<%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
-					<%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto --%>
-				
-				<form:form action="validar-login" method="POST" modelAttribute="usuario">
-			    	<h3 class="form-signin-heading">Ingresar</h3>
+		<div class="container" style="margin-top:50px;">
+		
+		
+			<div id="tabs-home" class="row">
+
+	<div class="row col-md-1"></div>
+
+		<div class="row col-md-10">
+			<div class="col-md-10 one-column-text">
+					    	<h3 class="form-signin-heading">Registrate y sumate a los beneficios.</h3>
 			    	<%--Bloque que es visible si el elemento error no está vacío	--%>
 					<hr class="colorgraph"><br>
+				<h4">Para poder cotizar una mudanza necesita tener una cuenta con nosotros. Los beneficios de tener una cuenta es que usted podra generar varios presupuestos , facturas y podra verlos desde su perfil</h4>
+			</div>
+			
+		</div>
+
+	<div class="row col-md-10 one-column-text">
+	    	<h3 class="form-signin-heading">Ingresar</h3>
+			    	<%--Bloque que es visible si el elemento error no está vacío	--%>
+					<hr class="colorgraph"><br></div>
+<div  class="col-md-3"></div>
+			<div  class="col-md-6">
+			
+				<form:form action="validar-login" method="POST" modelAttribute="usuario">
+
 
 					<%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
 					<label>Email</label>
@@ -28,5 +44,6 @@
 		        
 			</div>
 		</div>
+			</div>
 		
 <%@include file='../../templates/Footer.jsp' %>
