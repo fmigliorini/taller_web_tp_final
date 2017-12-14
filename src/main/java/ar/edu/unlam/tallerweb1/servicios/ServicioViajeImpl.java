@@ -36,6 +36,12 @@ public class ServicioViajeImpl implements ServicioViaje {
 		return viajeDao.listarViajesAct();
 	}
 
+	
+	public List<Viaje> listarViajesEstado(String estado){
+		return viajeDao.listarViajesEstado(estado);
+	}
+	
+	
 	@Override
 	public List<Viaje> buscarViajesDeChoferId(Long id) {
 		return viajeDao.buscarViajesDeChoferId(id);

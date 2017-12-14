@@ -33,4 +33,5 @@ public interface ServicioViaje {
 
 	List<Viaje> listarViajesActVeh(TipoVehiculo t);
 
+	List<Viaje> listarViajesEstado(String estado);
 }

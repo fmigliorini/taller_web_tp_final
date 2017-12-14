@@ -14,5 +14,6 @@ public interface ServicioLogViaje {
 	public LogViaje buscarPorId(Long id);
 	List<LogViaje> buscarPorIdViaje(Long id);
 	List<LogViaje>traerLogViajeSegunViaje(Viaje viaje);
+	public List<LogViaje> getAll();
 
 }

@@ -92,7 +92,7 @@ public class ControladorPresupuesto {
 				modelMapError.put("error", "No existe un vehiculo disponible para ese peso");
 				return new ModelAndView("presupuesto-form", modelMapError);
 			}
-=========			fechaHoraInicio = fechaHoraInicio.replace("T", " ");
+			fechaHoraInicio = fechaHoraInicio.replace("T", " ");
 			final DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			Date fechaI = sdf1.parse(fechaHoraInicio);
@@ -153,7 +153,7 @@ public class ControladorPresupuesto {
 						servicioTipoMovimiento.buscarPorDescripcion("Factura").getId()));
 				return new ModelAndView("presupuesto-invoice", modelMap);
 			} else {
->>>>>>>>> Temporary merge branch 2				return new ModelAndView("redirect:/login");
+ 		return new ModelAndView("redirect:/login");
 			}
 		}
 		return new ModelAndView("redirect:/login");

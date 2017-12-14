@@ -12,8 +12,7 @@
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-	google.charts.load('current', {
-		'packages' : [ 'corechart' ]
+	google.charts.load('current', {	'packages' : [ 'corechart' ]
 	});
 	google.charts.setOnLoadCallback(drawChartPresupuestos);
 
@@ -31,8 +30,7 @@
 			'width' : 450,
 			'height' : 400
 		};
-		var chart = new google.visualization.PieChart(document
-				.getElementById('chart_div1'));
+		var chart = new google.visualization.PieChart(document.getElementById('chart_div1'));
 		chart.draw(data, options);
 	}
 </script>
