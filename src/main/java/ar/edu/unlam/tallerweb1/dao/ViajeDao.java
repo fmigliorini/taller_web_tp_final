@@ -30,6 +30,7 @@ public interface ViajeDao {
 	Viaje buscarViajeEnProceso(Usuario chofer);
 
 	 List<Viaje> listarViajesIntervalo(Date fechaHora, Date fechaHoraFin, Vehiculo vehiculo );
+	 List<Viaje> listarViajesIntervaloTerminado(Date fechaHora, Date fechaHoraFin);
 	 
 	 List<Viaje> listarViajesActVeh(TipoVehiculo t);
 	 

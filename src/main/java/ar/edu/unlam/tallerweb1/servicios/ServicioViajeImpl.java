@@ -86,6 +86,8 @@ public class ServicioViajeImpl implements ServicioViaje {
 		return viajeDao.listarViajesActVeh(t);
 		
 	}
-	
+	public List<Viaje> listarViajesIntervaloTerminado(Date fechaHora, Date fechaHoraFin){
+		return viajeDao.listarViajesIntervaloTerminado(fechaHora, fechaHoraFin);
+	}
 	
 }

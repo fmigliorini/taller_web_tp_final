@@ -8,11 +8,7 @@ hr.style13 {
 	box-shadow: 0 10px 10px -10px #8c8b8b inset;
 }
 
-.jumbotron{
-	////background-image: url("\img\mudanza01.png");
-    background-color: #5caceb;
-    color:#fff;
-}
+
 .box{
     border:1px solid #ccc;
     padding:20px;
@@ -51,7 +47,11 @@ hr.style13 {
   line-height: 30px;
 }
 
-
+.jumbotron{
+	
+	filter: alpha(opacity=50);
+	
+}
 
 .nav .open > a, .nav .open > a:focus, .nav  .open  > a:hover {
   background-color: #fff;

@@ -1,4 +1,4 @@
-<a class="navbar-brand" href="home"> </a>
+	<a class="navbar-brand" href="index_chofer"> <img src="img/logo.png" height="35px"/>  Mudanzas Pepe</a>
 <div class="nav navbar-nav navbar-right">
 	<ul class="nav navbar-nav">
 		<li><a href="${pageContext.request.contextPath}/listaDeViajesActivos">Lista de Viajes a realizar</a></li>

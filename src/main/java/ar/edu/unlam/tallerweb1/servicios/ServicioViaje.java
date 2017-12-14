@@ -34,4 +34,5 @@ public interface ServicioViaje {
 	List<Viaje> listarViajesActVeh(TipoVehiculo t);
 
 	List<Viaje> listarViajesEstado(String estado);
+	List<Viaje> listarViajesIntervaloTerminado(Date fechaHora, Date fechaHoraFin);
 }
