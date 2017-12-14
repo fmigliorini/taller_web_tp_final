@@ -53,8 +53,8 @@
 			<div class="row">
 				<div class="col-lg-6 col-md-6 col-sm-6">
 					<h4>Descripcion del servicio:</h4>
-					<strong>Fecha del servicio: </strong> ${factura.viaje.fecha } <br> 
-					<strong>Hora: </strong>  ${factura.viaje.hora } <br>
+					<strong>Fecha y hora incio: </strong> ${factura.viaje.fechaHora } <br> 
+					<strong>Fecha y hora fin: </strong>  ${factura.viaje.fechaHoraFin } <br>
 					<strong>Tipo de vehiculo: </strong> ${factura.viaje.tipoVehiculo.descripcion }
 
 				</div>
