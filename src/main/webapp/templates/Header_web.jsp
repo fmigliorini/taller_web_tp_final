@@ -30,7 +30,7 @@
 <style>
 
 .navbar{
-background:#A9BCF5;
+background:#00CFEC;
 color:white;
 
 }
