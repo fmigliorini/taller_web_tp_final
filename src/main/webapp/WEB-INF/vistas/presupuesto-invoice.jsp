@@ -52,7 +52,7 @@
 			<div class="row">
 				<div class="col-lg-6 col-md-6 col-sm-6">
 					<h4>Descripcion del servicio:</h4>
-					Fecha del servicio: 01/12/2017 <br> Hora: 16:00 hs. <br>
+					Fecha del servicio: ${presupuesto.viaje.fechaHora }<br>
 					Tipo de vehiculo: ${presupuesto.viaje.tipoVehiculo.descripcion }
 
 				</div>
