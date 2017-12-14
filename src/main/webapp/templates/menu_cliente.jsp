@@ -1,4 +1,4 @@
-<a class="navbar-brand" href="home"> </a>
+	<a class="navbar-brand" href="home"> <img src="img/logo.png" height="35px"/>  Mudanzas Pepe  </a>
 <div class="nav navbar-nav navbar-right">
 	<ul class="nav navbar-nav">
 		<li><a href="${pageContext.request.contextPath}/presupuestoForm">Nuevo
@@ -22,7 +22,7 @@
 							</div>
 							<div class="col-lg-8">
 								<p class="text-left">
-									<strong>Chofer</strong>
+									<strong>Cliente</strong>
 								</p>
 								<p class="text-left small"></p>
 								<p class="text-left">

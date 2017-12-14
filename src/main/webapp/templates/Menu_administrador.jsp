@@ -51,8 +51,8 @@
 						class="icon-bar"></span>
 				</button>
 			</div>
-
-			<a class="navbar-brand" href="index_administrador">Fletes Pepe </a>
+	
+			<a class="navbar-brand" href="index_administrador"> <img src="img/logo.png" height="35px"/> Mudanzas Pepe </a>
 			<div class="nav navbar-nav navbar-right">
 				<ul class="nav navbar-nav">
 					<li><a href="listaDePresupuestosAceptados">Aceptar
@@ -86,9 +86,9 @@
 										</div>
 										<div class="col-lg-8">
 											<p class="text-left">
-												<strong>Chofer</strong>
+												<strong>Administrador</strong>
 											</p>
-											<p class="text-left small">chofer01@gmail.com</p>
+
 											<p class="text-left">
 												<a href="profile" class="btn btn-primary btn-block btn-sm">Actualizar
 													Datos</a>

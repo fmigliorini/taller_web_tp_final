@@ -46,7 +46,6 @@ public class ViajeDaoImpl implements ViajeDao {
 		return viajesChofer;
 	}
 
-	
 	@Override
 	public List<Viaje> listarViajesEstado(String estado) {
 		final Session session = sessionFactotry.getCurrentSession();
@@ -55,8 +54,7 @@ public class ViajeDaoImpl implements ViajeDao {
 				.add(Restrictions.eq("estado", estado)).list();
 		return viajesChofer;
 	}
-	
-	
+
 	@Override
 	public List<Viaje> listarViajesActVeh(TipoVehiculo t) {
 		final Session session = sessionFactotry.getCurrentSession();
@@ -128,8 +126,7 @@ public class ViajeDaoImpl implements ViajeDao {
 	@Override
 	public List<Viaje> listarViajesIntervalo(Date fechaHora, Date fechaHoraFin, Vehiculo vehiculo) {
 		final Session session = sessionFactotry.getCurrentSession();
-		List<Viaje> viajes = session.createCriteria(Viaje.class)
-				.add(Restrictions.eq("estado", "activo"))
+		List<Viaje> viajes = session.createCriteria(Viaje.class).add(Restrictions.eq("estado", "activo"))
 				.add(Restrictions.eq("vehiculo", vehiculo))
 				.add(Restrictions.between("fechaHora", fechaHora, fechaHoraFin))
 				.add(Restrictions.between("fechaHoraFin", fechaHora, fechaHoraFin)).list();
@@ -139,6 +136,16 @@ public class ViajeDaoImpl implements ViajeDao {
 		// .add(Restrictions.ge("fechaHora",
 		// fechaHoraFin)).add(Restrictions.lt("fechaHoraFin", fechaHoraFin))
 		// .list();
+		return viajes;
+	}
+
+	@Override
+	public List<Viaje> listarViajesIntervaloTerminado(Date fechaHora, Date fechaHoraFin) {
+		final Session session = sessionFactotry.getCurrentSession();
+		List<Viaje> viajes = session.createCriteria(Viaje.class).add(Restrictions.eq("estado", "Terminado"))
+				.add(Restrictions.between("fechaHora", fechaHora, fechaHoraFin))
+				.add(Restrictions.between("fechaHoraFin", fechaHora, fechaHoraFin)).list();
+
 		return viajes;
 	}
 }
